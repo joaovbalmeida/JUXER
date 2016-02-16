@@ -14,7 +14,6 @@
 		921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */; };
 		921D92D31C737BF800CD4B6F /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */; };
 		921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D41C737C0400CD4B6F /* LoginViewController.swift */; };
-		921D92D71C737C0C00CD4B6F /* DiscoveredQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D61C737C0C00CD4B6F /* DiscoveredQRCodeView.swift */; };
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
 		921D92DD1C737CAA00CD4B6F /* music player151.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DC1C737CAA00CD4B6F /* music player151.pdf */; };
 		921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */; };
@@ -43,7 +42,6 @@
 		921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
 		921D92D41C737C0400CD4B6F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		921D92D61C737C0C00CD4B6F /* DiscoveredQRCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredQRCodeView.swift; sourceTree = "<group>"; };
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		921D92DC1C737CAA00CD4B6F /* music player151.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "music player151.pdf"; sourceTree = "<group>"; };
 		921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylistCover.jpeg; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */,
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
 				921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */,
-				921D92D61C737C0C00CD4B6F /* DiscoveredQRCodeView.swift */,
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 			);
 			name = Controller;
@@ -209,6 +206,7 @@
 				TargetAttributes = {
 					926A84DD1C5A9FED00815656 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = R2A9S4KZ5J;
 					};
 				};
 			};
@@ -264,7 +262,6 @@
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,
 				921D92D01C737BF800CD4B6F /* QueueViewController.swift in Sources */,
 				921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */,
-				921D92D71C737C0C00CD4B6F /* DiscoveredQRCodeView.swift in Sources */,
 				92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */,
 				921D92D31C737BF800CD4B6F /* PlaylistsTableViewCell.swift in Sources */,
 				92650E3A1C738F7500D04D55 /* User.swift in Sources */,
@@ -378,14 +375,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JUXER",
 				);
 				INFOPLIST_FILE = JUXER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVictorAlmeida.JUXER;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVAlmeida.JUXER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -393,14 +393,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JUXER",
 				);
 				INFOPLIST_FILE = JUXER/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVictorAlmeida.JUXER;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVAlmeida.JUXER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

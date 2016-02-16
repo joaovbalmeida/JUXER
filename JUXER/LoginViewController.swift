@@ -58,7 +58,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         else
         {
             getFBUser()
-            performSegueWithIdentifier("getSession", sender: self)
+            self.performSegueWithIdentifier("getSession", sender: self)
         }
     }
     
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         session = SessionDAO.fetchSession()
         if session.count == 0 {
             let newSession = Session()
-            newSession.active = 1
+            newSession.active = 0
             SessionDAO.insert(newSession)
             session.append(newSession)
         }
@@ -117,7 +117,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                         
                     })
                     dataTask.resume()
-                    
                 } else {
                     print(error)
                 }

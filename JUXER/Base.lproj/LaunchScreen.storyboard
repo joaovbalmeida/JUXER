@@ -19,6 +19,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jukebox" translatesAutoresizingMaskIntoConstraints="NO" id="vil-gG-1Uk">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <color key="tintColor" red="0.5173950262" green="0.98161764699999998" blue="0.16805776689999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

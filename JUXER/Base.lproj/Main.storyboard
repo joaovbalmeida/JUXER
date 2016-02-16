@@ -57,7 +57,7 @@
                         <outlet property="loginButton" destination="Yjn-XG-4iq" id="4a0-jl-urc"/>
                         <outlet property="welcomeText" destination="4KX-Rs-GdH" id="dJX-Cl-wcZ"/>
                         <segue destination="obf-SU-Ied" kind="presentation" identifier="passLogin" modalTransitionStyle="crossDissolve" id="ZL2-o4-VkV"/>
-                        <segue destination="w1g-9A-eYR" kind="presentation" identifier="getSession" modalTransitionStyle="crossDissolve" id="rOe-15-Rh8"/>
+                        <segue destination="w1g-9A-eYR" kind="show" identifier="getSession" id="rOe-15-Rh8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,7 +73,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Vmp-6E-1TS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5Lm-PM-TO6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PtB-sk-Ui1">
@@ -84,19 +84,19 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-VG-7MB" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="185" y="464" width="230" height="30"/>
+                                <rect key="frame" x="195" y="464" width="210" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="Cud-ed-8GA"/>
+                                    <constraint firstAttribute="width" constant="210" id="Cud-ed-8GA"/>
                                     <constraint firstAttribute="height" constant="30" id="w2A-si-zJX"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-55-V35">
-                                <rect key="frame" x="185" y="247" width="230" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-55-V35">
+                                <rect key="frame" x="185" y="228" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="Hl0-qV-tin"/>
                                     <constraint firstAttribute="height" constant="30" id="tNu-1S-6mx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.5173950262" green="0.98161764699999998" blue="0.16805776689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -105,13 +105,19 @@
                         <constraints>
                             <constraint firstItem="PtB-sk-Ui1" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="FED-xk-p9P"/>
                             <constraint firstItem="uzw-55-V35" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="fdp-S5-J5M"/>
-                            <constraint firstItem="uzw-55-V35" firstAttribute="top" secondItem="PtB-sk-Ui1" secondAttribute="bottom" constant="42" id="fjP-Zm-eA2"/>
+                            <constraint firstItem="uzw-55-V35" firstAttribute="top" secondItem="PtB-sk-Ui1" secondAttribute="bottom" constant="23" id="fjP-Zm-eA2"/>
                             <constraint firstItem="Vmp-6E-1TS" firstAttribute="top" secondItem="TE3-VG-7MB" secondAttribute="bottom" constant="57" id="sG1-YI-hy3"/>
                             <constraint firstItem="PtB-sk-Ui1" firstAttribute="top" secondItem="t8E-kM-Vin" secondAttribute="bottom" constant="35" id="xzY-ZB-cRK"/>
                             <constraint firstItem="TE3-VG-7MB" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="ygx-pG-IKP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="eWk-UX-Kfq"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="eWk-UX-Kfq">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.5173950262" green="0.98161764699999998" blue="0.16805776689999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <connections>
                         <outlet property="logoutButton" destination="TE3-VG-7MB" id="exW-3O-wcd"/>
                         <outlet property="profilePic" destination="PtB-sk-Ui1" id="ZuD-vP-mXl"/>
@@ -153,7 +159,7 @@
                         <viewControllerLayoutGuide type="bottom" id="p5m-ta-hyf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dsw-Mz-0nQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -174,13 +180,13 @@
         <scene sceneID="Jdj-Pj-zT1">
             <objects>
                 <tableViewController id="T5V-pF-Zgh" customClass="PlaylistsTableViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="0t7-EG-yRY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" id="0t7-EG-yRY">
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="actives" rowHeight="80" id="jbU-Jl-VsV" customClass="PlaylistsTableViewCell" customModule="JUXER" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jbU-Jl-VsV" id="BQ0-OA-Zua">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
@@ -243,7 +249,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="inactives" rowHeight="80" id="LV5-Qa-HKh" customClass="PlaylistsTableViewCell" customModule="JUXER" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="194" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="130" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LV5-Qa-HKh" id="w5y-wr-o6K">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
@@ -329,12 +335,12 @@
             <objects>
                 <tableViewController id="Yde-Uf-5P0" customClass="SongsTableViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="s8O-sk-xgd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="a8V-8h-DHw">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8V-8h-DHw" id="Cpt-XY-PxQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -365,12 +371,12 @@
             <objects>
                 <tableViewController id="oBZ-VT-gHL" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wy3-m1-SdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KIh-v2-rEX">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KIh-v2-rEX" id="p0F-BQ-cOi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -400,7 +406,8 @@
         <scene sceneID="kaS-Sr-e4c">
             <objects>
                 <tabBarController id="obf-SU-Ied" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="k0M-ZQ-eBX">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="k0M-ZQ-eBX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -419,9 +426,16 @@
         <scene sceneID="wiw-Cd-YcJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8sw-32-Jc6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="Jzp-g3-daB"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Jzp-g3-daB">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.5173950262" green="0.98161764699999998" blue="0.16805776689999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zho-kl-en0">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Zho-kl-en0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -443,11 +457,17 @@
                         <viewControllerLayoutGuide type="bottom" id="fox-mb-kNJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HkN-CV-b8I">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="0Zy-kE-iP7"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="0Zy-kE-iP7">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.5173950262" green="0.98161764699999998" blue="0.16805776689999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buz-62-0pe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -458,7 +478,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c3S-Vr-hLW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TPn-K0-IqZ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="TPn-K0-IqZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

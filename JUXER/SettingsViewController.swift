@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     {
         deleteFBUserData()
         setSessionInactive()
-        performSegueWithIdentifier("backLogin", sender: self)
+        performSegueWithIdentifier("toLogin", sender: self)
     }
     
     private func setSessionInactive() {
