@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         session = SessionDAO.fetchSession()
         if session.count == 0 {
             let newSession = Session()
-            newSession.active = 0
+            newSession.active = 1
             SessionDAO.insert(newSession)
             session.append(newSession)
         }

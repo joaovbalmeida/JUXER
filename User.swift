@@ -2,7 +2,7 @@
 //  User.swift
 //  JUXER
 //
-//  Created by Joao Victor Almeida on 03/02/16.
+//  Created by Joao Victor Almeida on 16/02/16.
 //  Copyright © 2016 Joao Victor Almeida. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import CoreData
 
 class User: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    // Insert code here to add functionality to your managed object subclass
     convenience init() {
         let context: NSManagedObjectContext = DatabaseManager.sharedInstance.managedObjectContext
         
