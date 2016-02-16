@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		921D92B71C737AFE00CD4B6F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92B41C737AFE00CD4B6F /* FBSDKShareKit.framework */; };
-		921D92B81C737AFE00CD4B6F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92B51C737AFE00CD4B6F /* FBSDKLoginKit.framework */; };
-		921D92B91C737AFE00CD4B6F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92B61C737AFE00CD4B6F /* FBSDKCoreKit.framework */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C41C737BA500CD4B6F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C21C737BA500CD4B6F /* User+CoreDataProperties.swift */; };
 		921D92C51C737BA500CD4B6F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C31C737BA500CD4B6F /* User.swift */; };
@@ -36,9 +33,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		921D92B41C737AFE00CD4B6F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		921D92B51C737AFE00CD4B6F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		921D92B61C737AFE00CD4B6F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C21C737BA500CD4B6F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		921D92C31C737BA500CD4B6F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -71,9 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				921D92B81C737AFE00CD4B6F /* FBSDKLoginKit.framework in Frameworks */,
-				921D92B91C737AFE00CD4B6F /* FBSDKCoreKit.framework in Frameworks */,
-				921D92B71C737AFE00CD4B6F /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +111,6 @@
 				921D92DC1C737CAA00CD4B6F /* music player151.pdf */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
 				921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */,
-				921D92B41C737AFE00CD4B6F /* FBSDKShareKit.framework */,
-				921D92B51C737AFE00CD4B6F /* FBSDKLoginKit.framework */,
-				921D92B61C737AFE00CD4B6F /* FBSDKCoreKit.framework */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
