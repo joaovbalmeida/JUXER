@@ -103,12 +103,12 @@
 			isa = PBXGroup;
 			children = (
 				921D92D41C737C0400CD4B6F /* LoginViewController.swift */,
-				921D92D61C737C0C00CD4B6F /* DiscoveredQRCodeView.swift */,
 				921D92CC1C737BF800CD4B6F /* QueueViewController.swift */,
-				921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */,
 				921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */,
 				921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */,
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
+				921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */,
+				921D92D61C737C0C00CD4B6F /* DiscoveredQRCodeView.swift */,
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 			);
 			name = Controller;
