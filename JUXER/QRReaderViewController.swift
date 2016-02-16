@@ -13,13 +13,31 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
 
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var frameView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureVideoCapture()
         self.addVideoPreviewLayer()
+        self.initializeQRFrame()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (captureSession.running == false) {
+            captureSession?.startRunning()
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (captureSession.running == true) {
+            captureSession?.stopRunning()
+        }
     }
     
     func configureVideoCapture() {
@@ -69,6 +87,14 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         captureSession.startRunning()
     }
     
+    func initializeQRFrame() {
+        frameView = UIView()
+        frameView.layer.borderColor = UIColor.greenColor().CGColor
+        frameView.layer.borderWidth = 2
+        view.addSubview(frameView)
+        view.bringSubviewToFront(frameView)
+    }
+    
     func deviceNotSupported() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -76,30 +102,27 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         captureSession = nil
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if (captureSession.running == false) {
-            captureSession?.startRunning()
-        }
-    }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if (captureSession.running == true) {
-            captureSession?.stopRunning()
-        }
-    }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        
         captureSession.stopRunning()
         
-        if let metadataObject = metadataObjects.first {
-            let readableObject = metadataObject as! AVMetadataMachineReadableCodeObject;
+        if metadataObjects == nil || metadataObjects.count == 0 {
+            frameView.frame = CGRectZero
+            return
+        }
+        
+        let metadataObject = metadataObjects.first
+        
+        if metadataObject?.type == AVMetadataObjectTypeQRCode {
+            let barCodeObject = previewLayer.transformedMetadataObjectForMetadataObject(metadataObject as! AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+            frameView.frame = barCodeObject.bounds
             
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            foundCode(readableObject.stringValue)
+            if metadataObject?.stringValue != nil {
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                foundCode(metadataObject!.stringValue)
+            }
         }
     }
     
@@ -112,7 +135,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     func foundCode(code: String) {
-        
+        print(code)
         setSessionActive()
         performSegueWithIdentifier("toHome", sender: self)
     }
