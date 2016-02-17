@@ -89,8 +89,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     func initializeQRFrame() {
         frameView = UIView()
-        frameView.layer.borderColor = UIColor.greenColor().CGColor
-        frameView.layer.borderWidth = 2
+        frameView.layer.borderColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1).CGColor
+        frameView.layer.borderWidth = 3
         view.addSubview(frameView)
         view.bringSubviewToFront(frameView)
     }
