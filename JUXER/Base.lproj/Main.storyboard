@@ -162,34 +162,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21i-11-ThD">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanear Código QR" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDV-3g-mh2">
+                                <rect key="frame" x="168" y="48" width="265" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="wxO-Kz-GUc"/>
+                                    <constraint firstAttribute="height" constant="70" id="7g8-KO-976"/>
+                                    <constraint firstAttribute="width" constant="265" id="pYJ-39-yAZ"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxn-3d-Yhb">
-                                <rect key="frame" x="0.0" y="450" width="600" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posicione o Código QR na tela para conectar-se ao JUXER." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8K-BH-Zay">
+                                <rect key="frame" x="143" y="492" width="315" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="gfr-w5-UNZ"/>
+                                    <constraint firstAttribute="height" constant="69" id="6cJ-aI-DPS"/>
+                                    <constraint firstAttribute="width" constant="315" id="6vD-sF-McD"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="21i-11-ThD" firstAttribute="leading" secondItem="gnR-nD-asS" secondAttribute="leadingMargin" constant="-20" id="AbM-3M-Alw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rxn-3d-Yhb" secondAttribute="trailing" constant="-20" id="ESy-Xo-tDt"/>
-                            <constraint firstItem="UbP-CJ-SyW" firstAttribute="top" secondItem="Rxn-3d-Yhb" secondAttribute="bottom" id="O5E-sv-89m"/>
-                            <constraint firstItem="21i-11-ThD" firstAttribute="top" secondItem="gnR-nD-asS" secondAttribute="topMargin" id="RRq-o5-g2a"/>
-                            <constraint firstItem="Rxn-3d-Yhb" firstAttribute="leading" secondItem="gnR-nD-asS" secondAttribute="leadingMargin" constant="-20" id="gbu-br-kVP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="21i-11-ThD" secondAttribute="trailing" constant="-20" id="jaP-0A-ttk"/>
+                            <constraint firstItem="iDV-3g-mh2" firstAttribute="top" secondItem="pNS-S3-N9S" secondAttribute="bottom" constant="28" id="9Ze-o0-EP4"/>
+                            <constraint firstItem="UbP-CJ-SyW" firstAttribute="top" secondItem="K8K-BH-Zay" secondAttribute="bottom" constant="39" id="GdW-H6-Nwo"/>
+                            <constraint firstItem="iDV-3g-mh2" firstAttribute="centerX" secondItem="gnR-nD-asS" secondAttribute="centerX" constant="1" id="aso-ZH-X3J"/>
+                            <constraint firstItem="K8K-BH-Zay" firstAttribute="centerX" secondItem="gnR-nD-asS" secondAttribute="centerX" id="bAa-RE-srw"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomViewFrame" destination="Rxn-3d-Yhb" id="ScL-EI-pzp"/>
-                        <outlet property="topViewFrame" destination="21i-11-ThD" id="jPR-a0-zQX"/>
+                        <outlet property="bottomLabel" destination="K8K-BH-Zay" id="aou-e6-DEB"/>
+                        <outlet property="topLabel" destination="iDV-3g-mh2" id="Qsl-GK-Qch"/>
                         <segue destination="obf-SU-Ied" kind="show" identifier="toHome" id="xXl-Rg-CpM"/>
                     </connections>
                 </viewController>

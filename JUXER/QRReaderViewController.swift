@@ -17,9 +17,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var topView: UIVisualEffectView!
     var bottomView: UIVisualEffectView!
     
-    @IBOutlet weak var topViewFrame: UIView!
-    @IBOutlet weak var bottomViewFrame: UIView!
-    
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,10 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.configureVideoCapture()
         self.addVideoPreviewLayer()
         self.addBlurEffect()
+        
+        view.bringSubviewToFront(topLabel)
+        view.bringSubviewToFront(bottomLabel)
+        
         self.initializeQRFrame()
         
     }
@@ -98,12 +101,12 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         
         let blurEffect = UIBlurEffect.init(style: UIBlurEffectStyle.Light)
         topView = UIVisualEffectView.init(effect: blurEffect)
-        topView.frame = topViewFrame.bounds
+        topView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height/4)
         view.addSubview(topView)
         view.bringSubviewToFront(topView)
         
         bottomView = UIVisualEffectView.init(effect: blurEffect)
-        bottomView.frame = bottomViewFrame.bounds
+        bottomView.frame = CGRectMake(0, view.bounds.maxY - 150, view.bounds.width, view.bounds.height/4)
         view.addSubview(bottomView)
         view.bringSubviewToFront(bottomView)
     }
