@@ -16,7 +16,10 @@ class QueueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        let bar: UINavigationBar =  self.navigationController!.navigationBar
+        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        bar.shadowImage = UIImage()
+        bar.alpha = 0.0
     }
 
     override func didReceiveMemoryWarning() {

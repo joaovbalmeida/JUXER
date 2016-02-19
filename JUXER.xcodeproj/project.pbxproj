@@ -15,7 +15,6 @@
 		921D92D31C737BF800CD4B6F /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */; };
 		921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D41C737C0400CD4B6F /* LoginViewController.swift */; };
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
-		921D92DD1C737CAA00CD4B6F /* music player151.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DC1C737CAA00CD4B6F /* music player151.pdf */; };
 		921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */; };
 		921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
@@ -27,7 +26,8 @@
 		92650E381C738F7500D04D55 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E341C738F7500D04D55 /* Session.swift */; };
 		92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */; };
 		92650E3A1C738F7500D04D55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E361C738F7500D04D55 /* User.swift */; };
-		92650E3C1C73CB6600D04D55 /* GreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 92650E3B1C73CB6600D04D55 /* GreenBackground.png */; };
+		92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92650E3F1C752AB900D04D55 /* jukebox-3.pdf */; };
+		92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 92650E451C761D9A00D04D55 /* HomeBackground.png */; };
 		926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E11C5A9FED00815656 /* AppDelegate.swift */; };
 		926A84E71C5A9FED00815656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84E51C5A9FED00815656 /* Main.storyboard */; };
 		926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */; };
@@ -44,7 +44,6 @@
 		921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
 		921D92D41C737C0400CD4B6F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		921D92DC1C737CAA00CD4B6F /* music player151.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "music player151.pdf"; sourceTree = "<group>"; };
 		921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylistCover.jpeg; sourceTree = "<group>"; };
 		921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylisrCover2.jpeg; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +55,8 @@
 		92650E341C738F7500D04D55 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = ../Session.swift; sourceTree = "<group>"; };
 		92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92650E361C738F7500D04D55 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
-		92650E3B1C73CB6600D04D55 /* GreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenBackground.png; sourceTree = "<group>"; };
+		92650E3F1C752AB900D04D55 /* jukebox-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "jukebox-3.pdf"; sourceTree = "<group>"; };
+		92650E451C761D9A00D04D55 /* HomeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeBackground.png; sourceTree = "<group>"; };
 		926A84DE1C5A9FED00815656 /* JUXER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUXER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926A84E11C5A9FED00815656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		926A84E61C5A9FED00815656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,9 +119,9 @@
 				921D92E61C737EE300CD4B6F /* FBSDKCoreKit.framework */,
 				921D92E71C737EE300CD4B6F /* FBSDKLoginKit.framework */,
 				921D92E81C737EE300CD4B6F /* FBSDKShareKit.framework */,
-				921D92DC1C737CAA00CD4B6F /* music player151.pdf */,
-				92650E3B1C73CB6600D04D55 /* GreenBackground.png */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
+				92650E451C761D9A00D04D55 /* HomeBackground.png */,
+				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,
 				921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */,
 			);
 			name = Resources;
@@ -236,10 +236,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				921D92DD1C737CAA00CD4B6F /* music player151.pdf in Resources */,
 				921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */,
+				92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */,
+				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
-				92650E3C1C73CB6600D04D55 /* GreenBackground.png in Resources */,
 				926A84EC1C5A9FED00815656 /* Assets.xcassets in Resources */,
 				921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,

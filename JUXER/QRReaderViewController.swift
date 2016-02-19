@@ -14,12 +14,19 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var frameView: UIView!
+    var topView: UIVisualEffectView!
+    var bottomView: UIVisualEffectView!
+    
+    @IBOutlet weak var topViewFrame: UIView!
+    @IBOutlet weak var bottomViewFrame: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureVideoCapture()
         self.addVideoPreviewLayer()
+        self.addBlurEffect()
         self.initializeQRFrame()
         
     }
@@ -80,13 +87,27 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     func addVideoPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewLayer.frame = view.layer.bounds
         view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
     }
     
+    func addBlurEffect() {
+        
+        let blurEffect = UIBlurEffect.init(style: UIBlurEffectStyle.Light)
+        topView = UIVisualEffectView.init(effect: blurEffect)
+        topView.frame = topViewFrame.bounds
+        view.addSubview(topView)
+        view.bringSubviewToFront(topView)
+        
+        bottomView = UIVisualEffectView.init(effect: blurEffect)
+        bottomView.frame = bottomViewFrame.bounds
+        view.addSubview(bottomView)
+        view.bringSubviewToFront(bottomView)
+    }
+
     func initializeQRFrame() {
         frameView = UIView()
         frameView.layer.borderColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1).CGColor
