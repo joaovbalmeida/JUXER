@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9218E7621C7955A700B9E019 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */; };
+		9218E7631C7955A700B9E019 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */; };
+		9218E7641C7955A700B9E019 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
 		921D92D01C737BF800CD4B6F /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CC1C737BF800CD4B6F /* QueueViewController.swift */; };
@@ -19,9 +22,6 @@
 		921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
-		92650E301C7380B000D04D55 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92E61C737EE300CD4B6F /* FBSDKCoreKit.framework */; };
-		92650E311C7380B000D04D55 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92E71C737EE300CD4B6F /* FBSDKLoginKit.framework */; };
-		92650E321C7380B000D04D55 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921D92E81C737EE300CD4B6F /* FBSDKShareKit.framework */; };
 		92650E371C738F7500D04D55 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */; };
 		92650E381C738F7500D04D55 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E341C738F7500D04D55 /* Session.swift */; };
 		92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */; };
@@ -36,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		921D92CC1C737BF800CD4B6F /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
@@ -48,9 +51,6 @@
 		921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylisrCover2.jpeg; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		921D92E61C737EE300CD4B6F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		921D92E71C737EE300CD4B6F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		921D92E81C737EE300CD4B6F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "../Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92650E341C738F7500D04D55 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = ../Session.swift; sourceTree = "<group>"; };
 		92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -71,9 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92650E301C7380B000D04D55 /* FBSDKCoreKit.framework in Frameworks */,
-				92650E311C7380B000D04D55 /* FBSDKLoginKit.framework in Frameworks */,
-				92650E321C7380B000D04D55 /* FBSDKShareKit.framework in Frameworks */,
+				9218E7631C7955A700B9E019 /* FBSDKLoginKit.framework in Frameworks */,
+				9218E7621C7955A700B9E019 /* FBSDKCoreKit.framework in Frameworks */,
+				9218E7641C7955A700B9E019 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,9 +116,9 @@
 		921D92BD1C737B3B00CD4B6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				921D92E61C737EE300CD4B6F /* FBSDKCoreKit.framework */,
-				921D92E71C737EE300CD4B6F /* FBSDKLoginKit.framework */,
-				921D92E81C737EE300CD4B6F /* FBSDKShareKit.framework */,
+				9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */,
+				9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */,
+				9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
 				92650E451C761D9A00D04D55 /* HomeBackground.png */,
 				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,

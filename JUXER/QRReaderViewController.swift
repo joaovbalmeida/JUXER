@@ -16,6 +16,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var frameView: UIView!
     var topView: UIVisualEffectView!
     var bottomView: UIVisualEffectView!
+    let metadataOutput = AVCaptureMetadataOutput()
     
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
@@ -23,6 +24,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("avCaptureInputPortFormatDescriptionDidChangeNotification:"), name:AVCaptureInputPortFormatDescriptionDidChangeNotification, object: nil)
+
         self.configureVideoCapture()
         self.addVideoPreviewLayer()
         self.addBlurEffect()
@@ -50,6 +53,12 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         }
     }
     
+    func avCaptureInputPortFormatDescriptionDidChangeNotification(notification: NSNotification) {
+        
+        let scanRect = CGRect(x: 0, y: self.view.bounds.height/4, width: self.view.bounds.width, height: self.view.bounds.height/2)
+        metadataOutput.rectOfInterest = previewLayer.metadataOutputRectOfInterestForRect(scanRect)
+    }
+    
     func configureVideoCapture() {
         let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         let videoInput: AnyObject!
@@ -74,8 +83,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             deviceNotSupported();
             return;
         }
-        
-        let metadataOutput = AVCaptureMetadataOutput()
         
         if (captureSession.canAddOutput(metadataOutput)) {
             captureSession.addOutput(metadataOutput)

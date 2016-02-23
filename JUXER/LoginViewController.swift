@@ -50,7 +50,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         if ((error) != nil)
         {
             print(error.localizedDescription)
-            print("Ruim")
         }
         else if result.isCancelled
         {
