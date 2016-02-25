@@ -21,6 +21,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "HomeBackground.png")!)
+        
         user = UserDAO.fetchUser()
         username.text = user[0].name
         

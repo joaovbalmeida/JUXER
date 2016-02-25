@@ -12,7 +12,6 @@
 		9218E7641C7955A700B9E019 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
-		921D92D01C737BF800CD4B6F /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CC1C737BF800CD4B6F /* QueueViewController.swift */; };
 		921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */; };
 		921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */; };
 		921D92D31C737BF800CD4B6F /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */; };
@@ -33,6 +32,9 @@
 		926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */; };
 		926A84EC1C5A9FED00815656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926A84EB1C5A9FED00815656 /* Assets.xcassets */; };
 		926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84ED1C5A9FED00815656 /* LaunchScreen.storyboard */; };
+		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
+		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
+		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +43,6 @@
 		9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
-		921D92CC1C737BF800CD4B6F /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
 		921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +65,9 @@
 		926A84EB1C5A9FED00815656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		926A84EE1C5A9FED00815656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926A84F01C5A9FEE00815656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +107,14 @@
 			isa = PBXGroup;
 			children = (
 				921D92D41C737C0400CD4B6F /* LoginViewController.swift */,
-				921D92CC1C737BF800CD4B6F /* QueueViewController.swift */,
+				921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */,
+				929786C71C7E75B4001B0397 /* HostViewController.swift */,
+				929786C91C7F3EA9001B0397 /* QueueViewController.swift */,
+				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */,
 				921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */,
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
-				921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */,
-				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
+				929786C31C7E729C001B0397 /* TabBarController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -253,19 +259,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */,
 				92650E371C738F7500D04D55 /* Session+CoreDataProperties.swift in Sources */,
 				926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */,
 				921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */,
 				921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */,
 				921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */,
+				929786C41C7E729C001B0397 /* TabBarController.swift in Sources */,
 				921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */,
 				921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */,
 				926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */,
 				92650E381C738F7500D04D55 /* Session.swift in Sources */,
 				921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */,
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,
-				921D92D01C737BF800CD4B6F /* QueueViewController.swift in Sources */,
 				921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */,
+				929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */,
 				92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */,
 				921D92D31C737BF800CD4B6F /* PlaylistsTableViewCell.swift in Sources */,
 				92650E3A1C738F7500D04D55 /* User.swift in Sources */,
