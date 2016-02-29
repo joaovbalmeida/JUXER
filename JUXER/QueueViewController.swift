@@ -13,61 +13,71 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
     }
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var juxerButton: UIButton!
+    
+    var headerView: UIView!
+    private let kHeaderHeight: CGFloat = 250
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.allowsSelection = false
-        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "HomeBackground.png")!)
         
-        let bar: UINavigationBar =  self.navigationController!.navigationBar
-        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        bar.shadowImage = UIImage()
-        bar.alpha = 0.0
+        headerView = tableView.tableHeaderView
+        headerView.clipsToBounds = true
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: kHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
+
+        tableView.allowsSelection = false
         
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        updateHeaderView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: tableView.bounds.width, height: kHeaderHeight)
+        var buttonRect = CGRect(x: view.bounds.midX - 76, y: -235, width: 152, height: 35)
+        if tableView.contentOffset.y <= -120 {
+            headerRect.size.height = -tableView.contentOffset.y
+            headerRect.origin.y = tableView.contentOffset.y
+            buttonRect.origin.y = -tableView.contentOffset.y - 15
+        } else if tableView.contentOffset.y > -120 {
+            headerRect.size.height = 120
+            headerRect.origin.y = tableView.contentOffset.y
+            buttonRect.origin.y = 105
+        }
+        juxerButton.frame = buttonRect
+        headerView.frame = headerRect
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (section) {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        default:
-            return 0
-        }
         
+        return 30
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        switch (indexPath.section) {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("playing", forIndexPath: indexPath)
-            self.tableView.rowHeight = 170
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
-            self.tableView.rowHeight = 70
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
-            return cell
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
+        tableView.rowHeight = 70
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        return cell
     }
-
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateHeaderView()
+    }
 }

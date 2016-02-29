@@ -14,6 +14,10 @@ class HostViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "HomeBackground.png")!)
+        //let bar: UINavigationBar =  self.navigationController!.navigationBar
+        //bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //bar.shadowImage = UIImage()
+        //bar.alpha = 0.0
     }
 
     override func didReceiveMemoryWarning() {
