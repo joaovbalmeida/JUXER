@@ -36,8 +36,9 @@
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
 		92A1442F1C8114C200EC8178 /* bg-header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1442E1C8114C200EC8178 /* bg-header.jpg */; };
-		92A144351C81205500EC8178 /* White Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A144341C81205500EC8178 /* White Outline.pdf */; };
 		92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A144361C84B47D00EC8178 /* coldplayartwork.png */; };
+		92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */; };
+		92A1443F1C863B5100EC8178 /* White Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* White Outline.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +73,9 @@
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		92A1442E1C8114C200EC8178 /* bg-header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-header.jpg"; sourceTree = "<group>"; };
-		92A144341C81205500EC8178 /* White Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "White Outline.pdf"; sourceTree = "<group>"; };
 		92A144361C84B47D00EC8178 /* coldplayartwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coldplayartwork.png; sourceTree = "<group>"; };
+		92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AHFOD1000.jpg; sourceTree = "<group>"; };
+		92A1443E1C863B5100EC8178 /* White Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "White Outline.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +135,8 @@
 				9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
 				92A144361C84B47D00EC8178 /* coldplayartwork.png */,
-				92A144341C81205500EC8178 /* White Outline.pdf */,
+				92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */,
+				92A1443E1C863B5100EC8178 /* White Outline.pdf */,
 				92650E451C761D9A00D04D55 /* HomeBackground.png */,
 				92A1442E1C8114C200EC8178 /* bg-header.jpg */,
 				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,
@@ -251,16 +254,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92A144351C81205500EC8178 /* White Outline.pdf in Resources */,
 				921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */,
 				92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */,
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
 				92A1442F1C8114C200EC8178 /* bg-header.jpg in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
+				92A1443F1C863B5100EC8178 /* White Outline.pdf in Resources */,
 				926A84EC1C5A9FED00815656 /* Assets.xcassets in Resources */,
 				92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */,
 				921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
+				92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

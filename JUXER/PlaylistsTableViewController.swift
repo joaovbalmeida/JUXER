@@ -43,11 +43,10 @@ class PlaylistsTableViewController: UITableViewController {
         default:
             return 1
         }
-
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         switch (indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath)
