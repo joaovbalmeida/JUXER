@@ -15,20 +15,16 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!
-    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     var headerView: UIView!
-    private let kHeaderHeight: CGFloat = 250
+    private let kHeaderHeight: CGFloat = 300
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-    var blurView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "HomeBackground.png")!)
-        
-        blurView = UIVisualEffectView(effect: darkBlur)
-        coverImage.addSubview(blurView)
+        backgroundImage.image = UIImage(named: "AHFOD1000.jpg")
         
         headerView = tableView.tableHeaderView
         headerView.clipsToBounds = true
@@ -46,8 +42,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func updateHeaderView() {
         var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: tableView.bounds.width, height: kHeaderHeight)
-        var buttonRect = CGRect(x: view.bounds.midX - 76, y: -235, width: 152, height: 35)
-        var labelRect = CGRect(x: view.bounds.midX - 76, y: -235, width: 152, height: 35)
+        var buttonRect = CGRect(x: view.bounds.midX - 76, y: -285, width: 152, height: 35)
+        var labelRect = CGRect(x: view.bounds.midX - 76, y: -285, width: 152, height: 35)
         if tableView.contentOffset.y <= -120 {
             headerRect.size.height = -tableView.contentOffset.y
             headerRect.origin.y = tableView.contentOffset.y
@@ -62,11 +58,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         juxerLabel.frame = labelRect
         juxerButton.frame = buttonRect
         headerView.frame = headerRect
-        blurView.frame = headerView.bounds
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 2
     }
     
