@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9218E7621C7955A700B9E019 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */; };
-		9218E7631C7955A700B9E019 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */; };
-		9218E7641C7955A700B9E019 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
 		921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */; };
@@ -39,12 +36,12 @@
 		92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A144361C84B47D00EC8178 /* coldplayartwork.png */; };
 		92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */; };
 		92A1443F1C863B5100EC8178 /* White Outline.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* White Outline.pdf */; };
+		92BB559B1C88BA9800F1BFA5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */; };
+		92BB559C1C88BA9800F1BFA5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB55991C88BA9800F1BFA5 /* FBSDKLoginKit.framework */; };
+		92BB559D1C88BA9800F1BFA5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +73,9 @@
 		92A144361C84B47D00EC8178 /* coldplayartwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coldplayartwork.png; sourceTree = "<group>"; };
 		92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AHFOD1000.jpg; sourceTree = "<group>"; };
 		92A1443E1C863B5100EC8178 /* White Outline.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "White Outline.pdf"; sourceTree = "<group>"; };
+		92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		92BB55991C88BA9800F1BFA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9218E7631C7955A700B9E019 /* FBSDKLoginKit.framework in Frameworks */,
-				9218E7621C7955A700B9E019 /* FBSDKCoreKit.framework in Frameworks */,
-				9218E7641C7955A700B9E019 /* FBSDKShareKit.framework in Frameworks */,
+				92BB559C1C88BA9800F1BFA5 /* FBSDKLoginKit.framework in Frameworks */,
+				92BB559B1C88BA9800F1BFA5 /* FBSDKCoreKit.framework in Frameworks */,
+				92BB559D1C88BA9800F1BFA5 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,9 +130,6 @@
 		921D92BD1C737B3B00CD4B6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9218E75F1C7955A700B9E019 /* FBSDKCoreKit.framework */,
-				9218E7601C7955A700B9E019 /* FBSDKLoginKit.framework */,
-				9218E7611C7955A700B9E019 /* FBSDKShareKit.framework */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
 				92A144361C84B47D00EC8178 /* coldplayartwork.png */,
 				92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */,
@@ -165,6 +162,16 @@
 			name = DAO;
 			sourceTree = "<group>";
 		};
+		9256CA571C88BCE6002C9461 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */,
+				92BB55991C88BA9800F1BFA5 /* FBSDKLoginKit.framework */,
+				92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		926A84D51C5A9FED00815656 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +191,7 @@
 		926A84E01C5A9FED00815656 /* JUXER */ = {
 			isa = PBXGroup;
 			children = (
+				9256CA571C88BCE6002C9461 /* Frameworks */,
 				926A84E11C5A9FED00815656 /* AppDelegate.swift */,
 				921D92BC1C737B1600CD4B6F /* Controller */,
 				921D92BB1C737B0900CD4B6F /* View */,

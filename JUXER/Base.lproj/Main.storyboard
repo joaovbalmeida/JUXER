@@ -97,7 +97,7 @@
                                     <constraint firstAttribute="width" constant="150" id="Y2I-9q-ZNU"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-VG-7MB" customClass="FBSDKLoginButton">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-VG-7MB" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="195" y="464" width="210" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="Cud-ed-8GA"/>
@@ -627,7 +627,7 @@
                                     <constraint firstAttribute="width" constant="152" id="s92-G4-V0z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
