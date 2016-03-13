@@ -18,6 +18,10 @@
 		921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
+		926324171C8E1D52003999C6 /* HomeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324161C8E1D52003999C6 /* HomeBG.png */; };
+		926324191C8E2A40003999C6 /* BGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324181C8E2A40003999C6 /* BGround.png */; };
+		9263241C1C95EA9F003999C6 /* Settings-25?download-2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9263241B1C95EA9F003999C6 /* Settings-25?download-2.pdf */; };
+		9263241E1C95EAA7003999C6 /* Settings-25?download.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9263241D1C95EAA7003999C6 /* Settings-25?download.pdf */; };
 		92650E371C738F7500D04D55 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */; };
 		92650E381C738F7500D04D55 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E341C738F7500D04D55 /* Session.swift */; };
 		92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */; };
@@ -53,6 +57,10 @@
 		921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylisrCover2.jpeg; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		926324161C8E1D52003999C6 /* HomeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeBG.png; sourceTree = "<group>"; };
+		926324181C8E2A40003999C6 /* BGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGround.png; sourceTree = "<group>"; };
+		9263241B1C95EA9F003999C6 /* Settings-25?download-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Settings-25?download-2.pdf"; sourceTree = "<group>"; };
+		9263241D1C95EAA7003999C6 /* Settings-25?download.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Settings-25?download.pdf"; sourceTree = "<group>"; };
 		92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "../Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92650E341C738F7500D04D55 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = ../Session.swift; sourceTree = "<group>"; };
 		92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -130,9 +138,12 @@
 		921D92BD1C737B3B00CD4B6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9263241A1C95EA92003999C6 /* Icons */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
+				926324161C8E1D52003999C6 /* HomeBG.png */,
 				92A144361C84B47D00EC8178 /* coldplayartwork.png */,
 				92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */,
+				926324181C8E2A40003999C6 /* BGround.png */,
 				92A1443E1C863B5100EC8178 /* White Outline.pdf */,
 				92650E451C761D9A00D04D55 /* HomeBackground.png */,
 				92A1442E1C8114C200EC8178 /* bg-header.jpg */,
@@ -170,6 +181,15 @@
 				92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9263241A1C95EA92003999C6 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				9263241D1C95EAA7003999C6 /* Settings-25?download.pdf */,
+				9263241B1C95EA9F003999C6 /* Settings-25?download-2.pdf */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		926A84D51C5A9FED00815656 = {
@@ -265,14 +285,18 @@
 				921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */,
 				92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */,
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
+				926324171C8E1D52003999C6 /* HomeBG.png in Resources */,
 				92A1442F1C8114C200EC8178 /* bg-header.jpg in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
 				92A1443F1C863B5100EC8178 /* White Outline.pdf in Resources */,
+				926324191C8E2A40003999C6 /* BGround.png in Resources */,
 				926A84EC1C5A9FED00815656 /* Assets.xcassets in Resources */,
 				92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */,
 				921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
 				92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */,
+				9263241C1C95EA9F003999C6 /* Settings-25?download-2.pdf in Resources */,
+				9263241E1C95EAA7003999C6 /* Settings-25?download.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

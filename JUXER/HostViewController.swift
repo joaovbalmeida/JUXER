@@ -13,7 +13,7 @@ class HostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "HomeBackground.png")!)
+        
         //let bar: UINavigationBar =  self.navigationController!.navigationBar
         //bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         //bar.shadowImage = UIImage()
