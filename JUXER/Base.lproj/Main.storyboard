@@ -132,7 +132,7 @@
                             <constraint firstItem="TE3-VG-7MB" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="ygx-pG-IKP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ajustes" image="Settings" selectedImage="SettingsFilled" id="eWk-UX-Kfq">
+                    <tabBarItem key="tabBarItem" tag="2" title="Ajustes" image="Settings" selectedImage="SettingsFilled" id="eWk-UX-Kfq">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -546,50 +546,17 @@
                                                     </view>
                                                     <blurEffect style="dark"/>
                                                 </visualEffectView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AHFOD1000.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yui-by-l1Q">
-                                                    <rect key="frame" x="21" y="100" width="100" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="BAB-kz-vGX"/>
-                                                        <constraint firstAttribute="height" constant="100" id="Ujb-xj-0JU"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventures of a Lifetime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rer-EN-G6L">
-                                                    <rect key="frame" x="129" y="127" width="239" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="OYe-Fa-0FR"/>
-                                                        <constraint firstAttribute="width" constant="239" id="TQn-bm-92y"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coldplay" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Miw-cu-84E">
-                                                    <rect key="frame" x="185" y="153" width="126" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="126" id="AUl-Jd-mtk"/>
-                                                        <constraint firstAttribute="height" constant="19" id="Gen-0y-bRw"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="Rer-EN-G6L" firstAttribute="leading" secondItem="yui-by-l1Q" secondAttribute="trailing" constant="8" id="0vw-lT-5NN"/>
                                                 <constraint firstItem="6Q2-BO-Yb2" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leadingMargin" constant="-8" id="26l-NK-9UH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Pdk-ap-1mW" secondAttribute="trailing" id="7rM-ot-iL3"/>
                                                 <constraint firstItem="Pdk-ap-1mW" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leading" id="Acw-Am-q3o"/>
-                                                <constraint firstItem="yui-by-l1Q" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leading" constant="21" id="GKS-u5-1V0"/>
-                                                <constraint firstItem="Miw-cu-84E" firstAttribute="centerY" secondItem="jqw-vB-Z6H" secondAttribute="centerY" constant="12.5" id="GsA-5x-AKr"/>
-                                                <constraint firstItem="yui-by-l1Q" firstAttribute="centerY" secondItem="jqw-vB-Z6H" secondAttribute="centerY" id="Mbk-dn-p9M"/>
                                                 <constraint firstItem="Pdk-ap-1mW" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="top" id="QCO-Cj-boQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6Q2-BO-Yb2" secondAttribute="trailing" constant="-8" id="VA6-JW-Fa5"/>
-                                                <constraint firstItem="Miw-cu-84E" firstAttribute="leading" secondItem="yui-by-l1Q" secondAttribute="trailing" constant="64" id="aAm-Ha-L21"/>
                                                 <constraint firstAttribute="bottom" secondItem="Pdk-ap-1mW" secondAttribute="bottom" id="cWY-5J-LY1"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6Q2-BO-Yb2" secondAttribute="bottom" constant="-8" id="cXl-Y4-XJ3"/>
                                                 <constraint firstItem="6Q2-BO-Yb2" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="topMargin" constant="-8" id="fh5-1a-hDb"/>
-                                                <constraint firstItem="Rer-EN-G6L" firstAttribute="centerY" secondItem="jqw-vB-Z6H" secondAttribute="centerY" constant="-14" id="iDK-qJ-SsE"/>
                                             </constraints>
                                         </view>
                                         <prototypes>
@@ -657,7 +624,7 @@
                             <constraint firstItem="xX7-Pn-1kI" firstAttribute="centerX" secondItem="JCo-Md-hxQ" secondAttribute="centerX" id="nTD-nc-Y52"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="sCN-ug-WPa">
+                    <tabBarItem key="tabBarItem" tag="1" systemItem="featured" id="sCN-ug-WPa">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>

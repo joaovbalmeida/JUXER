@@ -11,6 +11,8 @@ import UIKit
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        juxerButton.hidden = false
+        juxerLabel.hidden = false
     }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
@@ -33,16 +35,22 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
 
         tableView.allowsSelection = false
-        self.automaticallyAdjustsScrollViewInsets = false
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
+    override func viewDidDisappear(animated: Bool) {
+        juxerLabel.hidden = true
+        juxerButton.hidden = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        juxerButton.hidden = false
+        juxerLabel.hidden = false
+        updateHeaderView()
     }
     
     func updateHeaderView() {
-        var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: tableView.bounds.width, height: kHeaderHeight)
         var buttonRect = CGRect(x: view.bounds.midX - 76, y: -tableView.contentOffset.y - 15, width: 152, height: 35)
+        var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: tableView.bounds.width, height: kHeaderHeight)
         if tableView.contentOffset.y <= -120 {
             headerRect.size.height = -tableView.contentOffset.y
             headerRect.origin.y = tableView.contentOffset.y
