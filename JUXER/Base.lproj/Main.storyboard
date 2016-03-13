@@ -538,9 +538,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
-                                                <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-ap-1mW">
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWu-H7-57p">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Lbi-0N-ZW7">
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lOo-C9-ZCc">
                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
@@ -549,14 +549,14 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="6Q2-BO-Yb2" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leadingMargin" constant="-8" id="26l-NK-9UH"/>
-                                                <constraint firstAttribute="trailing" secondItem="Pdk-ap-1mW" secondAttribute="trailing" id="7rM-ot-iL3"/>
-                                                <constraint firstItem="Pdk-ap-1mW" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leading" id="Acw-Am-q3o"/>
-                                                <constraint firstItem="Pdk-ap-1mW" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="top" id="QCO-Cj-boQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6Q2-BO-Yb2" secondAttribute="trailing" constant="-8" id="VA6-JW-Fa5"/>
-                                                <constraint firstAttribute="bottom" secondItem="Pdk-ap-1mW" secondAttribute="bottom" id="cWY-5J-LY1"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="6Q2-BO-Yb2" secondAttribute="bottom" constant="-8" id="cXl-Y4-XJ3"/>
-                                                <constraint firstItem="6Q2-BO-Yb2" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="topMargin" constant="-8" id="fh5-1a-hDb"/>
+                                                <constraint firstItem="sWu-H7-57p" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="top" id="5Xm-rJ-92G"/>
+                                                <constraint firstItem="6Q2-BO-Yb2" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leading" id="5ga-h2-Mj8"/>
+                                                <constraint firstAttribute="bottom" secondItem="6Q2-BO-Yb2" secondAttribute="bottom" id="Q68-47-TfC"/>
+                                                <constraint firstAttribute="trailing" secondItem="sWu-H7-57p" secondAttribute="trailing" id="U0d-79-8W3"/>
+                                                <constraint firstItem="sWu-H7-57p" firstAttribute="leading" secondItem="jqw-vB-Z6H" secondAttribute="leading" id="bOv-Sl-Xtl"/>
+                                                <constraint firstAttribute="trailing" secondItem="6Q2-BO-Yb2" secondAttribute="trailing" id="bbb-xc-6g9"/>
+                                                <constraint firstAttribute="bottom" secondItem="sWu-H7-57p" secondAttribute="bottom" id="jhF-th-O5E"/>
+                                                <constraint firstItem="6Q2-BO-Yb2" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="top" id="ln9-6y-vGc"/>
                                             </constraints>
                                         </view>
                                         <prototypes>
@@ -632,7 +632,6 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <connections>
-                        <outlet property="headerView" destination="jqw-vB-Z6H" id="flx-Xm-RC1"/>
                         <outlet property="juxerButton" destination="CYo-7B-mal" id="Yjt-nG-Vxb"/>
                         <outlet property="juxerLabel" destination="xX7-Pn-1kI" id="36d-W9-Jwq"/>
                         <outlet property="tableView" destination="HLA-wf-SXF" id="IvE-X7-8Ug"/>

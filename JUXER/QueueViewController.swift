@@ -17,11 +17,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!
-    @IBOutlet weak var headerView: UIView!
+
     
 
     private let kHeaderHeight: CGFloat = 300
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
+        
         tableView.contentInset = UIEdgeInsets(top: kHeaderHeight, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
 
@@ -50,7 +52,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func updateHeaderView() {
         var buttonRect = CGRect(x: view.bounds.midX - 76, y: -tableView.contentOffset.y - 15, width: 152, height: 35)
-        var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: tableView.bounds.width, height: kHeaderHeight)
+        var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: view.bounds.width , height: kHeaderHeight)
         if tableView.contentOffset.y <= -120 {
             headerRect.size.height = -tableView.contentOffset.y
             headerRect.origin.y = tableView.contentOffset.y
