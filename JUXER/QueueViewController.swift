@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKShareKit
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,8 +18,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!
-
     
+    @IBOutlet weak var albumtImage: UIImageView!
+    @IBOutlet weak var songLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var songScrollingLabel: UILabel!
+    @IBOutlet weak var artistScrollingLabel: UILabel!
 
     private let kHeaderHeight: CGFloat = 300
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -37,6 +42,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
 
         tableView.allowsSelection = false
+       
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -67,6 +73,25 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         headerView.frame = headerRect
     }
     
+    func updateInitialLabels() {
+        var alpha: CGFloat = 1
+        if tableView.contentOffset.y >= -250 {
+            alpha = ((-tableView.contentOffset.y / 60) - (19/6))
+        }
+        albumtImage.alpha = alpha
+        artistLabel.alpha = alpha
+        songLabel.alpha = alpha
+    }
+    
+    func updateScrollingLabels() {
+        var alpha: CGFloat = 1
+        if tableView.contentOffset.y <= -130 {
+            alpha = (-(-tableView.contentOffset.y / 120) + (25/12))
+        }
+        songScrollingLabel.alpha = alpha
+        artistScrollingLabel.alpha = alpha
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -91,7 +116,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
-            cell.separatorInset = UIEdgeInsetsZero
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
         default:
@@ -112,6 +137,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        print(tableView.contentOffset.y)
+        updateInitialLabels()
+        updateScrollingLabels()
         updateHeaderView()
     }
     

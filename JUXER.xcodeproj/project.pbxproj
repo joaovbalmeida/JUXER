@@ -45,6 +45,7 @@
 		92C292741C97017F005D90DB /* Music.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292731C97017F005D90DB /* Music.pdf */; };
 		92C292761C970493005D90DB /* QueueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C292751C970493005D90DB /* QueueTableViewCell.swift */; };
 		92C292781C97062F005D90DB /* rihanna-work-cover-compressed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */; };
+		92C2927C1C9734D0005D90DB /* More.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2927B1C9734D0005D90DB /* More.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		92C292731C97017F005D90DB /* Music.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Music.pdf; sourceTree = "<group>"; };
 		92C292751C970493005D90DB /* QueueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTableViewCell.swift; sourceTree = "<group>"; };
 		92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rihanna-work-cover-compressed.jpg"; sourceTree = "<group>"; };
+		92C2927B1C9734D0005D90DB /* More.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = More.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		9263241A1C95EA92003999C6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				92C2927B1C9734D0005D90DB /* More.pdf */,
 				92C2926D1C96FE01005D90DB /* HomeH.pdf */,
 				92C292731C97017F005D90DB /* Music.pdf */,
 				92C2926F1C96FF3B005D90DB /* Settings.pdf */,
@@ -295,6 +298,7 @@
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
 				926324171C8E1D52003999C6 /* HomeBG.png in Resources */,
+				92C2927C1C9734D0005D90DB /* More.pdf in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
 				92C292701C96FF3B005D90DB /* Settings.pdf in Resources */,
 				92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */,
