@@ -100,6 +100,17 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        switch (indexPath.section) {
+        case 0:
+            return 40
+        case 1:
+            return 70
+        default:
+            return 0
+        }
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         updateHeaderView()
     }
