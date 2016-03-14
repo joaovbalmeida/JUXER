@@ -569,20 +569,20 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coldplay" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adi-BB-8bg">
-                                                        <rect key="frame" x="200" y="67" width="200" height="21"/>
+                                                        <rect key="frame" x="200" y="154" width="200" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="ChX-Cy-O6K"/>
-                                                            <constraint firstAttribute="width" constant="200" id="S4F-4e-Exj"/>
+                                                            <constraint firstAttribute="width" constant="200" id="bq6-lG-gcP"/>
+                                                            <constraint firstAttribute="height" constant="21" id="chb-SZ-2N1"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hymn For The Weekend" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inb-Xc-1Fx">
-                                                        <rect key="frame" x="150" y="38" width="301" height="21"/>
+                                                        <rect key="frame" x="150" y="125" width="301" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="301" id="5gn-9l-eFs"/>
-                                                            <constraint firstAttribute="height" constant="21" id="vGu-VH-kDS"/>
+                                                            <constraint firstAttribute="height" constant="21" id="OTg-45-jHC"/>
+                                                            <constraint firstAttribute="width" constant="301" id="adA-Qf-Yqe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -590,14 +590,14 @@
                                                     </label>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="inb-Xc-1Fx" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="9bd-zW-CVZ"/>
+                                                    <constraint firstItem="Adi-BB-8bg" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="Al3-5M-QjN"/>
                                                     <constraint firstItem="nje-39-23i" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="DsL-VO-7y2"/>
                                                     <constraint firstItem="nje-39-23i" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="93.5" id="OD7-IO-CI3"/>
-                                                    <constraint firstItem="inb-Xc-1Fx" firstAttribute="top" secondItem="lOo-C9-ZCc" secondAttribute="top" constant="38" id="PSM-E5-3ae"/>
-                                                    <constraint firstItem="Adi-BB-8bg" firstAttribute="top" secondItem="inb-Xc-1Fx" secondAttribute="bottom" constant="8" id="bJF-LY-Nnh"/>
+                                                    <constraint firstItem="Adi-BB-8bg" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="14.5" id="VvH-1l-mel"/>
                                                     <constraint firstItem="gLi-jc-rPj" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="64.5" id="eiH-Sl-CU2"/>
                                                     <constraint firstItem="qgZ-YZ-uMt" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="hD3-D1-ar4"/>
-                                                    <constraint firstItem="Adi-BB-8bg" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="tOB-Dy-ZFO"/>
+                                                    <constraint firstItem="inb-Xc-1Fx" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="-14.5" id="lf4-6t-xUj"/>
+                                                    <constraint firstItem="inb-Xc-1Fx" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="njK-3n-Wuu"/>
                                                     <constraint firstItem="gLi-jc-rPj" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="vXC-Re-ZzN"/>
                                                     <constraint firstItem="qgZ-YZ-uMt" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="-29" id="vh2-cL-XsO"/>
                                                 </constraints>

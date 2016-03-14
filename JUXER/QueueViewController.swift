@@ -76,7 +76,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func updateInitialLabels() {
         var alpha: CGFloat = 1
         if tableView.contentOffset.y >= -250 {
-            alpha = ((-tableView.contentOffset.y / 60) - (19/6))
+            alpha = ((-tableView.contentOffset.y / 60) - 3)
         }
         albumtImage.alpha = alpha
         artistLabel.alpha = alpha
@@ -86,7 +86,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func updateScrollingLabels() {
         var alpha: CGFloat = 1
         if tableView.contentOffset.y <= -130 {
-            alpha = (-(-tableView.contentOffset.y / 120) + (25/12))
+            alpha = (-(-tableView.contentOffset.y / 50) + 18/5)
         }
         songScrollingLabel.alpha = alpha
         artistScrollingLabel.alpha = alpha
