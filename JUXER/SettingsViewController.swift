@@ -12,6 +12,7 @@ import FBSDKCoreKit
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var logoutButton: FBSDKLoginButton!
@@ -34,9 +35,25 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             if let dirPath = paths[0] as? String
             {
                 let readPath = dirPath + "/profilePic.jpg"
-                profilePic.image = UIImage(contentsOfFile: readPath)
+                let image = UIImage(contentsOfFile: readPath)
+                bgImage.image = image
+                profilePic.image = maskRoundedImage(image!)
             }
         }
+        
+    }
+    
+    func maskRoundedImage(imageView: UIImage) -> UIImage {
+        let imageView = UIImageView(image: imageView)
+        imageView.layer.cornerRadius = min(imageView.bounds.size.height/2, imageView.bounds.size.width/2)
+        imageView.layer.masksToBounds = true
+        
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        let context = UIGraphicsGetCurrentContext()
+        imageView.layer.renderInContext(context!)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)

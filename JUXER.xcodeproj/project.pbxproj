@@ -18,14 +18,12 @@
 		921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
-		926324171C8E1D52003999C6 /* HomeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324161C8E1D52003999C6 /* HomeBG.png */; };
 		926324191C8E2A40003999C6 /* BGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324181C8E2A40003999C6 /* BGround.png */; };
 		92650E371C738F7500D04D55 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */; };
 		92650E381C738F7500D04D55 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E341C738F7500D04D55 /* Session.swift */; };
 		92650E391C738F7500D04D55 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */; };
 		92650E3A1C738F7500D04D55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E361C738F7500D04D55 /* User.swift */; };
 		92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92650E3F1C752AB900D04D55 /* jukebox-3.pdf */; };
-		92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 92650E451C761D9A00D04D55 /* HomeBackground.png */; };
 		926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E11C5A9FED00815656 /* AppDelegate.swift */; };
 		926A84E71C5A9FED00815656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84E51C5A9FED00815656 /* Main.storyboard */; };
 		926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */; };
@@ -33,7 +31,6 @@
 		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
-		92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A144361C84B47D00EC8178 /* coldplayartwork.png */; };
 		92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */; };
 		92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* JuxerButton.pdf */; };
 		92BB559B1C88BA9800F1BFA5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */; };
@@ -46,6 +43,7 @@
 		92C292761C970493005D90DB /* QueueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C292751C970493005D90DB /* QueueTableViewCell.swift */; };
 		92C292781C97062F005D90DB /* rihanna-work-cover-compressed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */; };
 		92C2927C1C9734D0005D90DB /* More.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2927B1C9734D0005D90DB /* More.pdf */; };
+		92C292861C987160005D90DB /* Avatar.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292851C98715F005D90DB /* Avatar.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,14 +58,12 @@
 		921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylisrCover2.jpeg; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		926324161C8E1D52003999C6 /* HomeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeBG.png; sourceTree = "<group>"; };
 		926324181C8E2A40003999C6 /* BGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGround.png; sourceTree = "<group>"; };
 		92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "../Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92650E341C738F7500D04D55 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = ../Session.swift; sourceTree = "<group>"; };
 		92650E351C738F7500D04D55 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92650E361C738F7500D04D55 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
 		92650E3F1C752AB900D04D55 /* jukebox-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "jukebox-3.pdf"; sourceTree = "<group>"; };
-		92650E451C761D9A00D04D55 /* HomeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeBackground.png; sourceTree = "<group>"; };
 		926A84DE1C5A9FED00815656 /* JUXER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUXER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926A84E11C5A9FED00815656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		926A84E61C5A9FED00815656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +73,6 @@
 		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
-		92A144361C84B47D00EC8178 /* coldplayartwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coldplayartwork.png; sourceTree = "<group>"; };
 		92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AHFOD1000.jpg; sourceTree = "<group>"; };
 		92A1443E1C863B5100EC8178 /* JuxerButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JuxerButton.pdf; sourceTree = "<group>"; };
 		92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -90,6 +85,7 @@
 		92C292751C970493005D90DB /* QueueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTableViewCell.swift; sourceTree = "<group>"; };
 		92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rihanna-work-cover-compressed.jpg"; sourceTree = "<group>"; };
 		92C2927B1C9734D0005D90DB /* More.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = More.pdf; sourceTree = "<group>"; };
+		92C292851C98715F005D90DB /* Avatar.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Avatar.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,13 +143,11 @@
 			children = (
 				9263241A1C95EA92003999C6 /* Icons */,
 				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
-				926324161C8E1D52003999C6 /* HomeBG.png */,
+				92C292851C98715F005D90DB /* Avatar.pdf */,
 				92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */,
-				92A144361C84B47D00EC8178 /* coldplayartwork.png */,
 				92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */,
 				926324181C8E2A40003999C6 /* BGround.png */,
 				92A1443E1C863B5100EC8178 /* JuxerButton.pdf */,
-				92650E451C761D9A00D04D55 /* HomeBackground.png */,
 				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,
 				921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */,
 			);
@@ -294,16 +288,14 @@
 				92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */,
 				921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */,
 				92C292741C97017F005D90DB /* Music.pdf in Resources */,
-				92650E461C761D9A00D04D55 /* HomeBackground.png in Resources */,
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
-				926324171C8E1D52003999C6 /* HomeBG.png in Resources */,
 				92C2927C1C9734D0005D90DB /* More.pdf in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
 				92C292701C96FF3B005D90DB /* Settings.pdf in Resources */,
 				92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */,
 				926324191C8E2A40003999C6 /* BGround.png in Resources */,
-				92A144371C84B47D00EC8178 /* coldplayartwork.png in Resources */,
+				92C292861C987160005D90DB /* Avatar.pdf in Resources */,
 				921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */,
 				92C292781C97062F005D90DB /* rihanna-work-cover-compressed.jpg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,

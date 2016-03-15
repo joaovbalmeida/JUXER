@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-th-gvC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGround.png" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-th-gvC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jukebox" translatesAutoresizingMaskIntoConstraints="NO" id="uMr-hr-4P2">
@@ -33,13 +33,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olá, bém-vindo ao JUXER. Para começar, entre com seu Facebook" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-Rs-GdH">
-                                <rect key="frame" x="130" y="250" width="340" height="95"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-Rs-GdH">
+                                <rect key="frame" x="150" y="250" width="300" height="73"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="5v8-8j-Frx"/>
-                                    <constraint firstAttribute="width" constant="340" id="X3M-4M-QXn"/>
+                                    <constraint firstAttribute="height" constant="73" id="5v8-8j-Frx"/>
+                                    <constraint firstAttribute="width" constant="300" id="X3M-4M-QXn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <string key="text">Olá, bém-vindo ao JUXER, seu novo aplicativo de playlists colaborativas. Com o JUXER você tem mais controle do que quer ouvir quando estiver em eventos sociais. </string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -50,10 +51,23 @@
                                     <constraint firstAttribute="height" constant="30" id="iNx-qx-wmg"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quer ver como? Entre com seu Facebook para começar a sua experiência." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSb-ad-6g6">
+                                <rect key="frame" x="150" y="331" width="300" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="05I-cm-ga9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="95" id="7xM-Ly-6oH"/>
+                                    <constraint firstAttribute="height" constant="95" id="Tn8-KE-pEW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="v2s-MD-mo8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4KX-Rs-GdH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0sG-Te-RdG"/>
+                            <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="4KX-Rs-GdH" secondAttribute="bottom" constant="8" id="Ete-Nf-6r1"/>
                             <constraint firstItem="mh0-th-gvC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="GbL-ga-tuF"/>
                             <constraint firstItem="uMr-hr-4P2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="22" id="NeV-Qj-gV4"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mh0-th-gvC" secondAttribute="bottom" id="Sdg-cg-FIk"/>
@@ -62,6 +76,7 @@
                             <constraint firstItem="Yjn-XG-4iq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xyg-D0-BRt"/>
                             <constraint firstItem="mh0-th-gvC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Yl0-CS-ntR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mh0-th-gvC" secondAttribute="trailing" constant="-20" id="aly-9c-hfs"/>
+                            <constraint firstItem="vSb-ad-6g6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZ2-U7-UbU"/>
                             <constraint firstItem="uMr-hr-4P2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r7I-Mr-OH0"/>
                         </constraints>
                     </view>
@@ -89,8 +104,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGround.png" translatesAutoresizingMaskIntoConstraints="NO" id="eh4-8c-Pg2">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eh4-8c-Pg2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="2gI-SO-gdr"/>
+                                </constraints>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjU-0f-9ZW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ilA-nq-Kz3">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="aaR-xA-Xfv"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0Bx-X7-IUr">
+                                <rect key="frame" x="224" y="54" width="152" height="152"/>
+                                <color key="tintColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="3dJ-RM-fkv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="T8L-OU-9U2"/>
+                                    <constraint firstAttribute="height" constant="152" id="gaE-3M-jq5"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="p2F-LI-vaG"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PtB-sk-Ui1">
                                 <rect key="frame" x="225" y="55" width="150" height="150"/>
@@ -120,16 +159,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="0Bx-X7-IUr" firstAttribute="top" secondItem="t8E-kM-Vin" secondAttribute="bottom" constant="34" id="3jE-ZE-W32"/>
                             <constraint firstItem="PtB-sk-Ui1" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="FED-xk-p9P"/>
-                            <constraint firstItem="eh4-8c-Pg2" firstAttribute="leading" secondItem="5Lm-PM-TO6" secondAttribute="leading" id="LoH-xU-YNY"/>
-                            <constraint firstAttribute="trailing" secondItem="eh4-8c-Pg2" secondAttribute="trailing" id="SOK-JN-rSf"/>
+                            <constraint firstAttribute="trailing" secondItem="eh4-8c-Pg2" secondAttribute="trailing" id="Fcv-U9-hdG"/>
+                            <constraint firstItem="bjU-0f-9ZW" firstAttribute="leading" secondItem="5Lm-PM-TO6" secondAttribute="leading" id="StI-qq-QvF"/>
+                            <constraint firstItem="eh4-8c-Pg2" firstAttribute="top" secondItem="5Lm-PM-TO6" secondAttribute="top" id="Xz2-fm-7Qm"/>
+                            <constraint firstItem="eh4-8c-Pg2" firstAttribute="leading" secondItem="5Lm-PM-TO6" secondAttribute="leading" id="bb7-lo-cWq"/>
                             <constraint firstItem="uzw-55-V35" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="fdp-S5-J5M"/>
                             <constraint firstItem="uzw-55-V35" firstAttribute="top" secondItem="PtB-sk-Ui1" secondAttribute="bottom" constant="23" id="fjP-Zm-eA2"/>
-                            <constraint firstAttribute="bottom" secondItem="eh4-8c-Pg2" secondAttribute="bottom" id="nna-lS-k5L"/>
+                            <constraint firstItem="bjU-0f-9ZW" firstAttribute="top" secondItem="5Lm-PM-TO6" secondAttribute="top" id="j7z-zc-rPR"/>
+                            <constraint firstAttribute="trailing" secondItem="bjU-0f-9ZW" secondAttribute="trailing" id="oNo-sw-bnc"/>
                             <constraint firstItem="Vmp-6E-1TS" firstAttribute="top" secondItem="TE3-VG-7MB" secondAttribute="bottom" constant="57" id="sG1-YI-hy3"/>
-                            <constraint firstItem="eh4-8c-Pg2" firstAttribute="top" secondItem="5Lm-PM-TO6" secondAttribute="top" id="wHy-bV-uYx"/>
                             <constraint firstItem="PtB-sk-Ui1" firstAttribute="top" secondItem="t8E-kM-Vin" secondAttribute="bottom" constant="35" id="xzY-ZB-cRK"/>
                             <constraint firstItem="TE3-VG-7MB" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="ygx-pG-IKP"/>
+                            <constraint firstItem="0Bx-X7-IUr" firstAttribute="centerX" secondItem="5Lm-PM-TO6" secondAttribute="centerX" id="zRf-4L-EGK"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ajustes" image="Settings" id="eWk-UX-Kfq">
@@ -140,6 +183,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <connections>
+                        <outlet property="bgImage" destination="eh4-8c-Pg2" id="2L7-Zw-PKM"/>
                         <outlet property="logoutButton" destination="TE3-VG-7MB" id="exW-3O-wcd"/>
                         <outlet property="profilePic" destination="PtB-sk-Ui1" id="ZuD-vP-mXl"/>
                         <outlet property="username" destination="uzw-55-V35" id="WGY-5K-rHR"/>
@@ -754,9 +798,9 @@
     </scenes>
     <resources>
         <image name="AHFOD1000.jpg" width="1000" height="1000"/>
+        <image name="Avatar" width="163" height="163"/>
         <image name="BGround.png" width="828" height="1472"/>
         <image name="Home" width="20" height="21"/>
-        <image name="HomeBG.png" width="828" height="1472"/>
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
@@ -766,6 +810,6 @@
         <image name="rihanna-work-cover-compressed.jpg" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xXl-Rg-CpM"/>
+        <segue reference="ZL2-o4-VkV"/>
     </inferredMetricsTieBreakers>
 </document>

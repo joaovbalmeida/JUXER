@@ -137,7 +137,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print(tableView.contentOffset.y)
         updateInitialLabels()
         updateScrollingLabels()
         updateHeaderView()
