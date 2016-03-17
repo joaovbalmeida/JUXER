@@ -129,10 +129,10 @@
 				929786C71C7E75B4001B0397 /* HostViewController.swift */,
 				929786C91C7F3EA9001B0397 /* QueueViewController.swift */,
 				92C292751C970493005D90DB /* QueueTableViewCell.swift */,
-				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */,
 				921D92CF1C737BF800CD4B6F /* PlaylistsTableViewCell.swift */,
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
+				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				929786C31C7E729C001B0397 /* TabBarController.swift */,
 			);
 			name = Controller;

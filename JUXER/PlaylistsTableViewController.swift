@@ -41,7 +41,7 @@ class PlaylistsTableViewController: UITableViewController {
         case 1:
             return playlists.count
         default:
-            return 1
+            return 0
         }
     }
 
@@ -53,9 +53,13 @@ class PlaylistsTableViewController: UITableViewController {
             let bgColorView = UIView()
             bgColorView.backgroundColor = UIColor.init(red: 43/255, green: 50/255, blue: 54/255, alpha: 1)
             cell.selectedBackgroundView = bgColorView
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("inactives", forIndexPath: indexPath)
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("inactives", forIndexPath: indexPath)

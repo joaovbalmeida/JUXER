@@ -19,15 +19,23 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!
     
+    @IBOutlet weak var albumBG: UIImageView!
     @IBOutlet weak var albumtImage: UIImageView!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var songScrollingLabel: UILabel!
     @IBOutlet weak var artistScrollingLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
 
     private let kHeaderHeight: CGFloat = 300
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-    var headerView: UIView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
 
         tableView.allowsSelection = false
+        
+        refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.bounds = CGRectMake(albumtImage.bounds.midX + 10 , 280, 0, 0)
+        self.tableView.addSubview(refreshControl)
+        
        
     }
     
@@ -90,6 +103,14 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         songScrollingLabel.alpha = alpha
         artistScrollingLabel.alpha = alpha
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

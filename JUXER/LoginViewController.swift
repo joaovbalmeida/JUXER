@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var welcomeText: UILabel!
+    @IBOutlet weak var welcomeText2: UILabel!
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     
     private var session: [Session] = [Session]()
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         if FBSDKAccessToken.currentAccessToken() != nil {
             image.hidden = true
             welcomeText.hidden = true
+            welcomeText2.hidden = true
             loginButton.hidden = true
         }
     }
