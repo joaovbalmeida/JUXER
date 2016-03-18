@@ -27,7 +27,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var artistScrollingLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
 
-    private let kHeaderHeight: CGFloat = 300
+    private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     
     lazy var refreshControl: UIRefreshControl = {
@@ -52,9 +52,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.allowsSelection = false
         
         refreshControl.tintColor = UIColor.whiteColor()
-        refreshControl.bounds = CGRectMake(albumtImage.bounds.midX + 10 , 280, 0, 0)
+        refreshControl.bounds.origin.y = 350
         self.tableView.addSubview(refreshControl)
-        
        
     }
     
@@ -89,7 +88,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func updateInitialLabels() {
         var alpha: CGFloat = 1
         if tableView.contentOffset.y >= -250 {
-            alpha = ((-tableView.contentOffset.y / 60) - 3)
+            alpha = ((-tableView.contentOffset.y / 80) - 11/5)
         }
         albumtImage.alpha = alpha
         artistLabel.alpha = alpha
@@ -149,7 +148,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch (indexPath.section) {
         case 0:
-            return 40
+            return 30
         case 1:
             return 70
         default:
