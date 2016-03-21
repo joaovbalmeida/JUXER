@@ -12,11 +12,12 @@ import FBSDKCoreKit
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var logoutButton: FBSDKLoginButton!
-
+    
     private var user: [User] = [User]()
     
     override func viewDidLoad() {
@@ -41,19 +42,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
         
-    }
-    
-    func maskRoundedImage(imageView: UIImage) -> UIImage {
-        let imageView = UIImageView(image: imageView)
-        imageView.layer.cornerRadius = min(imageView.bounds.size.height/2, imageView.bounds.size.width/2)
-        imageView.layer.masksToBounds = true
-        
-        UIGraphicsBeginImageContext(imageView.bounds.size)
-        let context = UIGraphicsGetCurrentContext()
-        imageView.layer.renderInContext(context!)
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return result
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
@@ -93,9 +81,21 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
                 }
             }
         }
-        //Set Session to Inactive
     }
-
+    
+    func maskRoundedImage(imageView: UIImage) -> UIImage {
+        let imageView = UIImageView(image: imageView)
+        imageView.layer.cornerRadius = min(imageView.bounds.size.height/2, imageView.bounds.size.width/2)
+        imageView.layer.masksToBounds = true
+        
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        let context = UIGraphicsGetCurrentContext()
+        imageView.layer.renderInContext(context!)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
