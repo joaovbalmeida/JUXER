@@ -51,13 +51,16 @@ class PlaylistsTableViewController: UITableViewController {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath)
             let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor.init(red: 43/255, green: 50/255, blue: 54/255, alpha: 1)
+            bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
             cell.selectedBackgroundView = bgColorView
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("inactives", forIndexPath: indexPath)
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
+            cell.selectedBackgroundView = bgColorView
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
@@ -86,8 +89,6 @@ class PlaylistsTableViewController: UITableViewController {
         }
     }
 
-    
-
     /*
     // MARK: - Navigation
 
@@ -98,4 +99,30 @@ class PlaylistsTableViewController: UITableViewController {
     }
     */
 
+}
+
+/*
+
+    SETTINGS CELL CLASS
+
+*/
+
+class PlaylistsTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var playlistCover: UIImageView!
+    @IBOutlet weak var playlistName: UILabel!
+    @IBOutlet weak var playlistHour: UILabel!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
 }

@@ -12,11 +12,21 @@ import FBSDKCoreKit
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var anonymousSwitch: UISwitch!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var logoutButton: FBSDKLoginButton!
+    
+    @IBAction func setAnonymous(sender: AnyObject) {
+        if anonymousSwitch.on == true {
+            user[0].anonymous = 1
+        } else {
+            user[0].anonymous = 0
+        }
+        UserDAO.update(user[0])
+    }
     
     private var user: [User] = [User]()
     
@@ -25,6 +35,12 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         user = UserDAO.fetchUser()
         username.text = user[0].name
+        
+        if user[0].anonymous == 1 {
+            anonymousSwitch.on = true
+        } else {
+            anonymousSwitch.on = false
+        }
         
         logoutButton.readPermissions = ["public_profile", "email", "user_friends"]
         logoutButton.delegate = self

@@ -83,6 +83,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
     {
         let user = User()
         user.name = "\(name)"
+        user.anonymous = 0
         UserDAO.insert(user)
     }
     
