@@ -19,7 +19,24 @@ class SongsTableViewController: UITableViewController {
         playlists = ["oi", "tchau","cell","cell2","cell3","cel34"]
         
         self.clearsSelectionOnViewWillAppear = true
-        
+        getSongs()
+    }
+    
+    func getSongs(){
+        let url = NSURL(string: "https://http://10.0.0.68:3000/api/track/playlist/9/")
+        let session = NSURLSession.sharedSession()
+        let request = NSURLRequest(URL: url!)
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error)
+            }
+            else {
+                print(data)
+            }
+            
+        })
+        dataTask.resume()
     }
 
     override func didReceiveMemoryWarning() {
