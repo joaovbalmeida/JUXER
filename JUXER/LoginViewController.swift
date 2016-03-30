@@ -79,10 +79,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         }
     }
     
-    private func saveData(name: NSString)
+    private func saveData(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
     {
         let user = User()
         user.name = "\(name)"
+        user.pictureUrl = "\(pictureUrl)"
+        user.id = "\(id)"
+        user.lastName = "\(lastName)"
+        user.firstName = "\(firstName)"
+        user.email = "\(email)"
         user.anonymous = 0
         UserDAO.insert(user)
     }
@@ -91,15 +96,27 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         
         if((FBSDKAccessToken.currentAccessToken()) != nil)
         {
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, first_name, last_name, id"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
                 if (error == nil)
                 {
-                    let userName : NSString = result.valueForKey("name") as! NSString
-                    self.saveData(userName)
+                    let userName: NSString = result.valueForKey("name") as! NSString
+                    let userEmail:  NSString = result.valueForKey("email") as! NSString
+                    let userFirstName: NSString = result.valueForKey("first_name") as! NSString
+                    let userLastName: NSString = result.valueForKey("last_name") as! NSString
+                    let userId: NSString = result.valueForKey("id") as! NSString
+                    let userPictureUrl: String = "https://graph.facebook.com/\(userId)/picture?type=large"
                     
-                    let id: NSString = result.valueForKey("id") as! NSString
-                    let url = NSURL(string: "https://graph.facebook.com/\(id)/picture?type=large")
+                    print(userEmail)
+                    print(userLastName)
+                    print(userId)
+                    print(userFirstName)
+                    print(userPictureUrl)
+                    print(userName)
+                    
+                    self.saveData(userName, email: userEmail, lastName: userLastName, firstName: userFirstName, id: userId, pictureUrl: userPictureUrl)
+                    
+                    let url = NSURL(string: userPictureUrl)
                     let session = NSURLSession.sharedSession()
                     let request = NSURLRequest(URL: url!)
                     let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in

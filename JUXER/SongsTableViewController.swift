@@ -9,21 +9,25 @@
 import UIKit
 
 class SongsTableViewController: UITableViewController {
-
-    var playlists = [String]()
     
+    struct trackData {
+        var Name: String
+        var Artist: String
+    }
+    
+    var tracks: [trackData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        playlists = ["oi", "tchau","cell","cell2","cell3","cel34"]
+        
         
         self.clearsSelectionOnViewWillAppear = true
-        getSongs()
+        self.getTracks()
     }
     
-    func getSongs(){
-        let url = NSURL(string: "https://http://10.0.0.68:3000/api/track/playlist/9/")
+    func getTracks(){
+        let url = NSURL(string: "http://198.211.98.86/api/track/playlist/9/")
         let session = NSURLSession.sharedSession()
         let request = NSURLRequest(URL: url!)
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
@@ -54,7 +58,7 @@ class SongsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return playlists.count
+        return tracks.count
     }
 
     

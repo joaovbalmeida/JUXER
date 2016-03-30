@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920092001CAC587900FA55B7 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */; };
+		920092011CAC587900FA55B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FF1CAC587900FA55B7 /* User.swift */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
 		921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */; };
@@ -32,8 +34,6 @@
 		92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */; };
 		92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* JuxerButton.pdf */; };
 		92A73D0F1CA0BE1900D7740C /* InactiveSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */; };
-		92B25AC01CA062EA008D9EB0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B25ABE1CA062EA008D9EB0 /* User+CoreDataProperties.swift */; };
-		92B25AC11CA062EA008D9EB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B25ABF1CA062EA008D9EB0 /* User.swift */; };
 		92BB559B1C88BA9800F1BFA5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */; };
 		92BB559C1C88BA9800F1BFA5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB55991C88BA9800F1BFA5 /* FBSDKLoginKit.framework */; };
 		92BB559D1C88BA9800F1BFA5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */; };
@@ -47,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		920091FF1CAC587900FA55B7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -74,8 +76,6 @@
 		92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AHFOD1000.jpg; sourceTree = "<group>"; };
 		92A1443E1C863B5100EC8178 /* JuxerButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JuxerButton.pdf; sourceTree = "<group>"; };
 		92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InactiveSongsTableViewController.swift; sourceTree = "<group>"; };
-		92B25ABE1CA062EA008D9EB0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		92B25ABF1CA062EA008D9EB0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		92BB55981C88BA9800F1BFA5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92BB55991C88BA9800F1BFA5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		92BB559A1C88BA9800F1BFA5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -159,8 +159,8 @@
 			children = (
 				92650E331C738F7500D04D55 /* Session+CoreDataProperties.swift */,
 				92650E341C738F7500D04D55 /* Session.swift */,
-				92B25ABE1CA062EA008D9EB0 /* User+CoreDataProperties.swift */,
-				92B25ABF1CA062EA008D9EB0 /* User.swift */,
+				920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */,
+				920091FF1CAC587900FA55B7 /* User.swift */,
 			);
 			name = VO;
 			sourceTree = "<group>";
@@ -327,8 +327,8 @@
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,
 				921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */,
 				929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */,
-				92B25AC01CA062EA008D9EB0 /* User+CoreDataProperties.swift in Sources */,
-				92B25AC11CA062EA008D9EB0 /* User.swift in Sources */,
+				920092001CAC587900FA55B7 /* User+CoreDataProperties.swift in Sources */,
+				920092011CAC587900FA55B7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

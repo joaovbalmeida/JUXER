@@ -24,7 +24,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("avCaptureInputPortFormatDescriptionDidChangeNotification:"), name:AVCaptureInputPortFormatDescriptionDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QRReaderViewController.avCaptureInputPortFormatDescriptionDidChangeNotification(_:)), name:AVCaptureInputPortFormatDescriptionDidChangeNotification, object: nil)
 
         self.configureVideoCapture()
         self.addVideoPreviewLayer()
