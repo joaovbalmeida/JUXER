@@ -609,7 +609,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12747888_10153993262119516_7977841924514223786_o.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-uf-Tbz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-uf-Tbz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xse-vJ-pez">
@@ -618,13 +618,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12747888_10153993262119516_7977841924514223786_o.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="DJR-y1-pL3">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJR-y1-pL3">
                                             <rect key="frame" x="15" y="40" width="570" height="211"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="DJR-y1-pL3" secondAttribute="height" multiplier="570:211" id="AEv-Nb-ICU"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Yacht Week Party, Angra Dos Reis" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdW-KP-Ynr">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdW-KP-Ynr">
                                             <rect key="frame" x="15" y="271" width="570" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Vbw-YE-HYS"/>
@@ -633,20 +633,12 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-Lq-vcx">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-Lq-vcx">
                                             <rect key="frame" x="30" y="331" width="540" height="190"/>
-                                            <string key="text">THE BEACH ISLAND Angra será a locação perfeita para The Yacht Week celebrar seus 10 anos de viagens e eventos épicos na Croácia, Itália, Turquia, Grécia, Caribe e Tailandia com um final de semana incrível!! Duas incríveis tardes, sábado ao som do DJ residente Roman Cleiss (FRA). Se não bastasse, ainda traremos de São Paulo, Manza, e os cariocas Lucce, Jokerz, Rafael Nazereth, Magghu, MAZ e um dos mais requisitados do Brasil, e também residente do club: John Failly. </string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5l-N1-6AR">
-                                            <rect key="frame" x="40" y="323" width="46" height="30"/>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="triggerAction:" destination="Yff-9U-eFP" eventType="touchUpInside" id="GtA-Zz-ANc"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="DJR-y1-pL3" firstAttribute="leading" secondItem="seI-Uk-lVB" secondAttribute="leading" constant="15" id="6EP-pf-bYL"/>
@@ -688,6 +680,7 @@
                         <outlet property="eventBG" destination="b4D-uf-Tbz" id="yjG-tP-q0q"/>
                         <outlet property="eventDescription" destination="h8Y-Lq-vcx" id="I6d-yv-vUI"/>
                         <outlet property="eventImage" destination="DJR-y1-pL3" id="HBb-dd-3hz"/>
+                        <outlet property="eventName" destination="rdW-KP-Ynr" id="qK9-b0-oqc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldo-oc-x2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -994,7 +987,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="12747888_10153993262119516_7977841924514223786_o.jpg" width="2048" height="768"/>
         <image name="AHFOD1000.jpg" width="1000" height="1000"/>
         <image name="Avatar" width="163" height="163"/>
         <image name="BGround.png" width="828" height="1472"/>

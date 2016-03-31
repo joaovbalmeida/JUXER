@@ -156,9 +156,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                     self.saveAndSubmitToServer(userName, email: userEmail, lastName: userLastName, firstName: userFirstName, id: userId, pictureUrl: userPictureUrl)
                     
                     let url = NSURL(string: userPictureUrl)
-                    let session = NSURLSession.sharedSession()
                     let request = NSURLRequest(URL: url!)
-                    let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                    let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
                         
                         if error != nil {
                             print(error)
@@ -175,7 +174,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                         }
                         
                     })
-                    dataTask.resume()
+                    task.resume()
                 } else {
                     print(error)
                 }

@@ -13,25 +13,20 @@ class HostViewController: UIViewController {
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventBG: UIImageView!
-    
-    @IBAction func triggerAction(sender: AnyObject) {
-        getUserData()
-    }
+    @IBOutlet weak var eventName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
+        getEvent()
     }
     
-    private func getUserData(){
+    private func getEvent(){
         
         var session = [Session]()
         session = SessionDAO.fetchSession()
         
-        //let url = NSURL(string: "http://198.211.98.86/api/user/me/")
-        let url = NSURL(string: "http://10.0.0.68:3000/api/user/me/")
+        //let url = NSURL(string: "http://198.211.98.86/api/event/12/")
+        let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -43,9 +38,27 @@ class HostViewController: UIViewController {
                 return
             } else {
                 do {
-                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     print(resultJSON)
-                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.eventName.text = resultJSON.valueForKey("name")! as? String
+                        self.eventDescription.text = resultJSON.valueForKey("description")! as? String
+
+                        var string = resultJSON.valueForKey("picture")! as! String
+                        string = string.stringByReplacingOccurrencesOfString("127.0.0.1:8000", withString: "10.0.0.68:3000")
+                        let imageUrl  = NSURL(string: string)
+                        let imageRequest = NSURLRequest(URL: imageUrl!)
+                        let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
+                            if error != nil {
+                                print(error)
+                            } else {
+                                self.eventBG.image = UIImage(data: data!)
+                                self.eventImage.image = UIImage(data: data!)
+                            }
+                        })
+                        imageTask.resume()
+                    })
+     
                 } catch let error as NSError {
                     print(error)
                 }

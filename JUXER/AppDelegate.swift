@@ -15,7 +15,7 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -25,37 +25,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
         
-        // Check Token
+        refreshToken()
+        
+        return true
+    }
+    
+    private func refreshToken() {
         var session = [Session]()
         session = SessionDAO.fetchSession()
         
-        let url = NSURL(string: "http://10.0.0.68:3000/api/user/me/")
-        let request = NSMutableURLRequest(URL: url!)
-        request.addValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
-        request.HTTPMethod = "GET"
+        let jsonObject: [String : AnyObject] =
+            [ "token": "\(session[0].token!)"]
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
-            if error != nil {
-                print(error)
-                return
-            } else {
-                do {
-                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    print(resultJSON)
-                    
-                } catch let error as NSError {
-                    print(error)
+        if NSJSONSerialization.isValidJSONObject(jsonObject) {
+            
+            do {
+                let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
+                
+                // create post request
+                let url = NSURL(string: "http://10.0.0.68:3000/api-token-refresh/")
+                let request = NSMutableURLRequest(URL: url!)
+                request.HTTPMethod = "POST"
+                
+                // insert json data to the request
+                request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = JSON
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    if error != nil{
+                        print(error)
+                        return
+                    } else {
+                        do {
+                            let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                            var newToken = resultJSON.valueForKey("token") as! String
+                            newToken = newToken.stringByRemovingPercentEncoding!
+                            newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
+                            session[0].token = newToken
+                            SessionDAO.update(session[0])
+                            
+                        } catch let error as NSError {
+                            print(error)
+                        }
+                    }
                 }
+                task.resume()
+            } catch {
+                print(error)
             }
         }
-        task.resume()
-        
-        //let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //let LoginVC = mainStoryboard.instantiateViewControllerWithIdentifier("LoginVC") as!
-        //LoginViewController
-        //window!.rootViewController = LoginVC
-        
-        return true
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
