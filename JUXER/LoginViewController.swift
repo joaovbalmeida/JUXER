@@ -127,8 +127,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                         print(error)
                         return
                     }
-                    let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print(resultData!)
+                    var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                    resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
+                    self.storeSessionToken(String(resultData))
                 }
                 task.resume()
             } catch {

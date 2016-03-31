@@ -67,15 +67,14 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {
         deleteFBUserData()
-        setSessionInactive()
+        deleteSession()
         performSegueWithIdentifier("toLogin", sender: self)
     }
     
-    private func setSessionInactive() {
+    private func deleteSession() {
         var session: [Session] = [Session]()
         session = SessionDAO.fetchSession()
-        session[0].active = 0
-        SessionDAO.update(session[0])
+        SessionDAO.delete(session[0])
     }
     
     private func deleteFBUserData() {

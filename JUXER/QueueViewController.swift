@@ -15,6 +15,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         juxerButton.hidden = false
         juxerLabel.hidden = false
     }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!

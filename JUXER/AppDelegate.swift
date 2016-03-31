@@ -20,9 +20,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        // Custom Navigation Bar
         let navigationBarAppear = UINavigationBar.appearance()
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
+        
+        // Check Token
+        var session = [Session]()
+        session = SessionDAO.fetchSession()
+        
+        let url = NSURL(string: "http://10.0.0.68:3000/api/user/me/")
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+        request.HTTPMethod = "GET"
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            if error != nil {
+                print(error)
+                return
+            } else {
+                do {
+                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                    print(resultJSON)
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
+        
+        //let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //let LoginVC = mainStoryboard.instantiateViewControllerWithIdentifier("LoginVC") as!
+        //LoginViewController
+        //window!.rootViewController = LoginVC
         
         return true
     }

@@ -26,21 +26,33 @@ class SongsTableViewController: UITableViewController {
         self.getTracks()
     }
     
-    func getTracks(){
-        let url = NSURL(string: "http://198.211.98.86/api/track/playlist/9/")
-        let session = NSURLSession.sharedSession()
-        let request = NSURLRequest(URL: url!)
-        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            
+    private func getTracks(){
+        
+        var session = [Session]()
+        session = SessionDAO.fetchSession()
+        
+        //let url = NSURL(string: "http://198.211.98.86/api/track/playlist/9/")
+        let url = NSURL(string: "http://10.0.0.68:3000/api/track/playlist/9/")
+        let request = NSMutableURLRequest(URL: url!)
+        
+        request.HTTPMethod = "GET"
+        request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
+                return
+            } else {
+                do {
+                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                    print(resultJSON)
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
             }
-            else {
-                print(data)
-            }
-            
-        })
-        dataTask.resume()
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
