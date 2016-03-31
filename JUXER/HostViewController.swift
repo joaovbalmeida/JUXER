@@ -39,7 +39,6 @@ class HostViewController: UIViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    print(resultJSON)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.eventName.text = resultJSON.valueForKey("name")! as? String
                         self.eventDescription.text = resultJSON.valueForKey("description")! as? String
