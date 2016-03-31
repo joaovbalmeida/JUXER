@@ -79,7 +79,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         }
     }
     
-    private func saveData(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
+    private func storeSessionToken(userToken: String){
+        session = SessionDAO.fetchSession()
+        session[0].token = userToken
+        SessionDAO.update(session[0])
+    }
+    
+    private func saveAndSubmitToServer(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
     {
         let user = User()
         user.name = "\(name)"
@@ -90,6 +96,45 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         user.email = "\(email)"
         user.anonymous = 0
         UserDAO.insert(user)
+        
+        let jsonObject: [String : AnyObject] =
+            [ "email": "\(email)",
+              "first_name": "\(firstName)",
+              "last_name": "\(lastName)",
+              "username": "\(email)",
+              "picture": "\(pictureUrl)",
+              "fb_id": "\(id)" ]
+        
+        if NSJSONSerialization.isValidJSONObject(jsonObject) {
+            
+            do {
+                
+                let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
+                
+                // create post request
+                
+                let url = NSURL(string: "http://10.0.0.68:3000/api/user/login/")
+                //let url = NSURL(string: "http://198.211.98.86/api/user/login/")
+                let request = NSMutableURLRequest(URL: url!)
+                request.HTTPMethod = "POST"
+                
+                // insert json data to the request
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = JSON
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    if error != nil{
+                        print(error)
+                        return
+                    }
+                    let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    print(resultData!)
+                }
+                task.resume()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     private func getFBUser(){
@@ -107,14 +152,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                     let userId: NSString = result.valueForKey("id") as! NSString
                     let userPictureUrl: String = "https://graph.facebook.com/\(userId)/picture?type=large"
                     
-                    print(userEmail)
-                    print(userLastName)
-                    print(userId)
-                    print(userFirstName)
-                    print(userPictureUrl)
-                    print(userName)
-                    
-                    self.saveData(userName, email: userEmail, lastName: userLastName, firstName: userFirstName, id: userId, pictureUrl: userPictureUrl)
+                    self.saveAndSubmitToServer(userName, email: userEmail, lastName: userLastName, firstName: userFirstName, id: userId, pictureUrl: userPictureUrl)
                     
                     let url = NSURL(string: userPictureUrl)
                     let session = NSURLSession.sharedSession()
@@ -140,10 +178,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                 } else {
                     print(error)
                 }
+                
             })
         }
     }
-
+        
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
