@@ -25,8 +25,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
         
-        self.createSessionIfInexistent()
-        
         if FBSDKAccessToken.currentAccessToken() != nil {
             image.hidden = true
             welcomeText.hidden = true
@@ -68,17 +66,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
     {
         
     }
-    
-    private func createSessionIfInexistent(){
-        session = SessionDAO.fetchSession()
-        if session.count == 0 {
-            let newSession = Session()
-            newSession.active = 0
-            SessionDAO.insert(newSession)
-            session.append(newSession)
-        }
-    }
-    
+
     private func storeSessionToken(userToken: String){
         session = SessionDAO.fetchSession()
         session[0].token = userToken

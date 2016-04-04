@@ -26,8 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
         
         refreshToken()
+        createSessionIfInexistent()
         
         return true
+    }
+    
+    private func createSessionIfInexistent(){
+        var session = [Session]()
+        session = SessionDAO.fetchSession()
+        if session.count == 0 {
+            let newSession = Session()
+            newSession.active = 0
+            SessionDAO.insert(newSession)
+            session.append(newSession)
+        }
     }
     
     private func refreshToken() {
@@ -43,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
-                let url = NSURL(string: "http://10.0.0.68:3000/api-token-refresh/")
+                let url = NSURL(string: "http://198.211.98.86/api-token-refresh/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 
