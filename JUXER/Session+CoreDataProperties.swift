@@ -2,7 +2,7 @@
 //  Session+CoreDataProperties.swift
 //  JUXER
 //
-//  Created by Joao Victor Almeida on 30/03/16.
+//  Created by Joao Victor Almeida on 05/04/16.
 //  Copyright © 2016 Joao Victor Almeida. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,5 +16,6 @@ extension Session {
 
     @NSManaged var active: NSNumber?
     @NSManaged var token: String?
+    @NSManaged var id: NSNumber?
 
 }

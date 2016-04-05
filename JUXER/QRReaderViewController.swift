@@ -158,16 +158,18 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     // Set session to Active
-    private func setSessionActive() {
+    private func setSessionActive(id: String) {
         var session: [Session] = [Session]()
         session = SessionDAO.fetchSession()
         session[0].active = 1
+        session[0].id = Int(id)
         SessionDAO.update(session[0])
     }
     
     func foundCode(code: String) {
-        print(code)
-        setSessionActive()
+        let substring = code.substringToIndex(code.characters.indexOf(",")!)
+        let id = substring.substringFromIndex(substring.startIndex.advancedBy(7))
+        setSessionActive(id)
         performSegueWithIdentifier("toHome", sender: self)
     }
     

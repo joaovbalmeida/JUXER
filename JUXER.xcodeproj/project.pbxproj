@@ -20,13 +20,11 @@
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
 		926324191C8E2A40003999C6 /* BGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324181C8E2A40003999C6 /* BGround.png */; };
-		92650E381C738F7500D04D55 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92650E341C738F7500D04D55 /* Session.swift */; };
 		92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92650E3F1C752AB900D04D55 /* jukebox-3.pdf */; };
 		926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E11C5A9FED00815656 /* AppDelegate.swift */; };
 		926A84E71C5A9FED00815656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84E51C5A9FED00815656 /* Main.storyboard */; };
 		926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */; };
 		926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84ED1C5A9FED00815656 /* LaunchScreen.storyboard */; };
-		926B44971CAC5F95001B0736 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B44961CAC5F95001B0736 /* Session+CoreDataProperties.swift */; };
 		929587521C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 929587511C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg */; };
 		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
@@ -37,6 +35,8 @@
 		92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */; };
 		92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */; };
 		92A9ABDA1CB328AD00650A1A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */; };
+		92A9ABDD1CB3C74100650A1A /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */; };
+		92A9ABDE1CB3C74100650A1A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDC1CB3C74100650A1A /* Session.swift */; };
 		92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C292691C96FB47005D90DB /* Assets.xcassets */; };
 		92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926D1C96FE01005D90DB /* HomeH.pdf */; };
 		92C292701C96FF3B005D90DB /* Settings.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926F1C96FF3B005D90DB /* Settings.pdf */; };
@@ -60,7 +60,6 @@
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		926324181C8E2A40003999C6 /* BGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGround.png; sourceTree = "<group>"; };
-		92650E341C738F7500D04D55 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = ../Session.swift; sourceTree = "<group>"; };
 		92650E3F1C752AB900D04D55 /* jukebox-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "jukebox-3.pdf"; sourceTree = "<group>"; };
 		926A84DE1C5A9FED00815656 /* JUXER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUXER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		926A84E11C5A9FED00815656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +67,6 @@
 		926A84E91C5A9FED00815656 /* JUXER.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JUXER.xcdatamodel; sourceTree = "<group>"; };
 		926A84EE1C5A9FED00815656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926A84F01C5A9FEE00815656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		926B44961CAC5F95001B0736 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "../Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		929587511C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12747888_10153993262119516_7977841924514223786_o.jpg; sourceTree = "<group>"; };
 		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +77,8 @@
 		92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		92A9ABDC1CB3C74100650A1A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C292691C96FB47005D90DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92C2926D1C96FE01005D90DB /* HomeH.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeH.pdf; sourceTree = "<group>"; };
 		92C2926F1C96FF3B005D90DB /* Settings.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Settings.pdf; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 		921D92BE1C737B7C00CD4B6F /* VO */ = {
 			isa = PBXGroup;
 			children = (
-				926B44961CAC5F95001B0736 /* Session+CoreDataProperties.swift */,
-				92650E341C738F7500D04D55 /* Session.swift */,
+				92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */,
+				92A9ABDC1CB3C74100650A1A /* Session.swift */,
 				920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */,
 				920091FF1CAC587900FA55B7 /* User.swift */,
 			);
@@ -311,7 +311,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				926B44971CAC5F95001B0736 /* Session+CoreDataProperties.swift in Sources */,
+				92A9ABDE1CB3C74100650A1A /* Session.swift in Sources */,
+				92A9ABDD1CB3C74100650A1A /* Session+CoreDataProperties.swift in Sources */,
 				929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */,
 				926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */,
 				92A73D0F1CA0BE1900D7740C /* InactiveSongsTableViewController.swift in Sources */,
@@ -322,7 +323,6 @@
 				921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */,
 				921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */,
 				926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */,
-				92650E381C738F7500D04D55 /* Session.swift in Sources */,
 				921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */,
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,
 				921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */,
