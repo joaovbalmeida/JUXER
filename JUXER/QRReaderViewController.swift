@@ -158,18 +158,28 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     // Set session to Active
-    private func setSessionActive(id: String) {
+    private func setSessionActive(id: Int) {
         var session: [Session] = [Session]()
         session = SessionDAO.fetchSession()
         session[0].active = 1
-        session[0].id = Int(id)
+        session[0].id = id
         SessionDAO.update(session[0])
     }
     
     func foundCode(code: String) {
-        let substring = code.substringToIndex(code.characters.indexOf(",")!)
-        let id = substring.substringFromIndex(substring.startIndex.advancedBy(7))
-        setSessionActive(id)
+        // convert String to NSData
+        let data: NSData = code.dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        // convert NSData to 'AnyObject'
+        do{
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+            print(json.valueForKey("id")! as! Int)
+            setSessionActive((json.valueForKey("id")! as! Int))
+            
+        } catch let error as NSError {
+            print(error)
+        }
+        //setSessionActive(id)
         performSegueWithIdentifier("toHome", sender: self)
     }
     

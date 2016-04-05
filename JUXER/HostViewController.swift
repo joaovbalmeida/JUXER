@@ -39,14 +39,14 @@ class HostViewController: UIViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        print(resultJSON)
+                        dispatch_async(dispatch_get_main_queue(), {
+                        
                         self.eventName.text = resultJSON.valueForKey("name")! as? String
                         self.eventDescription.text = resultJSON.valueForKey("description")! as? String
 
-                        let string = resultJSON.valueForKey("picture")! as! String
-                        print(string)
-                        let imageUrl  = NSURL(string: string)
+                        let pictureURL = resultJSON.valueForKey("picture")! as! String
+                        print(pictureURL)
+                        let imageUrl  = NSURL(string: pictureURL)
                         let imageRequest = NSURLRequest(URL: imageUrl!)
                         let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
                             if error != nil {
