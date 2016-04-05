@@ -575,7 +575,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="kaS-Sr-e4c">
             <objects>
-                <tabBarController id="obf-SU-Ied" customClass="TabBarController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabVC" id="obf-SU-Ied" customClass="TabBarController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="k0M-ZQ-eBX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1000,6 +1000,6 @@
         <image name="rihanna-work-cover-compressed.jpg" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZL2-o4-VkV"/>
+        <segue reference="yFW-aL-b4q"/>
     </inferredMetricsTieBreakers>
 </document>

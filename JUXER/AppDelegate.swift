@@ -14,6 +14,7 @@ import FBSDKLoginKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private var session = [Session]()
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -25,26 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
         
-        refreshToken()
-        createSessionIfInexistent()
+        //Manage Session Token
+        session = SessionDAO.fetchSession()
+        if session.count != 0 && session[0].token != nil {
+            refreshToken()
+            
+            //Bypass Login VC
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }
     
-    private func createSessionIfInexistent(){
-        var session = [Session]()
-        session = SessionDAO.fetchSession()
-        if session.count == 0 {
-            let newSession = Session()
-            newSession.active = 0
-            SessionDAO.insert(newSession)
-            session.append(newSession)
-        }
-    }
-    
     private func refreshToken() {
-        var session = [Session]()
-        session = SessionDAO.fetchSession()
+        print(session[0].token)
         
         let jsonObject: [String : AnyObject] =
             [ "token": "\(session[0].token!)"]
@@ -74,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             var newToken = resultJSON.valueForKey("token") as! String
                             newToken = newToken.stringByRemovingPercentEncoding!
                             newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
-                            session[0].token = newToken
-                            SessionDAO.update(session[0])
+                            self.session[0].token = newToken
+                            SessionDAO.update(self.session[0])
                             
                         } catch let error as NSError {
                             print(error)
