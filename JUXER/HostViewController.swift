@@ -25,8 +25,8 @@ class HostViewController: UIViewController {
         var session = [Session]()
         session = SessionDAO.fetchSession()
         
-        //let url = NSURL(string: "http://198.211.98.86/api/event/12/")
-        let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
+        let url = NSURL(string: "http://198.211.98.86/api/event/8/")
+        //let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -44,7 +44,7 @@ class HostViewController: UIViewController {
                         self.eventDescription.text = resultJSON.valueForKey("description")! as? String
 
                         var string = resultJSON.valueForKey("picture")! as! String
-                        string = string.stringByReplacingOccurrencesOfString("127.0.0.1:8000", withString: "10.0.0.68:3000")
+                        string = string.stringByReplacingOccurrencesOfString("127.0.0.1:8000", withString: "http://198.211.98.86")
                         let imageUrl  = NSURL(string: string)
                         let imageRequest = NSURLRequest(URL: imageUrl!)
                         let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in

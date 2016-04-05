@@ -87,8 +87,7 @@
                         <outlet property="loginButton" destination="Yjn-XG-4iq" id="4a0-jl-urc"/>
                         <outlet property="welcomeText" destination="4KX-Rs-GdH" id="dJX-Cl-wcZ"/>
                         <outlet property="welcomeText2" destination="vSb-ad-6g6" id="FCv-4F-qii"/>
-                        <segue destination="obf-SU-Ied" kind="presentation" identifier="passLogin" modalTransitionStyle="crossDissolve" id="ZL2-o4-VkV"/>
-                        <segue destination="w1g-9A-eYR" kind="show" identifier="getSession" id="rOe-15-Rh8"/>
+                        <segue destination="w1g-9A-eYR" kind="presentation" identifier="getEvent" id="Hmi-te-Vbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -241,10 +240,39 @@
             </objects>
             <point key="canvasLocation" x="2079" y="1006"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="IJY-OX-42G">
+            <objects>
+                <viewController storyboardIdentifier="preQRVC" id="VrD-Js-ocf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cnz-QI-rIt"/>
+                        <viewControllerLayoutGuide type="bottom" id="OEi-16-GWt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bE5-eh-Kyz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKd-tx-2Mp">
+                                <rect key="frame" x="215" y="285" width="170" height="30"/>
+                                <state key="normal" title="Ok, entendi!">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="w1g-9A-eYR" kind="show" id="dzd-9B-JvG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c97-MF-RNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="679" y="-367"/>
+        </scene>
         <!--Reader View Controller-->
         <scene sceneID="isK-L6-6Nn">
             <objects>
-                <viewController id="w1g-9A-eYR" customClass="QRReaderViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="qrReaderVC" id="w1g-9A-eYR" customClass="QRReaderViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pNS-S3-N9S"/>
                         <viewControllerLayoutGuide type="bottom" id="UbP-CJ-SyW"/>
@@ -1000,6 +1028,6 @@
         <image name="rihanna-work-cover-compressed.jpg" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yFW-aL-b4q"/>
+        <segue reference="dzd-9B-JvG"/>
     </inferredMetricsTieBreakers>
 </document>

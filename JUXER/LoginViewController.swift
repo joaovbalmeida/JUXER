@@ -17,35 +17,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
     @IBOutlet weak var welcomeText2: UILabel!
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     
-    private var session: [Session] = [Session]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createSessionIfInexistent()
-        
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
-        
-        if FBSDKAccessToken.currentAccessToken() != nil {
-            image.hidden = true
-            welcomeText.hidden = true
-            welcomeText2.hidden = true
-            loginButton.hidden = true
-        }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        if(FBSDKAccessToken.currentAccessToken() != nil && session[0].active == 1)
-        {
-            performSegueWithIdentifier("passLogin", sender: self)
-        }
-        else if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            performSegueWithIdentifier("getSession", sender: self)
-        }
-    }
-    
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
     {
@@ -60,7 +37,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         else
         {
             getFBUser()
-            self.performSegueWithIdentifier("getSession", sender: self)
+            loginButton.hidden = true
+            performSegueWithIdentifier("getEvent", sender: self)
         }
     }
     
@@ -68,20 +46,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
     {
         
     }
-    
-    private func createSessionIfInexistent(){
-        session = SessionDAO.fetchSession()
-        if session.count == 0 {
-            let newSession = Session()
-            newSession.active = 0
-            SessionDAO.insert(newSession)
-            session.append(newSession)
-        }
-    }
 
     private func storeSessionToken(userToken: String){
-        session[0].token = userToken
-        SessionDAO.update(session[0])
+        let session = Session()
+        session.token = userToken
+        SessionDAO.insert(session)
     }
     
     private func saveAndSubmitToServer(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
@@ -112,8 +81,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                 
                 // create post request
                 
-                let url = NSURL(string: "http://10.0.0.68:3000/api/user/login/")
-                //let url = NSURL(string: "http://198.211.98.86/api/user/login/")
+                //let url = NSURL(string: "http://10.0.0.68:3000/api/user/login/")
+                let url = NSURL(string: "http://198.211.98.86/api/user/login/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 

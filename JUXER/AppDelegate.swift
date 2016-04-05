@@ -34,7 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //Bypass Login VC
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
+
+            if session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
+                 initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
+            }
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
@@ -43,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func refreshToken() {
-        print(session[0].token)
         
         let jsonObject: [String : AnyObject] =
             [ "token": "\(session[0].token!)"]
