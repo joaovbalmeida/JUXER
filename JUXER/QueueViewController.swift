@@ -31,7 +31,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     
-    private var queueTracks: [[String: AnyObject]] = []
+    private var queueTracks = []
+    private var nowPlaying = []
     private var index: Int = 0
     
     lazy var refreshControl: UIRefreshControl = {
@@ -119,12 +120,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         refreshControl.endRefreshing()
     }
     
-    private func nowPlaying(data: [[String:AnyObject]]){
-        let title: String
-        let artist:  String
-        let album: String
-        let coverURL: String
-    }
+    //private func nowPlaying(){
+        //let title: String = queueTracks[0].
+        //print(title)
+    //}
     
     private func getQueue(){
         var session = [Session]()
@@ -144,10 +143,14 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    self.queueTracks = resultJSON["queue"]
-                    //nowPlaying(self.queueTracks)
-                    print(self.queueTracks)
                     
+                    self.queueTracks = resultJSON as! NSArray
+                    
+                    //self.queueTracks = resultJSON.valueForKey("queue")! as! [[String : AnyObject]]
+                    //self.index = resultJSON.valueForKey("index")! as! Int
+                    //self.nowPlaying()
+                    print(self.queueTracks)
+
                 } catch let error as NSError {
                     print(error)
                 }
@@ -166,7 +169,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             return 1
         case 1:
             if index != 0 {
-                return index
+                return index - 1
             } else {
                 return 0 }
         default:

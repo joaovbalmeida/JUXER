@@ -859,6 +859,11 @@
                                         <constraint firstItem="6Q2-BO-Yb2" firstAttribute="top" secondItem="jqw-vB-Z6H" secondAttribute="top" id="ln9-6y-vGc"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="xqw-4g-9Wu">
+                                    <rect key="frame" x="0.0" y="518" width="600" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="40" id="W4l-ht-pRm">
                                         <rect key="frame" x="0.0" y="408" width="600" height="40"/>
