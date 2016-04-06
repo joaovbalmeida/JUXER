@@ -31,6 +31,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     
+    private var queueTracks: [[String: AnyObject]] = []
+    private var index: Int = 0
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(QueueViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -40,6 +43,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getQueue()
         
         headerView = tableView.tableHeaderView
         headerView.clipsToBounds = true
@@ -108,9 +113,47 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
+        getQueue()
         
         tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    private func nowPlaying(data: [[String:AnyObject]]){
+        let title: String
+        let artist:  String
+        let album: String
+        let coverURL: String
+    }
+    
+    private func getQueue(){
+        var session = [Session]()
+        session = SessionDAO.fetchSession()
+        
+        let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
+        //let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
+        let request = NSMutableURLRequest(URL: url!)
+        
+        request.HTTPMethod = "GET"
+        request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            if error != nil {
+                print(error)
+                return
+            } else {
+                do {
+                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                    self.queueTracks = resultJSON["queue"]
+                    //nowPlaying(self.queueTracks)
+                    print(self.queueTracks)
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -122,7 +165,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 0:
             return 1
         case 1:
-            return 30
+            if index != 0 {
+                return index
+            } else {
+                return 0 }
         default:
             return 0
         }
@@ -141,7 +187,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("header", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
+            cell.layoutMargins = UIEdgeInsetsZero
             return cell
         }
     }
@@ -153,7 +201,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 1:
             return 70
         default:
-            return 0
+            return 70
         }
     }
     
@@ -176,15 +224,28 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
 class QueueTableViewCell: UITableViewCell {
 
+    struct queueTracks {
+        var title: String
+        var artist: String
+        var album: String
+        var index: Int
+        var cover: String
+        
+        init(title1: String, artist1: String, album1: String, index1: Int, cover1: String)
+        {
+            title = title1
+            artist = artist1
+            album = album1
+            index = index1
+            cover = cover1
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        
+        
     }
 
 }

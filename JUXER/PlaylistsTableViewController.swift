@@ -9,8 +9,6 @@
 import UIKit
 
 class PlaylistsTableViewController: UITableViewController {
-
-    
     
     var playlists = [String]()
     
@@ -19,7 +17,6 @@ class PlaylistsTableViewController: UITableViewController {
         
         playlists = ["oi", "tchau","cell","cell2","cell3","cel34"]
 
-        
     }
 
     override func didReceiveMemoryWarning() {
