@@ -5,10 +5,12 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "3B5BAC4EA8AC37B55A02D532127AABCBF4643FB4" : 0,
+    "C93564C1AFB8B50FF58188F21182F5D0EEAD1C3F" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "10A7ED37-43F7-4AAD-B720-F86A67669063",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "3B5BAC4EA8AC37B55A02D532127AABCBF4643FB4" : "JUXER\/",
+    "C93564C1AFB8B50FF58188F21182F5D0EEAD1C3F" : "JUXER\/HanekeSwift\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "JUXER",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -18,6 +20,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/joaovbalmeida\/JUXER.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3B5BAC4EA8AC37B55A02D532127AABCBF4643FB4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Haneke\/HanekeSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C93564C1AFB8B50FF58188F21182F5D0EEAD1C3F"
     }
   ]
 }

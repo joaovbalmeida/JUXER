@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKShareKit
+import Haneke
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -15,13 +16,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         juxerButton.hidden = false
         juxerLabel.hidden = false
     }
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(QueueViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        
-        return refreshControl
-    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
@@ -38,10 +32,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var refreshControl = UIRefreshControl()
 
+    private var session = [Session]()
+    private var tracks: [Track] = [Track]()
     private var count: Int = 0
     private var index: Int = 0
-    private var tracks: [Track] = [Track]()
     
     struct Track {
         var title: String
@@ -57,6 +53,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        session = SessionDAO.fetchSession()
         
         getQueue()
         
@@ -71,9 +69,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.allowsSelection = false
         
+        refreshControl.addTarget(self, action: #selector(QueueViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.tintColor = UIColor.whiteColor()
         refreshControl.bounds.origin.y = 350
-        self.tableView.addSubview(refreshControl)
+        tableView.addSubview(refreshControl)
        
     }
     
@@ -124,22 +123,26 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         artistScrollingLabel.alpha = alpha
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
+    func refresh(refreshControl: UIRefreshControl) {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        
-        getQueue()
+        if refreshControl.refreshing {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            getQueue()
+        }
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         refreshControl.endRefreshing()
+        
     }
     
     private func getQueue(){
-        var session = [Session]()
-        session = SessionDAO.fetchSession()
+
+        //Erase previous Data
+        if self.tracks.count != 0 {
+            tracks.removeAll()
+        }
         
         let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
-        //let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -161,26 +164,17 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let artist: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("artist")!.valueForKey("name")! as! [NSString]
                     let album: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("title")! as! [NSString]
                     let coverSmall: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover")! as! [NSString]
+                    let cover: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_big")! as! [NSString]
                     
                     //Refresh Now Playing Track
-                    let cover: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_big")! as! [NSString]
-                    let imageUrl  = NSURL(string: String(cover[self.index]))
-                    let imageRequest = NSURLRequest(URL: imageUrl!)
-                    let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
-                        if error != nil {
-                            print(error)
-                        } else {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.albumBG.image = UIImage(data: data!)
-                                self.albumtImage.image = UIImage(data: data!)
-                                self.songLabel.text = title[self.index] as String
-                                self.artistLabel.text = "\(artist[self.index] as String) - \(album[self.index] as String)"
-                                self.songScrollingLabel.text = self.songLabel.text
-                                self.artistScrollingLabel.text = self.artistLabel.text
-                            }
-                        }
-                    })
-                    imageTask.resume()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.songLabel.text = title[self.index] as String
+                        self.artistLabel.text = "\(artist[self.index] as String) - \(album[self.index] as String)"
+                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
+                        self.albumtImage.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
+                        self.songScrollingLabel.text = self.songLabel.text
+                        self.artistScrollingLabel.text = self.artistLabel.text
+                    }
                     
                     //Get how many tracks
                     self.count = title.count - self.index
@@ -192,14 +186,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         newTrack.artist = artist[i] as String
                         newTrack.cover = coverSmall[i] as String
                         self.tracks.append(newTrack)
-                        
                     }
                     
                     //Refresh TableView
                     dispatch_async(dispatch_get_main_queue()){
                         self.tableView.reloadData()
                     }
-                    
                     
                 } catch let error as NSError {
                     print(error)
@@ -244,9 +236,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
-            
-            //Get Tracks Cover
-            
+            cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
             
             return cell
             

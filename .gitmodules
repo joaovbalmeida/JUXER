@@ -1,3 +1,6 @@
 [submodule "Alamofire"]
 	path = Alamofire
 	url = https://github.com/Alamofire/Alamofire.git
+[submodule "HanekeSwift"]
+	path = HanekeSwift
+	url = https://github.com/Haneke/HanekeSwift.git

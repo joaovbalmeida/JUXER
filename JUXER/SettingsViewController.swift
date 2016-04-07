@@ -54,7 +54,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             {
                 let readPath = dirPath + "/profilePic.jpg"
                 let image = UIImage(contentsOfFile: readPath)
-                bgImage.image = image
+                bgImage.hnk_setImageFromFile(readPath)
                 profilePic.image = maskRoundedImage(image!)
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class HostViewController: UIViewController {
 
@@ -26,7 +27,6 @@ class HostViewController: UIViewController {
         session = SessionDAO.fetchSession()
         
         let url = NSURL(string: "http://198.211.98.86/api/event/\(session[0].id!)/")
-        //let url = NSURL(string: "http://10.0.0.68:3000/api/event/12/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -39,22 +39,14 @@ class HostViewController: UIViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    let pictureURL = resultJSON.valueForKey("picture")! as! String
-                    let imageUrl  = NSURL(string: pictureURL)
-                    let imageRequest = NSURLRequest(URL: imageUrl!)
-                    let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
-                        if error != nil {
-                            print(error)
-                        } else {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.eventBG.image = UIImage(data: data!)
-                                self.eventImage.image = UIImage(data: data!)
-                                self.eventName.text = resultJSON.valueForKey("name")! as? String
-                                self.eventDescription.text = resultJSON.valueForKey("description")! as? String
-                            }
-                        }
-                    })
-                    imageTask.resume()
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.eventBG.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
+                        self.eventImage.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
+                        self.eventName.text = resultJSON.valueForKey("name")! as? String
+                        self.eventDescription.text = resultJSON.valueForKey("description")! as? String
+                    }
+                
                 } catch let error as NSError {
                     print(error)
                 }
