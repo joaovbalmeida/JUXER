@@ -39,26 +39,22 @@ class HostViewController: UIViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                        dispatch_async(dispatch_get_main_queue(), {
-                        
-                        self.eventName.text = resultJSON.valueForKey("name")! as? String
-                        self.eventDescription.text = resultJSON.valueForKey("description")! as? String
-
-                        let pictureURL = resultJSON.valueForKey("picture")! as! String
-                        print(pictureURL)
-                        let imageUrl  = NSURL(string: pictureURL)
-                        let imageRequest = NSURLRequest(URL: imageUrl!)
-                        let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
-                            if error != nil {
-                                print(error)
-                            } else {
+                    let pictureURL = resultJSON.valueForKey("picture")! as! String
+                    let imageUrl  = NSURL(string: pictureURL)
+                    let imageRequest = NSURLRequest(URL: imageUrl!)
+                    let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            print(error)
+                        } else {
+                            dispatch_async(dispatch_get_main_queue()) {
                                 self.eventBG.image = UIImage(data: data!)
                                 self.eventImage.image = UIImage(data: data!)
+                                self.eventName.text = resultJSON.valueForKey("name")! as? String
+                                self.eventDescription.text = resultJSON.valueForKey("description")! as? String
                             }
-                        })
-                        imageTask.resume()
+                        }
                     })
-     
+                    imageTask.resume()
                 } catch let error as NSError {
                     print(error)
                 }

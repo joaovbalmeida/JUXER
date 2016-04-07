@@ -45,8 +45,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         logoutButton.readPermissions = ["public_profile", "email", "user_friends"]
         logoutButton.delegate = self
         
-        let paths:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         
+        //Load Profile Picture
+        let paths:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         if paths.count > 0
         {
             if let dirPath = paths[0] as? String
@@ -66,19 +67,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {
-        deleteFBUserData()
-        deleteSession()
-        performSegueWithIdentifier("toLogin", sender: self)
-    }
-    
-    private func deleteSession() {
-        var session: [Session] = [Session]()
-        session = SessionDAO.fetchSession()
-        SessionDAO.delete(session[0])
-    }
-    
-    private func deleteFBUserData() {
-        // Erase Profile Name
+        // Delete Profile
         UserDAO.delete(user[0])
         
         // Erase Profile Picture
@@ -96,6 +85,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
                 }
             }
         }
+        //Delete Session
+        var session: [Session] = [Session]()
+        session = SessionDAO.fetchSession()
+        SessionDAO.delete(session[0])
+        
+        //Segue to Login View
+        performSegueWithIdentifier("toLogin", sender: self)
     }
     
     func maskRoundedImage(imageView: UIImage) -> UIImage {

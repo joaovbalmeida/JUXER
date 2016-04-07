@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {
-        
+    
     }
 
     private func storeSessionToken(userToken: String){

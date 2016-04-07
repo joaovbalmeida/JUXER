@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     } else {
                         do {
                             let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                            //print(resultJSON)
                             var newToken = resultJSON.valueForKey("token") as! String
                             newToken = newToken.stringByRemovingPercentEncoding!
                             newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
