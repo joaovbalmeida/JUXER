@@ -15,8 +15,6 @@
 		921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */; };
 		921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D41C737C0400CD4B6F /* LoginViewController.swift */; };
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
-		921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */; };
-		921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
 		926324191C8E2A40003999C6 /* BGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 926324181C8E2A40003999C6 /* BGround.png */; };
@@ -25,11 +23,10 @@
 		926A84E71C5A9FED00815656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84E51C5A9FED00815656 /* Main.storyboard */; };
 		926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */; };
 		926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926A84ED1C5A9FED00815656 /* LaunchScreen.storyboard */; };
-		929587521C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 929587511C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg */; };
+		926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */; };
 		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
-		92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */; };
 		92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* JuxerButton.pdf */; };
 		92A73D0F1CA0BE1900D7740C /* InactiveSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */; };
 		92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */; };
@@ -41,10 +38,61 @@
 		92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926D1C96FE01005D90DB /* HomeH.pdf */; };
 		92C292701C96FF3B005D90DB /* Settings.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926F1C96FF3B005D90DB /* Settings.pdf */; };
 		92C292741C97017F005D90DB /* Music.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292731C97017F005D90DB /* Music.pdf */; };
-		92C292781C97062F005D90DB /* rihanna-work-cover-compressed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */; };
 		92C2927C1C9734D0005D90DB /* More.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2927B1C9734D0005D90DB /* More.pdf */; };
 		92C292861C987160005D90DB /* Avatar.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292851C98715F005D90DB /* Avatar.pdf */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		926C64061CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		926C64081CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		926C640A1CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
+		926C640C1CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire OSX Tests";
+		};
+		926C640E1CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS";
+		};
+		926C64101CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS Tests";
+		};
+		926C64121CB6D7F200CA9D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -55,8 +103,6 @@
 		921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		921D92D41C737C0400CD4B6F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylistCover.jpeg; sourceTree = "<group>"; };
-		921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlaylisrCover2.jpeg; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		926324181C8E2A40003999C6 /* BGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGround.png; sourceTree = "<group>"; };
@@ -67,11 +113,11 @@
 		926A84E91C5A9FED00815656 /* JUXER.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JUXER.xcdatamodel; sourceTree = "<group>"; };
 		926A84EE1C5A9FED00815656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926A84F01C5A9FEE00815656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		929587511C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12747888_10153993262119516_7977841924514223786_o.jpg; sourceTree = "<group>"; };
+		926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CoverPlaceHolder.jpg; sourceTree = "<group>"; };
+		926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
-		92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AHFOD1000.jpg; sourceTree = "<group>"; };
 		92A1443E1C863B5100EC8178 /* JuxerButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JuxerButton.pdf; sourceTree = "<group>"; };
 		92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InactiveSongsTableViewController.swift; sourceTree = "<group>"; };
 		92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -83,7 +129,6 @@
 		92C2926D1C96FE01005D90DB /* HomeH.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeH.pdf; sourceTree = "<group>"; };
 		92C2926F1C96FF3B005D90DB /* Settings.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Settings.pdf; sourceTree = "<group>"; };
 		92C292731C97017F005D90DB /* Music.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Music.pdf; sourceTree = "<group>"; };
-		92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rihanna-work-cover-compressed.jpg"; sourceTree = "<group>"; };
 		92C2927B1C9734D0005D90DB /* More.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = More.pdf; sourceTree = "<group>"; };
 		92C292851C98715F005D90DB /* Avatar.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Avatar.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,15 +186,11 @@
 			isa = PBXGroup;
 			children = (
 				9263241A1C95EA92003999C6 /* Icons */,
-				921D92DE1C737CBD00CD4B6F /* PlaylistCover.jpeg */,
 				92C292851C98715F005D90DB /* Avatar.pdf */,
-				929587511C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg */,
-				92C292771C97062F005D90DB /* rihanna-work-cover-compressed.jpg */,
-				92A1443C1C862D1500EC8178 /* AHFOD1000.jpg */,
 				926324181C8E2A40003999C6 /* BGround.png */,
+				926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */,
 				92A1443E1C863B5100EC8178 /* JuxerButton.pdf */,
 				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,
-				921D92DF1C737CBD00CD4B6F /* PlaylisrCover2.jpeg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +239,7 @@
 		926A84D51C5A9FED00815656 = {
 			isa = PBXGroup;
 			children = (
+				926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */,
 				926A84E01C5A9FED00815656 /* JUXER */,
 				926A84DF1C5A9FED00815656 /* Products */,
 			);
@@ -225,6 +267,20 @@
 				921D92BD1C737B3B00CD4B6F /* Resources */,
 			);
 			path = JUXER;
+			sourceTree = "<group>";
+		};
+		926C63FD1CB6D7F200CA9D9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				926C64071CB6D7F200CA9D9F /* Alamofire.framework */,
+				926C64091CB6D7F200CA9D9F /* Alamofire iOS Tests.xctest */,
+				926C640B1CB6D7F200CA9D9F /* Alamofire.framework */,
+				926C640D1CB6D7F200CA9D9F /* Alamofire OSX Tests.xctest */,
+				926C640F1CB6D7F200CA9D9F /* Alamofire.framework */,
+				926C64111CB6D7F200CA9D9F /* Alamofire tvOS Tests.xctest */,
+				926C64131CB6D7F200CA9D9F /* Alamofire.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +329,12 @@
 			mainGroup = 926A84D51C5A9FED00815656;
 			productRefGroup = 926A84DF1C5A9FED00815656 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 926C63FD1CB6D7F200CA9D9F /* Products */;
+					ProjectRef = 926C63FC1CB6D7F200CA9D9F /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				926A84DD1C5A9FED00815656 /* JUXER */,
@@ -280,13 +342,65 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		926C64071CB6D7F200CA9D9F /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 926C64061CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C64091CB6D7F200CA9D9F /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = 926C64081CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C640B1CB6D7F200CA9D9F /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 926C640A1CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C640D1CB6D7F200CA9D9F /* Alamofire OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire OSX Tests.xctest";
+			remoteRef = 926C640C1CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C640F1CB6D7F200CA9D9F /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 926C640E1CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C64111CB6D7F200CA9D9F /* Alamofire tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire tvOS Tests.xctest";
+			remoteRef = 926C64101CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		926C64131CB6D7F200CA9D9F /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = 926C64121CB6D7F200CA9D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		926A84DC1C5A9FED00815656 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */,
-				921D92E01C737CBD00CD4B6F /* PlaylistCover.jpeg in Resources */,
+				926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */,
 				92C292741C97017F005D90DB /* Music.pdf in Resources */,
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
@@ -296,11 +410,7 @@
 				92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */,
 				926324191C8E2A40003999C6 /* BGround.png in Resources */,
 				92C292861C987160005D90DB /* Avatar.pdf in Resources */,
-				921D92E11C737CBD00CD4B6F /* PlaylisrCover2.jpeg in Resources */,
-				929587521C9B987500F06525 /* 12747888_10153993262119516_7977841924514223786_o.jpg in Resources */,
-				92C292781C97062F005D90DB /* rihanna-work-cover-compressed.jpg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
-				92A1443D1C862D1500EC8178 /* AHFOD1000.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +556,7 @@
 					"$(PROJECT_DIR)/JUXER",
 				);
 				INFOPLIST_FILE = JUXER/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVAlmeida.JUXER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,6 +575,7 @@
 					"$(PROJECT_DIR)/JUXER",
 				);
 				INFOPLIST_FILE = JUXER/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JoaoVAlmeida.JUXER;
 				PRODUCT_NAME = "$(TARGET_NAME)";

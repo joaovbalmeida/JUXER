@@ -182,17 +182,19 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     })
                     imageTask.resume()
                     
-                    //Return how many tracks
+                    //Get how many tracks
                     self.count = title.count - self.index
                     
-                    //Pass tracks to Struct
+                    //Wrap tracks info into Struct
                     for i in self.index + 1 ..< title.count {
-                        var newTrack = Track(title: "title", artist: "artist", cover: "cover")
+                        var newTrack = Track(title: "title", artist: "artist", cover: "")
                         newTrack.title = title[i] as String
                         newTrack.artist = artist[i] as String
                         newTrack.cover = coverSmall[i] as String
                         self.tracks.append(newTrack)
+                        
                     }
+                    
                     //Refresh TableView
                     dispatch_async(dispatch_get_main_queue()){
                         self.tableView.reloadData()
@@ -232,31 +234,22 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
+            
         case 1:
             let cell: QueueTableViewCell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath) as! QueueTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
             
-            //Display Tracks
+            //Show Tracks on Cell
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
             
-            //Display Tracks Cover
-            let imageUrl  = NSURL(string: String(self.tracks[indexPath.row].cover))
-            let imageRequest = NSURLRequest(URL: imageUrl!)
-            let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        cell.trackCover.image = UIImage(data: data!)
-                    }
-                }
-            })
-            imageTask.resume()
+            //Get Tracks Cover
+            
             
             return cell
+            
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
