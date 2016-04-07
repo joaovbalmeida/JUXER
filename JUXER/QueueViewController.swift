@@ -126,9 +126,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         getQueue()
         
-        tableView.reloadData()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         refreshControl.endRefreshing()
     }
     
@@ -158,7 +160,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let title: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("title_short")! as! [NSString]
                     let artist: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("artist")!.valueForKey("name")! as! [NSString]
                     let album: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("title")! as! [NSString]
-                    let coverSmall: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_small")! as! [NSString]
+                    let coverSmall: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover")! as! [NSString]
                     
                     //Refresh Now Playing Track
                     let cover: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_big")! as! [NSString]
@@ -182,22 +184,20 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     //Return how many tracks
                     self.count = title.count - self.index
-                    dispatch_async(dispatch_get_main_queue()){
-                        self.tableView.reloadData()
-                    }
                     
                     //Pass tracks to Struct
-                    for i in self.index ..< title.count {
+                    for i in self.index + 1 ..< title.count {
                         var newTrack = Track(title: "title", artist: "artist", cover: "cover")
                         newTrack.title = title[i] as String
                         newTrack.artist = artist[i] as String
                         newTrack.cover = coverSmall[i] as String
                         self.tracks.append(newTrack)
                     }
+                    //Refresh TableView
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.tableView.reloadData()
+                    }
                     
-                    //Pass Object to Cell
-                    let destinationView = QueueTableViewCell()
-                    destinationView.tracks = self.tracks
                     
                 } catch let error as NSError {
                     print(error)
@@ -233,9 +233,29 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
+            let cell: QueueTableViewCell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath) as! QueueTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
+            
+            //Display Tracks
+            cell.trackTitle.text = self.tracks[indexPath.row].title
+            cell.trackArtist.text = self.tracks[indexPath.row].artist
+            cell.trackOrder.text = String(indexPath.row + 1)
+            
+            //Display Tracks Cover
+            let imageUrl  = NSURL(string: String(self.tracks[indexPath.row].cover))
+            let imageRequest = NSURLRequest(URL: imageUrl!)
+            let imageTask = NSURLSession.sharedSession().dataTaskWithRequest(imageRequest, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print(error)
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        cell.trackCover.image = UIImage(data: data!)
+                    }
+                }
+            })
+            imageTask.resume()
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
@@ -281,14 +301,5 @@ class QueueTableViewCell: UITableViewCell {
     @IBOutlet weak var trackArtist: UILabel!
     @IBOutlet weak var trackCover: UIImageView!
     
-    var tracks: [QueueViewController.Track] = []
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        
-        
-    }
-
 }
 
