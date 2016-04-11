@@ -6,6 +6,7 @@
 //  Copyright © 2016 Joao Victor Almeida. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import FBSDKShareKit
 import Haneke
@@ -15,6 +16,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
         juxerButton.hidden = false
         juxerLabel.hidden = false
+    }
+    @IBAction func refresh(sender: AnyObject) {
+        getQueue()
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,11 +32,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var songScrollingLabel: UILabel!
     @IBOutlet weak var artistScrollingLabel: UILabel!
     
+    @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var placeholderIcon: UIImageView!
+    @IBOutlet weak var placeholderLabel: UILabel!
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-    var refreshControl = UIRefreshControl()
 
     private var session = [Session]()
     private var tracks: [Track] = [Track]()
@@ -69,11 +75,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.allowsSelection = false
         
-        refreshControl.addTarget(self, action: #selector(QueueViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.tintColor = UIColor.whiteColor()
-        refreshControl.bounds.origin.y = 350
-        tableView.addSubview(refreshControl)
-       
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -104,6 +105,42 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         headerView.frame = headerRect
     }
     
+    func updateFooterView() {
+        var FooterRect = CGRect(x: 0, y: 518, width: 600, height: 500)
+        print(self.count - 1)
+        dispatch_async(dispatch_get_main_queue()){
+            if self.count - 1 == 0 {
+                self.placeholderIcon.hidden = false
+                self.placeholderLabel.hidden = false
+                FooterRect.size.height = 500
+            } else if self.count - 1 == 1 {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 430
+            } else if self.count - 1 == 2 {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 360
+            } else if self.count - 1 == 3 {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 290
+            } else if self.count - 1 == 4 {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 220
+            } else if self.count - 1 == 5 {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 150
+            } else {
+                self.placeholderIcon.hidden = true
+                self.placeholderLabel.hidden = true
+                FooterRect.size.height = 80
+            }
+        }
+    }
+    
     func updateInitialLabels() {
         var alpha: CGFloat = 1
         if tableView.contentOffset.y >= -250 {
@@ -123,19 +160,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         artistScrollingLabel.alpha = alpha
     }
     
-    func refresh(refreshControl: UIRefreshControl) {
-        
-        if refreshControl.refreshing {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            getQueue()
-        }
-        
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        refreshControl.endRefreshing()
-        
-    }
-    
-    private func getQueue(){
+    func getQueue(){
 
         //Erase previous Data
         if self.tracks.count != 0 {
@@ -193,6 +218,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         self.tableView.reloadData()
                     }
                     
+                    self.updateFooterView()
+
                 } catch let error as NSError {
                     print(error)
                 }
@@ -231,8 +258,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             let cell: QueueTableViewCell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath) as! QueueTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
-            
-            //Show Tracks on Cell
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)

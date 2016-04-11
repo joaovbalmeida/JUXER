@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var session = [Session]()
     var window: UIWindow?
+    private var bolean = Bool()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
@@ -29,24 +30,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Manage Session Token
         session = SessionDAO.fetchSession()
         if session.count != 0 && session[0].token != nil {
-            refreshToken()
-            
-            //Bypass Login VC
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
 
-            if session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
-                 initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
+            refreshTokenSucceeded()
+            if bolean == false {
+                SessionDAO.delete(session[0])
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                let user:[User] = UserDAO.fetchUser()
+                UserDAO.delete(user[0])
+    
+            } else {
+                //Bypass Login VC
+                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
+                
+                if session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
+                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
+                }
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
             }
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
         }
-        
         return true
     }
     
-    private func refreshToken() {
+    private func refreshTokenSucceeded() {
         
         let jsonObject: [String : AnyObject] =
             [ "token": "\(session[0].token!)"]
@@ -69,19 +78,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
                     if error != nil{
                         print(error)
-                        return
+                        self.bolean = false
                     } else {
-                        do {
-                            let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                            //print(resultJSON)
-                            var newToken = resultJSON.valueForKey("token") as! String
-                            newToken = newToken.stringByRemovingPercentEncoding!
-                            newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
-                            self.session[0].token = newToken
-                            SessionDAO.update(self.session[0])
-                            
-                        } catch let error as NSError {
-                            print(error)
+                        let httpResponse = response! as! NSHTTPURLResponse
+                        if httpResponse.statusCode == 400 {
+                            self.bolean = false
+                        } else {
+                            do {
+                                let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                                var newToken = resultJSON.valueForKey("token") as! String
+                                newToken = newToken.stringByRemovingPercentEncoding!
+                                newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
+                                self.session[0].token = newToken
+                                SessionDAO.update(self.session[0])
+                                self.bolean = true
+                                
+                            } catch let error as NSError {
+                                print(error)
+                            }
                         }
                     }
                 }
@@ -112,6 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
         FBSDKAppEvents.activateApp()
     }
 

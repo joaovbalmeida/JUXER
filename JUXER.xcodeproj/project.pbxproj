@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		920092001CAC587900FA55B7 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */; };
 		920092011CAC587900FA55B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FF1CAC587900FA55B7 /* User.swift */; };
+		921A77E81CB72BCF00B12737 /* QueuePlaceHolder.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 921A77E71CB72BCF00B12737 /* QueuePlaceHolder.pdf */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
 		921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		920091FF1CAC587900FA55B7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
+		921A77E71CB72BCF00B12737 /* QueuePlaceHolder.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = QueuePlaceHolder.pdf; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				926324181C8E2A40003999C6 /* BGround.png */,
 				9290594D1CB6F10E00C3765D /* BigCoverPlaceHolder.png */,
 				926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */,
+				921A77E71CB72BCF00B12737 /* QueuePlaceHolder.pdf */,
 				92A1443E1C863B5100EC8178 /* JuxerButton.pdf */,
 				92650E3F1C752AB900D04D55 /* jukebox-3.pdf */,
 			);
@@ -365,6 +368,7 @@
 				926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */,
 				92C292741C97017F005D90DB /* Music.pdf in Resources */,
 				92650E401C752AB900D04D55 /* jukebox-3.pdf in Resources */,
+				921A77E81CB72BCF00B12737 /* QueuePlaceHolder.pdf in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
 				92C2927C1C9734D0005D90DB /* More.pdf in Resources */,
 				926A84EF1C5A9FED00815656 /* LaunchScreen.storyboard in Resources */,
