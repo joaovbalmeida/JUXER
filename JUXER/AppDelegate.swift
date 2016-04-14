@@ -14,9 +14,8 @@ import FBSDKLoginKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private var session = [Session]()
     var window: UIWindow?
-    private var bolean = Bool()
+    private var session = [Session]()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
@@ -26,36 +25,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppear = UINavigationBar.appearance()
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
-        
-        //Manage Session Token
+
+        //If session active, refresh token and bypass views
         session = SessionDAO.fetchSession()
         if session.count != 0 && session[0].token != nil {
-
             refreshTokenSucceeded()
-            if bolean == false {
-                SessionDAO.delete(session[0])
-                let loginManager = FBSDKLoginManager()
-                loginManager.logOut()
-                let user:[User] = UserDAO.fetchUser()
-                UserDAO.delete(user[0])
-    
-            } else {
-                //Bypass Login VC
-                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
-                
-                if session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
-                    initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
-                }
-                self.window?.rootViewController = initialViewController
-                self.window?.makeKeyAndVisible()
-            }
+        } else {
+            goToLoginVC()
         }
+        
         return true
     }
     
-    private func refreshTokenSucceeded() {
+    private func goToLoginVC() {
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC")
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+    }
+
+    private func deleteUserAndSession(){
+        SessionDAO.delete(session[0])
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        if let user:[User] = UserDAO.fetchUser() {
+            UserDAO.delete(user[0])
+        }
+    }
+    
+    private func refreshTokenSucceeded()  {
         
         let jsonObject: [String : AnyObject] =
             [ "token": "\(session[0].token!)"]
@@ -77,30 +76,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
                     if error != nil{
+                        self.deleteUserAndSession()
+                        self.goToLoginVC()
                         print(error)
-                        self.bolean = false
                     } else {
                         let httpResponse = response! as! NSHTTPURLResponse
-                        if httpResponse.statusCode == 400 {
-                            self.bolean = false
-                        } else {
+                        if httpResponse.statusCode == 200 {
                             do {
                                 let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                                
+                                //Update New Token
                                 var newToken = resultJSON.valueForKey("token") as! String
                                 newToken = newToken.stringByRemovingPercentEncoding!
                                 newToken = newToken.stringByReplacingOccurrencesOfString("\"", withString: "")
                                 self.session[0].token = newToken
                                 SessionDAO.update(self.session[0])
-                                self.bolean = true
-                                
+
+                                //Change Initial View
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                    var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
+                                    
+                                    if self.session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
+                                        initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
+                                    }
+                                    self.window?.rootViewController = initialViewController
+                                    self.window?.makeKeyAndVisible()
+                                }
+
                             } catch let error as NSError {
+                                self.deleteUserAndSession()
+                                self.goToLoginVC()
                                 print(error)
                             }
+                        } else {
+                            print(httpResponse.statusCode)
+                            self.deleteUserAndSession()
+                            self.goToLoginVC()
                         }
                     }
                 }
                 task.resume()
             } catch {
+                self.deleteUserAndSession()
+                self.goToLoginVC()
                 print(error)
             }
         }

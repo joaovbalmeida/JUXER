@@ -80,8 +80,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
-                
-                //let url = NSURL(string: "http://10.0.0.68:3000/api/user/login/")
                 let url = NSURL(string: "http://198.211.98.86/api/user/login/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"

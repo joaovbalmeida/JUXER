@@ -107,7 +107,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func updateFooterView() {
         var FooterRect = CGRect(x: 0, y: 518, width: 600, height: 500)
-        print(self.count - 1)
         dispatch_async(dispatch_get_main_queue()){
             if self.count - 1 == 0 {
                 self.placeholderIcon.hidden = false
@@ -195,8 +194,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     dispatch_async(dispatch_get_main_queue()) {
                         self.songLabel.text = title[self.index] as String
                         self.artistLabel.text = "\(artist[self.index] as String) - \(album[self.index] as String)"
-                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
                         self.albumtImage.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
+                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
                         self.songScrollingLabel.text = self.songLabel.text
                         self.artistScrollingLabel.text = self.artistLabel.text
                     }

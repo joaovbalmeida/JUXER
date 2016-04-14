@@ -173,13 +173,11 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         // convert NSData to 'AnyObject'
         do{
             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
-            print(json.valueForKey("id")! as! Int)
-            setSessionActive((json.valueForKey("id")! as! Int))
+            setSessionActive(json.valueForKey("id") as! Int)
             
         } catch let error as NSError {
             print(error)
         }
-        //setSessionActive(id)
         performSegueWithIdentifier("toHome", sender: self)
     }
     
