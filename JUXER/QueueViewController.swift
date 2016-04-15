@@ -248,9 +248,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
-            dispatch_async(dispatch_get_main_queue()){
-                cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
-            }
+            cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
             
             return cell
             
