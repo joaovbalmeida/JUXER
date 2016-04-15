@@ -198,7 +198,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                             var newTrack = Track(title: "title", artist: "artist", cover: "")
                             newTrack.title = JSON[i].valueForKey("title_short") as! String
                             newTrack.artist = JSON[i].valueForKey("artist")!.valueForKey("name") as! String
-                            newTrack.cover = JSON[i].valueForKey("album")!.valueForKey("cover_big") as! String
+                            newTrack.cover = JSON[i].valueForKey("album")!.valueForKey("cover_medium") as! String
                             self.tracks.append(newTrack)
                         }
                     }

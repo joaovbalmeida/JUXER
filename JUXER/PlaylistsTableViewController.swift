@@ -12,6 +12,7 @@ class PlaylistsTableViewController: UITableViewController {
     
     private var playlists = [Playlist]()
     private var session = [Session]()
+    private var selectedPlaylist: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +26,13 @@ class PlaylistsTableViewController: UITableViewController {
         var name: String
         var schedule: String
         var cover: String
+        var id: Int
         
-        init (name: String, schedule: String, cover: String){
+        init (name: String, schedule: String, cover: String, id: Int){
             self.name = "Title"
             self.schedule = "Schedule"
             self.cover = ""
+            self.id = 0
         }
     }
 
@@ -40,7 +43,7 @@ class PlaylistsTableViewController: UITableViewController {
             playlists.removeAll()
         }
         
-        let url = NSURL(string: "http://198.211.98.86/api/track/playlist/\(session[0].id!)/?sorted=1")
+        let url = NSURL(string: "http://198.211.98.86/api/playlist/?event=\(session[0].id!)")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -53,15 +56,15 @@ class PlaylistsTableViewController: UITableViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    let JSON = resultJSON as! [String:AnyObject]
+                    let JSON = resultJSON.valueForKey("results") as! NSMutableArray
                     
                     //Create playlists struct array from JSON
                     for item in JSON {
-                        print(item.0)
-                        var newPlaylist = Playlist(name: "name", schedule: "schedule", cover: "")
-                        newPlaylist.name = item.0
-                        //newPlaylist.schedule = item.1.valueForKeyPath("")
-                        //newPlaylist.cover =
+                        var newPlaylist = Playlist(name: "name", schedule: "schedule", cover: "", id: 0)
+                        newPlaylist.name = item.valueForKey("name") as! String
+                        newPlaylist.id = item.valueForKey("id") as! Int
+                        newPlaylist.schedule = item.valueForKey("starts_at") as! String
+                        //newPlaylist.cover = item.valueForKey("picture") as! String
                         self.playlists.append(newPlaylist)
                     }
                     
@@ -97,6 +100,7 @@ class PlaylistsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
+        cell.playlistHour.text = playlists[indexPath.row].schedule
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
@@ -128,17 +132,28 @@ class PlaylistsTableViewController: UITableViewController {
         }
         */
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        self.selectedPlaylist = playlists[indexPath.row].name
+        self.performSegueWithIdentifier("toActiveSongs", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let destVC = segue.destinationViewController as! SongsTableViewController
+        destVC.playlistName = self.selectedPlaylist
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 /*
 
-    SETTINGS CELL CLASS
+    PLAYLISTS CELL CLASS
 
 */
 

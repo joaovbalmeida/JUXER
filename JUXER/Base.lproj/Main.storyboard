@@ -332,9 +332,8 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-GV-Zls">
-                                            <rect key="frame" x="148" y="38" width="81" height="25"/>
+                                            <rect key="frame" x="148" y="38" width="444" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="81" id="Rqs-sr-2b2"/>
                                                 <constraint firstAttribute="height" constant="25" id="ieZ-Wx-Nf2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
@@ -355,6 +354,7 @@
                                         <constraint firstItem="0oR-iw-qB4" firstAttribute="centerY" secondItem="BQ0-OA-Zua" secondAttribute="centerY" id="0Yf-p8-3Dn"/>
                                         <constraint firstItem="qx3-jB-FNP" firstAttribute="leading" secondItem="0oR-iw-qB4" secondAttribute="trailing" constant="8" id="4Qm-c4-jAm"/>
                                         <constraint firstItem="4Eu-VX-aA9" firstAttribute="baseline" secondItem="0oR-iw-qB4" secondAttribute="baseline" constant="-5" id="6Lb-JQ-yrb"/>
+                                        <constraint firstItem="Y3v-GV-Zls" firstAttribute="trailing" secondItem="BQ0-OA-Zua" secondAttribute="trailingMargin" id="9uP-Es-otp"/>
                                         <constraint firstItem="0oR-iw-qB4" firstAttribute="leading" secondItem="BQ0-OA-Zua" secondAttribute="leading" constant="20" id="CMA-Xr-xy6"/>
                                         <constraint firstItem="Y3v-GV-Zls" firstAttribute="baseline" secondItem="4Eu-VX-aA9" secondAttribute="baseline" id="NBR-sL-rTv"/>
                                         <constraint firstItem="qx3-jB-FNP" firstAttribute="trailing" secondItem="BQ0-OA-Zua" secondAttribute="trailingMargin" id="NBt-nL-eBQ"/>
@@ -368,7 +368,6 @@
                                     <outlet property="playlistCover" destination="0oR-iw-qB4" id="j8a-OV-TXc"/>
                                     <outlet property="playlistHour" destination="Y3v-GV-Zls" id="FpJ-aD-yLV"/>
                                     <outlet property="playlistName" destination="qx3-jB-FNP" id="hh3-tY-zMP"/>
-                                    <segue destination="Yde-Uf-5P0" kind="show" identifier="toActive" id="wg8-4B-s6T"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -384,6 +383,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Yde-Uf-5P0" kind="show" identifier="toActiveSongs" id="KNj-O6-K7N"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nc2-ih-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZQf-xX-ciz" userLabel="Exit" sceneMemberID="exit"/>
@@ -405,14 +407,14 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songs" rowHeight="70" id="a8V-8h-DHw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songs" rowHeight="70" id="a8V-8h-DHw" customClass="SongsTableViewCell" customModule="JUXER" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8V-8h-DHw" id="Cpt-XY-PxQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rihanna-work-cover-compressed.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-SY-t66">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceHolder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-SY-t66">
                                             <rect key="frame" x="20" y="5" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="0Kv-eB-830"/>
@@ -421,23 +423,21 @@
                                                 <constraint firstAttribute="width" constant="60" id="iKm-YT-cZ0"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rihanna - Work Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h4-cQ-F7d">
-                                            <rect key="frame" x="100" y="37" width="229" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C27-aR-d4d">
+                                            <rect key="frame" x="100" y="17" width="492" height="18"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="Fe2-2w-9Ot"/>
-                                                <constraint firstAttribute="width" constant="229" id="z4S-vh-PTu"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C27-aR-d4d">
-                                            <rect key="frame" x="100" y="17" width="229" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="229" id="Ujz-Xh-gBe"/>
                                                 <constraint firstAttribute="height" constant="18" id="vBd-d7-hNb"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h4-cQ-F7d">
+                                            <rect key="frame" x="100" y="37" width="492" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="Fe2-2w-9Ot"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -447,11 +447,18 @@
                                         <constraint firstItem="C27-aR-d4d" firstAttribute="top" secondItem="Cpt-XY-PxQ" secondAttribute="topMargin" constant="9" id="9Ca-vd-anG"/>
                                         <constraint firstItem="C27-aR-d4d" firstAttribute="leading" secondItem="dcc-SY-t66" secondAttribute="trailing" constant="20" id="B0r-oE-ljE"/>
                                         <constraint firstItem="0h4-cQ-F7d" firstAttribute="top" secondItem="C27-aR-d4d" secondAttribute="bottom" constant="2" id="ISv-fH-D2J"/>
+                                        <constraint firstItem="C27-aR-d4d" firstAttribute="trailing" secondItem="Cpt-XY-PxQ" secondAttribute="trailingMargin" id="Xz9-ny-YPs"/>
                                         <constraint firstItem="dcc-SY-t66" firstAttribute="leading" secondItem="Cpt-XY-PxQ" secondAttribute="leading" constant="20" id="aJT-sg-Cku"/>
+                                        <constraint firstItem="0h4-cQ-F7d" firstAttribute="trailing" secondItem="Cpt-XY-PxQ" secondAttribute="trailingMargin" id="l0b-gi-pxJ"/>
                                         <constraint firstItem="0h4-cQ-F7d" firstAttribute="leading" secondItem="dcc-SY-t66" secondAttribute="trailing" constant="20" id="wKg-o2-bXK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="songArtistLabel" destination="0h4-cQ-F7d" id="8qC-f8-80b"/>
+                                    <outlet property="songCover" destination="dcc-SY-t66" id="vtT-jN-e9Y"/>
+                                    <outlet property="songTitleLabel" destination="C27-aR-d4d" id="zfc-Qe-eAv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -976,6 +983,5 @@
         <image name="NewSongButton" width="133" height="35"/>
         <image name="QueuePlaceHolder" width="596" height="842"/>
         <image name="Settings" width="20" height="20"/>
-        <image name="rihanna-work-cover-compressed.jpg" width="600" height="600"/>
     </resources>
 </document>
