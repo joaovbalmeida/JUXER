@@ -13,9 +13,12 @@ class PlaylistsTableViewController: UITableViewController {
     private var playlists = [Playlist]()
     private var session = [Session]()
     private var selectedPlaylist: String = String()
+    let stringToDate = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        stringToDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         
         session = SessionDAO.fetchSession()
         getPlaylists()
@@ -24,13 +27,15 @@ class PlaylistsTableViewController: UITableViewController {
     
     private struct Playlist {
         var name: String
-        var schedule: String
+        var schedule: NSDate
+        var deadline: NSDate
         var cover: String
         var id: Int
         
-        init (name: String, schedule: String, cover: String, id: Int){
+        init (name: String, schedule: NSDate, deadline: NSDate, cover: String, id: Int){
             self.name = "Title"
-            self.schedule = "Schedule"
+            self.schedule = NSDate()
+            self.deadline = NSDate()
             self.cover = ""
             self.id = 0
         }
@@ -60,11 +65,19 @@ class PlaylistsTableViewController: UITableViewController {
                     
                     //Create playlists struct array from JSON
                     for item in JSON {
-                        var newPlaylist = Playlist(name: "name", schedule: "schedule", cover: "", id: 0)
+                        var newPlaylist = Playlist(name: "name", schedule: NSDate(), deadline: NSDate(), cover: "", id: 0)
                         newPlaylist.name = item.valueForKey("name") as! String
                         newPlaylist.id = item.valueForKey("id") as! Int
-                        newPlaylist.schedule = item.valueForKey("starts_at") as! String
                         //newPlaylist.cover = item.valueForKey("picture") as! String
+                        
+                        if let dateString = item.valueForKey("starts_at") as? String {
+                            let date = self.stringToDate.dateFromString(dateString)
+                            newPlaylist.schedule = date!
+                        }
+                        if let endDateString = item.valueForKey("deadline") as? String {
+                            let date = self.stringToDate.dateFromString(endDateString)
+                            newPlaylist.deadline = date!
+                        }
                         self.playlists.append(newPlaylist)
                     }
                     
@@ -100,7 +113,8 @@ class PlaylistsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        cell.playlistHour.text = playlists[indexPath.row].schedule
+        cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
+        .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell

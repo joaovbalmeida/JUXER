@@ -40,6 +40,7 @@ class SongsTableViewController: UITableViewController {
         
         let url = NSURL(string: "http://198.211.98.86/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
+        print(url)
         
         request.HTTPMethod = "GET"
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
@@ -53,7 +54,7 @@ class SongsTableViewController: UITableViewController {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
                     let JSON = resultJSON as! [String:AnyObject]
                     var songsData = NSMutableArray()
-                    
+
                     //Get respective playlist songs
                     for item in JSON {
                         if item.0 == self.playlistName {
@@ -115,6 +116,31 @@ class SongsTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Aceito", message: "Obrigado! A ", preferredStyle: .Alert)
+        
+        //Create and add the Cancel action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            //Do some stuff
+        }
+        actionSheetController.addAction(cancelAction)
+        //Create and an option action
+        let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) { action -> Void in
+            //Do some other stuff
+        }
+        actionSheetController.addAction(nextAction)
+        //Add a text field
+        actionSheetController.addTextFieldWithConfigurationHandler { textField -> Void in
+            //TextField configuration
+            textField.textColor = UIColor.blueColor()
+        }
+        
+        //Present the AlertController
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+    }
+
 
 }
 
