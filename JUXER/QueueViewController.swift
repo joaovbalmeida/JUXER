@@ -42,10 +42,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     private var session = [Session]()
     private var tracks: [Track] = [Track]()
-    private var count: Int = 0
-    private var index: Int = 0
     
-    struct Track {
+    private struct Track {
         var title: String
         var artist: String
         var cover: String
@@ -108,27 +106,27 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func updateFooterView() {
         var FooterRect = CGRect(x: 0, y: 518, width: 600, height: 500)
         dispatch_async(dispatch_get_main_queue()){
-            if self.count - 1 == 0 {
+            if self.tracks.count == 0 {
                 self.placeholderIcon.hidden = false
                 self.placeholderLabel.hidden = false
                 FooterRect.size.height = 500
-            } else if self.count - 1 == 1 {
+            } else if self.tracks.count == 1 {
                 self.placeholderIcon.hidden = true
                 self.placeholderLabel.hidden = true
                 FooterRect.size.height = 430
-            } else if self.count - 1 == 2 {
+            } else if self.tracks.count == 2 {
                 self.placeholderIcon.hidden = true
                 self.placeholderLabel.hidden = true
                 FooterRect.size.height = 360
-            } else if self.count - 1 == 3 {
+            } else if self.tracks.count == 3 {
                 self.placeholderIcon.hidden = true
                 self.placeholderLabel.hidden = true
                 FooterRect.size.height = 290
-            } else if self.count - 1 == 4 {
+            } else if self.tracks.count == 4 {
                 self.placeholderIcon.hidden = true
                 self.placeholderLabel.hidden = true
                 FooterRect.size.height = 220
-            } else if self.count - 1 == 5 {
+            } else if self.tracks.count == 5 {
                 self.placeholderIcon.hidden = true
                 self.placeholderLabel.hidden = true
                 FooterRect.size.height = 150
@@ -159,8 +157,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         artistScrollingLabel.alpha = alpha
     }
     
-    func getQueue(){
-
+    private func getQueue(){
+        
         //Erase previous Data
         if self.tracks.count != 0 {
             tracks.removeAll()
@@ -179,37 +177,30 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                    let JSON = resultJSON.valueForKey("queue")! as! NSMutableArray
                     
                     //Get now playing index
-                    self.index = resultJSON.valueForKey("index")! as! Int
-                    
-                    //Get All Tracks
-                    let title: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("title_short")! as! [NSString]
-                    let artist: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("artist")!.valueForKey("name")! as! [NSString]
-                    let album: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("title")! as! [NSString]
-                    let coverSmall: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover")! as! [NSString]
-                    let cover: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_big")! as! [NSString]
+                    let index = resultJSON.valueForKey("index")! as! Int
                     
                     //Refresh Now Playing Track
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.songLabel.text = title[self.index] as String
-                        self.artistLabel.text = "\(artist[self.index] as String) - \(album[self.index] as String)"
-                        self.albumtImage.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
-                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
+                        self.songLabel.text = JSON[index].valueForKey("title_short") as? String
+                        self.artistLabel.text = JSON[index].valueForKey("artist")!.valueForKey("name") as? String
+                        self.albumtImage.hnk_setImageFromURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
+                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
                         self.songScrollingLabel.text = self.songLabel.text
                         self.artistScrollingLabel.text = self.artistLabel.text
                     }
                     
-                    //Get how many tracks
-                    self.count = title.count - self.index
-                    
-                    //Wrap tracks info into Struct
-                    for i in self.index + 1 ..< title.count {
-                        var newTrack = Track(title: "title", artist: "artist", cover: "")
-                        newTrack.title = title[i] as String
-                        newTrack.artist = artist[i] as String
-                        newTrack.cover = coverSmall[i] as String
-                        self.tracks.append(newTrack)
+                    //Create tracks struct array from JSON
+                    if JSON.count > index {
+                        for i in index + 1..<JSON.count {
+                            var newTrack = Track(title: "title", artist: "artist", cover: "")
+                            newTrack.title = JSON[i].valueForKey("title_short") as! String
+                            newTrack.artist = JSON[i].valueForKey("artist")!.valueForKey("name") as! String
+                            newTrack.cover = JSON[i].valueForKey("album")!.valueForKey("cover_big") as! String
+                            self.tracks.append(newTrack)
+                        }
                     }
                     
                     //Refresh TableView
@@ -236,10 +227,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 0:
             return 1
         case 1:
-            if count != 0 {
-                return count - 1
-            } else {
-                return 0 }
+            return tracks.count
         default:
             return 0
         }
@@ -260,7 +248,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
-            cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
+            dispatch_async(dispatch_get_main_queue()){
+                cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
+            }
             
             return cell
             

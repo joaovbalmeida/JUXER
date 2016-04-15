@@ -301,6 +301,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.16862745100000001" green="0.1960784314" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="kYC-ry-ubc">
+                            <rect key="frame" x="0.0" y="98" width="600" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="actives" rowHeight="70" id="jbU-Jl-VsV" customClass="PlaylistsTableViewCell" customModule="JUXER" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="70"/>
@@ -319,23 +324,13 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaylistCover.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-iw-qB4">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceHolder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-iw-qB4">
                                             <rect key="frame" x="20" y="5" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="BlD-AW-aXr"/>
                                                 <constraint firstAttribute="width" constant="60" id="jtT-Mo-EyW"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-jB-FNP">
-                                            <rect key="frame" x="88" y="5" width="230" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="230" id="7Eh-df-3Ir"/>
-                                                <constraint firstAttribute="height" constant="25" id="caW-W5-FVJ"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-GV-Zls">
                                             <rect key="frame" x="148" y="38" width="81" height="25"/>
                                             <constraints>
@@ -346,16 +341,26 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-jB-FNP">
+                                            <rect key="frame" x="88" y="5" width="504" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="s3m-Zx-b9S"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="0oR-iw-qB4" firstAttribute="centerY" secondItem="BQ0-OA-Zua" secondAttribute="centerY" id="0Yf-p8-3Dn"/>
+                                        <constraint firstItem="qx3-jB-FNP" firstAttribute="leading" secondItem="0oR-iw-qB4" secondAttribute="trailing" constant="8" id="4Qm-c4-jAm"/>
                                         <constraint firstItem="4Eu-VX-aA9" firstAttribute="baseline" secondItem="0oR-iw-qB4" secondAttribute="baseline" constant="-5" id="6Lb-JQ-yrb"/>
                                         <constraint firstItem="0oR-iw-qB4" firstAttribute="leading" secondItem="BQ0-OA-Zua" secondAttribute="leading" constant="20" id="CMA-Xr-xy6"/>
-                                        <constraint firstItem="qx3-jB-FNP" firstAttribute="top" secondItem="0oR-iw-qB4" secondAttribute="top" id="MBm-Oi-00k"/>
                                         <constraint firstItem="Y3v-GV-Zls" firstAttribute="baseline" secondItem="4Eu-VX-aA9" secondAttribute="baseline" id="NBR-sL-rTv"/>
+                                        <constraint firstItem="qx3-jB-FNP" firstAttribute="trailing" secondItem="BQ0-OA-Zua" secondAttribute="trailingMargin" id="NBt-nL-eBQ"/>
+                                        <constraint firstItem="qx3-jB-FNP" firstAttribute="top" secondItem="0oR-iw-qB4" secondAttribute="top" id="fvU-hY-18s"/>
                                         <constraint firstItem="4Eu-VX-aA9" firstAttribute="leading" secondItem="0oR-iw-qB4" secondAttribute="trailing" constant="8" id="hBz-Iq-nSt"/>
                                         <constraint firstItem="Y3v-GV-Zls" firstAttribute="leading" secondItem="4Eu-VX-aA9" secondAttribute="trailing" constant="8" id="nhF-zO-K6t"/>
-                                        <constraint firstItem="qx3-jB-FNP" firstAttribute="leading" secondItem="0oR-iw-qB4" secondAttribute="trailing" constant="8" id="tYf-OO-wQC"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -738,14 +743,14 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="YaW-Ur-6Ns">
-                                            <rect key="frame" x="250" y="100" width="100" height="100"/>
+                                            <rect key="frame" x="250" y="21" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="795-My-1A6"/>
                                                 <constraint firstAttribute="height" constant="100" id="TyU-jX-ar1"/>
                                             </constraints>
                                         </imageView>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nenhuma Música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyE-J9-Ijf">
-                                            <rect key="frame" x="200" y="208" width="200" height="21"/>
+                                            <rect key="frame" x="200" y="129" width="200" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="GmC-Cf-Jzh"/>
                                                 <constraint firstAttribute="width" constant="200" id="Rn3-fL-6LP"/>
@@ -760,7 +765,7 @@
                                         <constraint firstItem="lyE-J9-Ijf" firstAttribute="top" secondItem="YaW-Ur-6Ns" secondAttribute="bottom" constant="8" id="4FF-Hs-kpQ"/>
                                         <constraint firstItem="YaW-Ur-6Ns" firstAttribute="centerX" secondItem="xqw-4g-9Wu" secondAttribute="centerX" id="Nwk-3s-GBn"/>
                                         <constraint firstItem="lyE-J9-Ijf" firstAttribute="centerX" secondItem="xqw-4g-9Wu" secondAttribute="centerX" id="gtm-hv-TE6"/>
-                                        <constraint firstItem="YaW-Ur-6Ns" firstAttribute="top" secondItem="xqw-4g-9Wu" secondAttribute="top" constant="100" id="mqY-WJ-aQ9"/>
+                                        <constraint firstItem="YaW-Ur-6Ns" firstAttribute="top" secondItem="xqw-4g-9Wu" secondAttribute="top" constant="21" id="mqY-WJ-aQ9"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -876,7 +881,7 @@
                                     <segue destination="c3S-Vr-hLW" kind="showDetail" id="Rau-NS-hv4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JUXER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xX7-Pn-1kI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedir Música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xX7-Pn-1kI">
                                 <rect key="frame" x="224" y="365" width="152" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Cmg-B7-LEq"/>
@@ -969,7 +974,6 @@
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
-        <image name="PlaylistCover.jpeg" width="200" height="200"/>
         <image name="QueuePlaceHolder" width="596" height="842"/>
         <image name="Settings" width="20" height="20"/>
         <image name="rihanna-work-cover-compressed.jpg" width="600" height="600"/>

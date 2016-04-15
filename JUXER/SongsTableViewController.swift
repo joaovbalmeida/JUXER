@@ -32,7 +32,6 @@ class SongsTableViewController: UITableViewController {
         session = SessionDAO.fetchSession()
         
         let url = NSURL(string: "http://198.211.98.86/api/track/playlist/8/")
-        //let url = NSURL(string: "http://10.0.0.68:3000/api/track/playlist/9/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"

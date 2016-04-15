@@ -10,23 +10,37 @@ import UIKit
 
 class PlaylistsTableViewController: UITableViewController {
     
-    var playlists = [String]()
+    private var playlists = [Playlist]()
+    private var session = [Session]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        session = SessionDAO.fetchSession()
+        getPlaylists()
 
     }
-/*
-    private func getPlaylist(){
+    
+    private struct Playlist {
+        var name: String
+        var schedule: String
+        var cover: String
+        
+        init (name: String, schedule: String, cover: String){
+            self.name = "Title"
+            self.schedule = "Schedule"
+            self.cover = ""
+        }
+    }
+
+    private func getPlaylists(){
         
         //Erase previous Data
-        if self.tracks.count != 0 {
-            tracks.removeAll()
+        if self.playlists.count != 0 {
+            playlists.removeAll()
         }
         
-        let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://198.211.98.86/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -39,37 +53,16 @@ class PlaylistsTableViewController: UITableViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                    let JSON = resultJSON as! [String:AnyObject]
                     
-                    //Get now playing index
-                    self.index = resultJSON.valueForKey("index")! as! Int
-                    
-                    //Get All Tracks
-                    let title: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("title_short")! as! [NSString]
-                    let artist: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("artist")!.valueForKey("name")! as! [NSString]
-                    let album: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("title")! as! [NSString]
-                    let coverSmall: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover")! as! [NSString]
-                    let cover: [NSString] = resultJSON.valueForKey("queue")!.valueForKey("album")!.valueForKey("cover_big")! as! [NSString]
-                    
-                    //Refresh Now Playing Track
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.songLabel.text = title[self.index] as String
-                        self.artistLabel.text = "\(artist[self.index] as String) - \(album[self.index] as String)"
-                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
-                        self.albumtImage.hnk_setImageFromURL(NSURL(string: String(cover[self.index]))!)
-                        self.songScrollingLabel.text = self.songLabel.text
-                        self.artistScrollingLabel.text = self.artistLabel.text
-                    }
-                    
-                    //Get how many tracks
-                    self.count = title.count - self.index
-                    
-                    //Wrap tracks info into Struct
-                    for i in self.index + 1 ..< title.count {
-                        var newTrack = Track(title: "title", artist: "artist", cover: "")
-                        newTrack.title = title[i] as String
-                        newTrack.artist = artist[i] as String
-                        newTrack.cover = coverSmall[i] as String
-                        self.tracks.append(newTrack)
+                    //Create playlists struct array from JSON
+                    for item in JSON {
+                        print(item.0)
+                        var newPlaylist = Playlist(name: "name", schedule: "schedule", cover: "")
+                        newPlaylist.name = item.0
+                        //newPlaylist.schedule = item.1.valueForKeyPath("")
+                        //newPlaylist.cover =
+                        self.playlists.append(newPlaylist)
                     }
                     
                     //Refresh TableView
@@ -84,7 +77,6 @@ class PlaylistsTableViewController: UITableViewController {
         }
         task.resume()
     }
-*/
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
@@ -93,7 +85,7 @@ class PlaylistsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return playlists.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -105,8 +97,7 @@ class PlaylistsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        
-        
+        cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
         
