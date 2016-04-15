@@ -140,8 +140,10 @@ class PlaylistsTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let destVC = segue.destinationViewController as! SongsTableViewController
-        destVC.playlistName = self.selectedPlaylist
+        if segue.identifier == "toActiveSongs" {
+            let destVC = segue.destinationViewController as! SongsTableViewController
+            destVC.playlistName = self.selectedPlaylist
+        }
     }
 
     override func didReceiveMemoryWarning() {
