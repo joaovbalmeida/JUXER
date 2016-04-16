@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FD71B7D0F2263026F829522 /* libPods-JUXER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9986222D8E24D0A52D7841D4 /* libPods-JUXER.a */; };
 		920092001CAC587900FA55B7 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */; };
 		920092011CAC587900FA55B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920091FF1CAC587900FA55B7 /* User.swift */; };
 		921A77E81CB72BCF00B12737 /* QueuePlaceHolder.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 921A77E71CB72BCF00B12737 /* QueuePlaceHolder.pdf */; };
@@ -42,7 +43,6 @@
 		92C292741C97017F005D90DB /* Music.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292731C97017F005D90DB /* Music.pdf */; };
 		92C2927C1C9734D0005D90DB /* More.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2927B1C9734D0005D90DB /* More.pdf */; };
 		92C292861C987160005D90DB /* Avatar.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292851C98715F005D90DB /* Avatar.pdf */; };
-		C7C7F81628E4BCAD25C76E98 /* Pods_JUXER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C10C13F731B91597A54DE7 /* Pods_JUXER.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,7 +59,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		69C10C13F731B91597A54DE7 /* Pods_JUXER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JUXER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3F94BBF499A3E713A4ECC9 /* Pods-JUXER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JUXER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JUXER/Pods-JUXER.debug.xcconfig"; sourceTree = "<group>"; };
 		920091FE1CAC587900FA55B7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		920091FF1CAC587900FA55B7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 		92C292731C97017F005D90DB /* Music.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Music.pdf; sourceTree = "<group>"; };
 		92C2927B1C9734D0005D90DB /* More.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = More.pdf; sourceTree = "<group>"; };
 		92C292851C98715F005D90DB /* Avatar.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Avatar.pdf; sourceTree = "<group>"; };
+		9986222D8E24D0A52D7841D4 /* libPods-JUXER.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JUXER.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5138FE26E3203D2D57CB50 /* Pods-JUXER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JUXER.release.xcconfig"; path = "Pods/Target Support Files/Pods-JUXER/Pods-JUXER.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +109,7 @@
 				92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */,
 				92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */,
 				92A9ABDA1CB328AD00650A1A /* FBSDKShareKit.framework in Frameworks */,
-				C7C7F81628E4BCAD25C76E98 /* Pods_JUXER.framework in Frameworks */,
+				2FD71B7D0F2263026F829522 /* libPods-JUXER.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +128,7 @@
 		4F2F294A8A727E89E772DDC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69C10C13F731B91597A54DE7 /* Pods_JUXER.framework */,
+				9986222D8E24D0A52D7841D4 /* libPods-JUXER.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
