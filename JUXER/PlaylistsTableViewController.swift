@@ -19,7 +19,7 @@ class PlaylistsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         stringToDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        //stringToDate.timeZone = NSTimeZone.localTimeZone()
+        stringToDate.timeZone = NSTimeZone.localTimeZone()
         
         session = SessionDAO.fetchSession()
         getPlaylists()
@@ -63,17 +63,15 @@ class PlaylistsTableViewController: UITableViewController {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     let JSON = resultJSON.valueForKey("results") as! NSMutableArray
-                    
+                    print(JSON)
                     //Create playlists struct array from JSON
                     for item in JSON {
 
                         //Get current time and convert to NSDate
                         let calendar = NSCalendar.currentCalendar()
                         let flags = NSCalendarUnit(rawValue: UInt.max)
-                        var components = calendar.components(flags, fromDate: NSDate())
-                        var today = calendar.dateFromComponents(components)
-                        components = calendar.componentsInTimeZone(NSTimeZone.localTimeZone(), fromDate: today!)
-                        today = calendar.dateFromComponents(components)
+                        let components = calendar.components(flags, fromDate: NSDate())
+                        let today = calendar.dateFromComponents(components)
                         print(today)
                         
                         //Get playlist time and convert to NSDate
@@ -85,8 +83,8 @@ class PlaylistsTableViewController: UITableViewController {
                         if let endDateString = item.valueForKey("deadline") as? String {
                             endDate = self.stringToDate.dateFromString(endDateString)!
                         }
-                        print(startDate.timeIntervalSinceDate(today!).isSignMinus)
-                        print(endDate.timeIntervalSinceDate(today!).isNormal)
+                        print(startDate)
+                        print(endDate)
                         //Compare playlist hour to current time
                         
                         if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!).isNormal {
@@ -148,7 +146,7 @@ class PlaylistsTableViewController: UITableViewController {
         
         cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
             .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].deadline, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+                .row].deadline, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
