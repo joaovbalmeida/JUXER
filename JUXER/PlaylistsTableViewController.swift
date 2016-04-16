@@ -19,6 +19,7 @@ class PlaylistsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         stringToDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        //stringToDate.timeZone = NSTimeZone.localTimeZone()
         
         session = SessionDAO.fetchSession()
         getPlaylists()
@@ -65,11 +66,41 @@ class PlaylistsTableViewController: UITableViewController {
                     
                     //Create playlists struct array from JSON
                     for item in JSON {
-                        var newPlaylist = Playlist(name: "name", schedule: NSDate(), deadline: NSDate(), cover: "", id: 0)
-                        newPlaylist.name = item.valueForKey("name") as! String
-                        newPlaylist.id = item.valueForKey("id") as! Int
-                        //newPlaylist.cover = item.valueForKey("picture") as! String
+
+                        //Get current time and convert to NSDate
+                        let calendar = NSCalendar.currentCalendar()
+                        let flags = NSCalendarUnit(rawValue: UInt.max)
+                        var components = calendar.components(flags, fromDate: NSDate())
+                        var today = calendar.dateFromComponents(components)
+                        components = calendar.componentsInTimeZone(NSTimeZone.localTimeZone(), fromDate: today!)
+                        today = calendar.dateFromComponents(components)
+                        print(today)
                         
+                        //Get playlist time and convert to NSDate
+                        var startDate = NSDate()
+                        var endDate = NSDate()
+                        if let dateString = item.valueForKey("starts_at") as? String {
+                            startDate = self.stringToDate.dateFromString(dateString)!
+                        }
+                        if let endDateString = item.valueForKey("deadline") as? String {
+                            endDate = self.stringToDate.dateFromString(endDateString)!
+                        }
+                        print(startDate.timeIntervalSinceDate(today!).isSignMinus)
+                        print(endDate.timeIntervalSinceDate(today!).isNormal)
+                        //Compare playlist hour to current time
+                        
+                        if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!).isNormal {
+
+                            var newPlaylist = Playlist(name: "name", schedule: NSDate(), deadline: NSDate(), cover: "", id: 0)
+                            newPlaylist.name = item.valueForKey("name") as! String
+                            newPlaylist.id = item.valueForKey("id") as! Int
+                            newPlaylist.schedule = startDate
+                            newPlaylist.deadline = endDate
+                            //newPlaylist.cover = item.valueForKey("picture") as! String
+                            self.playlists.append(newPlaylist)
+                        }
+                        
+                       /*
                         if let dateString = item.valueForKey("starts_at") as? String {
                             let date = self.stringToDate.dateFromString(dateString)
                             newPlaylist.schedule = date!
@@ -78,7 +109,9 @@ class PlaylistsTableViewController: UITableViewController {
                             let date = self.stringToDate.dateFromString(endDateString)
                             newPlaylist.deadline = date!
                         }
-                        self.playlists.append(newPlaylist)
+                        */
+                        
+                        
                     }
                     
                     //Refresh TableView
@@ -114,7 +147,8 @@ class PlaylistsTableViewController: UITableViewController {
         cell.layoutMargins = UIEdgeInsetsZero
         
         cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-        .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+            .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                .row].deadline, dateStyle: .NoStyle, timeStyle: .ShortStyle)
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
