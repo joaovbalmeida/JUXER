@@ -145,7 +145,6 @@ class SongsTableViewController: UITableViewController {
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
                     let httpResponse = response as! NSHTTPURLResponse
-                    print(httpResponse.statusCode)
                     if httpResponse.statusCode == 200 {
                         
                         //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!

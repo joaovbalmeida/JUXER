@@ -7,19 +7,16 @@
 //
 
 import UIKit
+import SwiftDate
 
 class PlaylistsTableViewController: UITableViewController {
     
     private var playlists = [Playlist]()
     private var session = [Session]()
     private var selectedPlaylist: String = String()
-    let stringToDate = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        stringToDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        stringToDate.timeZone = NSTimeZone.localTimeZone()
         
         session = SessionDAO.fetchSession()
         getPlaylists()
@@ -29,14 +26,13 @@ class PlaylistsTableViewController: UITableViewController {
     private struct Playlist {
         var name: String
         var schedule: NSDate
-        var deadline: NSDate
+        var deadline: NSDate?
         var cover: String
         var id: Int
         
-        init (name: String, schedule: NSDate, deadline: NSDate, cover: String, id: Int){
+        init (name: String, schedule: NSDate, cover: String, id: Int){
             self.name = "Title"
             self.schedule = NSDate()
-            self.deadline = NSDate()
             self.cover = ""
             self.id = 0
         }
@@ -67,7 +63,7 @@ class PlaylistsTableViewController: UITableViewController {
                 
                     //Create playlists struct array from JSON
                     for item in JSON {
-
+ 
                         //Get current time and convert to NSDate
                         let calendar = NSCalendar.currentCalendar()
                         let flags = NSCalendarUnit(rawValue: UInt.max)
@@ -77,25 +73,27 @@ class PlaylistsTableViewController: UITableViewController {
                         //Get playlist time and convert to NSDate
                         var startDate = NSDate()
                         var endDate = NSDate()
+                        var endDateNil = false
                         if let dateString = item.valueForKey("starts_at") as? String {
-                            startDate = self.stringToDate.dateFromString(dateString)!
-                            
+                            startDate = dateString.toDateFromISO8601()!
                         }
                         if let endDateString = item.valueForKey("deadline") as? String {
-                            endDate = self.stringToDate.dateFromString(endDateString)!
+                            endDate = endDateString.toDateFromISO8601()!
+                        } else {
+                            endDateNil = true
                         }
-                        print(startDate)
-                        print(endDate)
-                        //Compare playlist hour to current time
                         
-                        if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!).isNormal {
+                        //Compare playlist hour to current time
+                        if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!) > 0 {
                             
-                            
-                            var newPlaylist = Playlist(name: "name", schedule: NSDate(), deadline: NSDate(), cover: "", id: 0)
+                            var newPlaylist = Playlist(name: "name", schedule: NSDate(), cover: "", id: 0)
                             newPlaylist.name = item.valueForKey("name") as! String
                             newPlaylist.id = item.valueForKey("id") as! Int
                             newPlaylist.schedule = startDate
-                            newPlaylist.deadline = endDate
+                            if endDateNil == false {
+                                newPlaylist.deadline = endDate
+                            }
+                            
                             //newPlaylist.cover = item.valueForKey("picture") as! String
                             self.playlists.append(newPlaylist)
                         }
@@ -146,39 +144,18 @@ class PlaylistsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-            .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].deadline, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        if playlists[indexPath.row].deadline != nil {
+            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                    .row].deadline!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+
+        } else {
+            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        }
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
-        
-        /*
-        switch (indexPath.section) {
-        case 0:
-            let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath)
-            let bgColorView = UIView() as! PlaylistsTableViewCell
-            bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
-            cell.selectedBackgroundView = bgColorView
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
-            return cell
-            
-        case 1:
-            let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("inactives", forIndexPath: indexPath) as! PlaylistsTableViewCell
-            let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
-            cell.selectedBackgroundView = bgColorView
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
-     
-            return cell
-            
-        default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("inactives", forIndexPath: indexPath)
-            return cell
-        }
-        */
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
