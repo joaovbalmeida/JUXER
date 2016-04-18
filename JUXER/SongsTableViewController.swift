@@ -144,23 +144,38 @@ class SongsTableViewController: UITableViewController {
                 request.HTTPBody = JSON
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-                    if error != nil{
+                    let httpResponse = response as! NSHTTPURLResponse
+                    print(httpResponse.statusCode)
+                    if httpResponse.statusCode == 200 {
+                        
+                        //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                        dispatch_async(dispatch_get_main_queue()){
+                            let alertView = JSSAlertView().show(
+                                self,
+                                title: "Obrigado!",
+                                text: "Seu pedido entrara na fila em breve",
+                                buttonText: "OK",
+                                color: UIColorFromHex(0x3F4A4F)
+                            )
+                            alertView.setTextTheme(.Light)
+                            alertView.addAction(self.okCallback)
+                        }
+                        
+                    } else if httpResponse.statusCode == 422 {
+                        dispatch_async(dispatch_get_main_queue()){
+                            let alertView = JSSAlertView().show(
+                                self,
+                                title: "Ops",
+                                text: "A música pedida já esta na fila!",
+                                buttonText: "OK",
+                                color: UIColorFromHex(0x3F4A4F)
+                            )
+                            alertView.setTextTheme(.Light)
+                        }
+                    } else if error != nil {
                         print(error)
                         return
                     }
-                    //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                    dispatch_async(dispatch_get_main_queue()){
-                        
-                        let alertView = JSSAlertView().show(
-                            self,
-                            title: "Obrigado!",
-                            text: "Seu pedido entrara na fila em breve",
-                            buttonText: "OK",
-                            color: UIColorFromHex(0xFF005A)
-                        )
-                        alertView.addAction(self.okCallback)
-                        
-                    }              
                 }
                 task.resume()
             } catch {

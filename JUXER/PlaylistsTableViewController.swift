@@ -63,6 +63,7 @@ class PlaylistsTableViewController: UITableViewController {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     let JSON = resultJSON.valueForKey("results") as! NSMutableArray
+                    print(JSON)
                 
                     //Create playlists struct array from JSON
                     for item in JSON {
@@ -78,6 +79,7 @@ class PlaylistsTableViewController: UITableViewController {
                         var endDate = NSDate()
                         if let dateString = item.valueForKey("starts_at") as? String {
                             startDate = self.stringToDate.dateFromString(dateString)!
+                            
                         }
                         if let endDateString = item.valueForKey("deadline") as? String {
                             endDate = self.stringToDate.dateFromString(endDateString)!
@@ -87,7 +89,8 @@ class PlaylistsTableViewController: UITableViewController {
                         //Compare playlist hour to current time
                         
                         if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!).isNormal {
-
+                            
+                            
                             var newPlaylist = Playlist(name: "name", schedule: NSDate(), deadline: NSDate(), cover: "", id: 0)
                             newPlaylist.name = item.valueForKey("name") as! String
                             newPlaylist.id = item.valueForKey("id") as! Int
