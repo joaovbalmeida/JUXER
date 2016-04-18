@@ -59,8 +59,7 @@ class PlaylistsTableViewController: UITableViewController {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     let JSON = resultJSON.valueForKey("results") as! NSMutableArray
-                    print(JSON)
-                
+
                     //Create playlists struct array from JSON
                     for item in JSON {
  

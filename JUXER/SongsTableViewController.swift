@@ -13,6 +13,7 @@ import JSSAlertView
 class SongsTableViewController: UITableViewController {
     
     private var songs: [Song] = [Song]()
+    private var queueSongsID: [Int] = [Int]()
     var playlistName: String = String()
     var session = [Session]()
     
@@ -34,12 +35,48 @@ class SongsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         session = SessionDAO.fetchSession()
+
+        getSongs()
         
         self.clearsSelectionOnViewWillAppear = true
-        getSongs()
     }
     
     private func getSongs(){
+        let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
+        let request = NSMutableURLRequest(URL: url!)
+        
+        request.HTTPMethod = "GET"
+        request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            if error != nil {
+                print(error)
+                return
+            } else {
+                do {
+                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                    let JSON = resultJSON.valueForKey("queue")! as! NSMutableArray
+                    
+                    //Get queue songs id
+                    if JSON.count > 0 {
+                        for item in JSON {
+                            let id = item.valueForKey("id") as! Int
+                            self.queueSongsID.append(id)
+                        }
+                    }
+                    
+                    //Get songs that are not on queue yet
+                    self.getSongsNotOnQueue()
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private func getSongsNotOnQueue(){
         
         let url = NSURL(string: "http://198.211.98.86/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
@@ -68,11 +105,14 @@ class SongsTableViewController: UITableViewController {
                     if songsData.count != 0 {
                         for item in songsData {
                             var newSong = Song(title: "title", artist: "artist", cover: "",id: 0)
-                            newSong.title = item.valueForKey("title_short") as! String
-                            newSong.artist = item.valueForKey("artist")!.valueForKey("name") as! String
-                            newSong.cover = item.valueForKey("album")?.valueForKey("cover_medium") as! String
                             newSong.id = item.valueForKey("id") as! Int
-                            self.songs.append(newSong)
+                            if self.queueSongsID.contains(newSong.id) != true {
+                                newSong.title = item.valueForKey("title_short") as! String
+                                newSong.artist = item.valueForKey("artist")!.valueForKey("name") as! String
+                                newSong.cover = item.valueForKey("album")?.valueForKey("cover_medium") as! String
+                                newSong.id = item.valueForKey("id") as! Int
+                                self.songs.append(newSong)
+                            }
                         }
                     }
                     
@@ -152,7 +192,7 @@ class SongsTableViewController: UITableViewController {
                             let alertView = JSSAlertView().show(
                                 self,
                                 title: "Obrigado!",
-                                text: "Seu pedido entrara na fila em breve",
+                                text: "Seu pedido entrará na fila em breve",
                                 buttonText: "OK",
                                 color: UIColorFromHex(0x3F4A4F)
                             )
@@ -165,7 +205,7 @@ class SongsTableViewController: UITableViewController {
                             let alertView = JSSAlertView().show(
                                 self,
                                 title: "Ops",
-                                text: "A música pedida já esta na fila!",
+                                text: "A música pedida já está na fila!",
                                 buttonText: "OK",
                                 color: UIColorFromHex(0x3F4A4F)
                             )
