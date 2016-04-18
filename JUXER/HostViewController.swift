@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haneke
+import KingFisher
 
 class HostViewController: UIViewController {
 
@@ -41,6 +41,7 @@ class HostViewController: UIViewController {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        //self.eventBG.kf_setImageWithURL
                         self.eventBG.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventImage.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventName.text = resultJSON.valueForKey("name")! as? String

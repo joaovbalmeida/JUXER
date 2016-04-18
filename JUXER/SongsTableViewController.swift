@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Haneke
+import KingFisher
+import JSSAlertView
 
 class SongsTableViewController: UITableViewController {
     
@@ -150,9 +151,13 @@ class SongsTableViewController: UITableViewController {
                     //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                     dispatch_async(dispatch_get_main_queue()){
                         
+                        JSSAlertView().show(
+                            self,
+                            title: "Obrigado!",
+                            text: "Seu pedido entrara na fila em breve"
+                        )
                         
-                        
-                        
+                        /*
                         let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Feito!", message: "Sua música entrara na fila em breve!", preferredStyle: .Alert)
                         
                         let okButton: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
@@ -160,6 +165,7 @@ class SongsTableViewController: UITableViewController {
                         }
                         actionSheetController.addAction(okButton)
                         self.presentViewController(actionSheetController, animated: true, completion: nil)
+                        */
                     }              
                 }
                 task.resume()
