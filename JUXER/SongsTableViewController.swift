@@ -8,6 +8,7 @@
 
 import UIKit
 import Haneke
+import JSSAlertView
 
 class SongsTableViewController: UITableViewController {
     
@@ -62,6 +63,7 @@ class SongsTableViewController: UITableViewController {
                             songsData = item.1 as! NSMutableArray
                         }
                     }
+                    
                     //Wrap songs in struct
                     if songsData.count != 0 {
                         for item in songsData {
@@ -149,6 +151,9 @@ class SongsTableViewController: UITableViewController {
                     //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                     dispatch_async(dispatch_get_main_queue()){
                         
+                        
+                        
+                        
                         let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Feito!", message: "Sua música entrara na fila em breve!", preferredStyle: .Alert)
                         
                         let okButton: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
@@ -163,9 +168,7 @@ class SongsTableViewController: UITableViewController {
                 print(error)
             }
         }
-        
     }
-
 }
 
  /*
