@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import KingFisher
+import Kingfisher
 import JSSAlertView
 
 class SongsTableViewController: UITableViewController {
@@ -114,7 +114,7 @@ class SongsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        cell.songCover.hnk_setImageFromURL(NSURL(string: self.songs[indexPath.row].cover)!)
+        cell.songCover.kf_setImageWithURL(NSURL(string: self.songs[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
         cell.songTitleLabel.text = self.songs[indexPath.row].title
         cell.songArtistLabel.text = self.songs[indexPath.row].artist
         
@@ -151,21 +151,15 @@ class SongsTableViewController: UITableViewController {
                     //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                     dispatch_async(dispatch_get_main_queue()){
                         
-                        JSSAlertView().show(
+                        let alertView = JSSAlertView().show(
                             self,
                             title: "Obrigado!",
-                            text: "Seu pedido entrara na fila em breve"
+                            text: "Seu pedido entrara na fila em breve",
+                            buttonText: "OK",
+                            color: UIColorFromHex(0xFF005A)
                         )
+                        alertView.addAction(self.okCallback)
                         
-                        /*
-                        let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Feito!", message: "Sua música entrara na fila em breve!", preferredStyle: .Alert)
-                        
-                        let okButton: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
-                            self.dismissViewControllerAnimated(true, completion: {})
-                        }
-                        actionSheetController.addAction(okButton)
-                        self.presentViewController(actionSheetController, animated: true, completion: nil)
-                        */
                     }              
                 }
                 task.resume()
@@ -173,6 +167,10 @@ class SongsTableViewController: UITableViewController {
                 print(error)
             }
         }
+    }
+    
+    private func okCallback() {
+        self.dismissViewControllerAnimated(true, completion: {})
     }
 }
 

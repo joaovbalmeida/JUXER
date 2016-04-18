@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import FBSDKShareKit
-import Haneke
+import Kingfisher
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -186,8 +186,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     dispatch_async(dispatch_get_main_queue()) {
                         self.songLabel.text = JSON[index].valueForKey("title_short") as? String
                         self.artistLabel.text = JSON[index].valueForKey("artist")!.valueForKey("name") as? String
-                        self.albumtImage.hnk_setImageFromURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
-                        self.albumBG.hnk_setImageFromURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
+                        self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                        self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
                         self.songScrollingLabel.text = self.songLabel.text
                         self.artistScrollingLabel.text = self.artistLabel.text
                     }
@@ -248,7 +248,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.trackTitle.text = self.tracks[indexPath.row].title
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
-            cell.trackCover.hnk_setImageFromURL(NSURL(string: self.tracks[indexPath.row].cover)!)
+            cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
             
             return cell
             

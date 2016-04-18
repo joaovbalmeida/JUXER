@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import KingFisher
+import Kingfisher
 
 class HostViewController: UIViewController {
 
@@ -41,9 +41,8 @@ class HostViewController: UIViewController {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        //self.eventBG.kf_setImageWithURL
-                        self.eventBG.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
-                        self.eventImage.hnk_setImageFromURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
+                        self.eventBG.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
+                        self.eventImage.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventName.text = resultJSON.valueForKey("name")! as? String
                         self.eventDescription.text = resultJSON.valueForKey("description")! as? String
                     }

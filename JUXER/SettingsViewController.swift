@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Kingfisher
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
@@ -54,7 +55,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             {
                 let readPath = dirPath + "/profilePic.jpg"
                 let image = UIImage(contentsOfFile: readPath)
-                bgImage.hnk_setImageFromFile(readPath)
+                bgImage.image = image
                 profilePic.image = maskRoundedImage(image!)
             }
         }
