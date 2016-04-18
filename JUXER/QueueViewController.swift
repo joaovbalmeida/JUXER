@@ -80,12 +80,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         juxerButton.hidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         juxerButton.hidden = false
         juxerLabel.hidden = false
         updateHeaderView()
     }
-    
+
     func updateHeaderView() {
         var buttonRect = CGRect(x: view.bounds.midX - 76, y: -tableView.contentOffset.y - 15, width: 152, height: 35)
         var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: view.bounds.width , height: kHeaderHeight)

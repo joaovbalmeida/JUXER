@@ -13,34 +13,35 @@ class SongsTableViewController: UITableViewController {
     
     private var songs: [Song] = [Song]()
     var playlistName: String = String()
+    var session = [Session]()
     
     private struct Song {
         var title: String
         var artist: String
         var cover: String
+        var id: Int
         
-        init (title: String, artist: String, cover: String){
+        init (title: String, artist: String, cover: String, id: Int){
             self.title = "Title"
             self.artist = "Artist"
             self.cover = ""
+            self.id = 0
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        session = SessionDAO.fetchSession()
+        
         self.clearsSelectionOnViewWillAppear = true
         getSongs()
     }
     
     private func getSongs(){
         
-        var session = [Session]()
-        session = SessionDAO.fetchSession()
-        
         let url = NSURL(string: "http://198.211.98.86/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
-        print(url)
         
         request.HTTPMethod = "GET"
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
@@ -64,10 +65,11 @@ class SongsTableViewController: UITableViewController {
                     //Wrap songs in struct
                     if songsData.count != 0 {
                         for item in songsData {
-                            var newSong = Song(title: "title", artist: "artist", cover: "")
+                            var newSong = Song(title: "title", artist: "artist", cover: "",id: 0)
                             newSong.title = item.valueForKey("title_short") as! String
                             newSong.artist = item.valueForKey("artist")!.valueForKey("name") as! String
                             newSong.cover = item.valueForKey("album")?.valueForKey("cover_medium") as! String
+                            newSong.id = item.valueForKey("id") as! Int
                             self.songs.append(newSong)
                         }
                     }
@@ -119,28 +121,50 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Aceito", message: "Obrigado! A ", preferredStyle: .Alert)
         
-        //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-            //Do some stuff
-        }
-        actionSheetController.addAction(cancelAction)
-        //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) { action -> Void in
-            //Do some other stuff
-        }
-        actionSheetController.addAction(nextAction)
-        //Add a text field
-        actionSheetController.addTextFieldWithConfigurationHandler { textField -> Void in
-            //TextField configuration
-            textField.textColor = UIColor.blueColor()
+        let jsonObject: [String : AnyObject] =
+            [ "id": self.songs[indexPath.row].id ]
+        
+        if NSJSONSerialization.isValidJSONObject(jsonObject) {
+            
+            do {
+                
+                let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
+                
+                // create post request
+                let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
+                let request = NSMutableURLRequest(URL: url!)
+                request.HTTPMethod = "POST"
+                
+                // insert json data to the request
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+                request.HTTPBody = JSON
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    if error != nil{
+                        print(error)
+                        return
+                    }
+                    //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                    dispatch_async(dispatch_get_main_queue()){
+                        
+                        let actionSheetController: UIAlertController = UIAlertController(title: "Pedido Feito!", message: "Sua música entrara na fila em breve!", preferredStyle: .Alert)
+                        
+                        let okButton: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+                            self.dismissViewControllerAnimated(true, completion: {})
+                        }
+                        actionSheetController.addAction(okButton)
+                        self.presentViewController(actionSheetController, animated: true, completion: nil)
+                    }              
+                }
+                task.resume()
+            } catch {
+                print(error)
+            }
         }
         
-        //Present the AlertController
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
-
 
 }
 

@@ -63,7 +63,7 @@ class PlaylistsTableViewController: UITableViewController {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     let JSON = resultJSON.valueForKey("results") as! NSMutableArray
-                    print(JSON)
+                
                     //Create playlists struct array from JSON
                     for item in JSON {
 
@@ -72,7 +72,6 @@ class PlaylistsTableViewController: UITableViewController {
                         let flags = NSCalendarUnit(rawValue: UInt.max)
                         let components = calendar.components(flags, fromDate: NSDate())
                         let today = calendar.dateFromComponents(components)
-                        print(today)
                         
                         //Get playlist time and convert to NSDate
                         var startDate = NSDate()

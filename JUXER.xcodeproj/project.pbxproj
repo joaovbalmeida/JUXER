@@ -31,7 +31,6 @@
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
 		92A1443F1C863B5100EC8178 /* JuxerButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92A1443E1C863B5100EC8178 /* JuxerButton.pdf */; };
-		92A73D0F1CA0BE1900D7740C /* InactiveSongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */; };
 		92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */; };
 		92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */; };
 		92A9ABDA1CB328AD00650A1A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */; };
@@ -85,7 +84,6 @@
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		92A1443E1C863B5100EC8178 /* JuxerButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = JuxerButton.pdf; sourceTree = "<group>"; };
-		92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InactiveSongsTableViewController.swift; sourceTree = "<group>"; };
 		92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				929786C91C7F3EA9001B0397 /* QueueViewController.swift */,
 				921D92CE1C737BF800CD4B6F /* PlaylistsTableViewController.swift */,
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
-				92A73D0E1CA0BE1900D7740C /* InactiveSongsTableViewController.swift */,
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				929786C31C7E729C001B0397 /* TabBarController.swift */,
 			);
@@ -396,7 +393,6 @@
 				92A9ABDD1CB3C74100650A1A /* Session+CoreDataProperties.swift in Sources */,
 				929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */,
 				926A84EA1C5A9FED00815656 /* JUXER.xcdatamodeld in Sources */,
-				92A73D0F1CA0BE1900D7740C /* InactiveSongsTableViewController.swift in Sources */,
 				921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */,
 				921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */,
 				921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */,

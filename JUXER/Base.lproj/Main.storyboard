@@ -749,15 +749,15 @@
                                     <rect key="frame" x="0.0" y="518" width="600" height="500"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="YaW-Ur-6Ns">
-                                            <rect key="frame" x="250" y="21" width="100" height="100"/>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="YaW-Ur-6Ns">
+                                            <rect key="frame" x="250" y="20.5" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="795-My-1A6"/>
                                                 <constraint firstAttribute="height" constant="100" id="TyU-jX-ar1"/>
                                             </constraints>
                                         </imageView>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nenhuma Música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyE-J9-Ijf">
-                                            <rect key="frame" x="200" y="129" width="200" height="21"/>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nenhuma Música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyE-J9-Ijf">
+                                            <rect key="frame" x="200" y="128.5" width="200" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="GmC-Cf-Jzh"/>
                                                 <constraint firstAttribute="width" constant="200" id="Rn3-fL-6LP"/>
