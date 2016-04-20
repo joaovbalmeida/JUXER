@@ -189,7 +189,7 @@ class SongsTableViewController: UITableViewController {
                         
                         //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                         dispatch_async(dispatch_get_main_queue()){
-                            let alertView = JSSAlertView().show(
+                            /*let alertView = JSSAlertView().show(
                                 self,
                                 title: "Obrigado!",
                                 text: "Seu pedido entrará na fila em breve",
@@ -198,6 +198,8 @@ class SongsTableViewController: UITableViewController {
                             )
                             alertView.setTextTheme(.Light)
                             alertView.addAction(self.okCallback)
+                            */
+                            
                         }
                         
                     } else if httpResponse.statusCode == 422 {

@@ -19,9 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGround.png" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-th-gvC">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jukebox" translatesAutoresizingMaskIntoConstraints="NO" id="uMr-hr-4P2">
                                 <rect key="frame" x="225" y="40" width="150" height="150"/>
                                 <color key="tintColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +38,7 @@
                                     <constraint firstAttribute="height" constant="73" id="5v8-8j-Frx"/>
                                     <constraint firstAttribute="width" constant="300" id="X3M-4M-QXn"/>
                                 </constraints>
-                                <string key="text">Olá, bém-vindo ao JUXER, seu novo aplicativo de playlists colaborativas. Com o JUXER você tem mais controle do que quer ouvir quando estiver em eventos sociais. </string>
+                                <string key="text">Olá, bém-vindo ao JUXER, seu novo aplicativo de playlists colaborativas. Com o JUXER você tem mais controle do que quer ouvir quando estiver nos seus eventos sociais. </string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,14 +68,10 @@
                         <constraints>
                             <constraint firstItem="4KX-Rs-GdH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0sG-Te-RdG"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="4KX-Rs-GdH" secondAttribute="bottom" constant="8" id="Ete-Nf-6r1"/>
-                            <constraint firstItem="mh0-th-gvC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="GbL-ga-tuF"/>
                             <constraint firstItem="uMr-hr-4P2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="NeV-Qj-gV4"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mh0-th-gvC" secondAttribute="bottom" id="Sdg-cg-FIk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yjn-XG-4iq" secondAttribute="bottom" constant="89" id="WMQ-g5-TSy"/>
                             <constraint firstItem="4KX-Rs-GdH" firstAttribute="top" secondItem="uMr-hr-4P2" secondAttribute="bottom" constant="8" id="XiV-Y8-c50"/>
                             <constraint firstItem="Yjn-XG-4iq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xyg-D0-BRt"/>
-                            <constraint firstItem="mh0-th-gvC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Yl0-CS-ntR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="mh0-th-gvC" secondAttribute="trailing" constant="-20" id="aly-9c-hfs"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZ2-U7-UbU"/>
                             <constraint firstItem="uMr-hr-4P2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r7I-Mr-OH0"/>
                         </constraints>
@@ -990,7 +983,6 @@
     </scenes>
     <resources>
         <image name="Avatar" width="163" height="163"/>
-        <image name="BGround.png" width="828" height="1472"/>
         <image name="BigCoverPlaceHolder.png" width="300" height="300"/>
         <image name="CoverPlaceHolder.jpg" width="300" height="300"/>
         <image name="Home" width="20" height="21"/>

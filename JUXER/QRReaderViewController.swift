@@ -152,33 +152,60 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             
             if metadataObject?.stringValue != nil {
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                foundCode(metadataObject!.stringValue)
+                validateQRCode(metadataObject!.stringValue)
             }
         }
     }
     
-    // Set session to Active
-    private func setSessionActive(id: Int) {
-        var session: [Session] = [Session]()
-        session = SessionDAO.fetchSession()
-        session[0].active = 1
-        session[0].id = id
-        SessionDAO.update(session[0])
-    }
-    
-    func foundCode(code: String) {
+    func validateQRCode(code: String) {
         // convert String to NSData
         let data: NSData = code.dataUsingEncoding(NSUTF8StringEncoding)!
         
-        // convert NSData to 'AnyObject'
+        // convert NSData to 'AnyObject' then make request usign data, to validate QR Code
         do{
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
-            setSessionActive(json.valueForKey("id") as! Int)
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let id = json.valueForKey("id") as! Int
+            
+            var session: [Session] = [Session]()
+            session = SessionDAO.fetchSession()
+            
+            let url = NSURL(string: "http://198.211.98.86/api/event/\(id)/")
+            let request = NSMutableURLRequest(URL: url!)
+            
+            request.HTTPMethod = "GET"
+            request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+                if error != nil {
+                    print(error)
+                    
+                    self.captureSession.startRunning()
+                    self.frameView.frame = CGRectZero
+                    return
+                    
+                } else {
+                    let httpResponse = response as! NSHTTPURLResponse
+                    
+                    //If code is valid, persist and perform segue, else show error message!
+                    if httpResponse.statusCode == 200 {
+                        session[0].active = 1
+                        session[0].id = id
+                        SessionDAO.update(session[0])
+                        
+                        self.performSegueWithIdentifier("toHome", sender: self)
+                    } else {
+                        
+                    }
+                }
+            }
+            task.resume()
             
         } catch let error as NSError {
             print(error)
+            
+            captureSession.startRunning()
+            frameView.frame = CGRectZero
         }
-        performSegueWithIdentifier("toHome", sender: self)
     }
     
     override func prefersStatusBarHidden() -> Bool {
