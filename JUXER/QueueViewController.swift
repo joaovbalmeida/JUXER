@@ -32,10 +32,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var songScrollingLabel: UILabel!
     @IBOutlet weak var artistScrollingLabel: UILabel!
     
-    @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var placeholderIcon: UIImageView!
-    @IBOutlet weak var placeholderLabel: UILabel!
+
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -64,7 +62,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         headerView = tableView.tableHeaderView
         headerView.clipsToBounds = true
-        
+        tableView.clipsToBounds = true
+
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
         
@@ -101,41 +100,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         juxerLabel.frame = buttonRect
         juxerButton.frame = buttonRect
         headerView.frame = headerRect
-    }
-    
-    func updateFooterView() {
-        var FooterRect = CGRect(x: 0, y: 518, width: 600, height: 500)
-        dispatch_async(dispatch_get_main_queue()){
-            if self.tracks.count == 0 {
-                self.placeholderIcon.hidden = false
-                self.placeholderLabel.hidden = false
-                FooterRect.size.height = 500
-            } else if self.tracks.count == 1 {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 430
-            } else if self.tracks.count == 2 {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 360
-            } else if self.tracks.count == 3 {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 290
-            } else if self.tracks.count == 4 {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 220
-            } else if self.tracks.count == 5 {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 150
-            } else {
-                self.placeholderIcon.hidden = true
-                self.placeholderLabel.hidden = true
-                FooterRect.size.height = 80
-            }
-        }
     }
     
     func updateInitialLabels() {
@@ -207,8 +171,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     dispatch_async(dispatch_get_main_queue()){
                         self.tableView.reloadData()
                     }
-                    
-                    self.updateFooterView()
 
                 } catch let error as NSError {
                     print(error)
@@ -219,7 +181,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -228,6 +190,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             return 1
         case 1:
             return tracks.count
+        case 2:
+            if tracks.count < 7 {
+                return 1
+            } else {
+                return 0
+            }
         default:
             return 0
         }
@@ -251,6 +219,18 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
             
             return cell
+        case 2:
+            let cell: FooterTableViewCell = tableView.dequeueReusableCellWithIdentifier("footer") as! FooterTableViewCell
+            cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.maxX, bottom: 0, right: 0)
+            cell.layoutMargins = UIEdgeInsetsZero
+            if self.tracks.count == 0 {
+                cell.footerLabel.hidden = false
+                cell.footerPlaceholder.hidden = false
+            } else {
+                cell.footerPlaceholder.hidden = true
+                cell.footerLabel.hidden = true
+            }
+            return cell
             
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
@@ -266,8 +246,16 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             return 30
         case 1:
             return 70
+        case 2:
+            if self.tracks.count == 0 {
+                return 230 + (self.view.bounds.maxY - kHeaderHeight)
+            } else if self.tracks.count < 7{
+                return 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 70))
+            } else {
+                return 0
+            }
         default:
-            return 70
+            return 0
         }
     }
     
@@ -280,7 +268,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 /*
@@ -295,6 +282,13 @@ class QueueTableViewCell: UITableViewCell {
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackArtist: UILabel!
     @IBOutlet weak var trackCover: UIImageView!
+    
+}
+
+class FooterTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var footerPlaceholder: UIImageView!
+    @IBOutlet weak var footerLabel: UILabel!
     
 }
 
