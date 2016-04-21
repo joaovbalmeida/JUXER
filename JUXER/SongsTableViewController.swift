@@ -8,7 +8,7 @@
 
 import UIKit
 import Kingfisher
-import JSSAlertView
+import SCLAlertView
 
 class SongsTableViewController: UITableViewController {
     
@@ -163,6 +163,7 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        let alertView = SCLAlertView()
         
         let jsonObject: [String : AnyObject] =
             [ "id": self.songs[indexPath.row].id ]
@@ -188,30 +189,20 @@ class SongsTableViewController: UITableViewController {
                     if httpResponse.statusCode == 200 {
                         
                         //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                        
                         dispatch_async(dispatch_get_main_queue()){
-                            /*let alertView = JSSAlertView().show(
-                                self,
-                                title: "Obrigado!",
-                                text: "Seu pedido entrará na fila em breve",
-                                buttonText: "OK",
-                                color: UIColorFromHex(0x3F4A4F)
-                            )
-                            alertView.setTextTheme(.Light)
-                            alertView.addAction(self.okCallback)
-                            */
                             
+                            alertView.addButton("OK"){
+                                self.dismissViewControllerAnimated(true, completion: {})
+                            }
+                            alertView.showCloseButton = false
+                            alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                         
                     } else if httpResponse.statusCode == 422 {
                         dispatch_async(dispatch_get_main_queue()){
-                            let alertView = JSSAlertView().show(
-                                self,
-                                title: "Ops",
-                                text: "A música pedida já está na fila!",
-                                buttonText: "OK",
-                                color: UIColorFromHex(0x3F4A4F)
-                            )
-                            alertView.setTextTheme(.Light)
+                            
+                            alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     } else if error != nil {
                         print(error)
