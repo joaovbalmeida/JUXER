@@ -216,9 +216,6 @@ class SongsTableViewController: UITableViewController {
         }
     }
     
-    private func okCallback() {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
 }
 
  /*
