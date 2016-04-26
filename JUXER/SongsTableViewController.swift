@@ -163,6 +163,7 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        self.tableView.userInteractionEnabled = false
         let alertView = SCLAlertView()
         
         let jsonObject: [String : AnyObject] =
@@ -203,9 +204,11 @@ class SongsTableViewController: UITableViewController {
                         dispatch_async(dispatch_get_main_queue()){
                             
                             alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            
                         }
                     } else if error != nil {
                         print(error)
+                        self.tableView.userInteractionEnabled = true
                         return
                     }
                 }
@@ -214,6 +217,8 @@ class SongsTableViewController: UITableViewController {
                 print(error)
             }
         }
+        
+        self.tableView.userInteractionEnabled = true
     }
     
 }
