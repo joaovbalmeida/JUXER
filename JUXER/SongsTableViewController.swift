@@ -210,6 +210,7 @@ class SongsTableViewController: UITableViewController {
                         }
                     } else if error != nil {
                         print(error)
+                        self.tableView.userInteractionEnabled = true
                     }
                 }
                 task.resume()

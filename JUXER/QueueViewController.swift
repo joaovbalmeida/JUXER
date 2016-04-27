@@ -13,10 +13,6 @@ import Kingfisher
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
-        juxerButton.hidden = false
-        juxerLabel.hidden = false
-    }
     @IBAction func refresh(sender: AnyObject) {
         getQueue()
     }
@@ -24,6 +20,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var juxerButton: UIButton!
     @IBOutlet weak var juxerLabel: UILabel!
+    
+    @IBOutlet weak var requestLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var requestButtonConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var albumBG: UIImageView!
     @IBOutlet weak var albumtImage: UIImageView!
@@ -33,7 +32,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var artistScrollingLabel: UILabel!
     
     @IBOutlet weak var headerView: UIView!
-
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -73,33 +71,22 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.allowsSelection = false
         
     }
-    
-    override func viewDidDisappear(animated: Bool) {
-        juxerLabel.hidden = true
-        juxerButton.hidden = true
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        juxerButton.hidden = false
-        juxerLabel.hidden = false
-        updateHeaderView()
-    }
 
     func updateHeaderView() {
-        var buttonRect = CGRect(x: view.bounds.midX - 76, y: -tableView.contentOffset.y - 15, width: 152, height: 35)
         var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: view.bounds.width , height: kHeaderHeight)
         if tableView.contentOffset.y <= -120 {
             headerRect.size.height = -tableView.contentOffset.y
             headerRect.origin.y = tableView.contentOffset.y
-            buttonRect.origin.y = -tableView.contentOffset.y - 15
+            requestLabelConstraint.constant = -tableView.contentOffset.y - 15
+            requestButtonConstraint.constant = -tableView.contentOffset.y - 15
         } else if tableView.contentOffset.y > -120 {
             headerRect.size.height = 120
             headerRect.origin.y = tableView.contentOffset.y
-            buttonRect.origin.y = 105
+            requestButtonConstraint.constant = 105
+            requestLabelConstraint.constant = 105
         }
-        juxerLabel.frame = buttonRect
-        juxerButton.frame = buttonRect
         headerView.frame = headerRect
+        
     }
     
     func updateInitialLabels() {
@@ -137,6 +124,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
+                
                 return
             } else {
                 do {
@@ -144,21 +132,35 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let JSON = resultJSON.valueForKey("queue")! as! NSMutableArray
                     
                     //Get now playing index
-                    let index = resultJSON.valueForKey("index")! as! Int
+                    var index = resultJSON.valueForKey("index")! as? Int
+                    if index == nil{
+                        index = 0
+                    }
                     
                     //Refresh Now Playing Track
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.songLabel.text = JSON[index].valueForKey("title_short") as? String
-                        self.artistLabel.text = JSON[index].valueForKey("artist")!.valueForKey("name") as? String
-                        self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
-                        self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index].valueForKey("album")!.valueForKey("cover_big")!))!)
-                        self.songScrollingLabel.text = self.songLabel.text
-                        self.artistScrollingLabel.text = self.artistLabel.text
+                    if JSON.count > 0 {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.songLabel.text = JSON[index!].valueForKey("title_short") as? String
+                            self.artistLabel.text = JSON[index!].valueForKey("artist")!.valueForKey("name") as? String
+                            self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                            self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!)
+                            self.songScrollingLabel.text = self.songLabel.text
+                            self.artistScrollingLabel.text = self.artistLabel.text
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.songLabel.text = ""
+                            self.artistLabel.text = ""
+                            self.albumtImage.image = Image(named: "BigCoverPlaceHolder.png")
+                            self.albumBG.image = nil
+                            self.songScrollingLabel.text = self.songLabel.text
+                            self.artistScrollingLabel.text = self.artistLabel.text
+                        }
                     }
                     
                     //Create tracks struct array from JSON
                     if JSON.count > index {
-                        for i in index + 1..<JSON.count {
+                        for i in index! + 1..<JSON.count {
                             var newTrack = Track(title: "title", artist: "artist", cover: "")
                             newTrack.title = JSON[i].valueForKey("title_short") as! String
                             newTrack.artist = JSON[i].valueForKey("artist")!.valueForKey("name") as! String
@@ -174,6 +176,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
                 } catch let error as NSError {
                     print(error)
+                    
                 }
             }
         }
@@ -272,7 +275,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
 /*
 
-    QUEUE CELL CLASS
+    QUEUE AND FOOTER CELL CLASSES
 
 */
 

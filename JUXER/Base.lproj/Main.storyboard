@@ -938,6 +938,8 @@
                         <outlet property="headerView" destination="jqw-vB-Z6H" id="eRg-Ys-1O1"/>
                         <outlet property="juxerButton" destination="CYo-7B-mal" id="Yjt-nG-Vxb"/>
                         <outlet property="juxerLabel" destination="xX7-Pn-1kI" id="36d-W9-Jwq"/>
+                        <outlet property="requestButtonConstraint" destination="ep7-Ld-WGX" id="faA-7I-gWK"/>
+                        <outlet property="requestLabelConstraint" destination="Rsu-Y2-Haf" id="Zsq-yr-xU1"/>
                         <outlet property="songLabel" destination="gLi-jc-rPj" id="mnv-bC-abH"/>
                         <outlet property="songScrollingLabel" destination="inb-Xc-1Fx" id="gdS-qk-R9T"/>
                         <outlet property="tableView" destination="HLA-wf-SXF" id="IvE-X7-8Ug"/>
