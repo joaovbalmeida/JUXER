@@ -163,6 +163,7 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+
         self.tableView.userInteractionEnabled = false
         let alertView = SCLAlertView()
         
@@ -189,8 +190,6 @@ class SongsTableViewController: UITableViewController {
                     let httpResponse = response as! NSHTTPURLResponse
                     if httpResponse.statusCode == 200 {
                         
-                        //let resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                        
                         dispatch_async(dispatch_get_main_queue()){
                             
                             alertView.addButton("OK"){
@@ -198,27 +197,30 @@ class SongsTableViewController: UITableViewController {
                             }
                             alertView.showCloseButton = false
                             alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+
+                            self.tableView.userInteractionEnabled = true
                         }
                         
                     } else if httpResponse.statusCode == 422 {
                         dispatch_async(dispatch_get_main_queue()){
-                            
                             alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+
+                            self.tableView.userInteractionEnabled = true
                             
                         }
                     } else if error != nil {
                         print(error)
-                        self.tableView.userInteractionEnabled = true
-                        return
                     }
                 }
                 task.resume()
             } catch {
                 print(error)
+
+                self.tableView.userInteractionEnabled = true
             }
         }
         
-        self.tableView.userInteractionEnabled = true
+        
     }
     
 }
