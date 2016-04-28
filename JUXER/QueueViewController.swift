@@ -195,11 +195,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 1:
             return tracks.count
         case 2:
-            if tracks.count < 8 {
-                return 1
-            } else {
-                return 0
-            }
+            return 1
         default:
             return 0
         }
@@ -253,7 +249,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 2:
             if self.tracks.count == 0 {
                 return 230 + (self.view.bounds.maxY - kHeaderHeight)
-            } else if self.tracks.count < 8 {
+            } else if 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 65)) > 0 {
                 return 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 65))
             } else {
                 return 0
