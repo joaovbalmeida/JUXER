@@ -13,13 +13,14 @@ import Kingfisher
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBAction func unwindToQueue(segue: UIStoryboardSegue){
+    }
+    
     @IBAction func refresh(sender: AnyObject) {
         getQueue()
     }
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var juxerButton: UIButton!
-    @IBOutlet weak var juxerLabel: UILabel!
     
     @IBOutlet weak var requestLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var requestButtonConstraint: NSLayoutConstraint!
@@ -194,7 +195,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 1:
             return tracks.count
         case 2:
-            if tracks.count < 7 {
+            if tracks.count < 8 {
                 return 1
             } else {
                 return 0
@@ -237,7 +238,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.maxX, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
             return cell
         }
@@ -248,12 +249,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 0:
             return 30
         case 1:
-            return 70
+            return 65
         case 2:
             if self.tracks.count == 0 {
                 return 230 + (self.view.bounds.maxY - kHeaderHeight)
-            } else if self.tracks.count < 7{
-                return 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 70))
+            } else if self.tracks.count < 8 {
+                return 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 65))
             } else {
                 return 0
             }
