@@ -7,6 +7,101 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="zw7-8A-ocV">
+            <objects>
+                <viewController id="qRb-Fm-KK0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cBU-Ab-sOf"/>
+                        <viewControllerLayoutGuide type="bottom" id="9v9-th-56s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lVP-hc-15G">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="yDA-ud-IhW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JS5-JP-11f">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cOR-1C-mhf">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clique em Escanear Código QR e escaneie o código QR do evento" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgf-XE-wiW">
+                                            <rect key="frame" x="136" y="75" width="328" height="57"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="57" id="Ns0-6s-bo7"/>
+                                                <constraint firstAttribute="width" constant="328" id="js7-pv-ivq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Bgf-XE-wiW" firstAttribute="centerX" secondItem="cOR-1C-mhf" secondAttribute="centerX" id="uKP-bP-E37"/>
+                                        <constraint firstItem="Bgf-XE-wiW" firstAttribute="top" secondItem="cOR-1C-mhf" secondAttribute="top" constant="75" id="zfa-vn-9ek"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcA-iZ-9bm">
+                                <rect key="frame" x="218" y="470" width="165" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="nfG-dT-iHN"/>
+                                    <constraint firstAttribute="height" constant="35" id="yDs-m5-a6S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="QRButton"/>
+                                <connections>
+                                    <segue destination="w1g-9A-eYR" kind="show" id="juL-3h-vUh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanear Código QR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grl-jh-LOE">
+                                <rect key="frame" x="218" y="470" width="165" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9wM-6P-6T8"/>
+                                    <constraint firstAttribute="width" constant="165" id="hQh-Lk-A4w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fbm-pN-HUa">
+                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="PsY-4L-sZ4"/>
+                                    <constraint firstAttribute="height" constant="150" id="jrJ-w6-PIy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pcA-iZ-9bm" firstAttribute="centerX" secondItem="lVP-hc-15G" secondAttribute="centerX" id="3zX-TS-rmK"/>
+                            <constraint firstAttribute="trailing" secondItem="yDA-ud-IhW" secondAttribute="trailing" id="7er-m0-KbM"/>
+                            <constraint firstItem="9v9-th-56s" firstAttribute="top" secondItem="pcA-iZ-9bm" secondAttribute="bottom" constant="95" id="CmG-ZP-3pd"/>
+                            <constraint firstItem="fbm-pN-HUa" firstAttribute="centerY" secondItem="lVP-hc-15G" secondAttribute="centerY" id="D43-HV-IRX"/>
+                            <constraint firstItem="9v9-th-56s" firstAttribute="top" secondItem="yDA-ud-IhW" secondAttribute="bottom" id="DV4-xy-LCZ"/>
+                            <constraint firstItem="Grl-jh-LOE" firstAttribute="centerX" secondItem="lVP-hc-15G" secondAttribute="centerX" id="Ivn-cV-7i5"/>
+                            <constraint firstItem="JS5-JP-11f" firstAttribute="leading" secondItem="lVP-hc-15G" secondAttribute="leading" id="NOW-s1-PTd"/>
+                            <constraint firstItem="yDA-ud-IhW" firstAttribute="top" secondItem="lVP-hc-15G" secondAttribute="top" id="OrX-cN-spY"/>
+                            <constraint firstItem="JS5-JP-11f" firstAttribute="top" secondItem="lVP-hc-15G" secondAttribute="top" id="cl3-pg-iCx"/>
+                            <constraint firstItem="9v9-th-56s" firstAttribute="top" secondItem="Grl-jh-LOE" secondAttribute="bottom" constant="95" id="its-xx-X7f"/>
+                            <constraint firstItem="fbm-pN-HUa" firstAttribute="centerX" secondItem="lVP-hc-15G" secondAttribute="centerX" id="jzL-Xu-JpK"/>
+                            <constraint firstAttribute="trailing" secondItem="JS5-JP-11f" secondAttribute="trailing" id="t3j-3d-0JR"/>
+                            <constraint firstItem="9v9-th-56s" firstAttribute="top" secondItem="JS5-JP-11f" secondAttribute="bottom" id="tzf-kh-cOf"/>
+                            <constraint firstItem="yDA-ud-IhW" firstAttribute="leading" secondItem="lVP-hc-15G" secondAttribute="leading" id="xLA-Ri-mzs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Pq-mA-oLG">
+                        <barButtonItem key="backBarButtonItem" title="Voltar" id="wp4-rf-vdM"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Po-Fl-2cg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="334"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -45,7 +140,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fI8-vd-DYv"/>
@@ -56,12 +151,12 @@
                     <connections>
                         <outlet property="loginButton" destination="ycM-G5-YXa" id="Mra-R3-qkT"/>
                         <outlet property="welcomeText2" destination="vSb-ad-6g6" id="FCv-4F-qii"/>
-                        <segue destination="w1g-9A-eYR" kind="presentation" identifier="getEvent" id="Hmi-te-Vbk"/>
+                        <segue destination="qRb-Fm-KK0" kind="presentation" identifier="getEvent" id="uzR-PR-1TB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="334"/>
+            <point key="canvasLocation" x="75" y="327"/>
         </scene>
         <!--Ajustes-->
         <scene sceneID="Hgq-NA-MQc">
@@ -207,12 +302,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jea-28-THd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="1006"/>
+            <point key="canvasLocation" x="2891" y="1054"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="isK-L6-6Nn">
             <objects>
-                <viewController storyboardIdentifier="qrReaderVC" id="w1g-9A-eYR" customClass="QRReaderViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="w1g-9A-eYR" customClass="QRReaderViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pNS-S3-N9S"/>
                         <viewControllerLayoutGuide type="bottom" id="UbP-CJ-SyW"/>
@@ -221,21 +316,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escanear Código QR" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDV-3g-mh2">
-                                <rect key="frame" x="168" y="48" width="265" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="7g8-KO-976"/>
-                                    <constraint firstAttribute="width" constant="265" id="pYJ-39-yAZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posicione o Código QR na tela para conectar-se ao JUXER." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8K-BH-Zay">
-                                <rect key="frame" x="143" y="492" width="315" height="69"/>
+                                <rect key="frame" x="143" y="511" width="315" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="6cJ-aI-DPS"/>
-                                    <constraint firstAttribute="width" constant="315" id="6vD-sF-McD"/>
+                                    <constraint firstAttribute="width" constant="315" id="2pY-W1-hDd"/>
+                                    <constraint firstAttribute="height" constant="45" id="3U7-v7-q3Q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -244,21 +329,20 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iDV-3g-mh2" firstAttribute="top" secondItem="pNS-S3-N9S" secondAttribute="bottom" constant="28" id="9Ze-o0-EP4"/>
-                            <constraint firstItem="UbP-CJ-SyW" firstAttribute="top" secondItem="K8K-BH-Zay" secondAttribute="bottom" constant="39" id="GdW-H6-Nwo"/>
-                            <constraint firstItem="iDV-3g-mh2" firstAttribute="centerX" secondItem="gnR-nD-asS" secondAttribute="centerX" constant="1" id="aso-ZH-X3J"/>
-                            <constraint firstItem="K8K-BH-Zay" firstAttribute="centerX" secondItem="gnR-nD-asS" secondAttribute="centerX" id="bAa-RE-srw"/>
+                            <constraint firstItem="K8K-BH-Zay" firstAttribute="centerX" secondItem="gnR-nD-asS" secondAttribute="centerX" id="ZMa-7e-K3s"/>
+                            <constraint firstItem="UbP-CJ-SyW" firstAttribute="top" secondItem="K8K-BH-Zay" secondAttribute="bottom" constant="44" id="iVq-Bk-A0T"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7FV-NF-Gk1"/>
                     <connections>
-                        <outlet property="bottomLabel" destination="K8K-BH-Zay" id="aou-e6-DEB"/>
-                        <outlet property="topLabel" destination="iDV-3g-mh2" id="Qsl-GK-Qch"/>
-                        <segue destination="obf-SU-Ied" kind="show" identifier="toHome" id="yFW-aL-b4q"/>
+                        <outlet property="Label" destination="K8K-BH-Zay" id="hcV-su-RHS"/>
+                        <outlet property="LabelConstraint" destination="iVq-Bk-A0T" id="xjc-3o-qok"/>
+                        <segue destination="obf-SU-Ied" kind="presentation" identifier="toHome" modalTransitionStyle="flipHorizontal" id="yFW-aL-b4q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dna-UU-xlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="-367"/>
+            <point key="canvasLocation" x="1508" y="334"/>
         </scene>
         <!--Playlists-->
         <scene sceneID="Jdj-Pj-zT1">
@@ -358,7 +442,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nc2-ih-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZQf-xX-ciz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3467" y="327"/>
+            <point key="canvasLocation" x="4279" y="327"/>
         </scene>
         <!--Músicas-->
         <scene sceneID="h5I-Ak-hbO">
@@ -445,7 +529,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueP-1n-Wrw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SZU-zj-t6P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4141" y="327"/>
+            <point key="canvasLocation" x="4953" y="327"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kaS-Sr-e4c">
@@ -470,7 +554,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b77-YD-QkL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="334"/>
+            <point key="canvasLocation" x="2184" y="334"/>
         </scene>
         <!--Home-->
         <scene sceneID="8DP-FS-2yE">
@@ -560,7 +644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldo-oc-x2A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="-367"/>
+            <point key="canvasLocation" x="2891" y="-347"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OYe-bU-rjo">
@@ -579,7 +663,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mER-as-k3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2775" y="327"/>
+            <point key="canvasLocation" x="3587" y="327"/>
         </scene>
         <!--Fila-->
         <scene sceneID="uPC-RV-yft">
@@ -923,7 +1007,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nti-gD-aR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="334"/>
+            <point key="canvasLocation" x="2891" y="334"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Idz-bR-wzF">
@@ -931,7 +1015,7 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="pa4-gj-XLa" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMu-S7-Rbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="1006"/>
+            <point key="canvasLocation" x="-637" y="1023"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="qZg-oB-L6J">
@@ -984,7 +1068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30t-lk-FUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="1006"/>
+            <point key="canvasLocation" x="75" y="1023"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zJB-Y3-xgl">
@@ -1017,7 +1101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnQ-gC-Afw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="334"/>
+            <point key="canvasLocation" x="-637" y="327"/>
         </scene>
     </scenes>
     <resources>
@@ -1029,6 +1113,9 @@
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
+        <image name="QRBackground.png" width="2592" height="1728"/>
+        <image name="QRButton" width="165" height="35"/>
+        <image name="QRCodeIcon" width="200" height="200"/>
         <image name="QueuePlaceHolder" width="596" height="842"/>
         <image name="Settings" width="20" height="20"/>
     </resources>

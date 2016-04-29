@@ -18,8 +18,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var bottomView: UIVisualEffectView!
     let metadataOutput = AVCaptureMetadataOutput()
     
-    @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var LabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var Label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +30,13 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.addVideoPreviewLayer()
         self.addBlurEffect()
         
-        view.bringSubviewToFront(topLabel)
-        view.bringSubviewToFront(bottomLabel)
+        LabelConstraint.constant = ((self.view.bounds.height/5)/5) * 1.5
+        //bottomLabelConstraint.constant = ((self.view.bounds.height/5)/5) * 1.5
+        
+        view.bringSubviewToFront(Label)
+        //view.bringSubviewToFront(bottomLabel)
         
         self.initializeQRFrame()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,7 +57,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     func avCaptureInputPortFormatDescriptionDidChangeNotification(notification: NSNotification) {
         
-        let scanRect = CGRect(x: 0, y: self.view.bounds.height/4, width: self.view.bounds.width, height: self.view.bounds.height/2)
+        let scanRect = CGRect(x: 0, y: self.view.bounds.height/5, width: self.view.bounds.width, height: (self.view.bounds.height/5) * 3)
         metadataOutput.rectOfInterest = previewLayer.metadataOutputRectOfInterestForRect(scanRect)
     }
     
@@ -108,12 +110,12 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         
         let blurEffect = UIBlurEffect.init(style: UIBlurEffectStyle.Light)
         topView = UIVisualEffectView.init(effect: blurEffect)
-        topView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height/4)
+        topView.frame = CGRectMake(0, 0, view.bounds.width, view.bounds.height/5)
         view.addSubview(topView)
         view.bringSubviewToFront(topView)
         
         bottomView = UIVisualEffectView.init(effect: blurEffect)
-        bottomView.frame = CGRectMake(0, view.bounds.maxY - view.bounds.height/4, view.bounds.width, view.bounds.height/4)
+        bottomView.frame = CGRectMake(0, view.bounds.maxY - view.bounds.height/5, view.bounds.width, view.bounds.height/5)
         view.addSubview(bottomView)
         view.bringSubviewToFront(bottomView)
     }
