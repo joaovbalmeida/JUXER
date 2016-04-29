@@ -195,7 +195,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                         SessionDAO.update(session[0])
                         
                         dispatch_async(dispatch_get_main_queue()){
-                            self.performSegueWithIdentifier("toHome", sender: self)
+                            self.performSegueWithIdentifier("gotEvent", sender: self)
                         }
                         
                     } else {

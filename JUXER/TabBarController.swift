@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class TabBarController: UITabBarController {
-
-    @IBInspectable var defaultIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedIndex = defaultIndex
+        let session = SessionDAO.fetchSession()
+        
+        if session.count > 0 && session[0].active == 1 {
+            selectedIndex = 1
+        } else {
+            selectedIndex = 0
+        }
     }
 }

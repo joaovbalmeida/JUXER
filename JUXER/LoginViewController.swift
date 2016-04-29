@@ -12,8 +12,6 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
 
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var welcomeText2: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -29,12 +27,12 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             else if result.isCancelled
             {
                 print(result.description)
+                print(result.debugDescription)
             }
             else
             {
                 self.loginButton.hidden = true
                 self.getFBUser()
-                self.performSegueWithIdentifier("getEvent", sender: self)
             }
         }
     }
@@ -140,6 +138,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         
         if((FBSDKAccessToken.currentAccessToken()) != nil)
         {
+            
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, first_name, last_name, id"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
                 if (error == nil)
@@ -169,6 +168,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                                 let savePath = documentsDirectory! + "/profilePic.jpg"
                                 NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
                             }
+                            
+                            self.performSegueWithIdentifier("toHome", sender: self)
                         }
                         
                     })
@@ -178,6 +179,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 }
                 
             })
+            
         }
     }
         

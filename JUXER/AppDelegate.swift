@@ -47,8 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func goToLoginVC() {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC")
-        window?.rootViewController = initialViewController
+        window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC")
         window?.makeKeyAndVisible()
     }
 
@@ -103,12 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
                                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    var initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
-                                    
-                                    if self.session[0].active == nil && FBSDKAccessToken.currentAccessToken() != nil {
-                                        initialViewController = storyboard.instantiateViewControllerWithIdentifier("qrReaderVC")
-                                    }
-                                    self.window?.rootViewController = initialViewController
+                                    self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("tabVC")
                                     self.window?.makeKeyAndVisible()
                                 }
 

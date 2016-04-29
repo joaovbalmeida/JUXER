@@ -16,15 +16,29 @@ class HostViewController: UIViewController {
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
     
+    @IBOutlet weak var scanLabel: UILabel!
+    @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var instructionLabel: UILabel!
+    @IBOutlet weak var iconImage: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getEvent()
-    }
-    
-    private func getEvent(){
         
         var session = [Session]()
         session = SessionDAO.fetchSession()
+        
+        if session[0].active == 1 {
+            getEvent(session)
+        } else {
+            scanLabel.hidden = false
+            scanButton.hidden = false
+            iconImage.hidden = false
+            instructionLabel.hidden = false
+        }
+    }
+    
+    private func getEvent(session: [Session]){
         
         let url = NSURL(string: "http://198.211.98.86/api/event/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)

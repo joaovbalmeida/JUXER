@@ -37,7 +37,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
 
-    private var session = [Session]()
+    private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
     
     private struct Track {
@@ -57,7 +57,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
         session = SessionDAO.fetchSession()
         
-        getQueue()
+        if session.count != 0 && session[0].active == 1 {
+            getQueue()
+        } else {
+            songLabel.text = "Nenhum evento conectado!"
+        }
         
         headerView = tableView.tableHeaderView
         headerView.clipsToBounds = true
