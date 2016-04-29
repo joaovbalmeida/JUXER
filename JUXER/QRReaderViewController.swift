@@ -113,7 +113,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         view.bringSubviewToFront(topView)
         
         bottomView = UIVisualEffectView.init(effect: blurEffect)
-        bottomView.frame = CGRectMake(0, view.bounds.maxY - 150, view.bounds.width, view.bounds.height/4)
+        bottomView.frame = CGRectMake(0, view.bounds.maxY - view.bounds.height/4, view.bounds.width, view.bounds.height/4)
         view.addSubview(bottomView)
         view.bringSubviewToFront(bottomView)
     }

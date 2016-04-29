@@ -55,19 +55,21 @@ class SongsTableViewController: UITableViewController {
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    let JSON = resultJSON.valueForKey("queue")! as! NSMutableArray
                     
-                    //Get queue songs id
-                    if JSON.count > 0 {
-                        for item in JSON {
-                            let id = item.valueForKey("id") as! Int
-                            self.queueSongsID.append(id)
+                    if let JSON = resultJSON.valueForKey("queue")! as? NSMutableArray {
+                        
+                        //Get queue songs id
+                        if JSON.count > 0 {
+                            for item in JSON {
+                                let id = item.valueForKey("id") as! Int
+                                self.queueSongsID.append(id)
+                            }
                         }
                     }
                     
                     //Get songs that are not on queue yet
                     self.getSongsNotOnQueue()
-                    
+
                 } catch let error as NSError {
                     print(error)
                 }

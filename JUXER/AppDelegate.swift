@@ -34,6 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             goToLoginVC()
         }
         
+        //Configure Page Controller
+        let pageController = UIPageControl.appearance()
+        pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageController.currentPageIndicatorTintColor = UIColor.whiteColor()
+        pageController.backgroundColor = UIColor.clearColor()
+        pageController.bounds.origin.y += 120
+        
         return true
     }
     

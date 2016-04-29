@@ -10,23 +10,79 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewControllerDataSource  {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var welcomeText2: UILabel!
-    @IBOutlet weak var loginButton: FBSDKLoginButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBAction func loginButtonPressed(sender: AnyObject) {
+        
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        
+        fbLoginManager.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self) { (result, error) in
+            
+            if error != nil
+            {
+                print(error.localizedDescription)
+            }
+            else if result.isCancelled
+            {
+                print(result.description)
+            }
+            else if result.grantedPermissions.contains(["email","public_profile","user_friends"])
+            {
+                self.getFBUser()
+                self.loginButton.hidden = true
+                self.performSegueWithIdentifier("getEvent", sender: self)
+            }
+        }
+    }
+    
+    var pageViewController: UIPageViewController!
+    var pageLabels: NSArray!
+    var pageImages: NSArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        loginButton.delegate = self
+        //Gradient Background
+        let view: UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.init(red: 191/255, green: 0/255, blue: 96/255, alpha: 1).CGColor, UIColor.init(red: 93/255, green: 0/255, blue: 94/255, alpha: 1).CGColor]
+        view.layer.insertSublayer(gradient, atIndex: 0)
+        self.view.layer.insertSublayer(view.layer, atIndex: 0)
+        
+        //Assing Page Objects
+        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado!", "Escaneie o código do evento...", "peça uma música das playlists disponiveis...", "curta com seus amigos as musicas pedidas por todos!")
+        self.pageImages = NSArray(objects: "IdeaIcon.png", "BarcodeIcon.png", "IdeaIcon.png", "DancingIcon.png")
+        
+        //Configure PageViewController
+        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        self.pageViewController.dataSource = self
+        
+        let startVC = self.viewControllerAtIndex(0) as ContentViewController
+        let viewControllers = NSArray(object: startVC)
+        
+        self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
+        
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        
+        //Add PageViewController
+        self.addChildViewController(self.pageViewController)
+        self.view.addSubview(self.pageViewController.view)
+        self.pageViewController.didMoveToParentViewController(self)
+        
+        //Bring Login Button to front
+        self.view.bringSubviewToFront(loginButton)
+        
     }
+    
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
     {
-        if ((error) != nil)
+        if error != nil
         {
             print(error.localizedDescription)
         }
@@ -154,16 +210,62 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - Page View Methods
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func viewControllerAtIndex(index: Int) -> ContentViewController {
+        
+        if (self.pageLabels.count == 0) || (index >= self.pageLabels.count) {
+            return ContentViewController()
+        }
+        let viewController: ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
+ 
+        viewController.pageLabel = self.pageLabels[index] as! String
+        viewController.pageIndex = index
+        viewController.pageIcon = self.pageImages[index] as! String
+        
+        return viewController
+        
     }
-    */
-
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        
+        let viewController = viewController as! ContentViewController
+        var index = viewController.pageIndex as Int
+        
+        if index == NSNotFound {
+            return nil
+        }
+        
+        index += 1
+        
+        if index == self.pageLabels.count {
+            return nil
+        }
+        
+        return self.viewControllerAtIndex(index)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        
+        let viewController = viewController as! ContentViewController
+        var index = viewController.pageIndex as Int
+        
+        if index == 0 || index == NSNotFound {
+            return nil
+        }
+        
+        index -= 1
+        return self.viewControllerAtIndex(index)
+    }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 4
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    
 }
