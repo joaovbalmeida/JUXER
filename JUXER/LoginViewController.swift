@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewControllerDataSource  {
+class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var welcomeText: UILabel!
@@ -30,10 +30,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageVie
             {
                 print(result.description)
             }
-            else if result.grantedPermissions.contains(["email","public_profile","user_friends"])
+            else
             {
-                self.getFBUser()
                 self.loginButton.hidden = true
+                self.getFBUser()
                 self.performSegueWithIdentifier("getEvent", sender: self)
             }
         }
@@ -55,8 +55,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageVie
         self.view.layer.insertSublayer(view.layer, atIndex: 0)
         
         //Assing Page Objects
-        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado!", "Escaneie o código do evento...", "peça uma música das playlists disponiveis...", "curta com seus amigos as musicas pedidas por todos!")
-        self.pageImages = NSArray(objects: "IdeaIcon.png", "BarcodeIcon.png", "IdeaIcon.png", "DancingIcon.png")
+        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado!", "Escaneie o código do evento.", "Escolha uma música entre as disponíveis nas playlists.", "Aproveite as músicas escolhidas por outras pessoas enquanto a sua está na fila!")
+        self.pageImages = NSArray(objects: "JukeboxIcon", "BarcodeIcon", "IdeiaIcon", "DancingIcon")
         
         //Configure PageViewController
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
@@ -77,30 +77,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageVie
         //Bring Login Button to front
         self.view.bringSubviewToFront(loginButton)
         
-    }
-    
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
-    {
-        if error != nil
-        {
-            print(error.localizedDescription)
-        }
-        else if result.isCancelled
-        {
-            print(result.description)
-        }
-        else
-        {
-            getFBUser()
-            loginButton.hidden = true
-            performSegueWithIdentifier("getEvent", sender: self)
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
-    {
-    
     }
 
     private func storeSessionToken(userToken: String){

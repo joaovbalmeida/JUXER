@@ -25,9 +25,6 @@
 		926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */; };
 		9290594E1CB6F10E00C3765D /* BigCoverPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 9290594D1CB6F10E00C3765D /* BigCoverPlaceHolder.png */; };
 		9294C5DA1CD2A3C300D19287 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294C5D91CD2A3C300D19287 /* ContentViewController.swift */; };
-		9294C5E01CD2E3C000D19287 /* BarcodeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9294C5DF1CD2E3C000D19287 /* BarcodeIcon.png */; };
-		9294C5E21CD2E52000D19287 /* DancingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9294C5E11CD2E52000D19287 /* DancingIcon.png */; };
-		9294C5E41CD2E52F00D19287 /* IdeaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9294C5E31CD2E52F00D19287 /* IdeaIcon.png */; };
 		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
@@ -37,10 +34,6 @@
 		92A9ABDD1CB3C74100650A1A /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */; };
 		92A9ABDE1CB3C74100650A1A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDC1CB3C74100650A1A /* Session.swift */; };
 		92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C292691C96FB47005D90DB /* Assets.xcassets */; };
-		92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926D1C96FE01005D90DB /* HomeH.pdf */; };
-		92C292701C96FF3B005D90DB /* Settings.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2926F1C96FF3B005D90DB /* Settings.pdf */; };
-		92C292741C97017F005D90DB /* Music.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C292731C97017F005D90DB /* Music.pdf */; };
-		92C2927C1C9734D0005D90DB /* More.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2927B1C9734D0005D90DB /* More.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,9 +70,6 @@
 		926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CoverPlaceHolder.jpg; sourceTree = "<group>"; };
 		9290594D1CB6F10E00C3765D /* BigCoverPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigCoverPlaceHolder.png; sourceTree = "<group>"; };
 		9294C5D91CD2A3C300D19287 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		9294C5DF1CD2E3C000D19287 /* BarcodeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarcodeIcon.png; sourceTree = "<group>"; };
-		9294C5E11CD2E52000D19287 /* DancingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DancingIcon.png; sourceTree = "<group>"; };
-		9294C5E31CD2E52F00D19287 /* IdeaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IdeaIcon.png; sourceTree = "<group>"; };
 		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
@@ -89,10 +79,6 @@
 		92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92A9ABDC1CB3C74100650A1A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C292691C96FB47005D90DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		92C2926D1C96FE01005D90DB /* HomeH.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = HomeH.pdf; sourceTree = "<group>"; };
-		92C2926F1C96FF3B005D90DB /* Settings.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Settings.pdf; sourceTree = "<group>"; };
-		92C292731C97017F005D90DB /* Music.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Music.pdf; sourceTree = "<group>"; };
-		92C2927B1C9734D0005D90DB /* More.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = More.pdf; sourceTree = "<group>"; };
 		AE5138FE26E3203D2D57CB50 /* Pods-JUXER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JUXER.release.xcconfig"; path = "Pods/Target Support Files/Pods-JUXER/Pods-JUXER.release.xcconfig"; sourceTree = "<group>"; };
 		E2B21A224FC14FAA986D1F5A /* Pods_JUXER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JUXER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,7 +153,6 @@
 		921D92BD1C737B3B00CD4B6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9263241A1C95EA92003999C6 /* Icons */,
 				9290594D1CB6F10E00C3765D /* BigCoverPlaceHolder.png */,
 				926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */,
 			);
@@ -202,20 +187,6 @@
 				92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9263241A1C95EA92003999C6 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				9294C5DF1CD2E3C000D19287 /* BarcodeIcon.png */,
-				9294C5E31CD2E52F00D19287 /* IdeaIcon.png */,
-				9294C5E11CD2E52000D19287 /* DancingIcon.png */,
-				92C2927B1C9734D0005D90DB /* More.pdf */,
-				92C2926D1C96FE01005D90DB /* HomeH.pdf */,
-				92C292731C97017F005D90DB /* Music.pdf */,
-				92C2926F1C96FF3B005D90DB /* Settings.pdf */,
-			);
-			name = Icons;
 			sourceTree = "<group>";
 		};
 		926A84D51C5A9FED00815656 = {
@@ -314,15 +285,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9294C5E01CD2E3C000D19287 /* BarcodeIcon.png in Resources */,
-				92C2926E1C96FE01005D90DB /* HomeH.pdf in Resources */,
 				926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */,
-				92C292741C97017F005D90DB /* Music.pdf in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
-				92C2927C1C9734D0005D90DB /* More.pdf in Resources */,
-				9294C5E41CD2E52F00D19287 /* IdeaIcon.png in Resources */,
-				9294C5E21CD2E52000D19287 /* DancingIcon.png in Resources */,
-				92C292701C96FF3B005D90DB /* Settings.pdf in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
 				9290594E1CB6F10E00C3765D /* BigCoverPlaceHolder.png in Resources */,
 			);

@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "Horário:"; ObjectID = "4Eu-VX-aA9"; */
+"4Eu-VX-aA9.text" = "Horário:";
+
+/* Class = "UILabel"; text = "Coldplay - A Head Full of Dreams"; ObjectID = "Adi-BB-8bg"; */
+"Adi-BB-8bg.text" = "Coldplay - A Head Full of Dreams";
+
+/* Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "Eg9-4z-uxQ"; */
+"Eg9-4z-uxQ.normalTitle" = "Refresh";
+
+/* Class = "UILabel"; text = "Posicione o Código QR na tela para conectar-se ao JUXER."; ObjectID = "K8K-BH-Zay"; */
+"K8K-BH-Zay.text" = "Posicione o Código QR na tela para conectar-se ao JUXER.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VIh-SI-xWp"; */
+"VIh-SI-xWp.text" = "Label";
+
+/* Class = "UILabel"; text = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário."; ObjectID = "W1s-vz-nIw"; */
+"W1s-vz-nIw.text" = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário.";
+
+/* Class = "UINavigationItem"; title = "Playlists"; ObjectID = "X4o-cP-h7V"; */
+"X4o-cP-h7V.title" = "Playlists";
+
+/* Class = "UILabel"; text = "AutoPlay"; ObjectID = "YAu-Hg-ppI"; */
+"YAu-Hg-ppI.text" = "AutoPlay";
+
+/* Class = "UITabBarItem"; title = "Ajustes"; ObjectID = "eWk-UX-Kfq"; */
+"eWk-UX-Kfq.title" = "Ajustes";
+
+/* Class = "UILabel"; text = "Usuário Anônimo"; ObjectID = "fIT-gt-qsL"; */
+"fIT-gt-qsL.text" = "Usuário Anônimo";
+
+/* Class = "UINavigationItem"; title = "Músicas"; ObjectID = "hmd-Wi-PrZ"; */
+"hmd-Wi-PrZ.title" = "Músicas";
+
+/* Class = "UILabel"; text = "Escanear Código QR"; ObjectID = "iDV-3g-mh2"; */
+"iDV-3g-mh2.text" = "Escanear Código QR";
+
+/* Class = "UILabel"; text = "Hymn For The Weekend"; ObjectID = "inb-Xc-1Fx"; */
+"inb-Xc-1Fx.text" = "Hymn For The Weekend";
+
+/* Class = "UILabel"; text = "Nenhuma Música"; ObjectID = "lyE-J9-Ijf"; */
+"lyE-J9-Ijf.text" = "Nenhuma Música";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "niB-PU-DwY"; */
+"niB-PU-DwY.title" = "Home";
+
+/* Class = "UITabBarItem"; title = "Fila"; ObjectID = "sCN-ug-WPa"; */
+"sCN-ug-WPa.title" = "Fila";
+
+/* Class = "UILabel"; text = "JUXER"; ObjectID = "vSb-ad-6g6"; */
+"vSb-ad-6g6.text" = "JUXER";
+
+/* Class = "UILabel"; text = "Pedir Música"; ObjectID = "xX7-Pn-1kI"; */
+"xX7-Pn-1kI.text" = "Pedir Música";

@@ -30,10 +30,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycM-G5-YXa">
-                                <rect key="frame" x="205" y="494" width="190" height="50"/>
+                                <rect key="frame" x="207" y="486" width="187" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6FM-Q9-gpQ"/>
-                                    <constraint firstAttribute="width" constant="190" id="kls-Lf-mCq"/>
+                                    <constraint firstAttribute="height" constant="56" id="6FM-Q9-gpQ"/>
+                                    <constraint firstAttribute="width" constant="187" id="kls-Lf-mCq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,7 +49,7 @@
                         <constraints>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fI8-vd-DYv"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="56" id="tBJ-VQ-YSV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="58" id="tBJ-VQ-YSV"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xue-g7-7j1"/>
                         </constraints>
                     </view>
@@ -158,10 +158,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-VG-7MB" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="210" y="488" width="180" height="28"/>
+                                <rect key="frame" x="210" y="484" width="180" height="32"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="JjA-uu-Qeo"/>
+                                    <constraint firstAttribute="height" constant="32" id="JjA-uu-Qeo"/>
                                     <constraint firstAttribute="width" constant="180" id="eVg-fX-vuc"/>
                                 </constraints>
                             </view>
@@ -955,7 +955,7 @@
                                 <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IdeaIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="CN7-OH-eC8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN7-OH-eC8">
                                 <rect key="frame" x="250" y="196" width="100" height="100"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1024,9 +1024,8 @@
         <image name="Avatar" width="163" height="163"/>
         <image name="BigCoverPlaceHolder.png" width="300" height="300"/>
         <image name="CoverPlaceHolder.jpg" width="300" height="300"/>
-        <image name="FBLoginButton" width="178" height="40"/>
+        <image name="FBLoginButton" width="178" height="36"/>
         <image name="Home" width="20" height="21"/>
-        <image name="IdeaIcon.png" width="100" height="100"/>
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
