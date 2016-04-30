@@ -37,8 +37,7 @@ class SongsTableViewController: UITableViewController {
         session = SessionDAO.fetchSession()
 
         getSongs()
-        
-        self.clearsSelectionOnViewWillAppear = true
+    
     }
     
     private func getSongs(){

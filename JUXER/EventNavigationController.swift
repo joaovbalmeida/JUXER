@@ -13,8 +13,8 @@ class EventNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationBar.shadowImage = UIImage()
-        self.navigationBar.translucent = true
+        //self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //self.navigationBar.shadowImage = UIImage()
+        //self.navigationBar.translucent = true
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import SwiftDate
+import SCLAlertView
 
 class HostViewController: UIViewController {
 
@@ -20,22 +21,40 @@ class HostViewController: UIViewController {
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var exitButton: UIBarButtonItem!
     
     @IBOutlet weak var scanLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     
+    var session = [Session]()
+    
+    @IBAction func exitEvent(sender: AnyObject) {
+        
+        let alertView = SCLAlertView()
+        alertView.addButton("Sim"){
+            
+            //Set Session Inactive
+            self.session[0].id = nil
+            self.session[0].active = 0
+            SessionDAO.update(self.session[0])
+            
+            //Segue to Home
+            self.performSegueWithIdentifier("exitEvent", sender: self)
+        }
+        alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var session = [Session]()
         session = SessionDAO.fetchSession()
         
         if session[0].active == 1 {
             getEvent(session)
         } else {
+            self.navigationItem.rightBarButtonItems = []
             dataLabel.hidden = true
             aboutLabel.hidden = true
             scanLabel.hidden = false
