@@ -514,7 +514,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JGg-n2-zyP">
-                                <rect key="frame" x="20" y="375" width="560" height="168"/>
+                                <rect key="frame" x="20" y="375" width="560" height="176"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -619,7 +619,7 @@
                             <constraint firstAttribute="trailing" secondItem="rdW-KP-Ynr" secondAttribute="trailing" constant="15" id="QXH-OL-IOH"/>
                             <constraint firstItem="1XW-pu-Mwb" firstAttribute="top" secondItem="xse-vJ-pez" secondAttribute="bottom" id="UiB-Qr-EVN"/>
                             <constraint firstItem="DJR-y1-pL3" firstAttribute="top" secondItem="1kj-F4-3Rp" secondAttribute="top" constant="50" id="ZUD-Jt-XWJ"/>
-                            <constraint firstItem="1XW-pu-Mwb" firstAttribute="top" secondItem="JGg-n2-zyP" secondAttribute="bottom" constant="8" id="ZjD-Sc-L4i"/>
+                            <constraint firstItem="1XW-pu-Mwb" firstAttribute="top" secondItem="JGg-n2-zyP" secondAttribute="bottom" id="ZjD-Sc-L4i"/>
                             <constraint firstItem="b4D-uf-Tbz" firstAttribute="top" secondItem="3M8-gq-4rd" secondAttribute="bottom" constant="-108" id="amZ-MP-SpX"/>
                             <constraint firstItem="JGg-n2-zyP" firstAttribute="trailing" secondItem="1kj-F4-3Rp" secondAttribute="trailingMargin" id="aoT-oK-eID"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d1V-wp-QmX" secondAttribute="trailing" constant="8" id="bQy-6W-mij"/>
@@ -716,7 +716,7 @@
                                                             <constraint firstAttribute="width" constant="180" id="QmZ-zK-hdH"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coldplay - A Head Full of Dreams" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adi-BB-8bg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conecte-se à um evento!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adi-BB-8bg">
                                                         <rect key="frame" x="125" y="192" width="350" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="350" id="bq6-lG-gcP"/>
@@ -726,7 +726,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hymn For The Weekend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inb-Xc-1Fx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inb-Xc-1Fx">
                                                         <rect key="frame" x="125" y="168" width="350" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="OTg-45-jHC"/>
@@ -918,14 +918,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="YaW-Ur-6Ns">
-                                                    <rect key="frame" x="260" y="28" width="80" height="80"/>
+                                                    <rect key="frame" x="260" y="48" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="eez-5z-AYU"/>
                                                         <constraint firstAttribute="height" constant="80" id="lr9-1l-Fhp"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nenhuma Música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyE-J9-Ijf">
-                                                    <rect key="frame" x="200" y="116" width="200" height="21"/>
+                                                    <rect key="frame" x="200" y="136" width="200" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="9Pg-rP-4nT"/>
                                                         <constraint firstAttribute="width" constant="200" id="Rta-Wr-p6D"/>
@@ -939,7 +939,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="YaW-Ur-6Ns" firstAttribute="top" secondItem="GTg-5A-Aq4" secondAttribute="topMargin" constant="20" id="LdA-MM-Vmp"/>
+                                                <constraint firstItem="YaW-Ur-6Ns" firstAttribute="top" secondItem="GTg-5A-Aq4" secondAttribute="topMargin" constant="40" id="LdA-MM-Vmp"/>
                                                 <constraint firstItem="lyE-J9-Ijf" firstAttribute="top" secondItem="YaW-Ur-6Ns" secondAttribute="bottom" constant="8" id="O9y-ON-8aM"/>
                                                 <constraint firstItem="YaW-Ur-6Ns" firstAttribute="centerX" secondItem="GTg-5A-Aq4" secondAttribute="centerX" id="RVd-75-8O3"/>
                                                 <constraint firstItem="lyE-J9-Ijf" firstAttribute="centerX" secondItem="GTg-5A-Aq4" secondAttribute="centerX" id="yqk-fd-LXa"/>
@@ -1159,6 +1159,6 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cIk-i1-5G5"/>
+        <segue reference="gV6-dF-i4U"/>
     </inferredMetricsTieBreakers>
 </document>

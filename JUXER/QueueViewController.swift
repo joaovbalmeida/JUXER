@@ -195,7 +195,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case 0:
-            return 1
+            if tracks.count == 0 {
+                return 0
+            } else {
+                return 1
+            }
         case 1:
             return tracks.count
         case 2:
@@ -252,7 +256,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             return 65
         case 2:
             if self.tracks.count == 0 {
-                return 230 + (self.view.bounds.maxY - kHeaderHeight)
+                return 260 + (self.view.bounds.maxY - kHeaderHeight)
             } else if 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 65)) > 0 {
                 return 230 + (self.view.bounds.maxY - kHeaderHeight - (CGFloat(tracks.count) * 65))
             } else {
