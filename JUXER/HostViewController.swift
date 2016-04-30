@@ -8,11 +8,16 @@
 
 import UIKit
 import Kingfisher
+import SwiftDate
 
 class HostViewController: UIViewController {
 
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var eventDescription: UILabel!
+
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
     
@@ -31,6 +36,8 @@ class HostViewController: UIViewController {
         if session[0].active == 1 {
             getEvent(session)
         } else {
+            dataLabel.hidden = true
+            aboutLabel.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false
             iconImage.hidden = false
@@ -59,6 +66,12 @@ class HostViewController: UIViewController {
                         self.eventImage.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventName.text = resultJSON.valueForKey("name")! as? String
                         self.eventDescription.text = resultJSON.valueForKey("description")! as? String
+            
+                        if let dateString = resultJSON.valueForKey("starts_at") as? String {
+                            let startDate = dateString.toDateFromISO8601()!
+                            self.eventDate.text = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                        }
+                        
                     }
                 
                 } catch let error as NSError {

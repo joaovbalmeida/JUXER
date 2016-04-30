@@ -18,8 +18,11 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var bottomView: UIVisualEffectView!
     let metadataOutput = AVCaptureMetadataOutput()
     
+    @IBOutlet weak var topLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var LabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +34,11 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         self.addBlurEffect()
         
         LabelConstraint.constant = ((self.view.bounds.height/5)/5) * 1.5
-        //bottomLabelConstraint.constant = ((self.view.bounds.height/5)/5) * 1.5
+        topLabelConstraint.constant = ((self.view.bounds.height/5)/5) * 1.5
         
+        view.bringSubviewToFront(backButton)
         view.bringSubviewToFront(Label)
-        //view.bringSubviewToFront(bottomLabel)
+        view.bringSubviewToFront(topLabel)
         
         self.initializeQRFrame()
     }

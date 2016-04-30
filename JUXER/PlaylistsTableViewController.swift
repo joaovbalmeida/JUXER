@@ -97,18 +97,6 @@ class PlaylistsTableViewController: UITableViewController {
                             self.playlists.append(newPlaylist)
                         }
                         
-                       /*
-                        if let dateString = item.valueForKey("starts_at") as? String {
-                            let date = self.stringToDate.dateFromString(dateString)
-                            newPlaylist.schedule = date!
-                        }
-                        if let endDateString = item.valueForKey("deadline") as? String {
-                            let date = self.stringToDate.dateFromString(endDateString)
-                            newPlaylist.deadline = date!
-                        }
-                        */
-                        
-                        
                     }
                     
                     //Refresh TableView
