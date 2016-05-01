@@ -147,8 +147,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         dispatch_async(dispatch_get_main_queue()) {
                             self.songLabel.text = JSON[index!].valueForKey("title_short") as? String
                             self.artistLabel.text = JSON[index!].valueForKey("artist")!.valueForKey("name") as? String
-                            self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_medium")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
-                            self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_medium")!))!)
+                            self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                            self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!)
                             self.songScrollingLabel.text = self.songLabel.text
                             self.artistScrollingLabel.text = self.artistLabel.text
                         }

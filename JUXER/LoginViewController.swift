@@ -168,12 +168,13 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                                 let savePath = documentsDirectory! + "/profilePic.jpg"
                                 NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
                             }
-                            
-                            self.performSegueWithIdentifier("toHome", sender: self)
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.performSegueWithIdentifier("toHome", sender: self)
+                            }
                         }
-                        
                     })
                     task.resume()
+                    
                 } else {
                     print(error)
                 }
