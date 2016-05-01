@@ -29,7 +29,6 @@
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
 		92A745601CD3D3BF00F7E3CE /* QRBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A7455F1CD3D3BF00F7E3CE /* QRBackground.png */; };
-		92A745621CD3EEF600F7E3CE /* EventNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A745611CD3EEF600F7E3CE /* EventNavigationController.swift */; };
 		92A745641CD40A3200F7E3CE /* ProfilePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A745631CD40A3200F7E3CE /* ProfilePlaceholder.png */; };
 		92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */; };
 		92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */; };
@@ -78,7 +77,6 @@
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		92A7455F1CD3D3BF00F7E3CE /* QRBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRBackground.png; sourceTree = "<group>"; };
-		92A745611CD3EEF600F7E3CE /* EventNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNavigationController.swift; sourceTree = "<group>"; };
 		92A745631CD40A3200F7E3CE /* ProfilePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfilePlaceholder.png; sourceTree = "<group>"; };
 		92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */,
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				929786C31C7E729C001B0397 /* TabBarController.swift */,
-				92A745611CD3EEF600F7E3CE /* EventNavigationController.swift */,
 				9294C5D91CD2A3C300D19287 /* ContentViewController.swift */,
 				925A06CF1CC58D1D000EB344 /* OrtcClient.swift */,
 			);
@@ -374,7 +371,6 @@
 				925A06D01CC58D1D000EB344 /* OrtcClient.swift in Sources */,
 				926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */,
 				921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */,
-				92A745621CD3EEF600F7E3CE /* EventNavigationController.swift in Sources */,
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,
 				921D92D51C737C0400CD4B6F /* LoginViewController.swift in Sources */,
 				929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */,

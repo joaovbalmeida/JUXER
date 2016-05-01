@@ -10,15 +10,15 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import Kingfisher
+import SCLAlertView
 
-class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
+class SettingsViewController: UIViewController {
     
     
     @IBOutlet weak var anonymousSwitch: UISwitch!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var logoutButton: FBSDKLoginButton!
     
     @IBAction func setAnonymous(sender: AnyObject) {
         if anonymousSwitch.on == true {
@@ -27,6 +27,41 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             user[0].anonymous = 0
         }
         UserDAO.update(user[0])
+    }
+    
+    @IBAction func logoutFacebook(sender: AnyObject) {
+        let alertView = SCLAlertView()
+        alertView.addButton("Sim"){
+            
+            // Delete Profile
+            UserDAO.delete(self.user[0])
+            
+            // Erase Profile Picture
+            var documentsDirectory:String?
+            if let path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory , NSSearchPathDomainMask.UserDomainMask, true) {
+                
+                if path.count > 0 {
+                    documentsDirectory = path[0] as? String
+                    let filePath = documentsDirectory! + "/profilePic.jpg"
+                    
+                    do {
+                        try NSFileManager.defaultManager().removeItemAtPath(filePath)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            //Delete Session
+            var session: [Session] = [Session]()
+            session = SessionDAO.fetchSession()
+            SessionDAO.delete(session[0])
+            
+            //Segue to Login View
+            self.performSegueWithIdentifier("toLogin", sender: self)
+            
+        }
+        alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento e seu perfil será apagado!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private var user: [User] = [User]()
@@ -42,9 +77,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else {
             anonymousSwitch.on = false
         }
-        
-        logoutButton.readPermissions = ["public_profile", "email", "user_friends"]
-        logoutButton.delegate = self
         
         
         //Load Profile Picture
@@ -64,39 +96,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
         
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
-    {
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
-    {
-        // Delete Profile
-        UserDAO.delete(user[0])
-        
-        // Erase Profile Picture
-        var documentsDirectory:String?
-        if let path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory , NSSearchPathDomainMask.UserDomainMask, true) {
-            
-            if path.count > 0 {
-                documentsDirectory = path[0] as? String
-                let filePath = documentsDirectory! + "/profilePic.jpg"
-                
-                do {
-                    try NSFileManager.defaultManager().removeItemAtPath(filePath)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        //Delete Session
-        var session: [Session] = [Session]()
-        session = SessionDAO.fetchSession()
-        SessionDAO.delete(session[0])
-        
-        //Segue to Login View
-        performSegueWithIdentifier("toLogin", sender: self)
     }
     
     func maskRoundedImage(imageView: UIImage) -> UIImage {
