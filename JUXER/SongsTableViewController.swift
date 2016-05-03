@@ -17,6 +17,9 @@ class SongsTableViewController: UITableViewController {
     var playlistName: String = String()
     var session = [Session]()
     
+    var activityIndicator: UIActivityIndicatorView!
+    var overlay: UIView!
+    
     private struct Song {
         var title: String
         var artist: String
@@ -33,6 +36,14 @@ class SongsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Configure Actitivity Indicator
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10 - (self.navigationController?.navigationBar.frame.height)!, width: 20, height: 20)
+        self.tableView.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
         
         session = SessionDAO.fetchSession()
 
@@ -118,6 +129,7 @@ class SongsTableViewController: UITableViewController {
                     }
                     
                     dispatch_async(dispatch_get_main_queue()){
+                        self.activityIndicator.stopAnimating()
                         self.tableView.reloadData()
                     }
                     
@@ -164,10 +176,10 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-
-        self.tableView.userInteractionEnabled = false
-        let alertView = SCLAlertView()
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        startLoadOverlay()
         
+        let alertView = SCLAlertView()
         let jsonObject: [String : AnyObject] =
             [ "id": self.songs[indexPath.row].id ]
         
@@ -198,31 +210,40 @@ class SongsTableViewController: UITableViewController {
                             }
                             alertView.showCloseButton = false
                             alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-
-                            self.tableView.userInteractionEnabled = true
+                            self.stopLoadOverlay()
                         }
                         
                     } else if httpResponse.statusCode == 422 {
                         dispatch_async(dispatch_get_main_queue()){
                             alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-
-                            self.tableView.userInteractionEnabled = true
-                            
+                            self.stopLoadOverlay()
                         }
                     } else if error != nil {
                         print(error)
-                        self.tableView.userInteractionEnabled = true
+                        self.stopLoadOverlay()
                     }
                 }
                 task.resume()
             } catch {
                 print(error)
-
-                self.tableView.userInteractionEnabled = true
+                stopLoadOverlay()
             }
         }
-        
-        
+    }
+    
+    private func startLoadOverlay(){
+        self.tableView.userInteractionEnabled = false
+        self.activityIndicator.startAnimating()
+        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.view.addSubview(overlay)
+        self.view.bringSubviewToFront(activityIndicator)
+    }
+    
+    private func stopLoadOverlay(){
+        self.tableView.userInteractionEnabled = true
+        self.activityIndicator.stopAnimating()
+        overlay.removeFromSuperview()
     }
     
 }

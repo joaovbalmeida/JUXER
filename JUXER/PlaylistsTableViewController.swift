@@ -15,8 +15,19 @@ class PlaylistsTableViewController: UITableViewController {
     private var session = [Session]()
     private var selectedPlaylist: String = String()
     
+    var activityIndicator: UIActivityIndicatorView!
+    var loadingView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Configure Actitivity Indicator
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10 - (self.navigationController?.navigationBar.frame.height)!, width: 20, height: 20)
+        self.tableView.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
         
         session = SessionDAO.fetchSession()
         getPlaylists()
@@ -101,6 +112,7 @@ class PlaylistsTableViewController: UITableViewController {
                     
                     //Refresh TableView
                     dispatch_async(dispatch_get_main_queue()){
+                        self.activityIndicator.stopAnimating()
                         self.tableView.reloadData()
                     }
                     
@@ -110,6 +122,7 @@ class PlaylistsTableViewController: UITableViewController {
             }
         }
         task.resume()
+        
     }
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

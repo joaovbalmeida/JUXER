@@ -33,9 +33,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var artistScrollingLabel: UILabel!
     
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var orderButton: UIButton!
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var overlay: UIView!
+    var activityIndicator: UIActivityIndicatorView!
 
     private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
@@ -57,9 +60,16 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
         session = SessionDAO.fetchSession()
         
+        //Configure activity indicator
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10, width: 20, height: 20)
+        self.view.addSubview(activityIndicator)
+        
         if session.count != 0 && session[0].active == 1 {
             getQueue()
         } else {
+            orderButton.userInteractionEnabled = false
             songLabel.text = "Nenhum evento conectado!"
         }
         
@@ -115,6 +125,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func getQueue(){
         
+        startLoadOverlay()
+        
         //Erase previous Data
         if self.tracks.count != 0 {
             tracks.removeAll()
@@ -129,7 +141,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                
+                self.stopLoadOverlay()
                 return
             } else {
                 do {
@@ -176,16 +188,30 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     //Refresh TableView
                     dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadOverlay()
                         self.tableView.reloadData()
                     }
 
                 } catch let error as NSError {
+                    self.stopLoadOverlay()
                     print(error)
-                    
                 }
             }
         }
         task.resume()
+    }
+    
+    private func startLoadOverlay(){
+        activityIndicator.startAnimating()
+        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.view.addSubview(overlay)
+        self.view.bringSubviewToFront(activityIndicator)
+    }
+    
+    private func stopLoadOverlay(){
+        activityIndicator.stopAnimating()
+        overlay.removeFromSuperview()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
