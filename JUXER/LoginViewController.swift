@@ -12,31 +12,37 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var welcomeText2: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
+        startLoadOverlay()
+        
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         
         fbLoginManager.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self) { (result, error) in
-            
+
             if error != nil
             {
                 print(error.localizedDescription)
+                self.stopLoadOverlay()
             }
             else if result.isCancelled
             {
                 print(result.description)
                 print(result.debugDescription)
+                self.stopLoadOverlay()
             }
             else
             {
-                self.loginButton.hidden = true
+                self.loginButton.userInteractionEnabled = false
                 self.getFBUser()
             }
         }
     }
     
+    var overlay: UIView!
     var pageViewController: UIPageViewController!
     var pageLabels: NSArray!
     var pageImages: NSArray!
@@ -81,6 +87,19 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         let session = Session()
         session.token = userToken
         SessionDAO.insert(session)
+    }
+    
+    func startLoadOverlay(){
+        self.activityIndicator.startAnimating()
+        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.view.addSubview(overlay)
+        self.view.bringSubviewToFront(activityIndicator)
+    }
+    
+    func stopLoadOverlay(){
+        self.activityIndicator.stopAnimating()
+        overlay.removeFromSuperview()
     }
     
     private func saveAndSubmitToServer(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)

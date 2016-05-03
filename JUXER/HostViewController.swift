@@ -22,6 +22,8 @@ class HostViewController: UIViewController {
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var exitButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorQR: UIActivityIndicatorView!
     
     @IBOutlet weak var scanLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
@@ -29,6 +31,10 @@ class HostViewController: UIViewController {
     @IBOutlet weak var iconImage: UIImageView!
     
     var session = [Session]()
+    
+    @IBAction func segueToQR(sender: AnyObject) {
+        activityIndicatorQR.startAnimating()
+    }
     
     @IBAction func exitEvent(sender: AnyObject) {
         
@@ -52,11 +58,10 @@ class HostViewController: UIViewController {
         session = SessionDAO.fetchSession()
         
         if session[0].active == 1 {
+            activityIndicator.startAnimating()
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
-            dataLabel.hidden = true
-            aboutLabel.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false
             iconImage.hidden = false
@@ -81,6 +86,9 @@ class HostViewController: UIViewController {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        self.activityIndicator.stopAnimating()
+                        self.dataLabel.hidden = false
+                        self.aboutLabel.hidden = false
                         self.eventBG.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventImage.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
                         self.eventName.text = resultJSON.valueForKey("name")! as? String

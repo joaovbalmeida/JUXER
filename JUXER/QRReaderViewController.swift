@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SCLAlertView
 
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -17,12 +18,14 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var topView: UIVisualEffectView!
     var bottomView: UIVisualEffectView!
     let metadataOutput = AVCaptureMetadataOutput()
+    var overlay: UIView!
     
     @IBOutlet weak var topLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var LabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,6 +160,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             frameView.frame = barCodeObject.bounds
             
             if metadataObject?.stringValue != nil {
+                startLoadOverlay()
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 validateQRCode(metadataObject!.stringValue)
             }
@@ -164,6 +168,9 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     func validateQRCode(code: String) {
+        
+        let alertView = SCLAlertView()
+        
         // convert String to NSData
         let data: NSData = code.dataUsingEncoding(NSUTF8StringEncoding)!
         
@@ -184,9 +191,13 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
                 if error != nil {
                     print(error)
-                    
-                    self.captureSession.startRunning()
-                    self.frameView.frame = CGRectZero
+                    dispatch_async(dispatch_get_main_queue()){
+                        alertView.addButton("OK"){
+                            self.stopLoadOverlay()
+                        }
+                        alertView.showCloseButton = false
+                        alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    }
                     return
                     
                 } else {
@@ -203,8 +214,14 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                         }
                         
                     } else {
-                        self.captureSession.startRunning()
-                        self.frameView.frame = CGRectZero
+                        self.stopLoadOverlay()
+                        dispatch_async(dispatch_get_main_queue()){
+                            alertView.addButton("OK"){
+                                self.stopLoadOverlay()
+                            }
+                            alertView.showCloseButton = false
+                            alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        }
                     }
                 }
             }
@@ -212,10 +229,29 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             
         } catch let error as NSError {
             print(error)
-            
-            captureSession.startRunning()
-            frameView.frame = CGRectZero
+            dispatch_async(dispatch_get_main_queue()){
+                alertView.addButton("OK"){
+                    self.stopLoadOverlay()
+                }
+                alertView.showCloseButton = false
+                alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+            }
         }
+    }
+    
+    func startLoadOverlay(){
+        self.activityIndicator.startAnimating()
+        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.view.addSubview(overlay)
+        self.view.bringSubviewToFront(activityIndicator)
+    }
+    
+    func stopLoadOverlay(){
+        self.captureSession.startRunning()
+        self.frameView.frame = CGRectZero
+        self.activityIndicator.stopAnimating()
+        overlay.removeFromSuperview()
     }
     
     override func prefersStatusBarHidden() -> Bool {
