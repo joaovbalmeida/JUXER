@@ -186,7 +186,6 @@ class SongsTableViewController: UITableViewController {
         if NSJSONSerialization.isValidJSONObject(jsonObject) {
             
             do {
-                
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
@@ -200,27 +199,49 @@ class SongsTableViewController: UITableViewController {
                 request.HTTPBody = JSON
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-                    let httpResponse = response as! NSHTTPURLResponse
-                    if httpResponse.statusCode == 200 {
-                        
-                        dispatch_async(dispatch_get_main_queue()){
-                            
-                            alertView.addButton("OK"){
-                                self.dismissViewControllerAnimated(true, completion: {})
-                            }
-                            alertView.showCloseButton = false
-                            alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-                            self.stopLoadOverlay()
-                        }
-                        
-                    } else if httpResponse.statusCode == 422 {
-                        dispatch_async(dispatch_get_main_queue()){
-                            alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-                            self.stopLoadOverlay()
-                        }
-                    } else if error != nil {
+                    
+                    if error != nil {
                         print(error)
                         self.stopLoadOverlay()
+                        
+                    } else {
+                        let httpResponse = response as! NSHTTPURLResponse
+                        if httpResponse.statusCode == 200 {
+                            
+                            dispatch_async(dispatch_get_main_queue()){
+                                alertView.addButton("OK"){
+                                    self.dismissViewControllerAnimated(true, completion: {})
+                                }
+                                alertView.showCloseButton = false
+                                alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            }
+                
+                        } else if httpResponse.statusCode == 422 {
+                            
+                            let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            print(string)
+                            if string == "\"Track already on queue\"" {
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.stopLoadOverlay()
+                                    alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                }
+                            } else if string == "\"User has already reached song request limit\"" {
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.stopLoadOverlay()
+                                    alertView.showError("Limite Atingido", subTitle: "Você atingiu o limite de músicas do evento, espere seus pedidos pendentes acabarem e tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                }
+                            } else {
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.stopLoadOverlay()
+                                    alertView.showError("Ops", subTitle: "Não foi possivel pedir essa música!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                }
+                            }
+                        } else {
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.stopLoadOverlay()
+                                alertView.showError("Erro", subTitle: "Ocorreu um erro ao fazer o pedido, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            }
+                        }
                     }
                 }
                 task.resume()
