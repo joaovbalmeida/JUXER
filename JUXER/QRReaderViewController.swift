@@ -169,7 +169,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     
     func validateQRCode(code: String) {
         
-        let alertView = SCLAlertView()
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alertView = SCLAlertView(appearance: appearance)
         
         // convert String to NSData
         let data: NSData = code.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -195,7 +196,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                         alertView.addButton("OK"){
                             self.stopLoadOverlay()
                         }
-                        alertView.showCloseButton = false
                         alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                     return
@@ -219,7 +219,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                             alertView.addButton("OK"){
                                 self.stopLoadOverlay()
                             }
-                            alertView.showCloseButton = false
                             alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
@@ -233,7 +232,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 alertView.addButton("OK"){
                     self.stopLoadOverlay()
                 }
-                alertView.showCloseButton = false
                 alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             }
         }

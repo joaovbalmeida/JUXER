@@ -19,6 +19,7 @@ class SongsTableViewController: UITableViewController {
     
     var activityIndicator: UIActivityIndicatorView!
     var overlay: UIView!
+    private var alertView = SCLAlertView()
     
     private struct Song {
         var title: String
@@ -27,8 +28,8 @@ class SongsTableViewController: UITableViewController {
         var id: Int
         
         init (title: String, artist: String, cover: String, id: Int){
-            self.title = "Title"
-            self.artist = "Artist"
+            self.title = ""
+            self.artist = ""
             self.cover = ""
             self.id = 0
         }
@@ -45,8 +46,11 @@ class SongsTableViewController: UITableViewController {
         
         activityIndicator.startAnimating()
         
+        //Configure SCLAlert
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        alertView = SCLAlertView(appearance: appearance)
+        
         session = SessionDAO.fetchSession()
-
         getSongs()
     
     }
@@ -61,7 +65,7 @@ class SongsTableViewController: UITableViewController {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                return
+                self.connectionErrorAlert()
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
@@ -71,8 +75,9 @@ class SongsTableViewController: UITableViewController {
                         //Get queue songs id
                         if JSON.count > 0 {
                             for item in JSON {
-                                let id = item.valueForKey("id") as! Int
-                                self.queueSongsID.append(id)
+                                if let id = item.valueForKey("id") as? Int {
+                                    self.queueSongsID.append(id)
+                                }
                             }
                         }
                     }
@@ -82,6 +87,7 @@ class SongsTableViewController: UITableViewController {
 
                 } catch let error as NSError {
                     print(error)
+                    self.JSONErrorAlert()
                 }
             }
         }
@@ -99,7 +105,7 @@ class SongsTableViewController: UITableViewController {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                return
+                self.connectionErrorAlert()
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
@@ -116,13 +122,20 @@ class SongsTableViewController: UITableViewController {
                     //Wrap songs in struct
                     if songsData.count != 0 {
                         for item in songsData {
-                            var newSong = Song(title: "title", artist: "artist", cover: "",id: 0)
-                            newSong.id = item.valueForKey("id") as! Int
+                            var newSong = Song(title: "", artist: "", cover: "",id: 0)
+                            if let id = item.valueForKey("id") as? Int {
+                                newSong.id = id
+                            }
                             if self.queueSongsID.contains(newSong.id) != true {
-                                newSong.title = item.valueForKey("title_short") as! String
-                                newSong.artist = item.valueForKey("artist")!.valueForKey("name") as! String
-                                newSong.cover = item.valueForKey("album")?.valueForKey("cover_medium") as! String
-                                newSong.id = item.valueForKey("id") as! Int
+                                if let title = item.valueForKey("title_short") as? String{
+                                    newSong.title = title
+                                }
+                                if let artistName = item.valueForKey("artist")!.valueForKey("name") as? String {
+                                    newSong.artist = artistName
+                                }
+                                if let cover = item.valueForKey("album")!.valueForKey("cover_medium") as? String{
+                                    newSong.cover = cover
+                                }
                                 self.songs.append(newSong)
                             }
                         }
@@ -135,6 +148,7 @@ class SongsTableViewController: UITableViewController {
                     
                 } catch let error as NSError {
                     print(error)
+                    self.JSONErrorAlert()
                 }
             }
         }
@@ -167,7 +181,9 @@ class SongsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        cell.songCover.kf_setImageWithURL(NSURL(string: self.songs[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+        if self.songs[indexPath.row].cover != "" {
+            cell.songCover.kf_setImageWithURL(NSURL(string: self.songs[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+        }
         cell.songTitleLabel.text = self.songs[indexPath.row].title
         cell.songArtistLabel.text = self.songs[indexPath.row].artist
         
@@ -179,7 +195,9 @@ class SongsTableViewController: UITableViewController {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         startLoadOverlay()
         
-        let alertView = SCLAlertView()
+        var appearance = SCLAlertView.SCLAppearance(showCloseButton: true)
+        var alertView = SCLAlertView(appearance: appearance)
+        
         let jsonObject: [String : AnyObject] =
             [ "id": self.songs[indexPath.row].id ]
         
@@ -203,43 +221,51 @@ class SongsTableViewController: UITableViewController {
                     if error != nil {
                         print(error)
                         self.stopLoadOverlay()
+                        self.connectionErrorAlert()
                         
                     } else {
+                        let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         let httpResponse = response as! NSHTTPURLResponse
                         if httpResponse.statusCode == 200 {
                             
                             dispatch_async(dispatch_get_main_queue()){
+                                appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+                                alertView = SCLAlertView(appearance: appearance)
                                 alertView.addButton("OK"){
                                     self.dismissViewControllerAnimated(true, completion: {})
                                 }
-                                alertView.showCloseButton = false
                                 alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
                 
                         } else if httpResponse.statusCode == 422 {
-                            
-                            let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                        
                             if string == "\"Track already on queue\"" {
+                                self.stopLoadOverlay()
                                 dispatch_async(dispatch_get_main_queue()){
-                                    self.stopLoadOverlay()
                                     alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             } else if string == "\"User has already reached song request limit\"" {
+                                self.stopLoadOverlay()
                                 dispatch_async(dispatch_get_main_queue()){
-                                    self.stopLoadOverlay()
                                     alertView.showError("Limite Atingido", subTitle: "Você atingiu o limite de músicas do evento, espere seus pedidos pendentes acabarem e tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                }
+                            } else if string == "\"Unavailable track\"" {
+                                self.stopLoadOverlay()
+                                dispatch_async(dispatch_get_main_queue()){
+                                    alertView.showError("Limite Antigido", subTitle: "O tempo limite de músicas dessa playlist foi atingido!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             } else {
                                 dispatch_async(dispatch_get_main_queue()){
-                                    self.stopLoadOverlay()
                                     alertView.showError("Ops", subTitle: "Não foi possivel pedir essa música!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             }
                         } else {
+                            self.stopLoadOverlay()
                             dispatch_async(dispatch_get_main_queue()){
-                                self.stopLoadOverlay()
                                 alertView.showError("Erro", subTitle: "Ocorreu um erro ao fazer o pedido, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
+                            print(httpResponse.statusCode)
+                            print(string)
                         }
                     }
                 }
@@ -247,23 +273,46 @@ class SongsTableViewController: UITableViewController {
             } catch {
                 print(error)
                 stopLoadOverlay()
+                JSONErrorAlert()
             }
+        }
+    }
+    
+    private func connectionErrorAlert(){
+        dispatch_async(dispatch_get_main_queue()){
+            self.alertView.addButton("OK"){
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar-se ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        }
+    }
+    
+    private func JSONErrorAlert(){
+        dispatch_async(dispatch_get_main_queue()){
+            self.alertView.addButton("OK"){
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            self.alertView.showError("Ocorreu um Erro", subTitle: "Não foi possivel obter as Músicas!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
         }
     }
     
     private func startLoadOverlay(){
         self.tableView.userInteractionEnabled = false
-        self.activityIndicator.startAnimating()
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.view.addSubview(overlay)
-        self.view.bringSubviewToFront(activityIndicator)
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.startAnimating()
+            self.view.addSubview(self.overlay)
+            self.view.bringSubviewToFront(self.activityIndicator)
+        }
     }
     
     private func stopLoadOverlay(){
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.stopAnimating()
+            self.overlay.removeFromSuperview()
+        }
         self.tableView.userInteractionEnabled = true
-        self.activityIndicator.stopAnimating()
-        overlay.removeFromSuperview()
     }
     
 }

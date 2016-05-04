@@ -61,7 +61,7 @@ class SettingsViewController: UIViewController {
             self.performSegueWithIdentifier("toLogin", sender: self)
             
         }
-        alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento e seu perfil será apagado!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private var user: [User] = [User]()

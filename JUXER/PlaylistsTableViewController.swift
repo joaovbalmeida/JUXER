@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftDate
+import Kingfisher
+import SCLAlertView
 
 class PlaylistsTableViewController: UITableViewController {
     
@@ -42,21 +44,25 @@ class PlaylistsTableViewController: UITableViewController {
         var id: Int
         
         init (name: String, schedule: NSDate, cover: String, id: Int){
-            self.name = "Title"
+            self.name = String()
             self.schedule = NSDate()
-            self.cover = ""
+            self.cover = String()
             self.id = 0
         }
     }
 
     private func getPlaylists(){
         
+        //Configure Alert View
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alertView = SCLAlertView(appearance: appearance)
+        
         //Erase previous Data
         if self.playlists.count != 0 {
             playlists.removeAll()
         }
         
-        let url = NSURL(string: "http://198.211.98.86/api/playlist/?event=\(session[0].id!)")
+        let url = NSURL(string: "http://198.211.98.86/api/playlist/?available=\(session[0].id!)")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -64,6 +70,12 @@ class PlaylistsTableViewController: UITableViewController {
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
+                dispatch_async(dispatch_get_main_queue()){
+                    alertView.addButton("OK"){
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar-se ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                }
                 print(error)
                 return
             } else {
@@ -96,15 +108,21 @@ class PlaylistsTableViewController: UITableViewController {
                         //Compare playlist hour to current time
                         if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!) > 0 {
                             
-                            var newPlaylist = Playlist(name: "name", schedule: NSDate(), cover: "", id: 0)
-                            newPlaylist.name = item.valueForKey("name") as! String
-                            newPlaylist.id = item.valueForKey("id") as! Int
+                            var newPlaylist = Playlist(name: "", schedule: NSDate(), cover: "", id: 0)
+                            if let name = item.valueForKey("name") as? String {
+                                newPlaylist.name = name
+                            }
+                            if let id = item.valueForKey("id") as? Int {
+                                newPlaylist.id = id
+                            }
+                            if let picture = item.valueForKey("picture") as? String {
+                                newPlaylist.cover = picture
+                            }
                             newPlaylist.schedule = startDate
                             if endDateNil == false {
                                 newPlaylist.deadline = endDate
                             }
                             
-                            //newPlaylist.cover = item.valueForKey("picture") as! String
                             self.playlists.append(newPlaylist)
                         }
                         
@@ -118,11 +136,16 @@ class PlaylistsTableViewController: UITableViewController {
                     
                 } catch let error as NSError {
                     print(error)
+                    dispatch_async(dispatch_get_main_queue()){
+                        alertView.addButton("OK"){
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        alertView.showError("Erro", subTitle: "Não foi possivel obter as Playlists!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    }
                 }
             }
         }
         task.resume()
-        
     }
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -144,6 +167,9 @@ class PlaylistsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
+        if playlists[indexPath.row].cover != "" {
+            cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!)
+        }
         if playlists[indexPath.row].deadline != nil {
             cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
                 .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
