@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Kingfisher
-import RealtimeMessaging_iOS_Swift
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
