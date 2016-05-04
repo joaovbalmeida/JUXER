@@ -16,7 +16,6 @@
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
-		925A06D01CC58D1D000EB344 /* OrtcClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06CF1CC58D1D000EB344 /* OrtcClient.swift */; };
 		925A06D31CC58EEB000EB344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06D11CC58EEB000EB344 /* User.swift */; };
 		925A06D41CC58EEB000EB344 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06D21CC58EEB000EB344 /* User+CoreDataProperties.swift */; };
 		926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A84E11C5A9FED00815656 /* AppDelegate.swift */; };
@@ -62,7 +61,6 @@
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		925A06CF1CC58D1D000EB344 /* OrtcClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrtcClient.swift; sourceTree = "<group>"; };
 		925A06D11CC58EEB000EB344 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		925A06D21CC58EEB000EB344 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		926A84DE1C5A9FED00815656 /* JUXER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUXER.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +147,6 @@
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				929786C31C7E729C001B0397 /* TabBarController.swift */,
 				9294C5D91CD2A3C300D19287 /* ContentViewController.swift */,
-				925A06CF1CC58D1D000EB344 /* OrtcClient.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -368,7 +365,6 @@
 				929786C41C7E729C001B0397 /* TabBarController.swift in Sources */,
 				921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */,
 				921D92D21C737BF800CD4B6F /* PlaylistsTableViewController.swift in Sources */,
-				925A06D01CC58D1D000EB344 /* OrtcClient.swift in Sources */,
 				926A84E21C5A9FED00815656 /* AppDelegate.swift in Sources */,
 				921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */,
 				921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */,

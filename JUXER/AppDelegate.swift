@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var session = [Session]()
-    private var ortc = OrtcClass()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
@@ -41,9 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = UIColor.whiteColor()
         pageController.backgroundColor = UIColor.clearColor()
         pageController.bounds.origin.y += 120
-        
-        //Configure Websocket
-        ortc.connect()
         
         return true
     }
