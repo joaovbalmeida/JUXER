@@ -219,7 +219,6 @@ class SongsTableViewController: UITableViewController {
                         } else if httpResponse.statusCode == 422 {
                             
                             let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                            print(string)
                             if string == "\"Track already on queue\"" {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()

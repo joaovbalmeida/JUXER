@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import FBSDKShareKit
 import Kingfisher
+import RealtimeMessaging_iOS_Swift
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -39,7 +39,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     var overlay: UIView!
     var activityIndicator: UIActivityIndicatorView!
-
+    
     private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
     
@@ -66,25 +66,31 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10, width: 20, height: 20)
         self.view.addSubview(activityIndicator)
         
+        //Check if connected to event
         if session.count != 0 && session[0].active == 1 {
+            
             getQueue()
+            
         } else {
             orderButton.userInteractionEnabled = false
             songLabel.text = "Nenhum evento conectado!"
         }
         
+        //Configure Stretchy Header
         headerView = tableView.tableHeaderView
         headerView.clipsToBounds = true
         tableView.clipsToBounds = true
-
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
-        
         tableView.contentInset = UIEdgeInsets(top: kHeaderHeight, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -kHeaderHeight)
 
         tableView.allowsSelection = false
         
+    }
+    
+    func chegouMensagem(){
+        print("OI")
     }
 
     func updateHeaderView() {

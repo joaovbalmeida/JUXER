@@ -16,12 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var session = [Session]()
-
+    private var ortc = OrtcClass()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        // Custom Navigation Bar
+        //Custom Navigation Bar
         let navigationBarAppear = UINavigationBar.appearance()
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
@@ -40,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = UIColor.whiteColor()
         pageController.backgroundColor = UIColor.clearColor()
         pageController.bounds.origin.y += 120
+        
+        //Configure Websocket
+        ortc.connect()
         
         return true
     }

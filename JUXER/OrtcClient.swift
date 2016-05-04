@@ -13,9 +13,12 @@ class OrtcClass: NSObject, OrtcClientDelegate{
     
     let APPKEY = "uzgkbk"
     let TOKEN = "56c602ba44dee5412f2ca6e3adc692"
-    let METADATA = "swift example"
+    //http://198.211.98.86/queue:\(session[0].id!)
+    //let TOKEN = "TWkS6JoEW4wa"
+    let METADATA = "Iphone Device"
     let URL = "https://ortc-developers.realtime.co/server/2.1"
     var ortc: OrtcClient?
+    var session = [Session]()
     
     func connect()
     {
@@ -26,30 +29,35 @@ class OrtcClass: NSObject, OrtcClientDelegate{
     }
     
     func onConnected(ortc: OrtcClient){
+        
+        session = SessionDAO.fetchSession()
+
         NSLog("CONNECTED")
-        ortc.subscribe("SOME_CHANNEL", subscribeOnReconnected: true,
-                       onMessage: { (ortcClient:OrtcClient!, chn:String!, m:String!) -> Void in
-                        NSLog("Receive message: %@ on channel: %@", m!, chn!)
-        })
+        ortc.subscribe("http://198.211.98.86/queue:\(session[0].id!)", subscribeOnReconnected: true) { (ortc, channel, message) in
+            print(message)
+            print(channel)
+        }
     }
     
     func onDisconnected(ortc: OrtcClient){
         // Disconnected
+        print("Disconnected")
     }
     
     func onSubscribed(ortc: OrtcClient, channel: String){
         // Subscribed to the channel
-        
-        // Send a message
-        ortc.send(channel, message: "Hello world!!!")
+        print("subscribed to channel: \(channel)")
+        ortc.send("http://198.211.98.86/queue:\(session[0].id!)", message: "DINKAO")
     }
     
     func onUnsubscribed(ortc: OrtcClient, channel: String){
         // Unsubscribed from the channel 'channel'
+        print("unsubscribed channel")
     }
     
     func onException(ortc: OrtcClient, error: NSError){
         // Exception occurred
+        print(error)
     }
     
     func onReconnecting(ortc: OrtcClient){

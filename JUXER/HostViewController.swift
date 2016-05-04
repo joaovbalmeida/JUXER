@@ -48,9 +48,8 @@ class HostViewController: UIViewController {
             
             //Segue to Home
             self.performSegueWithIdentifier("exitEvent", sender: self)
-        
-        alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
         }
+            alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     override func viewDidLoad() {
