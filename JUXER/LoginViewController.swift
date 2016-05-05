@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             }
             else
             {
-                self.getFBUser()
+                self.saveAndSubmitFBUser()
             }
         }
     }
@@ -85,69 +85,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         
     }
     
-    private func saveAndSubmitToServer(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
-    {
-        let user = User()
-        user.name = "\(name)"
-        user.pictureUrl = "\(pictureUrl)"
-        user.id = "\(id)"
-        user.lastName = "\(lastName)"
-        user.firstName = "\(firstName)"
-        user.email = "\(email)"
-        user.anonymous = 0
-        
-        let jsonObject: [String : AnyObject] =
-            [ "email": "\(email)",
-              "first_name": "\(firstName)",
-              "last_name": "\(lastName)",
-              "username": "\(email)",
-              "picture": "\(pictureUrl)",
-              "fb_id": "\(id)" ]
-        
-        if NSJSONSerialization.isValidJSONObject(jsonObject) {
-            
-            do {
-                
-                let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
-                
-                // create post request
-                let url = NSURL(string: "http://198.211.98.86/api/user/login/")
-                let request = NSMutableURLRequest(URL: url!)
-                request.HTTPMethod = "POST"
-                
-                // insert json data to the request
-                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = JSON
-                
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-                    let httpResponse = response as! NSHTTPURLResponse
-                    if error != nil{
-                        print(error)
-                        self.logOut()
-                        self.stopLoadOverlay()
-                        self.showConectionErrorAlert()
-                    } else if httpResponse.statusCode == 200 {
-                        UserDAO.insert(user)
-                        var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                        resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
-                        self.storeSessionToken(String(resultData))
-                    } else {
-                        self.logOut()
-                        self.stopLoadOverlay()
-                        self.showErrorAlert()
-                    }
-                }
-                task.resume()
-            } catch {
-                print(error)
-                logOut()
-                stopLoadOverlay()
-                showErrorAlert()
-            }
-        }
-    }
-    
-    private func getFBUser(){
+    private func saveAndSubmitFBUser(){
         
         if((FBSDKAccessToken.currentAccessToken()) != nil)
         {
@@ -163,42 +101,65 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                     let userId: NSString = result.valueForKey("id") as! NSString
                     let userPictureUrl: String = "https://graph.facebook.com/\(userId)/picture?type=large"
                     
-                    self.saveAndSubmitToServer(userName, email: userEmail, lastName: userLastName, firstName: userFirstName, id: userId, pictureUrl: userPictureUrl)
+                    let user = User()
+                    user.name = "\(userName)"
+                    user.pictureUrl = "\(userPictureUrl)"
+                    user.id = "\(userId)"
+                    user.lastName = "\(userLastName)"
+                    user.firstName = "\(userFirstName)"
+                    user.email = "\(userEmail)"
+                    user.anonymous = 0
                     
-                    let url = NSURL(string: userPictureUrl)
-                    let request = NSURLRequest(URL: url!)
-                    let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                    let jsonObject: [String : AnyObject] =
+                        [ "email": "\(userEmail)",
+                            "first_name": "\(userFirstName)",
+                            "last_name": "\(userLastName)",
+                            "username": "\(userEmail)",
+                            "picture": "\(userPictureUrl)",
+                            "fb_id": "\(userId)" ]
+                    
+                    if NSJSONSerialization.isValidJSONObject(jsonObject) {
                         
-                        if error != nil {
+                        do {
+                            
+                            let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
+                            
+                            // create post request
+                            let request = NSMutableURLRequest(URL: NSURL(string: "http://198.211.98.86/api/user/login/")!)
+                            request.HTTPMethod = "POST"
+                            
+                            // insert json data to the request
+                            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                            request.HTTPBody = JSON
+                            
+                            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                                let httpResponse = response as! NSHTTPURLResponse
+                                if error != nil{
+                                    print(error)
+                                    self.logOut()
+                                    self.stopLoadOverlay()
+                                    self.showConectionErrorAlert()
+                                } else if httpResponse.statusCode == 200 {
+                                    UserDAO.insert(user)
+                                    var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                                    resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
+                                    self.storeSessionToken(String(resultData))
+                                    self.getFBProfilePictureAndSegue(userPictureUrl)
+                                    
+                                } else {
+                                    self.logOut()
+                                    self.stopLoadOverlay()
+                                    self.showErrorAlert()
+                                }
+                            }
+                            task.resume()
+                        } catch {
                             print(error)
-                            self.deleteUser()
                             self.logOut()
                             self.stopLoadOverlay()
-                            self.showConectionErrorAlert()
-                        } else {
-                            let httpResponse = response as! NSHTTPURLResponse
-                            if httpResponse.statusCode == 200 {
-                                let documentsDirectory:String?
-                                var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                                
-                                if path.count > 0 {
-                                    documentsDirectory = path[0] as? String
-                                    let savePath = documentsDirectory! + "/profilePic.jpg"
-                                    NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
-                                }
-                                dispatch_async(dispatch_get_main_queue()){
-                                    self.performSegueWithIdentifier("toHome", sender: self)
-                                }
-                            } else {
-                                self.deleteUser()
-                                self.logOut()
-                                self.stopLoadOverlay()
-                                self.showErrorAlert()
-                            }
+                            self.showErrorAlert()
                         }
-                    })
-                    task.resume()
-                    
+                    }
                 } else {
                     print(error)
                     self.logOut()
@@ -209,6 +170,41 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             })
             
         }
+    }
+    
+    func getFBProfilePictureAndSegue(url: String){
+        let url = NSURL(string: url)
+        let request = NSURLRequest(URL: url!)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                print(error)
+                self.deleteUser()
+                self.logOut()
+                self.stopLoadOverlay()
+                self.showConectionErrorAlert()
+            } else {
+                let httpResponse = response as! NSHTTPURLResponse
+                if httpResponse.statusCode == 200 {
+                    let documentsDirectory:String?
+                    var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+                    print(8)
+                    if path.count > 0 {
+                        documentsDirectory = path[0] as? String
+                        let savePath = documentsDirectory! + "/profilePic.jpg"
+                        NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.performSegueWithIdentifier("toHome", sender: self)
+                        }
+                    }
+                } else {
+                    self.deleteUser()
+                    self.logOut()
+                    self.stopLoadOverlay()
+                    self.showErrorAlert()
+                }
+            }
+        })
+        task.resume()
     }
     
     func showErrorAlert(){

@@ -92,8 +92,8 @@ class HostViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.activityIndicator.stopAnimating()
                             if let picture = resultJSON.valueForKey("picture") as? String {
-                                self.eventBG.kf_setImageWithURL(NSURL(string: picture)!)
-                                self.eventImage.kf_setImageWithURL(NSURL(string: picture)!)
+                                self.eventBG.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "QRBackground.png"))
+                                self.eventImage.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "placeholder-slider.png"))
                             }
                             if let name = resultJSON.valueForKey("name") as? String {
                                 self.eventName.text = name
@@ -107,7 +107,6 @@ class HostViewController: UIViewController {
                                 self.dataLabel.hidden = false
                                 self.eventDate.text = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
                             }
-                            
                         }
                         
                     } catch let error as NSError {
