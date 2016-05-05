@@ -14,7 +14,6 @@ import SCLAlertView
 class HostViewController: UIViewController {
 
     @IBOutlet weak var eventImage: UIImageView!
-
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
@@ -31,6 +30,7 @@ class HostViewController: UIViewController {
     @IBOutlet weak var iconImage: UIImageView!
     
     var session = [Session]()
+    let alertView = SCLAlertView()
     
     @IBAction func segueToQR(sender: AnyObject) {
         activityIndicatorQR.startAnimating()
@@ -38,7 +38,6 @@ class HostViewController: UIViewController {
     
     @IBAction func exitEvent(sender: AnyObject) {
         
-        let alertView = SCLAlertView()
         alertView.addButton("Sim"){
             
             //Set Session Inactive
@@ -64,6 +63,7 @@ class HostViewController: UIViewController {
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
+            eventImage.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false
             iconImage.hidden = false
@@ -82,29 +82,41 @@ class HostViewController: UIViewController {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                return
+                self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             } else {
-                do {
-                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.activityIndicator.stopAnimating()
-                        self.dataLabel.hidden = false
-                        self.aboutLabel.hidden = false
-                        self.eventBG.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
-                        self.eventImage.kf_setImageWithURL(NSURL(string: resultJSON.valueForKey("picture")! as! String)!)
-                        self.eventName.text = resultJSON.valueForKey("name")! as? String
-                        self.eventDescription.text = resultJSON.valueForKey("description")! as? String
-            
-                        if let dateString = resultJSON.valueForKey("starts_at") as? String {
-                            let startDate = dateString.toDateFromISO8601()!
-                            self.eventDate.text = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                let httpResponse = response as! NSHTTPURLResponse
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.activityIndicator.stopAnimating()
+                            if let picture = resultJSON.valueForKey("picture") as? String {
+                                self.eventBG.kf_setImageWithURL(NSURL(string: picture)!)
+                                self.eventImage.kf_setImageWithURL(NSURL(string: picture)!)
+                            }
+                            if let name = resultJSON.valueForKey("name") as? String {
+                                self.eventName.text = name
+                            }
+                            if let description = resultJSON.valueForKey("description") as? String {
+                                self.aboutLabel.hidden = false
+                                self.eventDescription.text = description
+                            }
+                            if let dateString = resultJSON.valueForKey("starts_at") as? String {
+                                let startDate = dateString.toDateFromISO8601()!
+                                self.dataLabel.hidden = false
+                                self.eventDate.text = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                            }
+                            
                         }
                         
+                    } catch let error as NSError {
+                        print(error)
+                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
-                
-                } catch let error as NSError {
-                    print(error)
+                } else {
+                    print(httpResponse.statusCode)
+                    self.alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             }
         }

@@ -63,31 +63,38 @@ class SongsTableViewController: UITableViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            
             if error != nil {
                 print(error)
                 self.connectionErrorAlert()
             } else {
-                do {
-                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    
-                    if let JSON = resultJSON.valueForKey("queue")! as? NSMutableArray {
+                let httpResponse = response as! NSHTTPURLResponse
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
                         
-                        //Get queue songs id
-                        if JSON.count > 0 {
-                            for item in JSON {
-                                if let id = item.valueForKey("id") as? Int {
-                                    self.queueSongsID.append(id)
+                        if let JSON = resultJSON.valueForKey("queue")! as? NSMutableArray {
+                            
+                            //Get queue songs id
+                            if JSON.count > 0 {
+                                for item in JSON {
+                                    if let id = item.valueForKey("id") as? Int {
+                                        self.queueSongsID.append(id)
+                                    }
                                 }
                             }
                         }
+                        
+                        //Get songs that are not on queue yet
+                        self.getSongsNotOnQueue()
+                        
+                    } catch let error as NSError {
+                        print(error)
+                        self.JSONErrorAlert()
                     }
-                    
-                    //Get songs that are not on queue yet
-                    self.getSongsNotOnQueue()
-
-                } catch let error as NSError {
-                    print(error)
-                    self.JSONErrorAlert()
+                } else {
+                    print(httpResponse.statusCode)
+                    self.connectionErrorAlert()
                 }
             }
         }
@@ -103,52 +110,57 @@ class SongsTableViewController: UITableViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            
             if error != nil {
                 print(error)
                 self.connectionErrorAlert()
             } else {
-                do {
-                    let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    let JSON = resultJSON as! [String:AnyObject]
-                    var songsData = NSMutableArray()
-
-                    //Get respective playlist songs
-                    for item in JSON {
-                        if item.0 == self.playlistName {
-                            songsData = item.1 as! NSMutableArray
-                        }
-                    }
-                    
-                    //Wrap songs in struct
-                    if songsData.count != 0 {
-                        for item in songsData {
-                            var newSong = Song(title: "", artist: "", cover: "",id: 0)
-                            if let id = item.valueForKey("id") as? Int {
-                                newSong.id = id
-                            }
-                            if self.queueSongsID.contains(newSong.id) != true {
-                                if let title = item.valueForKey("title_short") as? String{
-                                    newSong.title = title
-                                }
-                                if let artistName = item.valueForKey("artist")!.valueForKey("name") as? String {
-                                    newSong.artist = artistName
-                                }
-                                if let cover = item.valueForKey("album")!.valueForKey("cover_medium") as? String{
-                                    newSong.cover = cover
-                                }
-                                self.songs.append(newSong)
+                let httpResponse = response as! NSHTTPURLResponse
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                        let JSON = resultJSON as! [String:AnyObject]
+                        var songsData = NSMutableArray()
+                        
+                        //Get respective playlist songs
+                        for item in JSON {
+                            if item.0 == self.playlistName {
+                                songsData = item.1 as! NSMutableArray
                             }
                         }
+                        //Wrap songs in struct
+                        if songsData.count != 0 {
+                            for item in songsData {
+                                var newSong = Song(title: "", artist: "", cover: "",id: 0)
+                                if let id = item.valueForKey("id") as? Int {
+                                    newSong.id = id
+                                }
+                                if self.queueSongsID.contains(newSong.id) != true {
+                                    if let title = item.valueForKey("title_short") as? String{
+                                        newSong.title = title
+                                    }
+                                    if let artistName = item.valueForKey("artist")!.valueForKey("name") as? String {
+                                        newSong.artist = artistName
+                                    }
+                                    if let cover = item.valueForKey("album")!.valueForKey("cover_medium") as? String{
+                                        newSong.cover = cover
+                                    }
+                                    self.songs.append(newSong)
+                                }
+                            }
+                        }
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.activityIndicator.stopAnimating()
+                            self.tableView.reloadData()
+                        }
+                        
+                    } catch let error as NSError {
+                        print(error)
+                        self.JSONErrorAlert()
                     }
-                    
-                    dispatch_async(dispatch_get_main_queue()){
-                        self.activityIndicator.stopAnimating()
-                        self.tableView.reloadData()
-                    }
-                    
-                } catch let error as NSError {
-                    print(error)
-                    self.JSONErrorAlert()
+                } else {
+                    print(httpResponse.statusCode)
+                    self.connectionErrorAlert()
                 }
             }
         }

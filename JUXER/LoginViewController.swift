@@ -154,7 +154,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, first_name, last_name, id"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
-                if (error == nil)
+                if error == nil && result != nil
                 {
                     let userName: NSString = result.valueForKey("name") as! NSString
                     let userEmail:  NSString = result.valueForKey("email") as! NSString
@@ -168,7 +168,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                     let url = NSURL(string: userPictureUrl)
                     let request = NSURLRequest(URL: url!)
                     let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-                        let httpResponse = response as! NSHTTPURLResponse
                         
                         if error != nil {
                             print(error)
@@ -176,24 +175,26 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             self.logOut()
                             self.stopLoadOverlay()
                             self.showConectionErrorAlert()
-
-                        } else if httpResponse.statusCode == 200 {
-                            let documentsDirectory:String?
-                            var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                            
-                            if path.count > 0 {
-                                documentsDirectory = path[0] as? String
-                                let savePath = documentsDirectory! + "/profilePic.jpg"
-                                NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
-                            }
-                            dispatch_async(dispatch_get_main_queue()){
-                                self.performSegueWithIdentifier("toHome", sender: self)
-                            }
                         } else {
-                            self.deleteUser()
-                            self.logOut()
-                            self.stopLoadOverlay()
-                            self.showErrorAlert()
+                            let httpResponse = response as! NSHTTPURLResponse
+                            if httpResponse.statusCode == 200 {
+                                let documentsDirectory:String?
+                                var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+                                
+                                if path.count > 0 {
+                                    documentsDirectory = path[0] as? String
+                                    let savePath = documentsDirectory! + "/profilePic.jpg"
+                                    NSFileManager.defaultManager().createFileAtPath(savePath, contents: data, attributes: nil)
+                                }
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.performSegueWithIdentifier("toHome", sender: self)
+                                }
+                            } else {
+                                self.deleteUser()
+                                self.logOut()
+                                self.stopLoadOverlay()
+                                self.showErrorAlert()
+                            }
                         }
                     })
                     task.resume()
