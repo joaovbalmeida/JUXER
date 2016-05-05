@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import SCLAlertView
 
 class QueueViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -38,6 +39,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     var overlay: UIView!
     var activityIndicator: UIActivityIndicatorView!
+    var alertView: SCLAlertView!
     
     private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
@@ -86,10 +88,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.allowsSelection = false
         
-    }
-    
-    func chegouMensagem(){
-        print("OI")
     }
 
     func updateHeaderView() {
@@ -147,58 +145,76 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             if error != nil {
                 print(error)
                 self.stopLoadOverlay()
-                return
+                self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                    let JSON = resultJSON.valueForKey("queue")! as! NSMutableArray
-                    
-                    //Get now playing index
-                    var index = resultJSON.valueForKey("index")! as? Int
-                    if index == nil{
-                        index = 0
-                    }
-                    
-                    //Refresh Now Playing Track
-                    if JSON.count > 0 {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.songLabel.text = JSON[index!].valueForKey("title_short") as? String
-                            self.artistLabel.text = JSON[index!].valueForKey("artist")!.valueForKey("name") as? String
-                            self.albumtImage.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
-                            self.albumBG.kf_setImageWithURL(NSURL(string: String(JSON[index!].valueForKey("album")!.valueForKey("cover_big")!))!)
-                            self.songScrollingLabel.text = self.songLabel.text
-                            self.artistScrollingLabel.text = self.artistLabel.text
+                    if let JSON = resultJSON.valueForKey("queue") as? NSMutableArray {
+                        
+                        //Get now playing index
+                        var index = resultJSON.valueForKey("index")! as? Int
+                        if index == nil{
+                            index = 0
+                        }
+                        
+                        //Refresh Now Playing Track
+                        if JSON.count > 0 {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                if let title = JSON[index!].valueForKey("title_short") as? String {
+                                    self.songLabel.text = title
+                                    self.songScrollingLabel.text = title
+                                }
+                                if let artist = JSON[index!].valueForKey("artist")!.valueForKey("name") as? String {
+                                    self.artistLabel.text = artist
+                                    self.artistScrollingLabel.text = artist
+                                }
+                                if let cover = JSON[index!].valueForKey("album")!.valueForKey("cover_big") as? String {
+                                    self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                                    self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                                }
+                            }
+                        } else {
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.songLabel.text = ""
+                                self.artistLabel.text = "Nenhum Evento Conectado!"
+                                self.albumtImage.image = Image(named: "BigCoverPlaceHolder.png")
+                                self.albumBG.image = nil
+                                self.songScrollingLabel.text = ""
+                                self.artistScrollingLabel.text = "Nenhum Evento Conectado!"
+                            }
+                        }
+                        
+                        //Create tracks struct array from JSON
+                        if JSON.count > index {
+                            for i in index! + 1..<JSON.count {
+                                var newTrack = Track(title: "Track Name", artist: "Artist Name", cover: "")
+                                if let title = JSON[i].valueForKey("title_short") as? String {
+                                    newTrack.title = title
+                                }
+                                if let artist = JSON[i].valueForKey("artist")!.valueForKey("name") as? String {
+                                    newTrack.artist = artist
+                                }
+                                if let cover = JSON[i].valueForKey("album")!.valueForKey("cover_medium") as? String {
+                                    newTrack.cover = cover
+                                }
+                                self.tracks.append(newTrack)
+                            }
+                        }
+                        
+                        self.stopLoadOverlay()
+                        
+                        //Refresh TableView
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.tableView.reloadData()
                         }
                     } else {
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.songLabel.text = ""
-                            self.artistLabel.text = ""
-                            self.albumtImage.image = Image(named: "BigCoverPlaceHolder.png")
-                            self.albumBG.image = nil
-                            self.songScrollingLabel.text = self.songLabel.text
-                            self.artistScrollingLabel.text = self.artistLabel.text
-                        }
-                    }
-                    
-                    //Create tracks struct array from JSON
-                    if JSON.count > index {
-                        for i in index! + 1..<JSON.count {
-                            var newTrack = Track(title: "title", artist: "artist", cover: "")
-                            newTrack.title = JSON[i].valueForKey("title_short") as! String
-                            newTrack.artist = JSON[i].valueForKey("artist")!.valueForKey("name") as! String
-                            newTrack.cover = JSON[i].valueForKey("album")!.valueForKey("cover_medium") as! String
-                            self.tracks.append(newTrack)
-                        }
-                    }
-                    
-                    //Refresh TableView
-                    dispatch_async(dispatch_get_main_queue()){
                         self.stopLoadOverlay()
-                        self.tableView.reloadData()
+                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
 
                 } catch let error as NSError {
                     self.stopLoadOverlay()
+                    self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     print(error)
                 }
             }
@@ -207,16 +223,20 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     private func startLoadOverlay(){
-        activityIndicator.startAnimating()
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.view.addSubview(overlay)
-        self.view.bringSubviewToFront(activityIndicator)
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.startAnimating()
+            self.view.addSubview(self.overlay)
+            self.view.bringSubviewToFront(self.activityIndicator)
+        }
     }
     
     private func stopLoadOverlay(){
-        activityIndicator.stopAnimating()
-        overlay.removeFromSuperview()
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.stopAnimating()
+            self.overlay.removeFromSuperview()
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

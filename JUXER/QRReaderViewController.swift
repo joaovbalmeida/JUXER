@@ -178,78 +178,89 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         // convert NSData to 'AnyObject' then make request usign data, to validate QR Code
         do{
             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            let id = json.valueForKey("id") as! Int
-            
-            var session: [Session] = [Session]()
-            session = SessionDAO.fetchSession()
-            
-            let url = NSURL(string: "http://198.211.98.86/api/event/\(id)/")
-            let request = NSMutableURLRequest(URL: url!)
-            
-            request.HTTPMethod = "GET"
-            request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
-            
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
-                if error != nil {
-                    print(error)
-                    dispatch_async(dispatch_get_main_queue()){
+            if let id = json.valueForKey("id") as? Int {
+                
+                var session: [Session] = [Session]()
+                session = SessionDAO.fetchSession()
+                
+                let url = NSURL(string: "http://198.211.98.86/api/event/\(id)/")
+                let request = NSMutableURLRequest(URL: url!)
+                
+                request.HTTPMethod = "GET"
+                request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+                    if error != nil {
+                        print(error)
                         alertView.addButton("OK"){
                             self.stopLoadOverlay()
                         }
-                        alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-                    }
-                    return
-                    
-                } else {
-                    let httpResponse = response as! NSHTTPURLResponse
-                    
-                    //If code is valid, persist and perform segue, else show error message!
-                    if httpResponse.statusCode == 200 {
-                        session[0].active = 1
-                        session[0].id = id
-                        SessionDAO.update(session[0])
-                        
                         dispatch_async(dispatch_get_main_queue()){
-                            self.performSegueWithIdentifier("gotEvent", sender: self)
+                            alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
+                        return
                         
                     } else {
-                        self.stopLoadOverlay()
-                        dispatch_async(dispatch_get_main_queue()){
+                        let httpResponse = response as! NSHTTPURLResponse
+                        
+                        //If code is valid, persist and perform segue, else show error message!
+                        if httpResponse.statusCode == 200 {
+                            session[0].active = 1
+                            session[0].id = id
+                            SessionDAO.update(session[0])
+                            
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.performSegueWithIdentifier("gotEvent", sender: self)
+                            }
+                            
+                        } else {
                             alertView.addButton("OK"){
                                 self.stopLoadOverlay()
                             }
-                            alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            dispatch_async(dispatch_get_main_queue()){
+                                alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            }
                         }
                     }
                 }
-            }
-            task.resume()
-            
-        } catch let error as NSError {
-            print(error)
-            dispatch_async(dispatch_get_main_queue()){
+                task.resume()
+            } else {
                 alertView.addButton("OK"){
                     self.stopLoadOverlay()
                 }
+                dispatch_async(dispatch_get_main_queue()){
+                    alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                }
+            }
+            
+        } catch let error as NSError {
+            print(error)
+            alertView.addButton("OK"){
+                self.stopLoadOverlay()
+            }
+            dispatch_async(dispatch_get_main_queue()){
                 alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             }
         }
     }
     
     func startLoadOverlay(){
-        self.activityIndicator.startAnimating()
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.view.addSubview(overlay)
-        self.view.bringSubviewToFront(activityIndicator)
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.startAnimating()
+            self.view.addSubview(self.overlay)
+            self.view.bringSubviewToFront(self.activityIndicator)
+        }
     }
     
     func stopLoadOverlay(){
-        self.captureSession.startRunning()
         self.frameView.frame = CGRectZero
-        self.activityIndicator.stopAnimating()
-        overlay.removeFromSuperview()
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.stopAnimating()
+            self.overlay.removeFromSuperview()
+        }
+        self.captureSession.startRunning()
     }
     
     override func prefersStatusBarHidden() -> Bool {
