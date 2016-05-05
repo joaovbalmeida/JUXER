@@ -35,11 +35,10 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             else if result.isCancelled
             {
                 self.stopLoadOverlay()
-                print(error.localizedDescription)
+                print(result.debugDescription)
             }
             else
             {
-                self.loginButton.userInteractionEnabled = false
                 self.getFBUser()
             }
         }
