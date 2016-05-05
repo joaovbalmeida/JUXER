@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SCLAlertView
 
 class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
 
@@ -26,13 +27,15 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             if error != nil
             {
                 print(error.localizedDescription)
-                self.stopLoadOverlay()
+                dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadOverlay()
+                    SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                }
             }
             else if result.isCancelled
             {
-                print(result.description)
-                print(result.debugDescription)
                 self.stopLoadOverlay()
+                print(error.localizedDescription)
             }
             else
             {
@@ -41,7 +44,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             }
         }
     }
-    
+
     var overlay: UIView!
     var pageViewController: UIPageViewController!
     var pageLabels: NSArray!
@@ -82,25 +85,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         self.view.bringSubviewToFront(loginButton)
         
     }
-
-    private func storeSessionToken(userToken: String){
-        let session = Session()
-        session.token = userToken
-        SessionDAO.insert(session)
-    }
-    
-    func startLoadOverlay(){
-        self.activityIndicator.startAnimating()
-        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
-        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.view.addSubview(overlay)
-        self.view.bringSubviewToFront(activityIndicator)
-    }
-    
-    func stopLoadOverlay(){
-        self.activityIndicator.stopAnimating()
-        overlay.removeFromSuperview()
-    }
     
     private func saveAndSubmitToServer(name: NSString, email: NSString, lastName: NSString, firstName: NSString, id: NSString, pictureUrl: String)
     {
@@ -112,7 +96,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         user.firstName = "\(firstName)"
         user.email = "\(email)"
         user.anonymous = 0
-        UserDAO.insert(user)
         
         let jsonObject: [String : AnyObject] =
             [ "email": "\(email)",
@@ -138,17 +121,29 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 request.HTTPBody = JSON
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    let httpResponse = response as! NSHTTPURLResponse
                     if error != nil{
                         print(error)
-                        return
+                        self.logOut()
+                        self.stopLoadOverlay()
+                        self.showConectionErrorAlert()
+                    } else if httpResponse.statusCode == 200 {
+                        UserDAO.insert(user)
+                        var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                        resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
+                        self.storeSessionToken(String(resultData))
+                    } else {
+                        self.logOut()
+                        self.stopLoadOverlay()
+                        self.showErrorAlert()
                     }
-                    var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                    resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
-                    self.storeSessionToken(String(resultData))
                 }
                 task.resume()
             } catch {
                 print(error)
+                logOut()
+                stopLoadOverlay()
+                showErrorAlert()
             }
         }
     }
@@ -174,11 +169,16 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                     let url = NSURL(string: userPictureUrl)
                     let request = NSURLRequest(URL: url!)
                     let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                        let httpResponse = response as! NSHTTPURLResponse
                         
                         if error != nil {
                             print(error)
-                        }
-                        else {
+                            self.deleteUser()
+                            self.logOut()
+                            self.stopLoadOverlay()
+                            self.showConectionErrorAlert()
+
+                        } else if httpResponse.statusCode == 200 {
                             let documentsDirectory:String?
                             var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
                             
@@ -190,19 +190,74 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             dispatch_async(dispatch_get_main_queue()){
                                 self.performSegueWithIdentifier("toHome", sender: self)
                             }
+                        } else {
+                            self.deleteUser()
+                            self.logOut()
+                            self.stopLoadOverlay()
+                            self.showErrorAlert()
                         }
                     })
                     task.resume()
                     
                 } else {
                     print(error)
+                    self.logOut()
+                    self.stopLoadOverlay()
+                    self.showErrorAlert()
                 }
                 
             })
             
         }
     }
-        
+    
+    func showErrorAlert(){
+        dispatch_async(dispatch_get_main_queue()){
+            SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        }
+    }
+    
+    func showConectionErrorAlert(){
+        dispatch_async(dispatch_get_main_queue()){
+            SCLAlertView().showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        }
+    }
+    
+    private func storeSessionToken(userToken: String){
+        let session = Session()
+        session.token = userToken
+        SessionDAO.insert(session)
+    }
+    
+    func startLoadOverlay(){
+        overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.startAnimating()
+            self.view.addSubview(self.overlay)
+            self.view.bringSubviewToFront(self.activityIndicator)
+        }
+        self.loginButton.userInteractionEnabled = false
+    }
+    
+    func stopLoadOverlay(){
+        dispatch_async(dispatch_get_main_queue()){
+            self.activityIndicator.stopAnimating()
+            self.overlay.removeFromSuperview()
+        }
+        self.loginButton.userInteractionEnabled = true
+    }
+    
+    private func deleteUser(){
+        if let user:[User] = UserDAO.fetchUser() {
+            UserDAO.delete(user[0])
+        }
+    }
+    
+    private func logOut(){
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
