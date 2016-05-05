@@ -48,11 +48,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         var title: String
         var artist: String
         var cover: String
+        var user: String
         
-        init (title: String, artist: String, cover: String){
+        init (title: String, artist: String, cover: String, user: String){
             self.title = "Title"
             self.artist = "Artist"
             self.cover = ""
+            self.user = "User"
         }
     }
     
@@ -170,7 +172,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 }
                                 if let cover = JSON[index!].valueForKey("album")!.valueForKey("cover_big") as? String {
                                     self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
-                                    self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                                    self.albumBG.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
                                 }
                             }
                         } else {
@@ -187,7 +189,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         //Create tracks struct array from JSON
                         if JSON.count > index {
                             for i in index! + 1..<JSON.count {
-                                var newTrack = Track(title: "Track Name", artist: "Artist Name", cover: "")
+                                var newTrack = Track(title: "Track Name", artist: "Artist Name", cover: "", user: "")
                                 if let title = JSON[i].valueForKey("title_short") as? String {
                                     newTrack.title = title
                                 }
@@ -196,6 +198,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 }
                                 if let cover = JSON[i].valueForKey("album")!.valueForKey("cover_medium") as? String {
                                     newTrack.cover = cover
+                                }
+                                if let userFirstName = JSON[i].valueForKey("user")!.valueForKey("first_name") as? String{
+                                    if let userLastName = JSON[i].valueForKey("user")!.valueForKey("last_name") as? String {
+                                        newTrack.user = userFirstName + " " + userLastName
+                                    } else {
+                                        newTrack.user = userFirstName
+                                    }
                                 }
                                 self.tracks.append(newTrack)
                             }
@@ -273,6 +282,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
             cell.trackTitle.text = self.tracks[indexPath.row].title
+            cell.trackUser.text = self.tracks[indexPath.row].user
             cell.trackArtist.text = self.tracks[indexPath.row].artist
             cell.trackOrder.text = String(indexPath.row + 1)
             cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
@@ -341,6 +351,7 @@ class QueueTableViewCell: UITableViewCell {
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var trackArtist: UILabel!
     @IBOutlet weak var trackCover: UIImageView!
+    @IBOutlet weak var trackUser: UILabel!
     
 }
 
