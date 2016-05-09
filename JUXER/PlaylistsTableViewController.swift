@@ -63,6 +63,7 @@ class PlaylistsTableViewController: UITableViewController {
             playlists.removeAll()
         }
         
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: "http://juxer.club/api/playlist/?available=\(session[0].id!)")
         let request = NSMutableURLRequest(URL: url!)
         
@@ -70,6 +71,8 @@ class PlaylistsTableViewController: UITableViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){

@@ -56,6 +56,7 @@ class SongsTableViewController: UITableViewController {
     }
     
     private func getSongs(){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
@@ -63,6 +64,7 @@ class SongsTableViewController: UITableViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             if error != nil {
                 print(error)
@@ -108,6 +110,7 @@ class SongsTableViewController: UITableViewController {
     }
     
     private func getSongsNotOnQueue(){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
         let url = NSURL(string: "http://juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
@@ -116,6 +119,7 @@ class SongsTableViewController: UITableViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             if error != nil {
                 print(error)
@@ -233,6 +237,7 @@ class SongsTableViewController: UITableViewController {
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
@@ -243,6 +248,7 @@ class SongsTableViewController: UITableViewController {
                 request.HTTPBody = JSON
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     
                     if error != nil {
                         print(error)

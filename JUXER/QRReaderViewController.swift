@@ -183,6 +183,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 var session: [Session] = [Session]()
                 session = SessionDAO.fetchSession()
                 
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 let url = NSURL(string: "http://juxer.club/api/event/\(id)/")
                 let request = NSMutableURLRequest(URL: url!)
                 
@@ -190,6 +191,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     if error != nil {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){

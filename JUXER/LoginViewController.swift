@@ -93,9 +93,10 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         
         if((FBSDKAccessToken.currentAccessToken()) != nil)
         {
-            
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, name, first_name, last_name, id"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 if error == nil && result != nil
                 {
                     let userName: NSString = result.valueForKey("name") as! NSString
@@ -129,6 +130,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                             
                             // create post request
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                             let request = NSMutableURLRequest(URL: NSURL(string: "http://juxer.club/api/user/login/")!)
                             request.HTTPMethod = "POST"
                             
@@ -137,6 +139,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             request.HTTPBody = JSON
                             
                             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                                 let httpResponse = response as! NSHTTPURLResponse
                                 if error != nil{
                                     print(error)
@@ -185,9 +188,11 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
     }
     
     func getFBProfilePictureAndSegue(url: String){
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: url)
         let request = NSURLRequest(URL: url!)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
                 print(error)
                 self.deleteUser()
@@ -201,7 +206,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 if httpResponse.statusCode == 200 {
                     let documentsDirectory:String?
                     var path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                    print(8)
+                    
                     if path.count > 0 {
                         documentsDirectory = path[0] as? String
                         let savePath = documentsDirectory! + "/profilePic.jpg"

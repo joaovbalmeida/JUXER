@@ -16,10 +16,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func unwindToQueue(segue: UIStoryboardSegue){
     }
     
-    @IBAction func refresh(sender: AnyObject) {
-        getQueue()
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var requestLabelConstraint: NSLayoutConstraint!
@@ -40,7 +36,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     var overlay: UIView!
     var activityIndicator: UIActivityIndicatorView!
     var alertView: SCLAlertView!
-    
+
     private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
     
@@ -56,6 +52,17 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.cover = ""
             self.user = "User"
         }
+    }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(QueueViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
+    func handleRefresh(refreshControl: UIRefreshControl){
+        getQueue()
     }
     
     override func viewDidLoad() {
@@ -89,7 +96,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         tableView.allowsSelection = false
         
+        //Configure Pull to Refresh
+        refreshControl.tintColor = UIColor.whiteColor()
+        refreshControl.bounds.origin.y = 350
+        tableView.addSubview(refreshControl)
     }
+
 
     func updateHeaderView() {
         var headerRect = CGRect(x: 0, y: -kHeaderHeight, width: view.bounds.width , height: kHeaderHeight)
@@ -129,8 +141,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func getQueue(){
         
-        dispatch_async(dispatch_get_main_queue()){
-            self.startLoadOverlay()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        if refreshControl.refreshing == false {
+            dispatch_async(dispatch_get_main_queue()){
+                self.startLoadOverlay()
+            }
         }
         
         //Erase previous Data
@@ -145,10 +161,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
-                    self.stopLoadOverlay()
+                    if self.refreshControl.refreshing == false {
+                        self.stopLoadOverlay()
+                    }
                     self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             } else {
@@ -215,21 +234,28 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                       
                         //Refresh TableView
                         dispatch_async(dispatch_get_main_queue()){
+                            if self.refreshControl.refreshing == true{
+                                self.refreshControl.endRefreshing()
+                            }
                             self.stopLoadOverlay()
                             self.tableView.reloadData()
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()){
-                            self.stopLoadOverlay()
+                            if self.refreshControl.refreshing == false {
+                                self.stopLoadOverlay()
+                            }
                             self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
 
                 } catch let error as NSError {
                     dispatch_async(dispatch_get_main_queue()){
-                        self.stopLoadOverlay()
+                        if self.refreshControl.refreshing == false {
+                            self.stopLoadOverlay()
+                        }
                         self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-                    }                    
+                    }
                     print(error)
                 }
             }
@@ -263,7 +289,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                 return 1
             }
         case 1:
-            return tracks.count
+            if refreshControl.refreshing == true {
+                return 0
+            } else {
+                return tracks.count
+            }
         case 2:
             return 1
         default:
@@ -283,12 +313,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             let cell: QueueTableViewCell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath) as! QueueTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
-            cell.trackTitle.text = self.tracks[indexPath.row].title
-            cell.trackUser.text = self.tracks[indexPath.row].user
-            cell.trackArtist.text = self.tracks[indexPath.row].artist
-            cell.trackOrder.text = String(indexPath.row + 1)
-            cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
-            
+            if refreshControl.refreshing == false {
+                cell.trackTitle.text = self.tracks[indexPath.row].title
+                cell.trackUser.text = self.tracks[indexPath.row].user
+                cell.trackArtist.text = self.tracks[indexPath.row].artist
+                cell.trackOrder.text = String(indexPath.row + 1)
+                cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+            }
             return cell
         case 2:
             let cell: FooterTableViewCell = tableView.dequeueReusableCellWithIdentifier("footer") as! FooterTableViewCell

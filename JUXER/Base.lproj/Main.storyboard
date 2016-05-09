@@ -915,27 +915,12 @@
                                                         <color key="textColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eg9-4z-uxQ">
-                                                        <rect key="frame" x="8" y="22" width="99" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="NCo-Wi-Rcl"/>
-                                                            <constraint firstAttribute="width" constant="99" id="fiS-hq-Ebp"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Refresh">
-                                                            <color key="titleColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="refresh:" destination="qVC-SW-I7a" eventType="touchUpInside" id="LSc-zV-zn7"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Adi-BB-8bg" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="Al3-5M-QjN"/>
                                                     <constraint firstItem="nje-39-23i" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="DsL-VO-7y2"/>
                                                     <constraint firstItem="fHj-7u-0NZ" firstAttribute="top" secondItem="nje-39-23i" secondAttribute="bottom" constant="8" id="I13-go-I0k"/>
-                                                    <constraint firstItem="Eg9-4z-uxQ" firstAttribute="leading" secondItem="lOo-C9-ZCc" secondAttribute="leading" constant="8" id="Knm-QA-VFD"/>
                                                     <constraint firstItem="nje-39-23i" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="109" id="OD7-IO-CI3"/>
-                                                    <constraint firstItem="Eg9-4z-uxQ" firstAttribute="top" secondItem="lOo-C9-ZCc" secondAttribute="top" constant="22" id="S46-H2-xjD"/>
                                                     <constraint firstItem="Adi-BB-8bg" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="12" id="VvH-1l-mel"/>
                                                     <constraint firstItem="fHj-7u-0NZ" firstAttribute="centerX" secondItem="lOo-C9-ZCc" secondAttribute="centerX" id="cXT-hc-EqG"/>
                                                     <constraint firstItem="gLi-jc-rPj" firstAttribute="centerY" secondItem="lOo-C9-ZCc" secondAttribute="centerY" constant="85.5" id="eiH-Sl-CU2"/>

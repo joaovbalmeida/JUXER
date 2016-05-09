@@ -76,6 +76,7 @@ class HostViewController: UIViewController {
     private func getEvent(session: [Session]){
         
         let alertView = SCLAlertView()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
         let url = NSURL(string: "http://juxer.club/api/event/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
@@ -84,6 +85,8 @@ class HostViewController: UIViewController {
         request.setValue("JWT \(session[0].token!)", forHTTPHeaderField: "Authorization")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){

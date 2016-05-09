@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 let url = NSURL(string: "http://juxer.club/api-token-refresh/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
@@ -81,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 request.HTTPBody = JSON
                 
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     if error != nil{
                         self.deleteUserAndSession()
                         self.goToLoginVC()
