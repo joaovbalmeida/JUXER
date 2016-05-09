@@ -43,12 +43,14 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     private struct Track {
         var title: String
         var artist: String
+        var album: String
         var cover: String
         var user: String
         
-        init (title: String, artist: String, cover: String, user: String){
+        init (title: String, artist: String, album: String, cover: String, user: String){
             self.title = "Title"
             self.artist = "Artist"
+            self.album = "Album"
             self.cover = ""
             self.user = "User"
         }
@@ -162,6 +164,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
@@ -189,9 +192,15 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                     self.songScrollingLabel.text = title
                                 }
                                 if let artist = JSON[index!].valueForKey("artist")!.valueForKey("name") as? String {
-                                    self.artistLabel.text = artist
-                                    self.artistScrollingLabel.text = artist
+                                    if let album = JSON[index!].valueForKey("album")!.valueForKey("title") as? String {
+                                        self.artistLabel.text = artist + " - " + album
+                                        self.artistScrollingLabel.text = artist + " - " + album
+                                    } else {
+                                        self.artistLabel.text = artist
+                                        self.artistScrollingLabel.text = artist
+                                    }
                                 }
+                                
                                 if let cover = JSON[index!].valueForKey("album")!.valueForKey("cover_big") as? String {
                                     self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
                                     self.albumBG.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
@@ -211,12 +220,15 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         //Create tracks struct array from JSON
                         if JSON.count > index {
                             for i in index! + 1..<JSON.count {
-                                var newTrack = Track(title: "Track Name", artist: "Artist Name", cover: "", user: "")
+                                var newTrack = Track(title: "", artist: "", album: "", cover: "", user: "")
                                 if let title = JSON[i].valueForKey("title_short") as? String {
                                     newTrack.title = title
                                 }
                                 if let artist = JSON[i].valueForKey("artist")!.valueForKey("name") as? String {
                                     newTrack.artist = artist
+                                }
+                                if let album = JSON[i].valueForKey("album")!.valueForKey("title") as? String {
+                                    newTrack.album = album
                                 }
                                 if let cover = JSON[i].valueForKey("album")!.valueForKey("cover_medium") as? String {
                                     newTrack.cover = cover
@@ -314,11 +326,16 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
             if refreshControl.refreshing == false {
-                cell.trackTitle.text = self.tracks[indexPath.row].title
-                cell.trackUser.text = self.tracks[indexPath.row].user
-                cell.trackArtist.text = self.tracks[indexPath.row].artist
-                cell.trackOrder.text = String(indexPath.row + 1)
+        
                 cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+                cell.trackTitle.text = self.tracks[indexPath.row].title
+                if self.tracks[indexPath.row].album != "" {
+                    cell.trackArtist.text = self.tracks[indexPath.row].artist + " - " + self.tracks[indexPath.row].album
+                } else {
+                    cell.trackArtist.text = self.tracks[indexPath.row].artist
+                }
+                cell.trackUser.text = self.tracks[indexPath.row].user
+                cell.trackOrder.text = String(indexPath.row + 1)
             }
             return cell
         case 2:

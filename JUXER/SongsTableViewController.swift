@@ -24,12 +24,14 @@ class SongsTableViewController: UITableViewController {
     private struct Song {
         var title: String
         var artist: String
+        var album: String
         var cover: String
         var id: Int
         
-        init (title: String, artist: String, cover: String, id: Int){
+        init (title: String, artist: String, album: String, cover: String, id: Int){
             self.title = ""
             self.artist = ""
+            self.album = ""
             self.cover = ""
             self.id = 0
         }
@@ -143,7 +145,7 @@ class SongsTableViewController: UITableViewController {
                         //Wrap songs in struct
                         if songsData.count != 0 {
                             for item in songsData {
-                                var newSong = Song(title: "", artist: "", cover: "",id: 0)
+                                var newSong = Song(title: "", artist: "", album: "", cover: "",id: 0)
                                 if let id = item.valueForKey("id") as? Int {
                                     newSong.id = id
                                 }
@@ -154,13 +156,18 @@ class SongsTableViewController: UITableViewController {
                                     if let artistName = item.valueForKey("artist")!.valueForKey("name") as? String {
                                         newSong.artist = artistName
                                     }
+                                    if let albumName = item.valueForKey("album")!.valueForKey("title") as? String{
+                                        newSong.album = albumName
+                                    }
                                     if let cover = item.valueForKey("album")!.valueForKey("cover_medium") as? String{
                                         newSong.cover = cover
                                     }
                                     self.songs.append(newSong)
                                 }
                             }
+                            self.songs.sortInPlace { $0.artist < $1.artist }
                         }
+                        
                         dispatch_async(dispatch_get_main_queue()){
                             self.activityIndicator.stopAnimating()
                             self.tableView.reloadData()
@@ -206,14 +213,18 @@ class SongsTableViewController: UITableViewController {
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
         cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 85, bottom: 0, right: 0)
         cell.layoutMargins = UIEdgeInsetsZero
         
         if self.songs[indexPath.row].cover != "" {
             cell.songCover.kf_setImageWithURL(NSURL(string: self.songs[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
         }
+        if self.songs[indexPath.row].album != "" {
+            cell.songArtistLabel.text = self.songs[indexPath.row].artist + " - " + self.songs[indexPath.row].album
+        } else {
+            cell.songArtistLabel.text = self.songs[indexPath.row].artist
+        }
         cell.songTitleLabel.text = self.songs[indexPath.row].title
-        cell.songArtistLabel.text = self.songs[indexPath.row].artist
         
         return cell
     }
