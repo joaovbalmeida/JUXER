@@ -18,7 +18,9 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
-        startLoadOverlay()
+        dispatch_async(dispatch_get_main_queue()){
+            self.startLoadOverlay()
+        }
         
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         
@@ -34,7 +36,9 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
             }
             else if result.isCancelled
             {
-                self.stopLoadOverlay()
+                dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadOverlay()
+                }
                 print(result.debugDescription)
             }
             else
@@ -125,7 +129,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                             
                             // create post request
-                            let request = NSMutableURLRequest(URL: NSURL(string: "http://198.211.98.86/api/user/login/")!)
+                            let request = NSMutableURLRequest(URL: NSURL(string: "http://juxer.club/api/user/login/")!)
                             request.HTTPMethod = "POST"
                             
                             // insert json data to the request
@@ -137,8 +141,10 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                                 if error != nil{
                                     print(error)
                                     self.logOut()
-                                    self.stopLoadOverlay()
-                                    self.showConectionErrorAlert()
+                                    dispatch_async(dispatch_get_main_queue()){
+                                        self.stopLoadOverlay()
+                                        self.showConectionErrorAlert()
+                                    }
                                 } else if httpResponse.statusCode == 200 {
                                     UserDAO.insert(user)
                                     var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
@@ -148,23 +154,29 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                                     
                                 } else {
                                     self.logOut()
-                                    self.stopLoadOverlay()
-                                    self.showErrorAlert()
+                                    dispatch_async(dispatch_get_main_queue()){
+                                        self.stopLoadOverlay()
+                                        self.showErrorAlert()
+                                    }
                                 }
                             }
                             task.resume()
                         } catch {
                             print(error)
                             self.logOut()
-                            self.stopLoadOverlay()
-                            self.showErrorAlert()
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.stopLoadOverlay()
+                                self.showErrorAlert()
+                            }
                         }
                     }
                 } else {
                     print(error)
                     self.logOut()
-                    self.stopLoadOverlay()
-                    self.showErrorAlert()
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadOverlay()
+                        self.showErrorAlert()
+                    }
                 }
                 
             })
@@ -180,8 +192,10 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 print(error)
                 self.deleteUser()
                 self.logOut()
-                self.stopLoadOverlay()
-                self.showConectionErrorAlert()
+                dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadOverlay()
+                    self.showConectionErrorAlert()
+                }
             } else {
                 let httpResponse = response as! NSHTTPURLResponse
                 if httpResponse.statusCode == 200 {
@@ -199,8 +213,10 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 } else {
                     self.deleteUser()
                     self.logOut()
-                    self.stopLoadOverlay()
-                    self.showErrorAlert()
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadOverlay()
+                        self.showErrorAlert()
+                    }
                 }
             }
         })
@@ -208,15 +224,11 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
     }
     
     func showErrorAlert(){
-        dispatch_async(dispatch_get_main_queue()){
-            SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-        }
+        SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     func showConectionErrorAlert(){
-        dispatch_async(dispatch_get_main_queue()){
-            SCLAlertView().showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
-        }
+        SCLAlertView().showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private func storeSessionToken(userToken: String){
@@ -228,19 +240,15 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
     func startLoadOverlay(){
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(self.overlay)
-            self.view.bringSubviewToFront(self.activityIndicator)
-        }
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(self.overlay)
+        self.view.bringSubviewToFront(self.activityIndicator)
         self.loginButton.userInteractionEnabled = false
     }
     
     func stopLoadOverlay(){
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.stopAnimating()
-            self.overlay.removeFromSuperview()
-        }
+        self.activityIndicator.stopAnimating()
+        self.overlay.removeFromSuperview()
         self.loginButton.userInteractionEnabled = true
     }
     

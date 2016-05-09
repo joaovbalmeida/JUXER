@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
                 
                 // create post request
-                let url = NSURL(string: "http://198.211.98.86/api-token-refresh/")
+                let url = NSURL(string: "http://juxer.club/api-token-refresh/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 

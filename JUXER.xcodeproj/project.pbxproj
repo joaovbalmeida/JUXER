@@ -16,6 +16,7 @@
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		921D92E51C737CD700CD4B6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E31C737CD700CD4B6F /* SettingsViewController.swift */; };
+		9229810D1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229810C1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift */; };
 		9243D5761CDBCB9C00887367 /* placeholder-slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9243D5751CDBCB9C00887367 /* placeholder-slider.png */; };
 		925A06D31CC58EEB000EB344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06D11CC58EEB000EB344 /* User.swift */; };
 		925A06D41CC58EEB000EB344 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06D21CC58EEB000EB344 /* User+CoreDataProperties.swift */; };
@@ -62,6 +63,7 @@
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		921D92E31C737CD700CD4B6F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9229810C1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewController.swift; sourceTree = "<group>"; };
 		9243D5751CDBCB9C00887367 /* placeholder-slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-slider.png"; sourceTree = "<group>"; };
 		925A06D11CC58EEB000EB344 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		925A06D21CC58EEB000EB344 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				921D92E31C737CD700CD4B6F /* SettingsViewController.swift */,
 				929786C31C7E729C001B0397 /* TabBarController.swift */,
 				9294C5D91CD2A3C300D19287 /* ContentViewController.swift */,
+				9229810C1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */,
 				925A06D31CC58EEB000EB344 /* User.swift in Sources */,
 				925A06D41CC58EEB000EB344 /* User+CoreDataProperties.swift in Sources */,
+				9229810D1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift in Sources */,
 				9294C5DA1CD2A3C300D19287 /* ContentViewController.swift in Sources */,
 				929786C41C7E729C001B0397 /* TabBarController.swift in Sources */,
 				921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */,

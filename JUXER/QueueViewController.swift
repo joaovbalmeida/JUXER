@@ -71,7 +71,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //Check if connected to event
         if session.count != 0 && session[0].active == 1 {
-            
             getQueue()
             
         } else {
@@ -130,14 +129,16 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func getQueue(){
         
-        startLoadOverlay()
+        dispatch_async(dispatch_get_main_queue()){
+            self.startLoadOverlay()
+        }
         
         //Erase previous Data
         if self.tracks.count != 0 {
             tracks.removeAll()
         }
         
-        let url = NSURL(string: "http://198.211.98.86/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -146,8 +147,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                self.stopLoadOverlay()
-                self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadOverlay()
+                    self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                }
             } else {
                 do {
                     let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
@@ -209,21 +212,24 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 self.tracks.append(newTrack)
                             }
                         }
-                        
-                        self.stopLoadOverlay()
-                        
+                      
                         //Refresh TableView
                         dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoadOverlay()
                             self.tableView.reloadData()
                         }
                     } else {
-                        self.stopLoadOverlay()
-                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoadOverlay()
+                            self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        }
                     }
 
                 } catch let error as NSError {
-                    self.stopLoadOverlay()
-                    self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadOverlay()
+                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    }                    
                     print(error)
                 }
             }
@@ -234,18 +240,14 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     private func startLoadOverlay(){
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(self.overlay)
-            self.view.bringSubviewToFront(self.activityIndicator)
-        }
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(self.overlay)
+        self.view.bringSubviewToFront(self.activityIndicator)
     }
     
     private func stopLoadOverlay(){
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.stopAnimating()
-            self.overlay.removeFromSuperview()
-        }
+        self.activityIndicator.stopAnimating()
+        self.overlay.removeFromSuperview()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

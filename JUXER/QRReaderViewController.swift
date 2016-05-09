@@ -183,7 +183,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 var session: [Session] = [Session]()
                 session = SessionDAO.fetchSession()
                 
-                let url = NSURL(string: "http://198.211.98.86/api/event/\(id)/")
+                let url = NSURL(string: "http://juxer.club/api/event/\(id)/")
                 let request = NSMutableURLRequest(URL: url!)
                 
                 request.HTTPMethod = "GET"
@@ -192,10 +192,10 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
                     if error != nil {
                         print(error)
-                        alertView.addButton("OK"){
-                            self.stopLoadOverlay()
-                        }
                         dispatch_async(dispatch_get_main_queue()){
+                            alertView.addButton("OK"){
+                                self.stopLoadOverlay()
+                            }
                             alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                         return
@@ -214,10 +214,10 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                             }
                             
                         } else {
-                            alertView.addButton("OK"){
-                                self.stopLoadOverlay()
-                            }
                             dispatch_async(dispatch_get_main_queue()){
+                                alertView.addButton("OK"){
+                                    self.stopLoadOverlay()
+                                }
                                 alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
                         }
@@ -225,20 +225,20 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 }
                 task.resume()
             } else {
-                alertView.addButton("OK"){
-                    self.stopLoadOverlay()
-                }
                 dispatch_async(dispatch_get_main_queue()){
+                    alertView.addButton("OK"){
+                        self.stopLoadOverlay()
+                    }
                     alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             }
             
         } catch let error as NSError {
             print(error)
-            alertView.addButton("OK"){
-                self.stopLoadOverlay()
-            }
             dispatch_async(dispatch_get_main_queue()){
+                alertView.addButton("OK"){
+                    self.stopLoadOverlay()
+                }
                 alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             }
         }
@@ -247,19 +247,15 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     func startLoadOverlay(){
         overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.startAnimating()
-            self.view.addSubview(self.overlay)
-            self.view.bringSubviewToFront(self.activityIndicator)
-        }
+        self.activityIndicator.startAnimating()
+        self.view.addSubview(self.overlay)
+        self.view.bringSubviewToFront(self.activityIndicator)
     }
     
     func stopLoadOverlay(){
         self.frameView.frame = CGRectZero
-        dispatch_async(dispatch_get_main_queue()){
-            self.activityIndicator.stopAnimating()
-            self.overlay.removeFromSuperview()
-        }
+        self.activityIndicator.stopAnimating()
+        self.overlay.removeFromSuperview()
         self.captureSession.startRunning()
     }
     

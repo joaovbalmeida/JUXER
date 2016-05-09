@@ -1,17 +1,19 @@
 //
-//  PlaylistsTableViewController.swift
+//  PlaylistCollectionViewController.swift
 //  JUXER
 //
-//  Created by Joao Victor Almeida on 07/02/16.
+//  Created by Joao Victor Almeida on 06/05/16.
 //  Copyright © 2016 Joao Victor Almeida. All rights reserved.
 //
 
 import UIKit
-import SwiftDate
-import Kingfisher
 import SCLAlertView
+import Kingfisher
+import SwiftDate
 
-class PlaylistsTableViewController: UITableViewController {
+class PlaylistCollectionViewController: UICollectionViewController {
+    
+    let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     
     private var playlists = [Playlist]()
     private var session = [Session]()
@@ -34,24 +36,22 @@ class PlaylistsTableViewController: UITableViewController {
             self.id = 0
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //Configure Actitivity Indicator
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10 - (self.navigationController?.navigationBar.frame.height)!, width: 20, height: 20)
-        self.tableView.addSubview(activityIndicator)
+        self.collectionView!.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
         
         session = SessionDAO.fetchSession()
         getPlaylists()
-
     }
-    
+
     private func getPlaylists(){
         
         //Configure Alert View
@@ -78,7 +78,7 @@ class PlaylistsTableViewController: UITableViewController {
                     }
                     alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
-
+                
             } else {
                 let httpResponse = response as! NSHTTPURLResponse
                 if httpResponse.statusCode == 200 {
@@ -134,7 +134,7 @@ class PlaylistsTableViewController: UITableViewController {
                         //Refresh TableView
                         dispatch_async(dispatch_get_main_queue()){
                             self.activityIndicator.stopAnimating()
-                            self.tableView.reloadData()
+                            self.collectionView!.reloadData()
                         }
                         
                     } catch let error as NSError {
@@ -160,77 +160,78 @@ class PlaylistsTableViewController: UITableViewController {
         }
         task.resume()
     }
- 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
+
+    // MARK: UICollectionViewDataSource
+
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playlists.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath) as! PlaylistsTableViewCell
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
-        cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        let cell: PlaylistCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("playlist", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+
         if playlists[indexPath.row].cover != "" {
             cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!)
-        }
-        if playlists[indexPath.row].deadline != nil {
-            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                    .row].deadline!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-
-        } else {
-            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         }
         cell.playlistName.text = playlists[indexPath.row].name
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65
+    func collectionView(collectionView: UICollectionView!,
+                        layout collectionViewLayout: UICollectionViewLayout!,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
+    return CGSize(width: self.view.frame.width/2 - 15, height: self.collectionView!.frame.height/2 - 20)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        self.selectedPlaylist = playlists[indexPath.row].name
-        self.performSegueWithIdentifier("toActiveSongs", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "toActiveSongs" {
-            let destVC = segue.destinationViewController as! SongsTableViewController
-            destVC.playlistName = self.selectedPlaylist
-        }
+    func collectionView(collectionView: UICollectionView!,
+                        layout collectionViewLayout: UICollectionViewLayout!,
+                               insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    return sectionInsets
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: UICollectionViewDelegate
+
+    /*
+    // Uncomment this method to specify if the specified item should be highlighted during tracking
+    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
+    */
+
+    /*
+    // Uncomment this method to specify if the specified item should be selected
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    */
+
+    /*
+    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+        return false
+    }
+
+    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
+    }
+    */
+
 }
 
-/*
-
-    PLAYLISTS CELL CLASS
-
-*/
-
-class PlaylistsTableViewCell: UITableViewCell {
+class PlaylistCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var playlistCover: UIImageView!
     @IBOutlet weak var playlistName: UILabel!
-    @IBOutlet weak var playlistHour: UILabel!
     
 }

@@ -24,13 +24,13 @@ class HostViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activityIndicatorQR: UIActivityIndicatorView!
     
+    @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var scanLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     
     var session = [Session]()
-    let alertView = SCLAlertView()
     
     @IBAction func segueToQR(sender: AnyObject) {
         activityIndicatorQR.startAnimating()
@@ -38,6 +38,7 @@ class HostViewController: UIViewController {
     
     @IBAction func exitEvent(sender: AnyObject) {
         
+        let alertView = SCLAlertView()
         alertView.addButton("Sim"){
             
             //Set Session Inactive
@@ -48,7 +49,7 @@ class HostViewController: UIViewController {
             //Segue to Home
             self.performSegueWithIdentifier("exitEvent", sender: self)
         }
-            alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     override func viewDidLoad() {
@@ -63,6 +64,7 @@ class HostViewController: UIViewController {
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
+            whiteView.hidden = true
             eventImage.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false
@@ -73,7 +75,9 @@ class HostViewController: UIViewController {
     
     private func getEvent(session: [Session]){
         
-        let url = NSURL(string: "http://198.211.98.86/api/event/\(session[0].id!)/")
+        let alertView = SCLAlertView()
+        
+        let url = NSURL(string: "http://juxer.club/api/event/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -82,7 +86,9 @@ class HostViewController: UIViewController {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             if error != nil {
                 print(error)
-                self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                dispatch_async(dispatch_get_main_queue()){
+                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                }
             } else {
                 let httpResponse = response as! NSHTTPURLResponse
                 if httpResponse.statusCode == 200 {
@@ -111,11 +117,15 @@ class HostViewController: UIViewController {
                         
                     } catch let error as NSError {
                         print(error)
-                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        dispatch_async(dispatch_get_main_queue()){
+                            alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        }
                     }
                 } else {
                     print(httpResponse.statusCode)
-                    self.alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    dispatch_async(dispatch_get_main_queue()){
+                        alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    }
                 }
             }
         }
