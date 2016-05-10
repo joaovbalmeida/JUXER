@@ -187,7 +187,7 @@ class PlaylistCollectionViewController: UICollectionViewController {
     func collectionView(collectionView: UICollectionView!,
                         layout collectionViewLayout: UICollectionViewLayout!,
                                sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
-    return CGSize(width: self.view.frame.width/2 - 15, height: self.collectionView!.frame.height/2 - 20)
+    return CGSize(width: self.view.frame.width/2 - 20, height: self.collectionView!.frame.height/2 - 20)
     }
     
     func collectionView(collectionView: UICollectionView!,

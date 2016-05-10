@@ -105,7 +105,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         //Configure Pull to Refresh
         refreshControl.tintColor = UIColor.whiteColor()
         refreshControl.bounds.origin.y = 350
-        tableView.addSubview(refreshControl)
+        if session.count != 0 && session[0].active == 1 {
+            tableView.addSubview(refreshControl)
+        }
         
         //Configure NSObserver for Reload
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QueueViewController.reloadTableData(_:)), name: "reload", object: nil)
