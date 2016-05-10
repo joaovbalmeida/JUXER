@@ -35,6 +35,16 @@ class PlaylistsTableViewController: UITableViewController {
         }
     }
 
+    lazy var playlistsRefreshControl: UIRefreshControl = {
+        let playlistsRefreshControl = UIRefreshControl()
+        playlistsRefreshControl.addTarget(self, action: #selector(PlaylistsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return playlistsRefreshControl
+    }()
+    
+    func handleRefresh(refreshControl: UIRefreshControl){
+        getPlaylists()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +54,10 @@ class PlaylistsTableViewController: UITableViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10 - (self.navigationController?.navigationBar.frame.height)!, width: 20, height: 20)
         self.tableView.addSubview(activityIndicator)
+        
+        //Configure Refresh Controller
+        playlistsRefreshControl.tintColor = UIColor.whiteColor()
+        self.tableView.addSubview(playlistsRefreshControl)
         
         activityIndicator.startAnimating()
         
@@ -76,6 +90,7 @@ class PlaylistsTableViewController: UITableViewController {
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoad()
                     alertView.addButton("OK"){
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
@@ -128,21 +143,21 @@ class PlaylistsTableViewController: UITableViewController {
                                 if endDateNil == false {
                                     newPlaylist.deadline = endDate
                                 }
-                                
                                 self.playlists.append(newPlaylist)
                             }
-                            
+                            self.playlists.sortInPlace { $0.name < $1.name }
                         }
                         
                         //Refresh TableView
                         dispatch_async(dispatch_get_main_queue()){
-                            self.activityIndicator.stopAnimating()
+                            self.stopLoad()
                             self.tableView.reloadData()
                         }
                         
                     } catch let error as NSError {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoad()
                             alertView.addButton("OK"){
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             }
@@ -152,6 +167,7 @@ class PlaylistsTableViewController: UITableViewController {
                 } else {
                     print(httpResponse.statusCode)
                     dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoad()
                         alertView.addButton("OK"){
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
@@ -162,6 +178,14 @@ class PlaylistsTableViewController: UITableViewController {
             }
         }
         task.resume()
+    }
+    
+    private func stopLoad(){
+        if playlistsRefreshControl.refreshing == false {
+            self.activityIndicator.stopAnimating()
+        } else {
+            self.playlistsRefreshControl.endRefreshing()
+        }
     }
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -180,7 +204,7 @@ class PlaylistsTableViewController: UITableViewController {
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
         cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
         cell.layoutMargins = UIEdgeInsetsZero
         
         if playlists[indexPath.row].cover != "" {
@@ -201,7 +225,7 @@ class PlaylistsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65
+        return 70
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -35,7 +35,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     var overlay: UIView!
     var activityIndicator: UIActivityIndicatorView!
-    var alertView: SCLAlertView!
+    var alertView = SCLAlertView()
 
     private var session: [Session] = [Session]()
     private var tracks: [Track] = [Track]()
@@ -177,9 +177,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
-                    if self.refreshControl.refreshing == false {
-                        self.stopLoadOverlay()
-                    }
+                    self.stopLoad()
                     self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             } else {
@@ -255,26 +253,19 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                       
                         //Refresh TableView
                         dispatch_async(dispatch_get_main_queue()){
-                            if self.refreshControl.refreshing == true{
-                                self.refreshControl.endRefreshing()
-                            }
-                            self.stopLoadOverlay()
+                            self.stopLoad()
                             self.tableView.reloadData()
                         }
                     } else {
                         dispatch_async(dispatch_get_main_queue()){
-                            if self.refreshControl.refreshing == false {
-                                self.stopLoadOverlay()
-                            }
+                            self.stopLoad()
                             self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
 
                 } catch let error as NSError {
                     dispatch_async(dispatch_get_main_queue()){
-                        if self.refreshControl.refreshing == false {
-                            self.stopLoadOverlay()
-                        }
+                        self.stopLoad()
                         self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                     print(error)
@@ -292,9 +283,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.bringSubviewToFront(self.activityIndicator)
     }
     
-    private func stopLoadOverlay(){
-        self.activityIndicator.stopAnimating()
-        self.overlay.removeFromSuperview()
+    private func stopLoad(){
+        if refreshControl.refreshing == false {
+            self.activityIndicator.stopAnimating()
+            self.overlay.removeFromSuperview()
+        } else {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

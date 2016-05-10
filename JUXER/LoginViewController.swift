@@ -71,12 +71,9 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
         //Configure PageViewController
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
-        
         let startVC = self.viewControllerAtIndex(0) as ContentViewController
         let viewControllers = NSArray(object: startVC)
-        
         self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
-        
         self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
         
         //Add PageViewController

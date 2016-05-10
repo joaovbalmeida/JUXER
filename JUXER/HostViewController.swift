@@ -88,7 +88,8 @@ class HostViewController: UIViewController {
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
-                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    self.activityIndicator.stopAnimating()
+                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             } else {
                 let httpResponse = response as! NSHTTPURLResponse
@@ -119,34 +120,20 @@ class HostViewController: UIViewController {
                     } catch let error as NSError {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){
-                            alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            self.activityIndicator.stopAnimating()
+                            alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
                 } else {
                     print(httpResponse.statusCode)
                     dispatch_async(dispatch_get_main_queue()){
-                        alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        self.activityIndicator.stopAnimating()
+                        alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                 }
             }
         }
         task.resume()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -37,6 +37,17 @@ class SongsTableViewController: UITableViewController {
         }
     }
     
+    lazy var songsRefreshControl: UIRefreshControl = {
+        let songsRefreshControl = UIRefreshControl()
+        songsRefreshControl.addTarget(self, action: #selector(SongsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return songsRefreshControl
+    }()
+    
+    func handleRefresh(refreshControl: UIRefreshControl){
+        getSongs()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,12 +63,19 @@ class SongsTableViewController: UITableViewController {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         alertView = SCLAlertView(appearance: appearance)
         
+        //Configure Pull to Refresh
+        songsRefreshControl.tintColor = UIColor.whiteColor()
+        self.tableView.addSubview(songsRefreshControl)
+        
         session = SessionDAO.fetchSession()
         getSongs()
     
     }
     
     private func getSongs(){
+        
+        
+        
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
@@ -71,6 +89,7 @@ class SongsTableViewController: UITableViewController {
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadSpinner()
                     self.connectionErrorAlert()
                 }
             } else {
@@ -97,12 +116,14 @@ class SongsTableViewController: UITableViewController {
                     } catch let error as NSError {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoadSpinner()
                             self.JSONErrorAlert()
                         }
                     }
                 } else {
                     print(httpResponse.statusCode)
                     dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadSpinner()
                         self.connectionErrorAlert()
                     }
                 }
@@ -126,6 +147,7 @@ class SongsTableViewController: UITableViewController {
             if error != nil {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
+                    self.stopLoadSpinner()
                     self.connectionErrorAlert()
                 }
             } else {
@@ -169,19 +191,21 @@ class SongsTableViewController: UITableViewController {
                         }
                         
                         dispatch_async(dispatch_get_main_queue()){
-                            self.activityIndicator.stopAnimating()
+                            self.stopLoadSpinner()
                             self.tableView.reloadData()
                         }
                         
                     } catch let error as NSError {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoadSpinner()
                             self.JSONErrorAlert()
                         }     
                     }
                 } else {
                     print(httpResponse.statusCode)
                     dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadSpinner()
                         self.connectionErrorAlert()
                     }
                 }
@@ -190,10 +214,12 @@ class SongsTableViewController: UITableViewController {
         task.resume()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-        
+    private func stopLoadSpinner(){
+        if songsRefreshControl.refreshing == false {
+            self.activityIndicator.stopAnimating()
+        } else {
+            self.songsRefreshControl.endRefreshing()
+        }
     }
 
     // MARK: - Table view data source
@@ -232,13 +258,11 @@ class SongsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
         dispatch_async(dispatch_get_main_queue()){
            self.startLoadOverlay()
         }
         
         var alertView = SCLAlertView()
-        
         let jsonObject: [String : AnyObject] =
             [ "id": self.songs[indexPath.row].id ]
        
