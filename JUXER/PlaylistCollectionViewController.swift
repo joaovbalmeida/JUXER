@@ -43,7 +43,7 @@ class PlaylistCollectionViewController: UICollectionViewController {
         //Configure Actitivity Indicator
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.view.bounds.maxY/2 - 10 - (self.navigationController?.navigationBar.frame.height)!, width: 20, height: 20)
+        activityIndicator.frame = CGRect(x: self.view.bounds.maxX/2 - 10, y: self.collectionView!.bounds.midY - 10, width: 20, height: 20)
         self.collectionView!.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
@@ -187,7 +187,7 @@ class PlaylistCollectionViewController: UICollectionViewController {
     func collectionView(collectionView: UICollectionView!,
                         layout collectionViewLayout: UICollectionViewLayout!,
                                sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
-    return CGSize(width: self.view.frame.width/2 - 20, height: self.collectionView!.frame.height/2 - 20)
+    return CGSize(width: self.view.frame.width - 100, height: self.collectionView!.frame.height - 100)
     }
     
     func collectionView(collectionView: UICollectionView!,

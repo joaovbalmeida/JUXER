@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E1E5806ED23C777F60FE9C7 /* Pods_JUXER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B0FA4D2F0C11C7382AE1FE /* Pods_JUXER.framework */; };
+		2D67C427096BCD5B757EA5E0 /* Pods_JUXER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079872956EA5B9C054652988 /* Pods_JUXER.framework */; };
 		921D92C11C737B9600CD4B6F /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C01C737B9600CD4B6F /* UserDAO.swift */; };
 		921D92C71C737BB300CD4B6F /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92C61C737BB300CD4B6F /* SessionDAO.swift */; };
 		921D92D11C737BF800CD4B6F /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92CD1C737BF800CD4B6F /* QRReaderViewController.swift */; };
@@ -16,6 +16,8 @@
 		921D92D91C737C1500CD4B6F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92D81C737C1500CD4B6F /* DatabaseManager.swift */; };
 		921D92E41C737CD700CD4B6F /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */; };
 		9229810D1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229810C1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift */; };
+		9229D5401CE235C800EE4AC2 /* ProfilePlaceholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9229D53F1CE235C800EE4AC2 /* ProfilePlaceholder.jpg */; };
+		9229D5421CE235CD00EE4AC2 /* EventBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9229D5411CE235CD00EE4AC2 /* EventBackground.jpg */; };
 		9243D5761CDBCB9C00887367 /* placeholder-slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 9243D5751CDBCB9C00887367 /* placeholder-slider.png */; };
 		9258486C1CE17D4E00A4C46E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9258486B1CE17D4E00A4C46E /* SettingsTableViewController.swift */; };
 		925A06D31CC58EEB000EB344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925A06D11CC58EEB000EB344 /* User.swift */; };
@@ -29,8 +31,6 @@
 		929786C41C7E729C001B0397 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C31C7E729C001B0397 /* TabBarController.swift */; };
 		929786C81C7E75B4001B0397 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C71C7E75B4001B0397 /* HostViewController.swift */; };
 		929786CA1C7F3EA9001B0397 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929786C91C7F3EA9001B0397 /* QueueViewController.swift */; };
-		92A745601CD3D3BF00F7E3CE /* QRBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A7455F1CD3D3BF00F7E3CE /* QRBackground.png */; };
-		92A745641CD40A3200F7E3CE /* ProfilePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A745631CD40A3200F7E3CE /* ProfilePlaceholder.png */; };
 		92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */; };
 		92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */; };
 		92A9ABDA1CB328AD00650A1A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */; };
@@ -53,7 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		62B0FA4D2F0C11C7382AE1FE /* Pods_JUXER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JUXER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		079872956EA5B9C054652988 /* Pods_JUXER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JUXER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3F94BBF499A3E713A4ECC9 /* Pods-JUXER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JUXER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JUXER/Pods-JUXER.debug.xcconfig"; sourceTree = "<group>"; };
 		921D92C01C737B9600CD4B6F /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		921D92C61C737BB300CD4B6F /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
@@ -63,6 +63,8 @@
 		921D92D81C737C1500CD4B6F /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		921D92E21C737CD700CD4B6F /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		9229810C1CDCEA9B00C5B00C /* PlaylistCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewController.swift; sourceTree = "<group>"; };
+		9229D53F1CE235C800EE4AC2 /* ProfilePlaceholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ProfilePlaceholder.jpg; sourceTree = "<group>"; };
+		9229D5411CE235CD00EE4AC2 /* EventBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EventBackground.jpg; sourceTree = "<group>"; };
 		9243D5751CDBCB9C00887367 /* placeholder-slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-slider.png"; sourceTree = "<group>"; };
 		9258486B1CE17D4E00A4C46E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		925A06D11CC58EEB000EB344 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -78,8 +80,6 @@
 		929786C31C7E729C001B0397 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		929786C71C7E75B4001B0397 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		929786C91C7F3EA9001B0397 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
-		92A7455F1CD3D3BF00F7E3CE /* QRBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRBackground.png; sourceTree = "<group>"; };
-		92A745631CD40A3200F7E3CE /* ProfilePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfilePlaceholder.png; sourceTree = "<group>"; };
 		92A9ABD51CB328A400650A1A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		92A9ABD61CB328A400650A1A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		92A9ABD91CB328AD00650A1A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 				92A9ABD81CB328A400650A1A /* FBSDKLoginKit.framework in Frameworks */,
 				92A9ABD71CB328A400650A1A /* FBSDKCoreKit.framework in Frameworks */,
 				92A9ABDA1CB328AD00650A1A /* FBSDKShareKit.framework in Frameworks */,
-				0E1E5806ED23C777F60FE9C7 /* Pods_JUXER.framework in Frameworks */,
+				2D67C427096BCD5B757EA5E0 /* Pods_JUXER.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +116,7 @@
 		4F2F294A8A727E89E772DDC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				62B0FA4D2F0C11C7382AE1FE /* Pods_JUXER.framework */,
+				079872956EA5B9C054652988 /* Pods_JUXER.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,9 +159,9 @@
 		921D92BD1C737B3B00CD4B6F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				92A745631CD40A3200F7E3CE /* ProfilePlaceholder.png */,
-				92A7455F1CD3D3BF00F7E3CE /* QRBackground.png */,
 				9290594D1CB6F10E00C3765D /* BigCoverPlaceHolder.png */,
+				9229D5411CE235CD00EE4AC2 /* EventBackground.jpg */,
+				9229D53F1CE235C800EE4AC2 /* ProfilePlaceholder.jpg */,
 				9243D5751CDBCB9C00887367 /* placeholder-slider.png */,
 				926C63F81CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg */,
 			);
@@ -295,12 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9243D5761CDBCB9C00887367 /* placeholder-slider.png in Resources */,
-				92A745601CD3D3BF00F7E3CE /* QRBackground.png in Resources */,
+				9229D5421CE235CD00EE4AC2 /* EventBackground.jpg in Resources */,
 				926C63F91CB6CEDA00CA9D9F /* CoverPlaceHolder.jpg in Resources */,
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
+				9229D5401CE235C800EE4AC2 /* ProfilePlaceholder.jpg in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
 				9290594E1CB6F10E00C3765D /* BigCoverPlaceHolder.png in Resources */,
-				92A745641CD40A3200F7E3CE /* ProfilePlaceholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

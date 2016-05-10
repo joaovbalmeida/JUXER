@@ -99,7 +99,7 @@ class HostViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.activityIndicator.stopAnimating()
                             if let picture = resultJSON.valueForKey("picture") as? String {
-                                self.eventBG.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "QRBackground.png"))
+                                self.eventBG.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "EventBackground.jpg"))
                                 self.eventImage.kf_setImageWithURL(NSURL(string: picture)!, placeholderImage: UIImage(named: "placeholder-slider.png"))
                             }
                             if let name = resultJSON.valueForKey("name") as? String {
