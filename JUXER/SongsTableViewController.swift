@@ -74,9 +74,13 @@ class SongsTableViewController: UITableViewController {
     
     private func getSongs(){
         
-        
+        //Erase previous Data
+        if self.queueSongsID.count != 0 {
+            queueSongsID.removeAll()
+        }
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
@@ -134,6 +138,11 @@ class SongsTableViewController: UITableViewController {
     
     private func getSongsNotOnQueue(){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        //Erase previous Data
+        if self.songs.count != 0 {
+            songs.removeAll()
+        }
         
         let url = NSURL(string: "http://juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
