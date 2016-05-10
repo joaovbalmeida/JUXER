@@ -12,14 +12,16 @@ import SCLAlertView
 
 class SongsTableViewController: UITableViewController {
     
-    private var songs: [Song] = [Song]()
-    private var queueSongsID: [Int] = [Int]()
-    var playlistName: String = String()
+    private var songs = [Song]()
+    private var filteredSongs = [Song]()
+    private var queueSongsID = [Int]()
+    var playlistName = String()
     var session = [Session]()
     
     var activityIndicator: UIActivityIndicatorView!
     var overlay: UIView!
     var alertView = SCLAlertView()
+    let searchController = UISearchController(searchResultsController: nil)
     
     private struct Song {
         var title: String
@@ -63,13 +65,35 @@ class SongsTableViewController: UITableViewController {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         alertView = SCLAlertView(appearance: appearance)
         
+        //Configure SearchBar
+        searchController.searchBar.barStyle = .Black
+        searchController.searchBar.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
+        searchController.searchBar.keyboardAppearance = .Dark
+        searchController.searchBar.enablesReturnKeyAutomatically = true
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
         //Configure Pull to Refresh
         songsRefreshControl.tintColor = UIColor.whiteColor()
-        self.tableView.addSubview(songsRefreshControl)
+        self.tableView.tableHeaderView!.addSubview(songsRefreshControl)
         
         session = SessionDAO.fetchSession()
         getSongs()
     
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredSongs = songs.filter { Song in
+            if Song.title.lowercaseString.containsString(searchText.lowercaseString) || Song.artist.lowercaseString.containsString(searchText.lowercaseString) || Song.album.lowercaseString.containsString(searchText.lowercaseString) {
+                return true
+            } else {
+                return false
+            }
+        }
+        tableView.reloadData()
     }
     
     private func getSongs(){
@@ -240,6 +264,9 @@ class SongsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredSongs.count
+        }
         return songs.count
     }
     
@@ -251,15 +278,26 @@ class SongsTableViewController: UITableViewController {
         cell.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
         cell.layoutMargins = UIEdgeInsetsZero
         
-        if self.songs[indexPath.row].cover != "" {
-            cell.songCover.kf_setImageWithURL(NSURL(string: self.songs[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
-        }
-        if self.songs[indexPath.row].album != "" {
-            cell.songArtistLabel.text = self.songs[indexPath.row].artist + " - " + self.songs[indexPath.row].album
+        let song: Song
+        
+        //Get song from filter or not
+        if searchController.active && searchController.searchBar.text != "" {
+            song = filteredSongs[indexPath.row]
         } else {
-            cell.songArtistLabel.text = self.songs[indexPath.row].artist
+            print(indexPath.row)
+            song = songs[indexPath.row]
         }
-        cell.songTitleLabel.text = self.songs[indexPath.row].title
+        
+        //Show info from the song
+        if song.cover != "" {
+            cell.songCover.kf_setImageWithURL(NSURL(string: song.cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+        }
+        if song.album != "" {
+            cell.songArtistLabel.text = song.artist + " - " + song.album
+        } else {
+            cell.songArtistLabel.text = song.artist
+        }
+        cell.songTitleLabel.text = song.title
         
         return cell
     }
@@ -271,9 +309,18 @@ class SongsTableViewController: UITableViewController {
            self.startLoadOverlay()
         }
         
+        let id: Int
+        
+        //Get song id from filter or not
+        if searchController.active && searchController.searchBar.text != "" {
+            id = filteredSongs[indexPath.row].id
+        } else {
+            id = songs[indexPath.row].id
+        }
+        
         var alertView = SCLAlertView()
         let jsonObject: [String : AnyObject] =
-            [ "id": self.songs[indexPath.row].id ]
+            [ "id": id ]
        
         if NSJSONSerialization.isValidJSONObject(jsonObject) {
             
@@ -393,6 +440,12 @@ class SongsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
+}
+
+extension SongsTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
 
  /*
