@@ -24,7 +24,6 @@ class HostViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activityIndicatorQR: UIActivityIndicatorView!
     
-    @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var scanLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var instructionLabel: UILabel!
@@ -64,7 +63,6 @@ class HostViewController: UIViewController {
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
-            whiteView.hidden = true
             eventImage.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false

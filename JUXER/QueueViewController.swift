@@ -67,6 +67,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         getQueue()
     }
     
+    func reloadTableData(notification: NSNotification) {
+        getQueue()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -102,6 +106,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         refreshControl.tintColor = UIColor.whiteColor()
         refreshControl.bounds.origin.y = 350
         tableView.addSubview(refreshControl)
+        
+        //Configure NSObserver for Reload
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(QueueViewController.reloadTableData(_:)), name: "reload", object: nil)
     }
 
 

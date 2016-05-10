@@ -213,7 +213,7 @@ class SongsTableViewController: UITableViewController {
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
         cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 85, bottom: 0, right: 0)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
         cell.layoutMargins = UIEdgeInsetsZero
         
         if self.songs[indexPath.row].cover != "" {
@@ -274,6 +274,7 @@ class SongsTableViewController: UITableViewController {
                         let httpResponse = response as! NSHTTPURLResponse
                         if httpResponse.statusCode == 200 {
                             
+                            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
                             dispatch_async(dispatch_get_main_queue()){
                                 let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
                                 alertView = SCLAlertView(appearance: appearance)
@@ -343,8 +344,10 @@ class SongsTableViewController: UITableViewController {
     
     private func startLoadOverlay(){
         self.tableView.userInteractionEnabled = false
-        self.overlay = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        self.navigationController?.navigationBar.userInteractionEnabled = false
+        self.overlay = UIView(frame: CGRectMake(0, tableView.contentOffset.y, self.view.bounds.width, self.view.bounds.height))
         self.overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.activityIndicator.frame.origin.y = self.tableView.contentOffset.y + self.view.bounds.height/2 - 10
         self.activityIndicator.startAnimating()
         self.view.addSubview(self.overlay)
         self.view.bringSubviewToFront(self.activityIndicator)
@@ -354,6 +357,7 @@ class SongsTableViewController: UITableViewController {
         self.activityIndicator.stopAnimating()
         self.overlay.removeFromSuperview()
         self.tableView.userInteractionEnabled = true
+        self.navigationController?.navigationBar.userInteractionEnabled = true
     }
     
 }
