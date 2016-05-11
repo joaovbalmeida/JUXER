@@ -72,11 +72,6 @@ class PlaylistsTableViewController: UITableViewController {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         let alertView = SCLAlertView(appearance: appearance)
         
-        //Erase previous Data
-        if self.playlists.count != 0 {
-            playlists.removeAll()
-        }
-        
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: "http://juxer.club/api/playlist/?available=\(session[0].id!)")
         let request = NSMutableURLRequest(URL: url!)
@@ -104,57 +99,60 @@ class PlaylistsTableViewController: UITableViewController {
                         let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                         let JSON = resultJSON.valueForKey("results") as! NSMutableArray
                         
-                        //Configure Calendar
-                        let calendar = NSCalendar.currentCalendar()
-                        let flags = NSCalendarUnit(rawValue: UInt.max)
-                        let components = calendar.components(flags, fromDate: NSDate())
-                        let today = calendar.dateFromComponents(components)
-                        
-                        //Create playlists struct array from JSON
-                        for item in JSON {
+                        if JSON.count > 0 {
                             
                             var tempPlaylist = [Playlist]()
                             
-                            //Get playlist time and convert to NSDate
-                            var startDate = NSDate()
-                            var endDate = NSDate()
-                            var endDateNil = false
-                            if let dateString = item.valueForKey("starts_at") as? String {
-                                startDate = dateString.toDateFromISO8601()!
-                            }
-                            if let endDateString = item.valueForKey("deadline") as? String {
-                                endDate = endDateString.toDateFromISO8601()!
-                            } else {
-                                endDateNil = true
+                            //Configure Calendar
+                            let calendar = NSCalendar.currentCalendar()
+                            let flags = NSCalendarUnit(rawValue: UInt.max)
+                            let components = calendar.components(flags, fromDate: NSDate())
+                            let today = calendar.dateFromComponents(components)
+                            
+                            //Create playlists struct array from JSON
+                            for item in JSON {
+                                
+                                //Get playlist time and convert to NSDate
+                                var startDate = NSDate()
+                                var endDate = NSDate()
+                                var endDateNil = false
+                                if let dateString = item.valueForKey("starts_at") as? String {
+                                    startDate = dateString.toDateFromISO8601()!
+                                }
+                                if let endDateString = item.valueForKey("deadline") as? String {
+                                    endDate = endDateString.toDateFromISO8601()!
+                                } else {
+                                    endDateNil = true
+                                }
+                                
+                                //Compare playlist hour to current time
+                                if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!) > 0 {
+                                    
+                                    var newPlaylist = Playlist(name: "", schedule: NSDate(), cover: "", id: 0)
+                                    if let name = item.valueForKey("name") as? String {
+                                        newPlaylist.name = name
+                                    }
+                                    if let id = item.valueForKey("id") as? Int {
+                                        newPlaylist.id = id
+                                    }
+                                    if let picture = item.valueForKey("picture") as? String {
+                                        newPlaylist.cover = picture
+                                    }
+                                    newPlaylist.schedule = startDate
+                                    if endDateNil == false {
+                                        newPlaylist.deadline = endDate
+                                    }
+                                    tempPlaylist.append(newPlaylist)
+                                }
+                                tempPlaylist.sortInPlace { $0.name < $1.name }
+                                self.playlists = tempPlaylist
                             }
                             
-                            //Compare playlist hour to current time
-                            if startDate.timeIntervalSinceDate(today!).isSignMinus && endDate.timeIntervalSinceDate(today!) > 0 {
-                                
-                                var newPlaylist = Playlist(name: "", schedule: NSDate(), cover: "", id: 0)
-                                if let name = item.valueForKey("name") as? String {
-                                    newPlaylist.name = name
-                                }
-                                if let id = item.valueForKey("id") as? Int {
-                                    newPlaylist.id = id
-                                }
-                                if let picture = item.valueForKey("picture") as? String {
-                                    newPlaylist.cover = picture
-                                }
-                                newPlaylist.schedule = startDate
-                                if endDateNil == false {
-                                    newPlaylist.deadline = endDate
-                                }
-                                tempPlaylist.append(newPlaylist)
+                            //Refresh TableView
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.stopLoad()
+                                self.tableView.reloadData()
                             }
-                            tempPlaylist.sortInPlace { $0.name < $1.name }
-                            self.playlists = tempPlaylist
-                        }
-                        
-                        //Refresh TableView
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.stopLoad()
-                            self.tableView.reloadData()
                         }
                         
                     } catch let error as NSError {
