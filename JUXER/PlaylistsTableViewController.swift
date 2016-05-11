@@ -57,7 +57,9 @@ class PlaylistsTableViewController: UITableViewController {
         
         //Configure Refresh Controller
         playlistsRefreshControl.tintColor = UIColor.whiteColor()
-        self.view.addSubview(playlistsRefreshControl)
+        self.tableView.addSubview(playlistsRefreshControl)
+        
+        tableView.indicatorStyle = .White
         
         activityIndicator.startAnimating()
         

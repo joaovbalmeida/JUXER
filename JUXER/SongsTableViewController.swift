@@ -66,8 +66,8 @@ class SongsTableViewController: UITableViewController {
         alertView = SCLAlertView(appearance: appearance)
         
         //Configure SearchBar
-        searchController.searchBar.barStyle = .Black
-        searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.barTintColor = UIColor.blackColor()
+        searchController.searchBar.placeholder = "Pesquisar"
         searchController.searchBar.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         searchController.searchBar.keyboardAppearance = .Dark
         searchController.searchBar.enablesReturnKeyAutomatically = true
@@ -76,6 +76,8 @@ class SongsTableViewController: UITableViewController {
         searchController.searchBar.sizeToFit()
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        tableView.backgroundView = UIView()
+        tableView.indicatorStyle = .White
         
         //Configure Pull to Refresh
         songsRefreshControl.tintColor = UIColor.whiteColor()
@@ -439,6 +441,10 @@ class SongsTableViewController: UITableViewController {
         self.overlay.removeFromSuperview()
         self.tableView.userInteractionEnabled = true
         self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
+    
+    deinit {
+        self.searchController.view.removeFromSuperview()
     }
     
 }
