@@ -57,7 +57,7 @@ class PlaylistsTableViewController: UITableViewController {
         
         //Configure Refresh Controller
         playlistsRefreshControl.tintColor = UIColor.whiteColor()
-        self.tableView.addSubview(playlistsRefreshControl)
+        self.view.addSubview(playlistsRefreshControl)
         
         activityIndicator.startAnimating()
         
@@ -104,14 +104,16 @@ class PlaylistsTableViewController: UITableViewController {
                         let resultJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                         let JSON = resultJSON.valueForKey("results") as! NSMutableArray
                         
+                        //Configure Calendar
+                        let calendar = NSCalendar.currentCalendar()
+                        let flags = NSCalendarUnit(rawValue: UInt.max)
+                        let components = calendar.components(flags, fromDate: NSDate())
+                        let today = calendar.dateFromComponents(components)
+                        
                         //Create playlists struct array from JSON
                         for item in JSON {
                             
-                            //Get current time and convert to NSDate
-                            let calendar = NSCalendar.currentCalendar()
-                            let flags = NSCalendarUnit(rawValue: UInt.max)
-                            let components = calendar.components(flags, fromDate: NSDate())
-                            let today = calendar.dateFromComponents(components)
+                            var tempPlaylist = [Playlist]()
                             
                             //Get playlist time and convert to NSDate
                             var startDate = NSDate()
@@ -143,9 +145,10 @@ class PlaylistsTableViewController: UITableViewController {
                                 if endDateNil == false {
                                     newPlaylist.deadline = endDate
                                 }
-                                self.playlists.append(newPlaylist)
+                                tempPlaylist.append(newPlaylist)
                             }
-                            self.playlists.sortInPlace { $0.name < $1.name }
+                            tempPlaylist.sortInPlace { $0.name < $1.name }
+                            self.playlists = tempPlaylist
                         }
                         
                         //Refresh TableView

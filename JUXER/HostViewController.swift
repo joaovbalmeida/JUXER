@@ -8,15 +8,11 @@
 
 import UIKit
 import Kingfisher
-import SwiftDate
 import SCLAlertView
 
 class HostViewController: UIViewController {
 
     @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var eventDate: UILabel!
-    @IBOutlet weak var aboutLabel: UILabel!
-    @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
@@ -107,13 +103,7 @@ class HostViewController: UIViewController {
                                 self.eventName.text = name
                             }
                             if let description = resultJSON.valueForKey("description") as? String {
-                                self.aboutLabel.hidden = false
                                 self.eventDescription.text = description
-                            }
-                            if let dateString = resultJSON.valueForKey("starts_at") as? String {
-                                let startDate = dateString.toDateFromISO8601()!
-                                self.dataLabel.hidden = false
-                                self.eventDate.text = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
                             }
                         }
                         

@@ -160,11 +160,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         
-        //Erase previous Data
-        if self.tracks.count != 0 {
-            tracks.removeAll()
-        }
-        
         let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
@@ -226,6 +221,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         
                         //Create tracks struct array from JSON
                         if JSON.count > index {
+                            var tempTracks = [Track]()
                             for i in index! + 1..<JSON.count {
                                 var newTrack = Track(title: "", artist: "", album: "", cover: "", user: "")
                                 if let title = JSON[i].valueForKey("title_short") as? String {
@@ -247,8 +243,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                         newTrack.user = userFirstName
                                     }
                                 }
-                                self.tracks.append(newTrack)
+                                tempTracks.append(newTrack)
                             }
+                            self.tracks = tempTracks
                         }
                       
                         //Refresh TableView

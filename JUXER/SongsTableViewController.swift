@@ -67,6 +67,7 @@ class SongsTableViewController: UITableViewController {
         
         //Configure SearchBar
         searchController.searchBar.barStyle = .Black
+        searchController.searchBar.searchBarStyle = .Minimal
         searchController.searchBar.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         searchController.searchBar.keyboardAppearance = .Dark
         searchController.searchBar.enablesReturnKeyAutomatically = true
@@ -78,7 +79,7 @@ class SongsTableViewController: UITableViewController {
         
         //Configure Pull to Refresh
         songsRefreshControl.tintColor = UIColor.whiteColor()
-        self.tableView.tableHeaderView!.addSubview(songsRefreshControl)
+        self.view.addSubview(songsRefreshControl)
         
         session = SessionDAO.fetchSession()
         getSongs()
@@ -161,12 +162,8 @@ class SongsTableViewController: UITableViewController {
     }
     
     private func getSongsNotOnQueue(){
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        //Erase previous Data
-        if self.songs.count != 0 {
-            songs.removeAll()
-        }
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
         let url = NSURL(string: "http://juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
@@ -191,13 +188,15 @@ class SongsTableViewController: UITableViewController {
                         let JSON = resultJSON as! [String:AnyObject]
                         var songsData = NSMutableArray()
                         
+                        
                         //Get respective playlist songs
                         for item in JSON {
                             if item.0 == self.playlistName {
                                 songsData = item.1 as! NSMutableArray
                             }
                         }
-                        //Wrap songs in struct
+                        //Wrap songs in array of Song struct
+                        var tempSongs = [Song]()
                         if songsData.count != 0 {
                             for item in songsData {
                                 var newSong = Song(title: "", artist: "", album: "", cover: "",id: 0)
@@ -217,10 +216,11 @@ class SongsTableViewController: UITableViewController {
                                     if let cover = item.valueForKey("album")!.valueForKey("cover_medium") as? String{
                                         newSong.cover = cover
                                     }
-                                    self.songs.append(newSong)
+                                    tempSongs.append(newSong)
                                 }
                             }
-                            self.songs.sortInPlace { $0.artist < $1.artist }
+                            tempSongs.sortInPlace { $0.artist < $1.artist }
+                            self.songs = tempSongs
                         }
                         
                         dispatch_async(dispatch_get_main_queue()){
@@ -284,7 +284,6 @@ class SongsTableViewController: UITableViewController {
         if searchController.active && searchController.searchBar.text != "" {
             song = filteredSongs[indexPath.row]
         } else {
-            print(indexPath.row)
             song = songs[indexPath.row]
         }
         
@@ -304,7 +303,9 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        searchController.dismissViewControllerAnimated(true, completion: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         dispatch_async(dispatch_get_main_queue()){
            self.startLoadOverlay()
         }
