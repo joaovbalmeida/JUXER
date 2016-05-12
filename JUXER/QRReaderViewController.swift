@@ -204,7 +204,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                         
                     } else {
                         let httpResponse = response as! NSHTTPURLResponse
-                        
+                        let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         //If code is valid, persist and perform segue, else show error message!
                         if httpResponse.statusCode == 200 {
                             session[0].active = 1
@@ -216,6 +216,8 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                             }
                             
                         } else {
+                            print(httpResponse.statusCode)
+                            print(string)
                             dispatch_async(dispatch_get_main_queue()){
                                 alertView.addButton("OK"){
                                     self.stopLoadOverlay()

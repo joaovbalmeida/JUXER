@@ -143,13 +143,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		921D92BD1C737B3B00CD4B6F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		921D92BE1C737B7C00CD4B6F /* VO */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +202,6 @@
 				92C292691C96FB47005D90DB /* Assets.xcassets */,
 				926A84F01C5A9FEE00815656 /* Info.plist */,
 				926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */,
-				921D92BD1C737B3B00CD4B6F /* Resources */,
 			);
 			path = JUXER;
 			sourceTree = "<group>";
