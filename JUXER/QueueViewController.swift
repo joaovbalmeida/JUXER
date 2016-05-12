@@ -160,7 +160,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         
-        let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -204,18 +204,13 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 }
                                 
                                 if let cover = JSON[index!].valueForKey("album")!.valueForKey("cover_big") as? String {
-                                    self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
-                                    self.albumBG.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "BigCoverPlaceHolder.png"))
+                                    self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "PlayingCoverPlaceholder"))
+                                    self.albumBG.kf_setImageWithURL(NSURL(string: cover)!)
                                 }
                             }
                         } else {
                             dispatch_async(dispatch_get_main_queue()){
-                                self.songLabel.text = ""
-                                self.artistLabel.text = "Nenhum Evento Conectado!"
-                                self.albumtImage.image = Image(named: "BigCoverPlaceHolder.png")
-                                self.albumBG.image = nil
-                                self.songScrollingLabel.text = ""
-                                self.artistScrollingLabel.text = "Nenhum Evento Conectado!"
+                                self.albumtImage.image = Image(named: "PlayingCoverPlaceholder")
                             }
                         }
                         
@@ -328,7 +323,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.layoutMargins = UIEdgeInsetsZero
             if refreshControl.refreshing == false {
         
-                cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+                cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder"))
                 cell.trackTitle.text = self.tracks[indexPath.row].title
                 if self.tracks[indexPath.row].album != "" {
                     cell.trackArtist.text = self.tracks[indexPath.row].artist + " - " + self.tracks[indexPath.row].album

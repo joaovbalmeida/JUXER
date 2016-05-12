@@ -184,7 +184,7 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceHolder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-iw-qB4">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-iw-qB4">
                                             <rect key="frame" x="10" y="5" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="BlD-AW-aXr"/>
@@ -276,7 +276,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceHolder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-SY-t66">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-SY-t66">
                                             <rect key="frame" x="10" y="5" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="0Kv-eB-830"/>
@@ -374,7 +374,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-uf-Tbz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventBackground" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-uf-Tbz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="xse-vJ-pez">
@@ -385,7 +385,7 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-slider.png" translatesAutoresizingMaskIntoConstraints="NO" id="DJR-y1-pL3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BannerPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="DJR-y1-pL3">
                                 <rect key="frame" x="5" y="10" width="590" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="KTO-xN-3Qc"/>
@@ -578,7 +578,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="380"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BigCoverPlaceHolder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qgZ-YZ-uMt">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlayingCoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="qgZ-YZ-uMt">
                                                         <rect key="frame" x="210" y="75" width="180" height="180"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -695,7 +695,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceHolder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8gF-sM-7OW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="8gF-sM-7OW">
                                                     <rect key="frame" x="61" y="4" width="55" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="PJB-zU-RY9"/>
@@ -1042,9 +1042,9 @@
                                         <constraint firstAttribute="width" constant="152" id="xct-bQ-cqb"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePlaceholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YqR-TG-MIS">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="YqR-TG-MIS">
                                     <rect key="frame" x="225" y="40" width="150" height="150"/>
-                                    <color key="tintColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.1137254902" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="150" id="8xz-E2-kX8"/>
                                         <constraint firstAttribute="height" constant="150" id="Reu-ev-zgA"/>
@@ -1211,20 +1211,20 @@
     <resources>
         <image name="Avatar" width="163" height="163"/>
         <image name="BackIcon" width="26" height="23"/>
-        <image name="BigCoverPlaceHolder.png" width="300" height="300"/>
-        <image name="CoverPlaceHolder.jpg" width="300" height="300"/>
-        <image name="EventBackground.jpg" width="800" height="533"/>
+        <image name="BannerPlaceholder" width="270" height="170"/>
+        <image name="CoverPlaceholder" width="55" height="55"/>
+        <image name="EventBackground" width="800" height="533"/>
         <image name="FBLoginButton" width="178" height="36"/>
         <image name="Home" width="20" height="21"/>
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
-        <image name="ProfilePlaceholder.jpg" width="600" height="600"/>
+        <image name="PlayingCoverPlaceholder" width="180" height="180"/>
+        <image name="ProfilePlaceholder" width="150" height="150"/>
         <image name="QRButton" width="165" height="35"/>
         <image name="QRCodeIcon" width="200" height="200"/>
         <image name="QueuePlaceHolder" width="596" height="842"/>
         <image name="Settings" width="20" height="20"/>
-        <image name="placeholder-slider.png" width="728" height="409"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IKF-sN-wm8"/>

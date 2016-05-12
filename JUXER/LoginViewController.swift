@@ -128,7 +128,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             
                             // create post request
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                            let request = NSMutableURLRequest(URL: NSURL(string: "http://juxer.club/api/user/login/")!)
+                            let request = NSMutableURLRequest(URL: NSURL(string: "http://www.juxer.club/api/user/login/")!)
                             request.HTTPMethod = "POST"
                             
                             // insert json data to the request
@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                             
                             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                                let httpResponse = response as! NSHTTPURLResponse
+                                
                                 if error != nil{
                                     print(error)
                                     self.logOut()
@@ -145,18 +145,21 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                                         self.stopLoadOverlay()
                                         self.showConectionErrorAlert()
                                     }
-                                } else if httpResponse.statusCode == 200 {
-                                    UserDAO.insert(user)
-                                    var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                                    resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
-                                    self.storeSessionToken(String(resultData))
-                                    self.getFBProfilePictureAndSegue(userPictureUrl)
-                                    
                                 } else {
-                                    self.logOut()
-                                    dispatch_async(dispatch_get_main_queue()){
-                                        self.stopLoadOverlay()
-                                        self.showErrorAlert()
+                                    let httpResponse = response as! NSHTTPURLResponse
+                                    if httpResponse.statusCode == 200 {
+                                        UserDAO.insert(user)
+                                        var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                                        resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
+                                        self.storeSessionToken(String(resultData))
+                                        self.getFBProfilePictureAndSegue(userPictureUrl)
+                                        
+                                    } else {
+                                        self.logOut()
+                                        dispatch_async(dispatch_get_main_queue()){
+                                            self.stopLoadOverlay()
+                                            self.showErrorAlert()
+                                        }
                                     }
                                 }
                             }

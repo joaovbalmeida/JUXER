@@ -75,7 +75,7 @@ class PlaylistsTableViewController: UITableViewController {
         let alertView = SCLAlertView(appearance: appearance)
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let url = NSURL(string: "http://juxer.club/api/playlist/?available=\(session[0].id!)")
+        let url = NSURL(string: "http://www.juxer.club/api/playlist/?available=\(session[0].id!)")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -211,7 +211,7 @@ class PlaylistsTableViewController: UITableViewController {
         cell.layoutMargins = UIEdgeInsetsZero
         
         if playlists[indexPath.row].cover != "" {
-            cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!)
+            cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!,placeholderImage: UIImage(named: "CoverPlaceholder"))
         }
         if playlists[indexPath.row].deadline != nil {
             cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath

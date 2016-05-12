@@ -108,7 +108,7 @@ class SongsTableViewController: UITableViewController {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -167,7 +167,7 @@ class SongsTableViewController: UITableViewController {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        let url = NSURL(string: "http://juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
+        let url = NSURL(string: "http://www.juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -291,7 +291,7 @@ class SongsTableViewController: UITableViewController {
         
         //Show info from the song
         if song.cover != "" {
-            cell.songCover.kf_setImageWithURL(NSURL(string: song.cover)!,placeholderImage: Image(named: "CoverPlaceHolder.jpg"))
+            cell.songCover.kf_setImageWithURL(NSURL(string: song.cover)!,placeholderImage: Image(named: "CoverPlaceHolder"))
         }
         if song.album != "" {
             cell.songArtistLabel.text = song.artist + " - " + song.album
@@ -332,7 +332,7 @@ class SongsTableViewController: UITableViewController {
                 
                 // create post request
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
+                let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 

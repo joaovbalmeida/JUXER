@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "Clique em Escanear Código QR e escaneie o código QR do evento"; ObjectID = "2cY-Jm-Fff"; */
+"2cY-Jm-Fff.text" = "Clique em Escanear Código QR e escaneie o código QR do evento";
+
+/* Class = "UILabel"; text = "Horário:"; ObjectID = "4Eu-VX-aA9"; */
+"4Eu-VX-aA9.text" = "Horário:";
+
+/* Class = "UINavigationItem"; title = "Ajustes"; ObjectID = "9d6-wR-bsq"; */
+"9d6-wR-bsq.title" = "Ajustes";
+
+/* Class = "UILabel"; text = "Conecte-se à um evento!"; ObjectID = "Adi-BB-8bg"; */
+"Adi-BB-8bg.text" = "Conecte-se à um evento!";
+
+/* Class = "UILabel"; text = "Código QR"; ObjectID = "EGA-ar-57c"; */
+"EGA-ar-57c.text" = "Código QR";
+
+/* Class = "UITabBarItem"; title = "Evento"; ObjectID = "HPz-Wx-GeP"; */
+"HPz-Wx-GeP.title" = "Evento";
+
+/* Class = "UILabel"; text = "Usuário Anônimo"; ObjectID = "HiY-AB-34U"; */
+"HiY-AB-34U.text" = "Usuário Anônimo";
+
+/* Class = "UITableViewSection"; footerTitle = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário."; ObjectID = "IMq-VM-81i"; */
+"IMq-VM-81i.footerTitle" = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário.";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "IMq-VM-81i"; */
+"IMq-VM-81i.headerTitle" = " ";
+
+/* Class = "UILabel"; text = "Posicione o Código QR na tela para conectar-se ao JUXER."; ObjectID = "K8K-BH-Zay"; */
+"K8K-BH-Zay.text" = "Posicione o Código QR na tela para conectar-se ao JUXER.";
+
+/* Class = "UIBarButtonItem"; title = "Voltar"; ObjectID = "Okn-qP-NJZ"; */
+"Okn-qP-NJZ.title" = "Voltar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VIh-SI-xWp"; */
+"VIh-SI-xWp.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Playlists"; ObjectID = "X4o-cP-h7V"; */
+"X4o-cP-h7V.title" = "Playlists";
+
+/* Class = "UINavigationItem"; title = "Músicas"; ObjectID = "hmd-Wi-PrZ"; */
+"hmd-Wi-PrZ.title" = "Músicas";
+
+/* Class = "UILabel"; text = "Log Out"; ObjectID = "lxj-gW-eyE"; */
+"lxj-gW-eyE.text" = "Log Out";
+
+/* Class = "UILabel"; text = "Nenhuma Música"; ObjectID = "lyE-J9-Ijf"; */
+"lyE-J9-Ijf.text" = "Nenhuma Música";
+
+/* Class = "UINavigationItem"; title = "JUXER"; ObjectID = "qXJ-Ek-TRX"; */
+"qXJ-Ek-TRX.title" = "JUXER";
+
+/* Class = "UILabel"; text = "Escanear Código QR"; ObjectID = "rT9-SP-ENO"; */
+"rT9-SP-ENO.text" = "Escanear Código QR";
+
+/* Class = "UITabBarItem"; title = "Fila"; ObjectID = "sCN-ug-WPa"; */
+"sCN-ug-WPa.title" = "Fila";
+
+/* Class = "UITabBarItem"; title = "Ajustes"; ObjectID = "tCK-PL-CRT"; */
+"tCK-PL-CRT.title" = "Ajustes";
+
+/* Class = "UILabel"; text = "JUXER"; ObjectID = "vSb-ad-6g6"; */
+"vSb-ad-6g6.text" = "JUXER";
+
+/* Class = "UILabel"; text = "Nova Música"; ObjectID = "xX7-Pn-1kI"; */
+"xX7-Pn-1kI.text" = "Nova Música";

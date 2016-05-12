@@ -55,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
                 if image != nil {
                     profilePic.image = maskRoundedImage(image!)
                 } else {
-                    profilePic.image = maskRoundedImage(UIImage(named: "ProfilePlaceholder.jpg")!)
+                    profilePic.image = maskRoundedImage(UIImage(named: "ProfilePlaceholder")!)
                 }
             }
         }
