@@ -184,7 +184,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 session = SessionDAO.fetchSession()
                 
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                let url = NSURL(string: "http://www.juxer.club/api/event/\(id)/")
+                let url = NSURL(string: "http://juxer.club/api/event/\(id)/")
                 let request = NSMutableURLRequest(URL: url!)
                 
                 request.HTTPMethod = "GET"

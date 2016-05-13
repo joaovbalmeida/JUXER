@@ -59,6 +59,7 @@ class HostViewController: UIViewController {
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
+            eventDescription.hidden = true
             eventImage.hidden = true
             scanLabel.hidden = false
             scanButton.hidden = false
@@ -72,7 +73,7 @@ class HostViewController: UIViewController {
         let alertView = SCLAlertView()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        let url = NSURL(string: "http://www.juxer.club/api/event/\(session[0].id!)/")
+        let url = NSURL(string: "http://juxer.club/api/event/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"

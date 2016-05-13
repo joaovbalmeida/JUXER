@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // create post request
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                let url = NSURL(string: "http://www.juxer.club/api-token-refresh/")
+                let url = NSURL(string: "http://juxer.club/api-token-refresh/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 
