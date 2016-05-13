@@ -149,12 +149,14 @@ class PlaylistsTableViewController: UITableViewController {
                                 tempPlaylist.sortInPlace { $0.name < $1.name }
                                 self.playlists = tempPlaylist
                             }
-                            
-                            //Refresh TableView
-                            dispatch_async(dispatch_get_main_queue()){
-                                self.stopLoad()
-                                self.tableView.reloadData()
-                            }
+                        } else {
+                            self.playlists.removeAll()
+                        }
+                        
+                        //Refresh TableView
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.stopLoad()
+                            self.tableView.reloadData()
                         }
                         
                     } catch let error as NSError {
@@ -192,17 +194,14 @@ class PlaylistsTableViewController: UITableViewController {
     }
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return playlists.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath) as! PlaylistsTableViewCell
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
@@ -217,13 +216,12 @@ class PlaylistsTableViewController: UITableViewController {
             cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
                 .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
                     .row].deadline!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-
+            
         } else {
             cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
                 .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         }
         cell.playlistName.text = playlists[indexPath.row].name
-        
         return cell
     }
     
