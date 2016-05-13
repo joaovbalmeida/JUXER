@@ -31,6 +31,7 @@
 		92A9ABDD1CB3C74100650A1A /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */; };
 		92A9ABDE1CB3C74100650A1A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9ABDC1CB3C74100650A1A /* Session.swift */; };
 		92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C292691C96FB47005D90DB /* Assets.xcassets */; };
+		92FFF68F1CE4F508008D1C0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92FFF68E1CE4F508008D1C0F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,7 @@
 		92A9ABDB1CB3C74100650A1A /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92A9ABDC1CB3C74100650A1A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C292691C96FB47005D90DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92FFF68E1CE4F508008D1C0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE5138FE26E3203D2D57CB50 /* Pods-JUXER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JUXER.release.xcconfig"; path = "Pods/Target Support Files/Pods-JUXER/Pods-JUXER.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +203,7 @@
 				921D92BA1C737B0300CD4B6F /* Model */,
 				92C292691C96FB47005D90DB /* Assets.xcassets */,
 				926A84F01C5A9FEE00815656 /* Info.plist */,
+				92FFF68E1CE4F508008D1C0F /* GoogleService-Info.plist */,
 				926A84E81C5A9FED00815656 /* JUXER.xcdatamodeld */,
 			);
 			path = JUXER;
@@ -270,6 +273,7 @@
 			files = (
 				92C2926A1C96FB47005D90DB /* Assets.xcassets in Resources */,
 				926A84E71C5A9FED00815656 /* Main.storyboard in Resources */,
+				92FFF68F1CE4F508008D1C0F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

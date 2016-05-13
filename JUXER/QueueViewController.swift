@@ -182,12 +182,12 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                         
                         //Get now playing index
                         var index = resultJSON.valueForKey("index")! as? Int
-                        if index == nil{
+                        if index == nil {
                             index = 0
                         }
                         
                         //Refresh Now Playing Track
-                        if JSON.count > 0 {
+                        if JSON.count > 0 && index < JSON.count {
                             dispatch_async(dispatch_get_main_queue()) {
                                 if let title = JSON[index!].valueForKey("title_short") as? String {
                                     self.songLabel.text = title

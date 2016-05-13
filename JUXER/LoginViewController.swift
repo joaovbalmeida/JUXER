@@ -10,8 +10,9 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import SCLAlertView
+import Google
 
-class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
+class LoginViewController: UIViewController, UIPageViewControllerDataSource, GIDSignInUIDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var welcomeText2: UILabel!
@@ -55,6 +56,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         //Gradient Background
         let view: UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
@@ -183,6 +186,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource  {
                 }
                 
             })
+            
+        } else {
             
         }
     }

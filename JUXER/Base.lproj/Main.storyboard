@@ -31,8 +31,8 @@
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycM-G5-YXa">
                                 <rect key="frame" x="207" y="486" width="187" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="6FM-Q9-gpQ"/>
-                                    <constraint firstAttribute="width" constant="187" id="kls-Lf-mCq"/>
+                                    <constraint firstAttribute="height" constant="56" id="6Tl-aZ-HRI"/>
+                                    <constraint firstAttribute="width" constant="187" id="mqu-3D-3Y6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,14 +51,24 @@
                                 </constraints>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNA-RU-diz" customClass="GIDSignInButton">
+                                <rect key="frame" x="207" y="422" width="187" height="56"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="6uI-Tl-lst"/>
+                                    <constraint firstAttribute="width" constant="187" id="fKY-Hh-Jkv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="0nb-rD-JF7"/>
+                            <constraint firstItem="gNA-RU-diz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="ENy-Cm-K4h"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="58" id="TYc-Er-OEF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gNA-RU-diz" secondAttribute="bottom" constant="122" id="VHp-eY-9ZT"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
-                            <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fI8-vd-DYv"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i50-lB-F72"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iYi-6V-em5"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="58" id="tBJ-VQ-YSV"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xue-g7-7j1"/>
                         </constraints>
                     </view>
@@ -900,7 +910,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIh-SI-xWp">
-                                <rect key="frame" x="188" y="304" width="225" height="100"/>
+                                <rect key="frame" x="188" y="254" width="225" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="dqO-IB-8Xq"/>
                                     <constraint firstAttribute="width" constant="225" id="it0-yn-ug2"/>
@@ -910,7 +920,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN7-OH-eC8">
-                                <rect key="frame" x="250" y="196" width="100" height="100"/>
+                                <rect key="frame" x="250" y="146" width="100" height="100"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="pIC-qt-3fi"/>
@@ -927,8 +937,8 @@
                         <constraints>
                             <constraint firstItem="CN7-OH-eC8" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="S09-nH-201"/>
                             <constraint firstItem="VIh-SI-xWp" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="hLo-Oe-5BD"/>
-                            <constraint firstItem="VIh-SI-xWp" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="53.5" id="lH0-BV-d4f"/>
-                            <constraint firstItem="CN7-OH-eC8" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="-54" id="mNQ-Xk-dkj"/>
+                            <constraint firstItem="VIh-SI-xWp" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="4" id="lH0-BV-d4f"/>
+                            <constraint firstItem="CN7-OH-eC8" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="-104" id="mNQ-Xk-dkj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1227,6 +1237,6 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IKF-sN-wm8"/>
+        <segue reference="gV6-dF-i4U"/>
     </inferredMetricsTieBreakers>
 </document>
