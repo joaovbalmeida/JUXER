@@ -13,6 +13,7 @@ import SCLAlertView
 class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     var captureSession: AVCaptureSession!
+    let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
     var previewLayer: AVCaptureVideoPreviewLayer!
     var frameView: UIView!
     var topView: UIVisualEffectView!
@@ -69,12 +70,12 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     func configureVideoCapture() {
-        let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         let videoInput: AnyObject!
         var error:NSError?
         
         do {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice) as AVCaptureDeviceInput
+            
         } catch let NSerror as NSError {
             error = NSerror
             if (error != nil) {
@@ -142,7 +143,28 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         captureSession = nil
     }
     
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        if let touchPoint = touches.first {
+            let x = touchPoint.locationInView(self.view).y / view.bounds.size.height
+            let y = 1.0 - touchPoint.locationInView(self.view).x / view.bounds.size.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if captureSession.running {
+                do {
+                    try videoCaptureDevice.lockForConfiguration()
+                    videoCaptureDevice.focusPointOfInterest = focusPoint
+                    videoCaptureDevice.focusMode = .AutoFocus
+                    videoCaptureDevice.exposurePointOfInterest = focusPoint
+                    videoCaptureDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+                    videoCaptureDevice.unlockForConfiguration()
+                }
+                catch {
+                    print(error)
+                }
+            }
+        }
+    }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
