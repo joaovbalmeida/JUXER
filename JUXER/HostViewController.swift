@@ -17,6 +17,7 @@ class HostViewController: UIViewController {
     @IBOutlet weak var eventBG: UIImageView!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var exitButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activityIndicatorQR: UIActivityIndicatorView!
     
@@ -29,6 +30,11 @@ class HostViewController: UIViewController {
     
     @IBAction func segueToQR(sender: AnyObject) {
         activityIndicatorQR.startAnimating()
+    }
+    
+    @IBAction func refreshEvent(sender: AnyObject) {
+        activityIndicator.startAnimating()
+        getEvent(session)
     }
     
     @IBAction func exitEvent(sender: AnyObject) {
@@ -59,6 +65,7 @@ class HostViewController: UIViewController {
             getEvent(session)
         } else {
             self.navigationItem.rightBarButtonItems = []
+            self.navigationItem.leftBarButtonItems = []
             eventDescription.hidden = true
             eventImage.hidden = true
             scanLabel.hidden = false

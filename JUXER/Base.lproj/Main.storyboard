@@ -500,6 +500,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="JUXER" id="qXJ-Ek-TRX">
                         <barButtonItem key="backBarButtonItem" title="Voltar" id="Okn-qP-NJZ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="arW-gw-3kb">
+                            <color key="tintColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="refreshEvent:" destination="Yff-9U-eFP" id="dyP-Mi-KuE"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Fng-dF-uhD">
                             <color key="tintColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -519,6 +525,7 @@
                         <outlet property="exitButton" destination="Fng-dF-uhD" id="BW5-CI-WWq"/>
                         <outlet property="iconImage" destination="JUA-aZ-oXx" id="Cto-xA-Ty6"/>
                         <outlet property="instructionLabel" destination="2cY-Jm-Fff" id="2nx-Hk-gL4"/>
+                        <outlet property="refreshButton" destination="arW-gw-3kb" id="9YU-08-OSc"/>
                         <outlet property="scanButton" destination="2W6-0H-Vct" id="EFU-ut-9C5"/>
                         <outlet property="scanLabel" destination="rT9-SP-ENO" id="Vsu-6E-Zwx"/>
                         <segue destination="obf-SU-Ied" kind="presentation" identifier="exitEvent" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="IKF-sN-wm8"/>
@@ -1224,7 +1231,7 @@
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
         <image name="NewSongButton" width="133" height="35"/>
-        <image name="PlayingCoverPlaceholder" width="179" height="179"/>
+        <image name="PlayingCoverPlaceholder" width="180" height="180"/>
         <image name="ProfilePlaceholder" width="150" height="150"/>
         <image name="QRButton" width="165" height="35"/>
         <image name="QRCodeIcon" width="200" height="200"/>

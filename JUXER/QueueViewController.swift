@@ -215,8 +215,17 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 }
                             }
                         } else {
+                            if self.tracks.count != 0 {
+                                self.tracks.removeAll()
+                            }
                             dispatch_async(dispatch_get_main_queue()){
                                 self.albumtImage.image = Image(named: "PlayingCoverPlaceholder")
+                                self.albumBG.image = nil
+                                self.usernameLabel.text = ""
+                                self.artistLabel.text = ""
+                                self.artistScrollingLabel.text = ""
+                                self.songLabel.text = ""
+                                self.songScrollingLabel.text = ""
                             }
                         }
                         
