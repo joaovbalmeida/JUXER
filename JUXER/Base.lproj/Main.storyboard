@@ -40,7 +40,7 @@
                                     <color key="titleColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wBS-cP-YwN"/>
+                                    <action selector="fbLoginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uD5-Xd-dZI"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KVT-jk-FBN">
@@ -51,21 +51,28 @@
                                 </constraints>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNA-RU-diz" customClass="GIDSignInButton">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-gv-jdY">
                                 <rect key="frame" x="207" y="422" width="187" height="56"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="6uI-Tl-lst"/>
-                                    <constraint firstAttribute="width" constant="187" id="fKY-Hh-Jkv"/>
+                                    <constraint firstAttribute="width" constant="187" id="X1B-rg-4DU"/>
+                                    <constraint firstAttribute="height" constant="56" id="hru-Cj-DhB"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="FBLoginButton">
+                                    <color key="titleColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ggLoginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6O-b6-eFv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="0nb-rD-JF7"/>
-                            <constraint firstItem="gNA-RU-diz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="ENy-Cm-K4h"/>
+                            <constraint firstItem="ycM-G5-YXa" firstAttribute="top" secondItem="mfd-gv-jdY" secondAttribute="bottom" constant="8" id="8aI-xQ-fyc"/>
+                            <constraint firstItem="mfd-gv-jdY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9h2-Sq-GZo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="58" id="TYc-Er-OEF"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gNA-RU-diz" secondAttribute="bottom" constant="122" id="VHp-eY-9ZT"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i50-lB-F72"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iYi-6V-em5"/>
@@ -74,7 +81,8 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="KVT-jk-FBN" id="O0T-JM-qD8"/>
-                        <outlet property="loginButton" destination="ycM-G5-YXa" id="Mra-R3-qkT"/>
+                        <outlet property="fbLoginButton" destination="ycM-G5-YXa" id="Uwo-da-qpW"/>
+                        <outlet property="ggLoginButton" destination="mfd-gv-jdY" id="gFK-30-J71"/>
                         <outlet property="welcomeText2" destination="vSb-ad-6g6" id="FCv-4F-qii"/>
                         <segue destination="obf-SU-Ied" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="gV6-dF-i4U"/>
                     </connections>

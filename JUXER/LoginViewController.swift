@@ -12,13 +12,31 @@ import FBSDKLoginKit
 import SCLAlertView
 import Google
 
-class LoginViewController: UIViewController, UIPageViewControllerDataSource, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, UIPageViewControllerDataSource, GIDSignInDelegate, GIDSignInUIDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var welcomeText2: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+    @IBOutlet weak var ggLoginButton: UIButton!
+    @IBOutlet weak var fbLoginButton: UIButton!
+    
+    @IBAction func ggLoginButtonPressed(sender: AnyObject) {
+        // Initialize sign-in
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
         
+        if configureError != nil {
+            print(configureError.debugDescription)
+        }else {
+            GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
+            GIDSignIn.sharedInstance().delegate = self
+            GIDSignIn.sharedInstance().uiDelegate = self
+            GIDSignIn.sharedInstance().allowsSignInWithBrowser = false  //Line 1
+            GIDSignIn.sharedInstance().allowsSignInWithWebView = true   //Line 2
+            GIDSignIn.sharedInstance().signIn()
+        }
+    }
+    
+    @IBAction func fbLoginButtonPressed(sender: AnyObject) {
         dispatch_async(dispatch_get_main_queue()){
             self.startLoadOverlay()
         }
@@ -26,7 +44,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         
         fbLoginManager.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self) { (result, error) in
-
+            
             if error != nil
             {
                 print(error.localizedDescription)
@@ -85,7 +103,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         self.pageViewController.didMoveToParentViewController(self)
         
         //Bring Login Button to front
-        self.view.bringSubviewToFront(loginButton)
+        self.view.bringSubviewToFront(fbLoginButton)
+        self.view.bringSubviewToFront(ggLoginButton)
         
     }
     
@@ -155,7 +174,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                                         var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                                         resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
                                         self.storeSessionToken(String(resultData))
-                                        self.getFBProfilePictureAndSegue(userPictureUrl)
+                                        self.getProfilePictureAndSegue(userPictureUrl)
                                         
                                     } else {
                                         self.logOut()
@@ -184,15 +203,11 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                         self.showErrorAlert()
                     }
                 }
-                
             })
-            
-        } else {
-            
         }
     }
     
-    func getFBProfilePictureAndSegue(url: String){
+    func getProfilePictureAndSegue(url: String){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = NSURL(string: url)
         let request = NSURLRequest(URL: url!)
@@ -253,13 +268,15 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         self.activityIndicator.startAnimating()
         self.view.addSubview(self.overlay)
         self.view.bringSubviewToFront(self.activityIndicator)
-        self.loginButton.userInteractionEnabled = false
+        self.fbLoginButton.userInteractionEnabled = false
+        self.ggLoginButton.userInteractionEnabled = false
     }
     
     func stopLoadOverlay(){
         self.activityIndicator.stopAnimating()
         self.overlay.removeFromSuperview()
-        self.loginButton.userInteractionEnabled = true
+        self.fbLoginButton.userInteractionEnabled = true
+        self.ggLoginButton.userInteractionEnabled = true
     }
     
     private func deleteUser(){
@@ -271,13 +288,144 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
     private func logOut(){
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
+        GIDSignIn.sharedInstance().signOut()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Google Sign In Delegate
+    
+    func signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+        self.dismissViewControllerAnimated(true) { () -> Void in
+        }
     }
-
+    
+    func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        self.presentViewController(viewController, animated: true) { () -> Void in
+        }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if (error == nil) {
+            self.startLoadOverlay()
+            
+            let juxerUser = User()
+            juxerUser.id = user.userID
+            //let idToken = user.authentication.idToken // Safe to send to the server
+            juxerUser.name = user.profile.name
+            juxerUser.firstName = user.profile.givenName
+            juxerUser.lastName = user.profile.familyName
+            juxerUser.email = user.profile.email
+            juxerUser.pictureUrl = user.profile.imageURLWithDimension(150).absoluteString
+            
+            let jsonObject: [String : AnyObject] =
+                [ "email": "\(juxerUser.email)",
+                  "first_name": "\(juxerUser.firstName)",
+                  "last_name": "\(juxerUser.lastName)",
+                  "username": "\(juxerUser.email)",
+                  "picture": "\(juxerUser.pictureUrl)",
+                  "fb_id": "\(juxerUser.id)" ]
+            
+            if NSJSONSerialization.isValidJSONObject(jsonObject) {
+                
+                do {
+                    
+                    let JSON = try NSJSONSerialization.dataWithJSONObject(jsonObject, options: [])
+                    
+                    // create post request
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                    let request = NSMutableURLRequest(URL: NSURL(string: "http://juxer.club/api/user/login/")!)
+                    request.HTTPMethod = "POST"
+                    
+                    // insert json data to the request
+                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                    request.HTTPBody = JSON
+                    
+                    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        
+                        if error != nil{
+                            print(error)
+                            GIDSignIn.sharedInstance().signOut()
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.stopLoadOverlay()
+                                self.showConectionErrorAlert()
+                            }
+                        } else {
+                            let httpResponse = response as! NSHTTPURLResponse
+                            if httpResponse.statusCode == 200 {
+                                UserDAO.insert(juxerUser)
+                                var resultData = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                                resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
+                                self.storeSessionToken(String(resultData))
+                                if user.profile.hasImage {
+                                    print(juxerUser.pictureUrl)
+                                    self.getProfilePictureAndSegue(juxerUser.pictureUrl!)
+                                } else {
+                                    dispatch_async(dispatch_get_main_queue()){
+                                        self.performSegueWithIdentifier("toHome", sender: self)
+                                    }
+                                }
+                                
+                            } else {
+                                GIDSignIn.sharedInstance().signOut()
+                                dispatch_async(dispatch_get_main_queue()){
+                                    self.stopLoadOverlay()
+                                    self.showErrorAlert()
+                                }
+                            }
+                        }
+                    }
+                    task.resume()
+                } catch {
+                    print(error)
+                    GIDSignIn.sharedInstance().signOut()
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.stopLoadOverlay()
+                        self.showErrorAlert()
+                    }
+                }
+            }
+            
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+       
+        let alertView = SCLAlertView()
+        alertView.addButton("Sim"){
+            
+            // Delete Profile
+            let user = UserDAO.fetchUser()
+            UserDAO.delete(user[0])
+            
+            // Erase Profile Picture
+            var documentsDirectory:String?
+            if let path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory , NSSearchPathDomainMask.UserDomainMask, true) {
+                
+                if path.count > 0 {
+                    documentsDirectory = path[0] as? String
+                    let filePath = documentsDirectory! + "/profilePic.jpg"
+                    
+                    do {
+                        try NSFileManager.defaultManager().removeItemAtPath(filePath)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            //Delete Session
+            let session = SessionDAO.fetchSession()
+            SessionDAO.delete(session[0])
+            
+            //Show Login View
+            self.goToLoginVC()
+            
+        }
+        alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+    }
+    
     // MARK: - Page View Methods
     
     func viewControllerAtIndex(index: Int) -> ContentViewController {

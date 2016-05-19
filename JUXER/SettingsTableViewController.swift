@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Kingfisher
 import SCLAlertView
+import Google
 
 class SettingsTableViewController: UITableViewController {
 
@@ -42,7 +43,6 @@ class SettingsTableViewController: UITableViewController {
             anonymousSwitch.on = false
         }
         
-        
         //Load Profile Picture
         let paths:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         if paths.count > 0
@@ -59,7 +59,6 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
         }
-        
     }
     
     func maskRoundedImage(imageView: UIImage) -> UIImage {
@@ -137,5 +136,4 @@ class LogoutTableViewCell: UITableViewCell {
         view.backgroundColor = selectionColor
         selectedBackgroundView = view
     }
-    
 }
