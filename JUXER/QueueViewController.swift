@@ -25,6 +25,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var albumtImage: UIImageView!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var songScrollingLabel: UILabel!
     @IBOutlet weak var artistScrollingLabel: UILabel!
     
@@ -88,7 +89,6 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         } else {
             orderButton.userInteractionEnabled = false
-            songLabel.text = "Nenhum evento conectado!"
         }
         
         //Configure Stretchy Header
@@ -160,7 +160,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         
-        let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -202,15 +202,30 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                                         self.artistScrollingLabel.text = artist
                                     }
                                 }
-                                
+                                if let userFirstName = JSON[index!].valueForKey("user")!.valueForKey("first_name") as? String{
+                                    if let userLastName = JSON[index!].valueForKey("user")!.valueForKey("last_name") as? String {
+                                        self.usernameLabel.text = userFirstName + " " + userLastName
+                                    } else {
+                                        self.usernameLabel.text = userFirstName
+                                    }
+                                }
                                 if let cover = JSON[index!].valueForKey("album")!.valueForKey("cover_big") as? String {
                                     self.albumtImage.kf_setImageWithURL(NSURL(string: cover)!, placeholderImage: Image(named: "PlayingCoverPlaceholder"))
                                     self.albumBG.kf_setImageWithURL(NSURL(string: cover)!)
                                 }
                             }
                         } else {
+                            if self.tracks.count != 0 {
+                                self.tracks.removeAll()
+                            }
                             dispatch_async(dispatch_get_main_queue()){
                                 self.albumtImage.image = Image(named: "PlayingCoverPlaceholder")
+                                self.albumBG.image = nil
+                                self.usernameLabel.text = ""
+                                self.artistLabel.text = ""
+                                self.artistScrollingLabel.text = ""
+                                self.songLabel.text = ""
+                                self.songScrollingLabel.text = ""
                             }
                         }
                         

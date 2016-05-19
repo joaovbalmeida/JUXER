@@ -131,7 +131,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                             
                             // create post request
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                            let request = NSMutableURLRequest(URL: NSURL(string: "http://www.juxer.club/api/user/login/")!)
+                            let request = NSMutableURLRequest(URL: NSURL(string: "http://juxer.club/api/user/login/")!)
                             request.HTTPMethod = "POST"
                             
                             // insert json data to the request

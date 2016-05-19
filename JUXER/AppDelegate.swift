@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         } else {
             goToLoginVC()
         }
-        
         //Configure Page Controller
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
@@ -81,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 // create post request
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                let url = NSURL(string: "http://www.juxer.club/api-token-refresh/")
+                let url = NSURL(string: "http://juxer.club/api-token-refresh/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 

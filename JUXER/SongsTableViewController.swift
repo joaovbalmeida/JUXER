@@ -17,6 +17,7 @@ class SongsTableViewController: UITableViewController {
     private var queueSongsID = [Int]()
     var playlistName = String()
     var session = [Session]()
+    var user = [User]()
     
     var activityIndicator: UIActivityIndicatorView!
     var overlay: UIView!
@@ -85,7 +86,8 @@ class SongsTableViewController: UITableViewController {
         
         session = SessionDAO.fetchSession()
         getSongs()
-    
+        
+        user = UserDAO.fetchUser()
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -108,7 +110,7 @@ class SongsTableViewController: UITableViewController {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
+        let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -167,7 +169,7 @@ class SongsTableViewController: UITableViewController {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        let url = NSURL(string: "http://www.juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
+        let url = NSURL(string: "http://juxer.club/api/track/playlist/\(session[0].id!)/?sorted=1")
         let request = NSMutableURLRequest(URL: url!)
         
         request.HTTPMethod = "GET"
@@ -305,13 +307,6 @@ class SongsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        searchController.dismissViewControllerAnimated(true, completion: nil)
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        dispatch_async(dispatch_get_main_queue()){
-           self.startLoadOverlay()
-        }
-        
         let id: Int
         
         //Get song id from filter or not
@@ -321,9 +316,16 @@ class SongsTableViewController: UITableViewController {
             id = songs[indexPath.row].id
         }
         
+        searchController.dismissViewControllerAnimated(true, completion: nil)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        dispatch_async(dispatch_get_main_queue()){
+           self.startLoadOverlay()
+        }
+        
         var alertView = SCLAlertView()
         let jsonObject: [String : AnyObject] =
-            [ "id": id ]
+            [ "id": id ,"show" : user[0].anonymous! ]
        
         if NSJSONSerialization.isValidJSONObject(jsonObject) {
             
@@ -332,7 +334,7 @@ class SongsTableViewController: UITableViewController {
                 
                 // create post request
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                let url = NSURL(string: "http://www.juxer.club/api/track/queue/\(session[0].id!)/")
+                let url = NSURL(string: "http://juxer.club/api/track/queue/\(session[0].id!)/")
                 let request = NSMutableURLRequest(URL: url!)
                 request.HTTPMethod = "POST"
                 
