@@ -37,7 +37,7 @@
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-gv-jdY">
-                                <rect key="frame" x="193" y="486" width="215" height="50"/>
+                                <rect key="frame" x="193" y="508" width="215" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="215" id="X1B-rg-4DU"/>
                                     <constraint firstAttribute="height" constant="50" id="hru-Cj-DhB"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycM-G5-YXa">
-                                <rect key="frame" x="193" y="422" width="215" height="56"/>
+                                <rect key="frame" x="193" y="444" width="215" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="6Tl-aZ-HRI"/>
                                     <constraint firstAttribute="width" constant="215" id="mqu-3D-3Y6"/>
@@ -72,7 +72,7 @@
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="0nb-rD-JF7"/>
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="top" secondItem="mfd-gv-jdY" secondAttribute="bottom" constant="-114" id="8aI-xQ-fyc"/>
                             <constraint firstItem="mfd-gv-jdY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9h2-Sq-GZo"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="122" id="TYc-Er-OEF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="100" id="TYc-Er-OEF"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i50-lB-F72"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iYi-6V-em5"/>
@@ -380,7 +380,7 @@
             </objects>
             <point key="canvasLocation" x="2190" y="334"/>
         </scene>
-        <!--JUXER-->
+        <!--Juxer-->
         <scene sceneID="8DP-FS-2yE">
             <objects>
                 <viewController id="Yff-9U-eFP" customClass="HostViewController" customModule="JUXER" customModuleProvider="target" sceneMemberID="viewController">
@@ -516,7 +516,7 @@
                             <constraint firstAttribute="trailing" secondItem="DJR-y1-pL3" secondAttribute="trailing" constant="5" id="zV2-Vp-lMV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="JUXER" id="qXJ-Ek-TRX">
+                    <navigationItem key="navigationItem" title="Juxer" id="qXJ-Ek-TRX">
                         <barButtonItem key="backBarButtonItem" title="Voltar" id="Okn-qP-NJZ"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="arW-gw-3kb">
                             <color key="tintColor" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1258,6 +1258,6 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gV6-dF-i4U"/>
+        <segue reference="IKF-sN-wm8"/>
     </inferredMetricsTieBreakers>
 </document>
