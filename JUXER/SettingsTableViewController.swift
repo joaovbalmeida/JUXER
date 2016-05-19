@@ -106,6 +106,11 @@ class SettingsTableViewController: UITableViewController {
                 session = SessionDAO.fetchSession()
                 SessionDAO.delete(session[0])
                 
+                //LogOut
+                GIDSignIn.sharedInstance().signOut()
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+                
                 //Segue to Login View
                 self.performSegueWithIdentifier("toLogin", sender: self)
                 

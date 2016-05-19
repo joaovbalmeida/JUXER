@@ -86,7 +86,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         self.view.layer.insertSublayer(view.layer, atIndex: 0)
         
         //Assing Page Objects
-        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado!", "Escaneie o código do evento.", "Escolha uma música entre as disponíveis nas playlists.", "Aproveite as músicas escolhidas por outras pessoas enquanto a sua está na fila!")
+        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado e interativo!", "Primeiro escaneie o código do evento.", "Escolha uma música entre as disponíveis nas playlists.", "Aproveite as músicas escolhidas por outras pessoas enquanto a sua está na fila!")
         self.pageImages = NSArray(objects: "JukeboxIcon", "BarcodeIcon", "IdeiaIcon", "DancingIcon")
         
         //Configure PageViewController
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         let startVC = self.viewControllerAtIndex(0) as ContentViewController
         let viewControllers = NSArray(object: startVC)
         self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height * 4/5)
         
         //Add PageViewController
         self.addChildViewController(self.pageViewController)
@@ -141,6 +141,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                             "username": "\(userEmail)",
                             "picture": "\(userPictureUrl)",
                             "fb_id": "\(userId)" ]
+                    
+                    print(jsonObject)
                     
                     if NSJSONSerialization.isValidJSONObject(jsonObject) {
                         
@@ -299,6 +301,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
     }
     
     func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        viewController.modalTransitionStyle = .CoverVertical
         self.presentViewController(viewController, animated: true) { () -> Void in
         }
     }
@@ -308,21 +311,23 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
             self.startLoadOverlay()
             
             let juxerUser = User()
-            juxerUser.id = user.userID
-            //let idToken = user.authentication.idToken // Safe to send to the server
-            juxerUser.name = user.profile.name
-            juxerUser.firstName = user.profile.givenName
-            juxerUser.lastName = user.profile.familyName
-            juxerUser.email = user.profile.email
-            juxerUser.pictureUrl = user.profile.imageURLWithDimension(150).absoluteString
-            
+            juxerUser.id = "\(user.userID)"
+            juxerUser.name = "\(user.profile.name)"
+            juxerUser.firstName = "\(user.profile.givenName)"
+            juxerUser.lastName = "\(user.profile.familyName)"
+            juxerUser.email = "\(user.profile.email)"
+            juxerUser.pictureUrl = "\(user.profile.imageURLWithDimension(150).absoluteString)"
+            juxerUser.anonymous = 0
+
             let jsonObject: [String : AnyObject] =
-                [ "email": "\(juxerUser.email)",
-                  "first_name": "\(juxerUser.firstName)",
-                  "last_name": "\(juxerUser.lastName)",
-                  "username": "\(juxerUser.email)",
-                  "picture": "\(juxerUser.pictureUrl)",
-                  "fb_id": "\(juxerUser.id)" ]
+                [ "email": "\(user.profile.email)",
+                  "first_name": "\(user.profile.givenName)",
+                  "last_name": "\(user.profile.familyName)",
+                  "username": "\(user.profile.email)",
+                  "picture": "\(user.profile.imageURLWithDimension(150).absoluteString)",
+                  "fb_id": "\(user.userID)" ]
+            
+            print(jsonObject)
             
             if NSJSONSerialization.isValidJSONObject(jsonObject) {
                 
@@ -358,6 +363,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                                 self.storeSessionToken(String(resultData))
                                 if user.profile.hasImage {
                                     print(juxerUser.pictureUrl)
+                                    print(user.profile.hasImage)
                                     self.getProfilePictureAndSegue(juxerUser.pictureUrl!)
                                 } else {
                                     dispatch_async(dispatch_get_main_queue()){
@@ -391,39 +397,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
     }
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
-       
-        let alertView = SCLAlertView()
-        alertView.addButton("Sim"){
-            
-            // Delete Profile
-            let user = UserDAO.fetchUser()
-            UserDAO.delete(user[0])
-            
-            // Erase Profile Picture
-            var documentsDirectory:String?
-            if let path:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory , NSSearchPathDomainMask.UserDomainMask, true) {
-                
-                if path.count > 0 {
-                    documentsDirectory = path[0] as? String
-                    let filePath = documentsDirectory! + "/profilePic.jpg"
-                    
-                    do {
-                        try NSFileManager.defaultManager().removeItemAtPath(filePath)
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-            
-            //Delete Session
-            let session = SessionDAO.fetchSession()
-            SessionDAO.delete(session[0])
-            
-            //Show Login View
-            self.goToLoginVC()
-            
-        }
-        alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     // MARK: - Page View Methods

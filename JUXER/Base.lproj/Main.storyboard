@@ -28,11 +28,34 @@
                                 <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KVT-jk-FBN">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="If0-ut-U6j"/>
+                                    <constraint firstAttribute="height" constant="20" id="sSA-zC-X7Q"/>
+                                </constraints>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-gv-jdY">
+                                <rect key="frame" x="193" y="486" width="215" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="215" id="X1B-rg-4DU"/>
+                                    <constraint firstAttribute="height" constant="50" id="hru-Cj-DhB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="GGLoginButton">
+                                    <color key="titleColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ggLoginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6O-b6-eFv"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycM-G5-YXa">
-                                <rect key="frame" x="207" y="486" width="187" height="56"/>
+                                <rect key="frame" x="193" y="422" width="215" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="6Tl-aZ-HRI"/>
-                                    <constraint firstAttribute="width" constant="187" id="mqu-3D-3Y6"/>
+                                    <constraint firstAttribute="width" constant="215" id="mqu-3D-3Y6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,36 +66,13 @@
                                     <action selector="fbLoginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uD5-Xd-dZI"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KVT-jk-FBN">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="If0-ut-U6j"/>
-                                    <constraint firstAttribute="height" constant="20" id="sSA-zC-X7Q"/>
-                                </constraints>
-                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-gv-jdY">
-                                <rect key="frame" x="207" y="422" width="187" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="187" id="X1B-rg-4DU"/>
-                                    <constraint firstAttribute="height" constant="56" id="hru-Cj-DhB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="FBLoginButton">
-                                    <color key="titleColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ggLoginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6O-b6-eFv"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ycM-G5-YXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="0nb-rD-JF7"/>
-                            <constraint firstItem="ycM-G5-YXa" firstAttribute="top" secondItem="mfd-gv-jdY" secondAttribute="bottom" constant="8" id="8aI-xQ-fyc"/>
+                            <constraint firstItem="ycM-G5-YXa" firstAttribute="top" secondItem="mfd-gv-jdY" secondAttribute="bottom" constant="-114" id="8aI-xQ-fyc"/>
                             <constraint firstItem="mfd-gv-jdY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9h2-Sq-GZo"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="58" id="TYc-Er-OEF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ycM-G5-YXa" secondAttribute="bottom" constant="122" id="TYc-Er-OEF"/>
                             <constraint firstItem="vSb-ad-6g6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="Z2v-LS-N2T"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i50-lB-F72"/>
                             <constraint firstItem="KVT-jk-FBN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iYi-6V-em5"/>
@@ -927,22 +927,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIh-SI-xWp">
-                                <rect key="frame" x="188" y="254" width="225" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="dqO-IB-8Xq"/>
-                                    <constraint firstAttribute="width" constant="225" id="it0-yn-ug2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN7-OH-eC8">
-                                <rect key="frame" x="250" y="146" width="100" height="100"/>
+                                <rect key="frame" x="250" y="297" width="100" height="100"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="pIC-qt-3fi"/>
-                                    <constraint firstAttribute="width" constant="100" id="zgg-Jm-Jzt"/>
+                                    <constraint firstAttribute="width" constant="100" id="IL6-n7-Igp"/>
+                                    <constraint firstAttribute="height" constant="100" id="sJ4-PZ-B41"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
@@ -950,13 +940,23 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIh-SI-xWp">
+                                <rect key="frame" x="175" y="405" width="250" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="hGq-xH-0zS"/>
+                                    <constraint firstAttribute="width" constant="250" id="ygS-Jy-W5s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CN7-OH-eC8" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="S09-nH-201"/>
-                            <constraint firstItem="VIh-SI-xWp" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="hLo-Oe-5BD"/>
-                            <constraint firstItem="VIh-SI-xWp" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="4" id="lH0-BV-d4f"/>
-                            <constraint firstItem="CN7-OH-eC8" firstAttribute="centerY" secondItem="VOA-pU-xQ4" secondAttribute="centerY" constant="-104" id="mNQ-Xk-dkj"/>
+                            <constraint firstItem="VIh-SI-xWp" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="VIE-tt-wKy"/>
+                            <constraint firstItem="Mfc-LX-Ddt" firstAttribute="top" secondItem="VIh-SI-xWp" secondAttribute="bottom" constant="120" id="fWe-Kn-sfs"/>
+                            <constraint firstItem="CN7-OH-eC8" firstAttribute="centerX" secondItem="VOA-pU-xQ4" secondAttribute="centerX" id="uIj-4g-qEv"/>
+                            <constraint firstItem="VIh-SI-xWp" firstAttribute="top" secondItem="CN7-OH-eC8" secondAttribute="bottom" constant="8" id="zgl-X1-8NA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1244,7 +1244,8 @@
         <image name="BannerPlaceholder" width="270" height="170"/>
         <image name="CoverPlaceholder" width="55" height="55"/>
         <image name="EventBackground" width="800" height="533"/>
-        <image name="FBLoginButton" width="178" height="36"/>
+        <image name="FBLoginButton" width="212" height="47"/>
+        <image name="GGLoginButton" width="212" height="47"/>
         <image name="Home" width="20" height="21"/>
         <image name="Jukebox" width="596" height="842"/>
         <image name="Music" width="21" height="24"/>
