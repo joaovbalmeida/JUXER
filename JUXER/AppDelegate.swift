@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             goToLoginVC()
         }
+        
         //Configure Page Controller
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
