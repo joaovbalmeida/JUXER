@@ -7,23 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E9AFE1681CF94BC000146729 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1671CF94BC000146729 /* AppDelegate.swift */; };
-		E9AFE16A1CF94BC000146729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1691CF94BC000146729 /* ViewController.swift */; };
-		E9AFE16D1CF94BC000146729 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE16B1CF94BC000146729 /* Main.storyboard */; };
+		026045E2DB77C7D34A42FC56 /* Pods_Juxer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317568CA44502A68DDFA427C /* Pods_Juxer.framework */; };
 		E9AFE1701CF94BC000146729 /* Juxer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE16E1CF94BC000146729 /* Juxer.xcdatamodeld */; };
 		E9AFE1721CF94BC000146729 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1711CF94BC000146729 /* Assets.xcassets */; };
-		E9AFE1751CF94BC000146729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1731CF94BC000146729 /* LaunchScreen.storyboard */; };
+		E9AFE18A1CF9511600146729 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1801CF9511600146729 /* LoadViewController.swift */; };
+		E9AFE18B1CF9511600146729 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1811CF9511600146729 /* LoginViewController.swift */; };
+		E9AFE18C1CF9511600146729 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1821CF9511600146729 /* HostViewController.swift */; };
+		E9AFE18D1CF9511600146729 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1831CF9511600146729 /* QRReaderViewController.swift */; };
+		E9AFE18E1CF9511600146729 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1841CF9511600146729 /* QueueViewController.swift */; };
+		E9AFE18F1CF9511600146729 /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1851CF9511600146729 /* PlaylistsTableViewController.swift */; };
+		E9AFE1901CF9511600146729 /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1861CF9511600146729 /* SongsTableViewController.swift */; };
+		E9AFE1911CF9511600146729 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1871CF9511600146729 /* SettingsTableViewController.swift */; };
+		E9AFE1921CF9511600146729 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1881CF9511600146729 /* TabBarController.swift */; };
+		E9AFE1931CF9511600146729 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1891CF9511600146729 /* ContentViewController.swift */; };
+		E9AFE1951CF9517800146729 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1941CF9517800146729 /* DatabaseManager.swift */; };
+		E9AFE19A1CF951B600146729 /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1981CF951B600146729 /* SessionDAO.swift */; };
+		E9AFE19B1CF951B600146729 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1991CF951B600146729 /* UserDAO.swift */; };
+		E9AFE1A01CF9520D00146729 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE19C1CF9520D00146729 /* Session+CoreDataProperties.swift */; };
+		E9AFE1A11CF9520D00146729 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE19D1CF9520D00146729 /* Session.swift */; };
+		E9AFE1A21CF9520D00146729 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE19E1CF9520D00146729 /* User+CoreDataProperties.swift */; };
+		E9AFE1A31CF9520D00146729 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE19F1CF9520D00146729 /* User.swift */; };
+		E9AFE1A51CF9524C00146729 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFE1A41CF9524C00146729 /* AppDelegate.swift */; };
+		E9AFE1A71CF9531A00146729 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1A61CF9531A00146729 /* GoogleService-Info.plist */; };
+		E9AFE1C21CF95D7500146729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1BE1CF95D7500146729 /* LaunchScreen.storyboard */; };
+		E9AFE1C31CF95D7500146729 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1C01CF95D7500146729 /* Main.storyboard */; };
+		E9F7DBB41CF965A000B4126B /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9F7DBB11CF965A000B4126B /* Comfortaa-Bold.ttf */; };
+		E9F7DBB61CF965A000B4126B /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9F7DBB31CF965A000B4126B /* Comfortaa-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20739D1A83AA68AF76A2DDE3 /* Pods-Juxer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Juxer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Juxer/Pods-Juxer.debug.xcconfig"; sourceTree = "<group>"; };
+		317568CA44502A68DDFA427C /* Pods_Juxer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Juxer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E414AD516FAC24C386D3BEB6 /* Pods-Juxer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Juxer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Juxer/Pods-Juxer.release.xcconfig"; sourceTree = "<group>"; };
 		E9AFE1641CF94BC000146729 /* Juxer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Juxer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9AFE1671CF94BC000146729 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9AFE1691CF94BC000146729 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E9AFE16C1CF94BC000146729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9AFE16F1CF94BC000146729 /* Juxer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Juxer.xcdatamodel; sourceTree = "<group>"; };
 		E9AFE1711CF94BC000146729 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E9AFE1741CF94BC000146729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9AFE1761CF94BC000146729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9AFE1801CF9511600146729 /* LoadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
+		E9AFE1811CF9511600146729 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E9AFE1821CF9511600146729 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		E9AFE1831CF9511600146729 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
+		E9AFE1841CF9511600146729 /* QueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
+		E9AFE1851CF9511600146729 /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
+		E9AFE1861CF9511600146729 /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
+		E9AFE1871CF9511600146729 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		E9AFE1881CF9511600146729 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E9AFE1891CF9511600146729 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		E9AFE1941CF9517800146729 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		E9AFE1981CF951B600146729 /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
+		E9AFE1991CF951B600146729 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
+		E9AFE19C1CF9520D00146729 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9AFE19D1CF9520D00146729 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		E9AFE19E1CF9520D00146729 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9AFE19F1CF9520D00146729 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E9AFE1A41CF9524C00146729 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E9AFE1A61CF9531A00146729 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9AFE1BF1CF95D7500146729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E9AFE1C11CF95D7500146729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E9F7DBAE1CF95DD200B4126B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
+		E9F7DBB11CF965A000B4126B /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Bold.ttf"; sourceTree = "<group>"; };
+		E9F7DBB31CF965A000B4126B /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +74,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026045E2DB77C7D34A42FC56 /* Pods_Juxer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		146B4A4FEC6FEDBA7CD34BBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				317568CA44502A68DDFA427C /* Pods_Juxer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2087C01659D121285A8D73FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20739D1A83AA68AF76A2DDE3 /* Pods-Juxer.debug.xcconfig */,
+				E414AD516FAC24C386D3BEB6 /* Pods-Juxer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E9AFE15B1CF94BC000146729 = {
 			isa = PBXGroup;
 			children = (
 				E9AFE1661CF94BC000146729 /* Juxer */,
 				E9AFE1651CF94BC000146729 /* Products */,
+				2087C01659D121285A8D73FB /* Pods */,
+				146B4A4FEC6FEDBA7CD34BBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +119,82 @@
 		E9AFE1661CF94BC000146729 /* Juxer */ = {
 			isa = PBXGroup;
 			children = (
-				E9AFE1671CF94BC000146729 /* AppDelegate.swift */,
-				E9AFE1691CF94BC000146729 /* ViewController.swift */,
-				E9AFE16B1CF94BC000146729 /* Main.storyboard */,
+				E9F7DBB01CF9653E00B4126B /* Resources */,
+				E9AFE1A41CF9524C00146729 /* AppDelegate.swift */,
+				E9AFE17F1CF94C8E00146729 /* Controller */,
+				E9AFE17E1CF94C8900146729 /* View */,
+				E9AFE17D1CF94C8100146729 /* Model */,
 				E9AFE1711CF94BC000146729 /* Assets.xcassets */,
-				E9AFE1731CF94BC000146729 /* LaunchScreen.storyboard */,
 				E9AFE1761CF94BC000146729 /* Info.plist */,
+				E9AFE1A61CF9531A00146729 /* GoogleService-Info.plist */,
 				E9AFE16E1CF94BC000146729 /* Juxer.xcdatamodeld */,
 			);
 			path = Juxer;
+			sourceTree = "<group>";
+		};
+		E9AFE17D1CF94C8100146729 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9AFE1941CF9517800146729 /* DatabaseManager.swift */,
+				E9AFE1961CF9519E00146729 /* DAO */,
+				E9AFE1971CF951A500146729 /* VO */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E9AFE17E1CF94C8900146729 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9AFE1C01CF95D7500146729 /* Main.storyboard */,
+				E9AFE1BE1CF95D7500146729 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E9AFE17F1CF94C8E00146729 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E9AFE1801CF9511600146729 /* LoadViewController.swift */,
+				E9AFE1811CF9511600146729 /* LoginViewController.swift */,
+				E9AFE1821CF9511600146729 /* HostViewController.swift */,
+				E9AFE1831CF9511600146729 /* QRReaderViewController.swift */,
+				E9AFE1841CF9511600146729 /* QueueViewController.swift */,
+				E9AFE1851CF9511600146729 /* PlaylistsTableViewController.swift */,
+				E9AFE1861CF9511600146729 /* SongsTableViewController.swift */,
+				E9AFE1871CF9511600146729 /* SettingsTableViewController.swift */,
+				E9AFE1881CF9511600146729 /* TabBarController.swift */,
+				E9AFE1891CF9511600146729 /* ContentViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E9AFE1961CF9519E00146729 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				E9AFE1981CF951B600146729 /* SessionDAO.swift */,
+				E9AFE1991CF951B600146729 /* UserDAO.swift */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
+		E9AFE1971CF951A500146729 /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				E9AFE19C1CF9520D00146729 /* Session+CoreDataProperties.swift */,
+				E9AFE19D1CF9520D00146729 /* Session.swift */,
+				E9AFE19E1CF9520D00146729 /* User+CoreDataProperties.swift */,
+				E9AFE19F1CF9520D00146729 /* User.swift */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
+		E9F7DBB01CF9653E00B4126B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E9F7DBB11CF965A000B4126B /* Comfortaa-Bold.ttf */,
+				E9F7DBB31CF965A000B4126B /* Comfortaa-Regular.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9AFE1791CF94BC000146729 /* Build configuration list for PBXNativeTarget "Juxer" */;
 			buildPhases = (
+				8FDE9D257341097C75E607F6 /* 📦 Check Pods Manifest.lock */,
 				E9AFE1601CF94BC000146729 /* Sources */,
 				E9AFE1611CF94BC000146729 /* Frameworks */,
 				E9AFE1621CF94BC000146729 /* Resources */,
+				E6138A94303AA44E52D0FCE6 /* 📦 Embed Pods Frameworks */,
+				67502D9FFB4B7112A6F8304A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +232,7 @@
 				TargetAttributes = {
 					E9AFE1631CF94BC000146729 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = R2A9S4KZ5J;
 					};
 				};
 			};
@@ -107,7 +241,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = E9AFE15B1CF94BC000146729;
@@ -125,42 +258,110 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9AFE1751CF94BC000146729 /* LaunchScreen.storyboard in Resources */,
+				E9AFE1C21CF95D7500146729 /* LaunchScreen.storyboard in Resources */,
 				E9AFE1721CF94BC000146729 /* Assets.xcassets in Resources */,
-				E9AFE16D1CF94BC000146729 /* Main.storyboard in Resources */,
+				E9F7DBB41CF965A000B4126B /* Comfortaa-Bold.ttf in Resources */,
+				E9F7DBB61CF965A000B4126B /* Comfortaa-Regular.ttf in Resources */,
+				E9AFE1A71CF9531A00146729 /* GoogleService-Info.plist in Resources */,
+				E9AFE1C31CF95D7500146729 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		67502D9FFB4B7112A6F8304A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Juxer/Pods-Juxer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FDE9D257341097C75E607F6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E6138A94303AA44E52D0FCE6 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Juxer/Pods-Juxer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E9AFE1601CF94BC000146729 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9AFE16A1CF94BC000146729 /* ViewController.swift in Sources */,
+				E9AFE18B1CF9511600146729 /* LoginViewController.swift in Sources */,
+				E9AFE1A11CF9520D00146729 /* Session.swift in Sources */,
+				E9AFE1A51CF9524C00146729 /* AppDelegate.swift in Sources */,
+				E9AFE19A1CF951B600146729 /* SessionDAO.swift in Sources */,
+				E9AFE18C1CF9511600146729 /* HostViewController.swift in Sources */,
+				E9AFE1951CF9517800146729 /* DatabaseManager.swift in Sources */,
+				E9AFE1A01CF9520D00146729 /* Session+CoreDataProperties.swift in Sources */,
+				E9AFE1921CF9511600146729 /* TabBarController.swift in Sources */,
+				E9AFE18E1CF9511600146729 /* QueueViewController.swift in Sources */,
+				E9AFE1A21CF9520D00146729 /* User+CoreDataProperties.swift in Sources */,
+				E9AFE1931CF9511600146729 /* ContentViewController.swift in Sources */,
+				E9AFE1901CF9511600146729 /* SongsTableViewController.swift in Sources */,
+				E9AFE18D1CF9511600146729 /* QRReaderViewController.swift in Sources */,
+				E9AFE18A1CF9511600146729 /* LoadViewController.swift in Sources */,
+				E9AFE1911CF9511600146729 /* SettingsTableViewController.swift in Sources */,
+				E9AFE18F1CF9511600146729 /* PlaylistsTableViewController.swift in Sources */,
 				E9AFE1701CF94BC000146729 /* Juxer.xcdatamodeld in Sources */,
-				E9AFE1681CF94BC000146729 /* AppDelegate.swift in Sources */,
+				E9AFE19B1CF951B600146729 /* UserDAO.swift in Sources */,
+				E9AFE1A31CF9520D00146729 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E9AFE16B1CF94BC000146729 /* Main.storyboard */ = {
+		E9AFE1BE1CF95D7500146729 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E9AFE16C1CF94BC000146729 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E9AFE1731CF94BC000146729 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9AFE1741CF94BC000146729 /* Base */,
+				E9AFE1BF1CF95D7500146729 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E9AFE1C01CF95D7500146729 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9AFE1C11CF95D7500146729 /* Base */,
+				E9F7DBAE1CF95DD200B4126B /* pt-BR */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -251,23 +452,31 @@
 		};
 		E9AFE17A1CF94BC000146729 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20739D1A83AA68AF76A2DDE3 /* Pods-Juxer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Juxer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = club.juxer.Juxer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		E9AFE17B1CF94BC000146729 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E414AD516FAC24C386D3BEB6 /* Pods-Juxer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Juxer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = club.juxer.Juxer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -290,6 +499,7 @@
 				E9AFE17B1CF94BC000146729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

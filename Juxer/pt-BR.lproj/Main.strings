@@ -1,0 +1,54 @@
+
+/* Class = "UINavigationItem"; title = "Ajustes"; ObjectID = "66z-O0-w0i"; */
+"66z-O0-w0i.title" = "Ajustes";
+
+/* Class = "UILabel"; text = "Log Out"; ObjectID = "DN0-J5-ISN"; */
+"DN0-J5-ISN.text" = "Log Out";
+
+/* Class = "UIBarButtonItem"; title = "Voltar"; ObjectID = "Ffm-Sl-dmn"; */
+"Ffm-Sl-dmn.title" = "Voltar";
+
+/* Class = "UILabel"; text = "Usuário Anônimo"; ObjectID = "Ply-gL-faD"; */
+"Ply-gL-faD.text" = "Usuário Anônimo";
+
+/* Class = "UILabel"; text = "JUXER"; ObjectID = "Q6C-J9-IYg"; */
+"Q6C-J9-IYg.text" = "JUXER";
+
+/* Class = "UILabel"; text = "Nenhuma Música"; ObjectID = "TZ3-Rh-xxf"; */
+"TZ3-Rh-xxf.text" = "Nenhuma Música";
+
+/* Class = "UILabel"; text = "Clique em Escanear Código QR e escaneie o código QR do evento"; ObjectID = "Vhw-kD-omX"; */
+"Vhw-kD-omX.text" = "Clique em Escanear Código QR e escaneie o código QR do evento";
+
+/* Class = "UITableViewSection"; footerTitle = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário."; ObjectID = "WXy-Iy-tjG"; */
+"WXy-Iy-tjG.footerTitle" = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário.";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "WXy-Iy-tjG"; */
+"WXy-Iy-tjG.headerTitle" = " ";
+
+/* Class = "UINavigationItem"; title = "Juxer"; ObjectID = "XkZ-f5-EGM"; */
+"XkZ-f5-EGM.title" = "Juxer";
+
+/* Class = "UINavigationItem"; title = "Músicas"; ObjectID = "ZwG-Y5-ViG"; */
+"ZwG-Y5-ViG.title" = "Músicas";
+
+/* Class = "UILabel"; text = "Nova Música"; ObjectID = "aok-IM-bcP"; */
+"aok-IM-bcP.text" = "Nova Música";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bTG-rP-jzt"; */
+"bTG-rP-jzt.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Playlists"; ObjectID = "co9-Mo-EWT"; */
+"co9-Mo-EWT.title" = "Playlists";
+
+/* Class = "UILabel"; text = "Horário:"; ObjectID = "eWf-cO-nmK"; */
+"eWf-cO-nmK.text" = "Horário:";
+
+/* Class = "UILabel"; text = "Escanear Código QR"; ObjectID = "fDy-Lq-RQd"; */
+"fDy-Lq-RQd.text" = "Escanear Código QR";
+
+/* Class = "UILabel"; text = "Posicione o Código QR na tela para conectar-se ao JUXER."; ObjectID = "fuM-VB-kaP"; */
+"fuM-VB-kaP.text" = "Posicione o Código QR na tela para conectar-se ao JUXER.";
+
+/* Class = "UILabel"; text = "Código QR"; ObjectID = "wip-WX-wrH"; */
+"wip-WX-wrH.text" = "Código QR";
