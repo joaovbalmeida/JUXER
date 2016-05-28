@@ -20,17 +20,9 @@ class LoadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Gradient Background
-        let view: UIView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor.init(red: 191/255, green: 0/255, blue: 96/255, alpha: 1).CGColor, UIColor.init(red: 93/255, green: 0/255, blue: 94/255, alpha: 1).CGColor]
-        view.layer.insertSublayer(gradient, atIndex: 0)
-        self.view.layer.insertSublayer(view.layer, atIndex: 0)
     }
 
     override func viewDidAppear(animated: Bool) {
-        
         activityIndicator.startAnimating()
         
         //If session active, refresh token and bypass views

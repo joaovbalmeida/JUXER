@@ -109,10 +109,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-    
     private func saveAndSubmitFBUser(){
         
         if((FBSDKAccessToken.currentAccessToken()) != nil)
@@ -330,8 +326,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                   "picture": "\(user.profile.imageURLWithDimension(150).absoluteString)",
                   "fb_id": "\(user.userID)" ]
             
-            print(jsonObject)
-            
             if NSJSONSerialization.isValidJSONObject(jsonObject) {
                 
                 do {
@@ -365,8 +359,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                                 resultData = resultData.stringByReplacingOccurrencesOfString("\"", withString: "")
                                 self.storeSessionToken(String(resultData))
                                 if user.profile.hasImage {
-                                    print(juxerUser.pictureUrl)
-                                    print(user.profile.hasImage)
                                     self.getProfilePictureAndSegue(juxerUser.pictureUrl!)
                                 } else {
                                     dispatch_async(dispatch_get_main_queue()){
