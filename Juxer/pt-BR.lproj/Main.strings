@@ -11,9 +11,6 @@
 /* Class = "UILabel"; text = "Usuário Anônimo"; ObjectID = "Ply-gL-faD"; */
 "Ply-gL-faD.text" = "Usuário Anônimo";
 
-/* Class = "UILabel"; text = "JUXER"; ObjectID = "Q6C-J9-IYg"; */
-"Q6C-J9-IYg.text" = "JUXER";
-
 /* Class = "UILabel"; text = "Nenhuma Música"; ObjectID = "TZ3-Rh-xxf"; */
 "TZ3-Rh-xxf.text" = "Nenhuma Música";
 
@@ -27,7 +24,7 @@
 "WXy-Iy-tjG.headerTitle" = " ";
 
 /* Class = "UINavigationItem"; title = "Juxer"; ObjectID = "XkZ-f5-EGM"; */
-"XkZ-f5-EGM.title" = "Juxer";
+"XkZ-f5-EGM.title" = "Evento";
 
 /* Class = "UINavigationItem"; title = "Músicas"; ObjectID = "ZwG-Y5-ViG"; */
 "ZwG-Y5-ViG.title" = "Músicas";
@@ -52,3 +49,8 @@
 
 /* Class = "UILabel"; text = "Código QR"; ObjectID = "wip-WX-wrH"; */
 "wip-WX-wrH.text" = "Código QR";
+
+/* Bar Items */
+"eyP-Es-OT8.title" = "Evento";
+"jru-It-nCs.title" = "Fila";
+"er7-2X-EnU.title" = "Ajustes";

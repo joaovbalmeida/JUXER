@@ -199,14 +199,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWf-cO-nmK">
-                                            <rect key="frame" x="80" y="38" width="54" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWf-cO-nmK">
+                                            <rect key="frame" x="85" y="38" width="54" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="43d-Zl-fHm"/>
                                                 <constraint firstAttribute="width" constant="54" id="dLj-rJ-aCh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="yZe-cM-QOq">
@@ -239,11 +239,11 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="yZe-cM-QOq" firstAttribute="centerY" secondItem="Vyf-HE-XI8" secondAttribute="centerY" id="6Dd-nn-5UO"/>
-                                        <constraint firstItem="eWf-cO-nmK" firstAttribute="leading" secondItem="yZe-cM-QOq" secondAttribute="trailing" constant="10" id="8eR-Fr-hY0"/>
+                                        <constraint firstItem="eWf-cO-nmK" firstAttribute="leading" secondItem="yZe-cM-QOq" secondAttribute="trailing" constant="15" id="8eR-Fr-hY0"/>
                                         <constraint firstItem="nVD-F7-7sz" firstAttribute="centerY" secondItem="Vyf-HE-XI8" secondAttribute="centerY" constant="-10.5" id="948-R3-LxK"/>
                                         <constraint firstItem="yZe-cM-QOq" firstAttribute="leading" secondItem="Vyf-HE-XI8" secondAttribute="leading" constant="10" id="Hm7-aD-oSb"/>
                                         <constraint firstItem="OaI-O1-b0D" firstAttribute="centerY" secondItem="Vyf-HE-XI8" secondAttribute="centerY" constant="11" id="RT4-2h-bAc"/>
-                                        <constraint firstItem="OaI-O1-b0D" firstAttribute="leading" secondItem="eWf-cO-nmK" secondAttribute="trailing" id="l5C-h9-kBp"/>
+                                        <constraint firstItem="OaI-O1-b0D" firstAttribute="leading" secondItem="eWf-cO-nmK" secondAttribute="trailing" constant="-5" id="l5C-h9-kBp"/>
                                         <constraint firstItem="eWf-cO-nmK" firstAttribute="centerY" secondItem="Vyf-HE-XI8" secondAttribute="centerY" constant="11" id="llM-RC-v8e"/>
                                         <constraint firstItem="nVD-F7-7sz" firstAttribute="leading" secondItem="yZe-cM-QOq" secondAttribute="trailing" constant="15" id="zQJ-ge-uoj"/>
                                     </constraints>
@@ -581,7 +581,7 @@
             </objects>
             <point key="canvasLocation" x="3577" y="311"/>
         </scene>
-        <!--Queue View Controller-->
+        <!--Queue-->
         <scene sceneID="u4x-t4-LOg">
             <objects>
                 <viewController id="EM2-K7-cNP" customClass="QueueViewController" customModule="Juxer" customModuleProvider="target" sceneMemberID="viewController">
@@ -890,8 +890,7 @@
                             <constraint firstItem="x1T-vg-Msg" firstAttribute="leading" secondItem="zfU-XV-5ZI" secondAttribute="leading" id="upF-lh-XWU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Music" id="jru-It-nCs">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    <tabBarItem key="tabBarItem" title="Queue" image="Music" id="jru-It-nCs">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -951,7 +950,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTG-rP-jzt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTG-rP-jzt">
                                 <rect key="frame" x="175" y="405" width="250" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="8Rf-Jk-R1a"/>
@@ -1042,12 +1041,11 @@
             </objects>
             <point key="canvasLocation" x="781" y="311"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Event-->
         <scene sceneID="sye-C6-z1x">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wtq-Zj-nQT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Home" id="eyP-Es-OT8">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    <tabBarItem key="tabBarItem" title="Event" image="Home" id="eyP-Es-OT8">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1250,12 +1248,11 @@
             </objects>
             <point key="canvasLocation" x="2891" y="1023"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="Rxs-9C-Krs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlw-sM-fBM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Settings" id="er7-2X-EnU">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="er7-2X-EnU">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="1" green="0.0" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1299,6 +1296,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Byi-8v-G9U"/>
-        <segue reference="t8g-Fr-zam"/>
+        <segue reference="VuB-fx-Evj"/>
     </inferredMetricsTieBreakers>
 </document>
