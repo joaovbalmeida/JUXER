@@ -46,7 +46,7 @@
 "This Playlist reached the deadline limit!" = "O tempo limite de músicas dessa playlist foi atingido!";
 "Unable to make request, please try again!" = "Ocorreu um erro ao fazer o pedido, por favor tente novamente!";
 "Unable to request this song!" = "Não foi possivel pedir essa música!";
-"You will be disconnected from the event!" = "Voce será desconectado do evento!"
+"You will be disconnected from the event!" = "Voce será desconectado do evento!";
 
 /* Alerts Views Buttons titles */
 "Yes" = "Sim";

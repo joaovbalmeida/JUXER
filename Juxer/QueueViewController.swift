@@ -17,10 +17,8 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var requestLabelConstraint: NSLayoutConstraint!
     @IBOutlet weak var requestButtonConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var albumBG: UIImageView!
     @IBOutlet weak var albumtImage: UIImageView!
     @IBOutlet weak var songLabel: UILabel!
@@ -28,9 +26,9 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var songScrollingLabel: UILabel!
     @IBOutlet weak var artistScrollingLabel: UILabel!
-    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var orderButton: UIButton!
+    @IBOutlet weak var orderButtonLabel: UILabel!
 
     private let kHeaderHeight: CGFloat = 380
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -86,9 +84,10 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         //Check if connected to event
         if session.count != 0 && session[0].active == 1 {
             getQueue()
-            
         } else {
-            orderButton.userInteractionEnabled = false
+            orderButtonLabel.hidden = true
+            orderButton.hidden = true
+            tableView.hidden = true
         }
         
         //Configure Stretchy Header

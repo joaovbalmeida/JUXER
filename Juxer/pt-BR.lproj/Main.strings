@@ -15,7 +15,7 @@
 "TZ3-Rh-xxf.text" = "Nenhuma Música";
 
 /* Class = "UILabel"; text = "Clique em Escanear Código QR e escaneie o código QR do evento"; ObjectID = "Vhw-kD-omX"; */
-"Vhw-kD-omX.text" = "Clique em Escanear Código QR e escaneie o código QR do evento";
+"Vhw-kD-omX.text" = "Clique em Escanear Código e escaneie o código QR do evento";
 
 /* Class = "UITableViewSection"; footerTitle = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário."; ObjectID = "WXy-Iy-tjG"; */
 "WXy-Iy-tjG.footerTitle" = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário.";
@@ -42,7 +42,7 @@
 "eWf-cO-nmK.text" = "Horário:";
 
 /* Class = "UILabel"; text = "Escanear Código QR"; ObjectID = "fDy-Lq-RQd"; */
-"fDy-Lq-RQd.text" = "Escanear Código QR";
+"fDy-Lq-RQd.text" = "Escanear Código";
 
 /* Class = "UILabel"; text = "Posicione o Código QR na tela para conectar-se ao JUXER."; ObjectID = "fuM-VB-kaP"; */
 "fuM-VB-kaP.text" = "Posicione o Código QR na tela para conectar-se ao JUXER.";
@@ -55,4 +55,8 @@
 "jru-It-nCs.title" = "Fila";
 "er7-2X-EnU.title" = "Ajustes";
 
+/* Class = "UILabel"; text = "Bem-Vindo ao Juxer"; ObjectID = "KgA-iy-NLz"; */
+"KgA-iy-NLz.text" = "Bem-Vindo ao Juxer";
 
+/* Class = "UILabel"; text = "To connect to your event, tap on "Event" tab and then on "Scan QR"!"; ObjectID = "hSs-aN-ONJ"; */
+"hSs-aN-ONJ.text" = "Para conectar-se ao seu evento, toque em \"Evento\" e depois em \"Escanear Código\"! ";
