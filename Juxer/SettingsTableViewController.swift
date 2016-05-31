@@ -80,7 +80,7 @@ class SettingsTableViewController: UITableViewController {
         
         if indexPath.section == 1 && indexPath.row == 0 {
             let alertView = SCLAlertView()
-            alertView.addButton("Sim"){
+            alertView.addButton("Yes".localized){
                 
                 // Delete Profile
                 UserDAO.delete(self.user[0])
@@ -115,7 +115,7 @@ class SettingsTableViewController: UITableViewController {
                 self.performSegueWithIdentifier("toLogin", sender: self)
                 
             }
-            alertView.showWarning("Log Out?", subTitle: "Voce será desconectado do evento!", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+            alertView.showWarning("Log Out?", subTitle: "You will be disconnected from the event!".localized, closeButtonTitle: "No".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
         }
     }
     

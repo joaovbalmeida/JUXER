@@ -51,7 +51,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
                 print(error.localizedDescription)
                 dispatch_async(dispatch_get_main_queue()){
                     self.stopLoadOverlay()
-                    SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    SCLAlertView().showError("Error".localized, subTitle: "Unable to Login. Please, try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             }
             else if result.isCancelled
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         self.view.layer.insertSublayer(view.layer, atIndex: 0)
         
         //Assing Page Objects
-        self.pageLabels = NSArray(objects: "Deixe seu evento mais animado e interativo!", "Primeiro escaneie o código do evento.", "Escolha uma música entre as disponíveis nas playlists.", "Aproveite as músicas escolhidas por outras pessoas enquanto a sua está na fila!")
+        self.pageLabels = NSArray(objects: "Experience a new way of music interaction in your events!".localized , "After logging in scan the event QR Code.".localized , "Order songs from the event availables playlists.".localized , "Enjoy the songs chosen by others while yours is in the queue!".localized)
         self.pageImages = NSArray(objects: "JukeboxIcon", "BarcodeIcon", "IdeiaIcon", "DancingIcon")
         
         //Configure PageViewController
@@ -250,11 +250,11 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
     }
     
     func showErrorAlert(){
-        SCLAlertView().showError("Erro", subTitle: "Não foi possivel fazer login, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        SCLAlertView().showError("Error".localized, subTitle: "Unable to Login ,please try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     func showConectionErrorAlert(){
-        SCLAlertView().showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        SCLAlertView().showError("Connection Error".localized, subTitle: "Unable to reach server, please try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private func storeSessionToken(userToken: String){

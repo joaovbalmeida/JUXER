@@ -91,7 +91,7 @@ class PlaylistsTableViewController: UITableViewController {
                     alertView.addButton("OK"){
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    alertView.showError("Connection Error".localized, subTitle: "Unable to reach server, please try again!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
 
             } else {
@@ -166,7 +166,7 @@ class PlaylistsTableViewController: UITableViewController {
                             alertView.addButton("OK"){
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             }
-                            alertView.showError("Erro", subTitle: "Não foi possivel obter as Playlists!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            alertView.showError("Error".localized, subTitle: "Unable to get Playlists!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
                 } else {
@@ -176,7 +176,7 @@ class PlaylistsTableViewController: UITableViewController {
                         alertView.addButton("OK"){
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
-                        alertView.showError("Erro", subTitle: "Não foi possivel obter as Playlists!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        alertView.showError("Error".localized, subTitle: "Unable to get Playlists!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                 }
                 

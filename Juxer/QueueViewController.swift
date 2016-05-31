@@ -173,7 +173,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
                     self.stopLoad()
-                    self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    self.alertView.showError("Connection Error".localized, subTitle: "Unable to reach server, please try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             } else {
                 do {
@@ -266,14 +266,14 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                     } else {
                         dispatch_async(dispatch_get_main_queue()){
                             self.stopLoad()
-                            self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            self.alertView.showError("Error".localized, subTitle: "Unable to get queue tracks!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
 
                 } catch let error as NSError {
                     dispatch_async(dispatch_get_main_queue()){
                         self.stopLoad()
-                        self.alertView.showError("Erro", subTitle: "Não foi possivel obter fila de músicas!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        self.alertView.showError("Error".localized, subTitle: "Unable to get queue tracks!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                     print(error)
                 }

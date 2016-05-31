@@ -40,7 +40,7 @@ class HostViewController: UIViewController {
     @IBAction func exitEvent(sender: AnyObject) {
         
         let alertView = SCLAlertView()
-        alertView.addButton("Sim"){
+        alertView.addButton("Yes".localized){
             
             //Set Session Inactive
             self.session[0].id = nil
@@ -50,7 +50,7 @@ class HostViewController: UIViewController {
             //Segue to Home
             self.performSegueWithIdentifier("exitEvent", sender: self)
         }
-        alertView.showWarning("Sair do evento?", subTitle: "Seus pedidos pendentes continuarão na fila.", closeButtonTitle: "Não", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        alertView.showWarning("Exit event?".localized, subTitle: "Your pending requests will continue on queue.".localized, closeButtonTitle: "No".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     override func viewDidLoad() {
@@ -93,7 +93,7 @@ class HostViewController: UIViewController {
                 print(error)
                 dispatch_async(dispatch_get_main_queue()){
                     self.activityIndicator.stopAnimating()
-                    alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    alertView.showError("Connection Error".localized, subTitle: "Unable to reach server, please try again!".localized, closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             } else {
                 let httpResponse = response as! NSHTTPURLResponse
@@ -119,14 +119,14 @@ class HostViewController: UIViewController {
                         print(error)
                         dispatch_async(dispatch_get_main_queue()){
                             self.activityIndicator.stopAnimating()
-                            alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            alertView.showError("Error".localized, subTitle: "Unable to get event information, please try again!".localized, closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                     }
                 } else {
                     print(httpResponse.statusCode)
                     dispatch_async(dispatch_get_main_queue()){
                         self.activityIndicator.stopAnimating()
-                        alertView.showError("Erro", subTitle: "Não foi possivel obter informações do evento!",closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                        alertView.showError("Error".localized, subTitle: "Unable to get event information, please try again!".localized, closeButtonTitle: "OK" , colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                     }
                 }
             }

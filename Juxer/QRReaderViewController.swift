@@ -137,7 +137,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     func deviceNotSupported() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .Alert)
+        let ac = UIAlertController(title: "Scanning not supported".localized, message: "Your device does not support scanning a code from an item. Please use a device with a camera.".localized, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
         captureSession = nil
@@ -220,7 +220,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                             alertView.addButton("OK"){
                                 self.stopLoadOverlay()
                             }
-                            alertView.showError("Erro", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            alertView.showError("Error".localized, subTitle: "Unable to reach server, please try again!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                         }
                         return
                         
@@ -244,7 +244,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                                 alertView.addButton("OK"){
                                     self.stopLoadOverlay()
                                 }
-                                alertView.showError("Código Inválido", subTitle: "Não foi possivel validar o código, tente novamente!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                alertView.showError("Invalid Code".localized, subTitle: "Unable to validate code, please try again!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
                         }
                     }
@@ -255,7 +255,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                     alertView.addButton("OK"){
                         self.stopLoadOverlay()
                     }
-                    alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                    alertView.showError("Invalid Code".localized, subTitle: "No event with the scanned code!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                 }
             }
             
@@ -265,7 +265,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
                 alertView.addButton("OK"){
                     self.stopLoadOverlay()
                 }
-                alertView.showError("Código Inválido", subTitle: "Nenhum evento com o código escaneado!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                alertView.showError("Invalid Code".localized, subTitle: "No event with the scanned code!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
             }
         }
     }

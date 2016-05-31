@@ -68,7 +68,7 @@ class SongsTableViewController: UITableViewController {
         
         //Configure SearchBar
         searchController.searchBar.barTintColor = UIColor.blackColor()
-        searchController.searchBar.placeholder = "Pesquisar"
+        searchController.searchBar.placeholder = "Search".localized
         searchController.searchBar.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
         searchController.searchBar.keyboardAppearance = .Dark
         searchController.searchBar.enablesReturnKeyAutomatically = true
@@ -142,7 +142,6 @@ class SongsTableViewController: UITableViewController {
                                 }
                             }
                         }
-                        
                         //Get songs that are not on queue yet
                         self.getSongsNotOnQueue()
                         
@@ -260,12 +259,11 @@ class SongsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchController.active && searchController.searchBar.text != "" {
@@ -325,7 +323,7 @@ class SongsTableViewController: UITableViewController {
         
         var alertView = SCLAlertView()
         let jsonObject: [String : AnyObject] =
-            [ "id": id ,"show" : user[0].anonymous! ]
+            [ "id": id , "anom" : user[0].anonymous! ]
        
         if NSJSONSerialization.isValidJSONObject(jsonObject) {
             
@@ -366,7 +364,7 @@ class SongsTableViewController: UITableViewController {
                                 alertView.addButton("OK"){
                                     self.dismissViewControllerAnimated(true, completion: {})
                                 }
-                                alertView.showSuccess("Obrigado!", subTitle: "Seu pedido entrará na fila em breve!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                alertView.showSuccess("Thanks".localized, subTitle: "Your request is now on queue!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
                 
                         } else if httpResponse.statusCode == 422 {
@@ -374,28 +372,28 @@ class SongsTableViewController: UITableViewController {
                             if string == "\"Track already on queue\"" {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()
-                                    alertView.showError("Ops", subTitle: "A música pedida já está na fila!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                    alertView.showError("Oops".localized, subTitle: "The requested track is already on queue!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             } else if string == "\"User has already reached song request limit\"" {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()
-                                    alertView.showError("Limite Atingido", subTitle: "Você atingiu o limite de músicas do evento, espere seus pedidos pendentes acabarem e tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                    alertView.showError("Reached Limit".localized, subTitle: "You have reached your request limit, wait your pending requests finish and try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             } else if string == "\"Unavailable track\"" {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()
-                                    alertView.showError("Limite Antigido", subTitle: "O tempo limite de músicas dessa playlist foi atingido!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                    alertView.showError("Reached Limit".localized, subTitle: "This Playlist reached the deadline limit!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             } else {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()
-                                    alertView.showError("Ops", subTitle: "Não foi possivel pedir essa música!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                    alertView.showError("Error".localized, subTitle: "Unable to request this song!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                                 }
                             }
                         } else {
                             dispatch_async(dispatch_get_main_queue()){
                                 self.stopLoadOverlay()
-                                alertView.showError("Erro", subTitle: "Ocorreu um erro ao fazer o pedido, tente novamente!", closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                                alertView.showError("Error".localized, subTitle: "Unable to make request, please try again!".localized, closeButtonTitle: "OK", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
                             print(httpResponse.statusCode)
                             print(string)
@@ -417,14 +415,14 @@ class SongsTableViewController: UITableViewController {
         self.alertView.addButton("OK"){
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-        self.alertView.showError("Erro de Conexão", subTitle: "Não foi possivel conectar ao servidor!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        self.alertView.showError("Connection Error".localized, subTitle: "Unable to reach server, please try again!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private func JSONErrorAlert(){
         self.alertView.addButton("OK"){
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-        self.alertView.showError("Ocorreu um Erro", subTitle: "Não foi possivel obter as Músicas!", colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+        self.alertView.showError("Error".localized, subTitle: "Unable to get Tracks!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
     }
     
     private func startLoadOverlay(){

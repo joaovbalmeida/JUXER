@@ -25,3 +25,10 @@ class ContentViewController: UIViewController {
     }
     
 }
+
+// Extension for localizing strings set programmatically
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+    }
+}
