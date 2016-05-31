@@ -94,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emd-8F-XAX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="311"/>
+            <point key="canvasLocation" x="1494" y="311"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="sQa-oh-Fek">
@@ -187,7 +187,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.16862745100000001" green="0.1960784314" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="2pc-rj-B8V">
-                            <rect key="frame" x="0.0" y="98" width="600" height="0.0"/>
+                            <rect key="frame" x="0.0" y="378" width="600" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -253,6 +253,44 @@
                                     <outlet property="playlistCover" destination="yZe-cM-QOq" id="1km-VA-Uxb"/>
                                     <outlet property="playlistHour" destination="OaI-O1-b0D" id="NSU-XG-cwq"/>
                                     <outlet property="playlistName" destination="nVD-F7-7sz" id="TeD-vU-ALM"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="footer" rowHeight="280" id="TcK-2C-Vgs" customClass="FooterTableViewCell" customModule="Juxer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="98" width="600" height="280"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TcK-2C-Vgs" id="GJU-vz-P7v">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="279"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="hX9-fx-O3X">
+                                            <rect key="frame" x="260" y="85" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="DCA-M1-JYJ"/>
+                                                <constraint firstAttribute="height" constant="80" id="aRj-7g-1rO"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Playlists Available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-zx-89C">
+                                            <rect key="frame" x="200" y="173" width="200" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="mkV-DO-MN0"/>
+                                                <constraint firstAttribute="width" constant="200" id="uR3-D3-Z6R"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <color key="textColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hX9-fx-O3X" firstAttribute="centerY" secondItem="GJU-vz-P7v" secondAttribute="centerY" constant="-14.5" id="1bD-Qi-JY6"/>
+                                        <constraint firstItem="hX9-fx-O3X" firstAttribute="centerX" secondItem="GJU-vz-P7v" secondAttribute="centerX" id="Hor-Iy-bVt"/>
+                                        <constraint firstItem="GPK-zx-89C" firstAttribute="centerY" secondItem="GJU-vz-P7v" secondAttribute="centerY" constant="44" id="eR8-dK-97F"/>
+                                        <constraint firstItem="GPK-zx-89C" firstAttribute="centerX" secondItem="GJU-vz-P7v" secondAttribute="centerX" id="vRk-FK-hbZ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="footerLabel" destination="GPK-zx-89C" id="W7Q-ow-Y4O"/>
+                                    <outlet property="footerPlaceholder" destination="hX9-fx-O3X" id="E63-ff-Pio"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -387,7 +425,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rI-Pv-1xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="318"/>
+            <point key="canvasLocation" x="2180" y="311"/>
         </scene>
         <!--Juxer-->
         <scene sceneID="Bdf-ir-QxD">
@@ -845,14 +883,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QueuePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="eNR-0i-gfv">
-                                                    <rect key="frame" x="260" y="48" width="80" height="80"/>
+                                                    <rect key="frame" x="260" y="58" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="2OL-c0-MNT"/>
                                                         <constraint firstAttribute="width" constant="80" id="Dqg-q8-Vh2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Songs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ3-Rh-xxf">
-                                                    <rect key="frame" x="200" y="136" width="200" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Songs on Queue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZ3-Rh-xxf">
+                                                    <rect key="frame" x="200" y="146" width="200" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Cj0-LK-IOt"/>
                                                         <constraint firstAttribute="height" constant="21" id="DaO-Ey-lsa"/>
@@ -860,14 +898,14 @@
                                                         <constraint firstAttribute="width" constant="200" id="f8Q-Ig-ZOK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="eNR-0i-gfv" firstAttribute="centerX" secondItem="Jrt-8O-gvF" secondAttribute="centerX" id="11h-BT-8Kx"/>
-                                                <constraint firstItem="eNR-0i-gfv" firstAttribute="top" secondItem="Jrt-8O-gvF" secondAttribute="topMargin" constant="40" id="FRJ-5i-3KC"/>
+                                                <constraint firstItem="eNR-0i-gfv" firstAttribute="top" secondItem="Jrt-8O-gvF" secondAttribute="topMargin" constant="50" id="FRJ-5i-3KC"/>
                                                 <constraint firstItem="TZ3-Rh-xxf" firstAttribute="top" secondItem="eNR-0i-gfv" secondAttribute="bottom" constant="8" id="HbV-rM-8ux"/>
                                                 <constraint firstItem="TZ3-Rh-xxf" firstAttribute="centerX" secondItem="Jrt-8O-gvF" secondAttribute="centerX" id="WGp-mb-Vmp"/>
                                             </constraints>
@@ -970,7 +1008,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTY-Ht-Z2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="318"/>
+            <point key="canvasLocation" x="2881" y="311"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Xoj-hy-mL1">
@@ -1347,11 +1385,11 @@
         <image name="ProfilePlaceholder" width="150" height="150"/>
         <image name="QRButton" width="165" height="35"/>
         <image name="QRCodeIcon" width="200" height="200"/>
-        <image name="QueuePlaceHolder" width="596" height="842"/>
+        <image name="QueuePlaceHolder" width="100" height="100"/>
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1mP-jo-tv0"/>
-        <segue reference="VuB-fx-Evj"/>
+        <segue reference="Byi-8v-G9U"/>
+        <segue reference="t8g-Fr-zam"/>
     </inferredMetricsTieBreakers>
 </document>

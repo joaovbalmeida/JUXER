@@ -220,11 +220,11 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
                             dispatch_async(dispatch_get_main_queue()){
                                 self.albumtImage.image = Image(named: "PlayingCoverPlaceholder")
                                 self.albumBG.image = nil
-                                self.usernameLabel.text = ""
-                                self.artistLabel.text = ""
-                                self.artistScrollingLabel.text = ""
-                                self.songLabel.text = ""
-                                self.songScrollingLabel.text = ""
+                                self.usernameLabel.text = nil
+                                self.artistLabel.text = nil
+                                self.artistScrollingLabel.text = nil
+                                self.songLabel.text = nil
+                                self.songScrollingLabel.text = nil
                             }
                         }
                         
@@ -352,7 +352,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             let cell: FooterTableViewCell = tableView.dequeueReusableCellWithIdentifier("footer") as! FooterTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.maxX, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
-            if self.tracks.count == 0 {
+            if self.tracks.count == 0 && self.artistLabel.text == nil {
                 cell.footerLabel.hidden = false
                 cell.footerPlaceholder.hidden = false
             } else {

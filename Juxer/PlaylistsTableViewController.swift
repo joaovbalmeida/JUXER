@@ -16,6 +16,7 @@ class PlaylistsTableViewController: UITableViewController {
     private var playlists = [Playlist]()
     private var session = [Session]()
     private var selectedPlaylist: String = String()
+    private var hidePlaceholders = true
     
     var activityIndicator: UIActivityIndicatorView!
     var loadingView: UIView!
@@ -60,7 +61,6 @@ class PlaylistsTableViewController: UITableViewController {
         self.tableView.addSubview(playlistsRefreshControl)
         
         tableView.indicatorStyle = .White
-        
         activityIndicator.startAnimating()
         
         session = SessionDAO.fetchSession()
@@ -151,6 +151,9 @@ class PlaylistsTableViewController: UITableViewController {
                             }
                         } else {
                             self.playlists.removeAll()
+                            if self.hidePlaceholders == true {
+                                self.hidePlaceholders = false
+                            }
                         }
                         
                         //Refresh TableView
@@ -194,45 +197,77 @@ class PlaylistsTableViewController: UITableViewController {
     }
  
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playlists.count
+        switch (section) {
+        case 0:
+            return playlists.count
+        case 1:
+            if playlists.count == 0 {
+                return 1
+            } else {
+                return 0
+            }
+        default:
+            return 0
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath) as! PlaylistsTableViewCell
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
-        cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
-        cell.layoutMargins = UIEdgeInsetsZero
-        
-        if playlists[indexPath.row].cover != "" {
-            cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!,placeholderImage: UIImage(named: "CoverPlaceholder"))
-        }
-        if playlists[indexPath.row].deadline != nil {
-            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                    .row].deadline!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        switch indexPath.section {
+        case 0:
+            let cell: PlaylistsTableViewCell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath) as! PlaylistsTableViewCell
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.init(red: 29/255, green: 33/255, blue: 36/255, alpha: 1)
+            cell.selectedBackgroundView = bgColorView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
+            cell.layoutMargins = UIEdgeInsetsZero
             
-        } else {
-            cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
-                .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+            if playlists[indexPath.row].cover != "" {
+                cell.playlistCover.kf_setImageWithURL(NSURL(string: playlists[indexPath.row].cover)!,placeholderImage: UIImage(named: "CoverPlaceholder"))
+            }
+            if playlists[indexPath.row].deadline != nil {
+                cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                    .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                        .row].deadline!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                
+            } else {
+                cell.playlistHour.text = NSDateFormatter.localizedStringFromDate(playlists[indexPath
+                    .row].schedule, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+            }
+            cell.playlistName.text = playlists[indexPath.row].name
+            return cell
+        case 1:
+            let cell: FooterTableViewCell = tableView.dequeueReusableCellWithIdentifier("footer") as! FooterTableViewCell
+            cell.userInteractionEnabled = false
+            cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.maxX, bottom: 0, right: 0)
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.footerLabel.hidden = hidePlaceholders
+            cell.footerPlaceholder.hidden = hidePlaceholders
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
+            return cell
         }
-        cell.playlistName.text = playlists[indexPath.row].name
-        return cell
+        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        switch indexPath.section {
+        case 0:
+            return 70
+        default:
+            return self.view.bounds.height
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        self.selectedPlaylist = playlists[indexPath.row].name
-        self.performSegueWithIdentifier("toActiveSongs", sender: self)
+        if indexPath.section == 0 {
+            self.selectedPlaylist = playlists[indexPath.row].name
+            self.performSegueWithIdentifier("toActiveSongs", sender: self)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

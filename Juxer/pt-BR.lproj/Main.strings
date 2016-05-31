@@ -12,7 +12,7 @@
 "Ply-gL-faD.text" = "Usuário Anônimo";
 
 /* Class = "UILabel"; text = "Nenhuma Música"; ObjectID = "TZ3-Rh-xxf"; */
-"TZ3-Rh-xxf.text" = "Nenhuma Música";
+"TZ3-Rh-xxf.text" = "Nenhuma Música na Fila";
 
 /* Class = "UILabel"; text = "Clique em Escanear Código QR e escaneie o código QR do evento"; ObjectID = "Vhw-kD-omX"; */
 "Vhw-kD-omX.text" = "Clique em Escanear Código e escaneie o código QR do evento";
@@ -60,3 +60,6 @@
 
 /* Class = "UILabel"; text = "To connect to your event, tap on "Event" tab and then on "Scan QR"!"; ObjectID = "hSs-aN-ONJ"; */
 "hSs-aN-ONJ.text" = "Para conectar-se ao seu evento, toque em \"Evento\" e depois em \"Escanear Código\"! ";
+
+/* Class = "UILabel"; text = "No Playlists Available"; ObjectID = "GPK-zx-89C"; */
+"GPK-zx-89C.text" = "Nenhuma Playlist Disponível";
