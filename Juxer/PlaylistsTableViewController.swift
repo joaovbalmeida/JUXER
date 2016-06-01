@@ -13,6 +13,9 @@ import SCLAlertView
 
 class PlaylistsTableViewController: UITableViewController {
     
+    @IBAction func unwindToPlaylist(segue: UIStoryboardSegue){
+    }
+    
     private var playlists = [Playlist]()
     private var session = [Session]()
     private var selectedPlaylist: String = String()
@@ -248,7 +251,7 @@ class PlaylistsTableViewController: UITableViewController {
             cell.footerPlaceholder.hidden = hidePlaceholders
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("queue", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("actives", forIndexPath: indexPath)
             return cell
         }
         

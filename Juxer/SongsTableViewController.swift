@@ -19,6 +19,7 @@ class SongsTableViewController: UITableViewController {
     var session = [Session]()
     var user = [User]()
     
+    private var firstTimeLoading = true
     var activityIndicator: UIActivityIndicatorView!
     var overlay: UIView!
     var alertView = SCLAlertView()
@@ -82,7 +83,6 @@ class SongsTableViewController: UITableViewController {
         
         //Configure Pull to Refresh
         songsRefreshControl.tintColor = UIColor.whiteColor()
-        self.view.addSubview(songsRefreshControl)
         
         session = SessionDAO.fetchSession()
         getSongs()
@@ -226,9 +226,24 @@ class SongsTableViewController: UITableViewController {
                             self.songs = tempSongs
                         }
                         
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.stopLoadSpinner()
-                            self.tableView.reloadData()
+                        if self.songs.count != 0 {
+                            dispatch_async(dispatch_get_main_queue()){
+                                if self.firstTimeLoading {
+                                    self.view.addSubview(self.songsRefreshControl)
+                                    self.firstTimeLoading = false
+                                }
+                                self.stopLoadSpinner()
+                                self.tableView.reloadData()
+                            }
+                        } else {
+                            dispatch_async(dispatch_get_main_queue()){
+                                let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+                                self.alertView = SCLAlertView(appearance: appearance)
+                                self.alertView.addButton("OK"){
+                                    self.performSegueWithIdentifier("unwindToPlaylists", sender: self)
+                                }
+                                self.alertView.showInfo("Oops".localized, subTitle: "This playlist ran out of tracks!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
+                            }
                         }
                         
                     } catch let error as NSError {
@@ -260,12 +275,10 @@ class SongsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if searchController.active && searchController.searchBar.text != "" {
             return filteredSongs.count
         }
@@ -299,14 +312,12 @@ class SongsTableViewController: UITableViewController {
             cell.songArtistLabel.text = song.artist
         }
         cell.songTitleLabel.text = song.title
-        
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let id: Int
-        
         //Get song id from filter or not
         if searchController.active && searchController.searchBar.text != "" {
             id = filteredSongs[indexPath.row].id
@@ -318,13 +329,13 @@ class SongsTableViewController: UITableViewController {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         dispatch_async(dispatch_get_main_queue()){
-           self.startLoadOverlay()
+            self.startLoadOverlay()
         }
         
         var alertView = SCLAlertView()
         let jsonObject: [String : AnyObject] =
             [ "id": id , "anom" : user[0].anonymous! ]
-       
+        
         if NSJSONSerialization.isValidJSONObject(jsonObject) {
             
             do {
@@ -366,9 +377,9 @@ class SongsTableViewController: UITableViewController {
                                 }
                                 alertView.showSuccess("Thanks".localized, subTitle: "Your request is now on queue!".localized, colorStyle: 0xFF005A, colorTextButton: 0xFFFFFF)
                             }
-                
+                            
                         } else if httpResponse.statusCode == 422 {
-                        
+                            
                             if string == "\"Track already on queue\"" {
                                 dispatch_async(dispatch_get_main_queue()){
                                     self.stopLoadOverlay()

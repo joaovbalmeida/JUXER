@@ -396,11 +396,14 @@
                     <navigationItem key="navigationItem" title="Songs" id="ZwG-Y5-ViG">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="JSk-tn-iXq">
                             <connections>
-                                <segue destination="Wqe-kx-9Vf" kind="unwind" unwindAction="unwindToQueue:" id="5ow-G6-f9N"/>
+                                <segue destination="Wqe-kx-9Vf" kind="unwind" unwindAction="unwindToQueue:" id="49m-to-VwK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <segue destination="Wqe-kx-9Vf" kind="unwind" identifier="unwindToPlaylists" unwindAction="unwindToPlaylist:" id="xPG-4N-0br"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPP-HR-eEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Wqe-kx-9Vf" userLabel="Exit" sceneMemberID="exit"/>
@@ -1389,7 +1392,7 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Byi-8v-G9U"/>
-        <segue reference="t8g-Fr-zam"/>
+        <segue reference="1mP-jo-tv0"/>
+        <segue reference="VuB-fx-Evj"/>
     </inferredMetricsTieBreakers>
 </document>

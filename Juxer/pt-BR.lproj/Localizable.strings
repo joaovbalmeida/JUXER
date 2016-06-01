@@ -26,7 +26,6 @@
 "Invalid Code" = "Código Inválido";
 "Thanks" = "Obrigado";
 "Reached Limit" = "Limite Atingido";
-"" = "";
 
 /* Alerts Views Texts */
 "Unable to reach server, please try again!" = "Não foi possivel conectar ao servidor, por favor tente novamente!";
@@ -47,6 +46,7 @@
 "Unable to make request, please try again!" = "Ocorreu um erro ao fazer o pedido, por favor tente novamente!";
 "Unable to request this song!" = "Não foi possivel pedir essa música!";
 "You will be disconnected from the event!" = "Voce será desconectado do evento!";
+"This playlist ran out of tracks!" = "Não há mais músicas nessa Playlist!";
 
 /* Alerts Views Buttons titles */
 "Yes" = "Sim";
