@@ -1035,7 +1035,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Isz-wX-4z9">
-                                <rect key="frame" x="250" y="297" width="100" height="100"/>
+                                <rect key="frame" x="250" y="267" width="100" height="100"/>
                                 <color key="tintColor" red="0.91622721350000003" green="0.91622721350000003" blue="0.91622721350000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="osk-4w-JJf"/>
@@ -1047,8 +1047,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTG-rP-jzt">
-                                <rect key="frame" x="175" y="405" width="250" height="75"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noinionionoinoinoinoinoinoinoinionoinoin" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTG-rP-jzt">
+                                <rect key="frame" x="175" y="375" width="250" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="8Rf-Jk-R1a"/>
                                     <constraint firstAttribute="width" constant="250" id="9UU-he-KKl"/>
@@ -1061,7 +1061,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bTG-rP-jzt" firstAttribute="centerX" secondItem="8cy-2o-g3f" secondAttribute="centerX" id="Zgn-RI-C0T"/>
-                            <constraint firstItem="1mx-sd-ZDR" firstAttribute="top" secondItem="bTG-rP-jzt" secondAttribute="bottom" constant="120" id="be4-56-bQY"/>
+                            <constraint firstItem="1mx-sd-ZDR" firstAttribute="top" secondItem="bTG-rP-jzt" secondAttribute="bottom" constant="150" id="be4-56-bQY"/>
                             <constraint firstItem="bTG-rP-jzt" firstAttribute="top" secondItem="Isz-wX-4z9" secondAttribute="bottom" constant="8" id="ho4-c7-WVE"/>
                             <constraint firstItem="Isz-wX-4z9" firstAttribute="centerX" secondItem="8cy-2o-g3f" secondAttribute="centerX" id="kx1-PH-VDm"/>
                         </constraints>
@@ -1394,7 +1394,7 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ofa-hA-9Mw"/>
         <segue reference="VuB-fx-Evj"/>
+        <segue reference="2vg-QG-wbD"/>
     </inferredMetricsTieBreakers>
 </document>
