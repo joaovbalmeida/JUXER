@@ -455,7 +455,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BannerPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="C1d-s9-Zli">
-                                <rect key="frame" x="5" y="10" width="590" height="170"/>
+                                <rect key="frame" x="10" y="10" width="580" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="RSe-AI-tAh"/>
                                 </constraints>
@@ -558,12 +558,12 @@
                             <constraint firstItem="Vhw-kD-omX" firstAttribute="centerX" secondItem="Gcx-iJ-C1C" secondAttribute="centerX" id="ffM-yX-GwM"/>
                             <constraint firstItem="fDy-Lq-RQd" firstAttribute="centerX" secondItem="Gcx-iJ-C1C" secondAttribute="centerX" id="fiy-TF-X02"/>
                             <constraint firstItem="bdE-xK-7TC" firstAttribute="leading" secondItem="fDy-Lq-RQd" secondAttribute="trailing" constant="15" id="fjM-pE-cc8"/>
-                            <constraint firstAttribute="trailing" secondItem="C1d-s9-Zli" secondAttribute="trailing" constant="5" id="fpV-l9-ayx"/>
+                            <constraint firstAttribute="trailing" secondItem="C1d-s9-Zli" secondAttribute="trailing" constant="10" id="fpV-l9-ayx"/>
                             <constraint firstItem="9Bh-tN-9oR" firstAttribute="centerY" secondItem="Gcx-iJ-C1C" secondAttribute="centerY" id="jDf-Sa-JLo"/>
                             <constraint firstItem="XML-qh-OMd" firstAttribute="top" secondItem="FXS-e0-2ea" secondAttribute="bottom" constant="10" id="k7y-mP-fJJ"/>
                             <constraint firstItem="nV7-dx-8qN" firstAttribute="top" secondItem="o56-nv-POc" secondAttribute="bottom" id="kSV-6o-w3x"/>
                             <constraint firstItem="gga-6P-9ht" firstAttribute="leading" secondItem="Gcx-iJ-C1C" secondAttribute="leading" id="s18-Dg-uat"/>
-                            <constraint firstItem="C1d-s9-Zli" firstAttribute="leading" secondItem="Gcx-iJ-C1C" secondAttribute="leading" constant="5" id="vP7-po-wkU"/>
+                            <constraint firstItem="C1d-s9-Zli" firstAttribute="leading" secondItem="Gcx-iJ-C1C" secondAttribute="leading" constant="10" id="vP7-po-wkU"/>
                             <constraint firstItem="nV7-dx-8qN" firstAttribute="top" secondItem="XML-qh-OMd" secondAttribute="bottom" constant="10" id="xYd-tp-ysR"/>
                         </constraints>
                     </view>
@@ -1376,7 +1376,7 @@
     <resources>
         <image name="Avatar" width="163" height="163"/>
         <image name="BackIcon" width="26" height="23"/>
-        <image name="BannerPlaceholder" width="270" height="170"/>
+        <image name="BannerPlaceholder" width="714" height="264"/>
         <image name="CoverPlaceholder" width="55" height="55"/>
         <image name="EventBackground" width="800" height="533"/>
         <image name="FBLoginButton" width="212" height="47"/>
@@ -1394,7 +1394,7 @@
         <image name="Settings" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1mP-jo-tv0"/>
+        <segue reference="Ofa-hA-9Mw"/>
         <segue reference="VuB-fx-Evj"/>
     </inferredMetricsTieBreakers>
 </document>
