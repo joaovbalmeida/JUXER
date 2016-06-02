@@ -30,7 +30,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var orderButton: UIButton!
     @IBOutlet weak var orderButtonLabel: UILabel!
 
-    private let kHeaderHeight: CGFloat = 380
+    private let kHeaderHeight: CGFloat = 350
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
     var overlay: UIView!
     var activityIndicator: UIActivityIndicatorView!
@@ -103,7 +103,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //Configure Pull to Refresh
         refreshControl.tintColor = UIColor.whiteColor()
-        refreshControl.bounds.origin.y = 350
+        refreshControl.bounds.origin.y = kHeaderHeight - 25
         if session.count != 0 && session[0].active == 1 {
             tableView.addSubview(refreshControl)
         }
@@ -337,7 +337,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.layoutMargins = UIEdgeInsetsZero
             if refreshControl.refreshing == false {
         
-                cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceHolder"))
+                cell.trackCover.kf_setImageWithURL(NSURL(string: self.tracks[indexPath.row].cover)!,placeholderImage: Image(named: "CoverPlaceholder"))
                 cell.trackTitle.text = self.tracks[indexPath.row].title
                 if self.tracks[indexPath.row].album != "" {
                     cell.trackArtist.text = self.tracks[indexPath.row].artist + " - " + self.tracks[indexPath.row].album
@@ -352,7 +352,7 @@ class QueueViewController: UIViewController, UITableViewDataSource, UITableViewD
             let cell: FooterTableViewCell = tableView.dequeueReusableCellWithIdentifier("footer") as! FooterTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: view.bounds.maxX, bottom: 0, right: 0)
             cell.layoutMargins = UIEdgeInsetsZero
-            if self.tracks.count == 0 && self.artistLabel.text == nil {
+            if self.tracks.count == 0 {
                 cell.footerLabel.hidden = false
                 cell.footerPlaceholder.hidden = false
             } else {

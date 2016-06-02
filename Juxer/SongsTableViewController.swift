@@ -304,7 +304,7 @@ class SongsTableViewController: UITableViewController {
         
         //Show info from the song
         if song.cover != "" {
-            cell.songCover.kf_setImageWithURL(NSURL(string: song.cover)!,placeholderImage: Image(named: "CoverPlaceHolder"))
+            cell.songCover.kf_setImageWithURL(NSURL(string: song.cover)!,placeholderImage: Image(named: "CoverPlaceholder"))
         }
         if song.album != "" {
             cell.songArtistLabel.text = song.artist + " - " + song.album
