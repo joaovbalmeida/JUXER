@@ -63,3 +63,6 @@
 
 /* Class = "UILabel"; text = "No Playlists Available"; ObjectID = "GPK-zx-89C"; */
 "GPK-zx-89C.text" = "Nenhuma Playlist Disponível";
+
+/* Class = "UILabel"; text = "By logging in you agree to our Terms of Use and Privacy Police"; ObjectID = "ecv-sb-9KQ"; */
+"ecv-sb-9KQ.text" = "Ao continuar, você concorda com nossos Termos de serviço e Política de privacidade";

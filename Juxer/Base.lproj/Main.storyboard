@@ -71,6 +71,16 @@
                                     <action selector="fbLoginButtonPressed:" destination="z0C-le-wIj" eventType="touchUpInside" id="G3m-FK-YFE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By logging in you agree to our Terms of Use and Privacy Police" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecv-sb-9KQ">
+                                <rect key="frame" x="193" y="566" width="215" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="gem-3a-Tqn"/>
+                                    <constraint firstAttribute="width" constant="215" id="lY3-h7-z34"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="10"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -78,6 +88,8 @@
                             <constraint firstItem="Q6C-J9-IYg" firstAttribute="top" secondItem="Adf-lt-oqs" secondAttribute="bottom" constant="46" id="AHA-TJ-L4i"/>
                             <constraint firstItem="n0u-Rq-Crq" firstAttribute="centerX" secondItem="FBy-Fg-QkP" secondAttribute="centerX" id="DoD-1c-waO"/>
                             <constraint firstItem="n0u-Rq-Crq" firstAttribute="centerY" secondItem="FBy-Fg-QkP" secondAttribute="centerY" id="PpN-m2-Brk"/>
+                            <constraint firstItem="ecv-sb-9KQ" firstAttribute="centerX" secondItem="FBy-Fg-QkP" secondAttribute="centerX" id="PyG-ke-cwS"/>
+                            <constraint firstItem="ecv-sb-9KQ" firstAttribute="top" secondItem="dJ1-Km-ogp" secondAttribute="bottom" constant="8" id="VKQ-wa-ZQo"/>
                             <constraint firstItem="Q6C-J9-IYg" firstAttribute="centerX" secondItem="FBy-Fg-QkP" secondAttribute="centerX" id="Xku-4T-eJU"/>
                             <constraint firstItem="oby-Pd-lOu" firstAttribute="top" secondItem="wbA-fm-1wX" secondAttribute="bottom" constant="100" id="jFi-av-yAP"/>
                             <constraint firstItem="dJ1-Km-ogp" firstAttribute="centerX" secondItem="FBy-Fg-QkP" secondAttribute="centerX" id="o2N-jB-UKe"/>
