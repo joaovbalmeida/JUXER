@@ -31,7 +31,6 @@
 		E9AFE1A71CF9531A00146729 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1A61CF9531A00146729 /* GoogleService-Info.plist */; };
 		E9AFE1C21CF95D7500146729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1BE1CF95D7500146729 /* LaunchScreen.storyboard */; };
 		E9AFE1C31CF95D7500146729 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1C01CF95D7500146729 /* Main.storyboard */; };
-		E9B71EB11CFCE321006414B4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9AFE1761CF94BC000146729 /* Info.plist */; };
 		E9B71EB91CFCF158006414B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9B71EBB1CFCF158006414B4 /* Localizable.strings */; };
 		E9F7DBB41CF965A000B4126B /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9F7DBB11CF965A000B4126B /* Comfortaa-Bold.ttf */; };
 		E9F7DBB61CF965A000B4126B /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9F7DBB31CF965A000B4126B /* Comfortaa-Regular.ttf */; };
@@ -271,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9B71EB11CFCE321006414B4 /* Info.plist in Resources */,
 				E9AFE1C21CF95D7500146729 /* LaunchScreen.storyboard in Resources */,
 				E9AFE1721CF94BC000146729 /* Assets.xcassets in Resources */,
 				E9F7DBB41CF965A000B4126B /* Comfortaa-Bold.ttf in Resources */,
