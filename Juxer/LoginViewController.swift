@@ -12,13 +12,15 @@ import FBSDKLoginKit
 import SCLAlertView
 import GoogleSignIn
 import Google
+import SafariServices
 
-class LoginViewController: UIViewController, UIPageViewControllerDataSource, GIDSignInDelegate, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, UIPageViewControllerDataSource, GIDSignInDelegate, GIDSignInUIDelegate, UITextViewDelegate, SFSafariViewControllerDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var welcomeText2: UILabel!
     @IBOutlet weak var ggLoginButton: UIButton!
     @IBOutlet weak var fbLoginButton: UIButton!
+    @IBOutlet weak var terms: UITextView!
     
     @IBAction func ggLoginButtonPressed(sender: AnyObject) {
         
@@ -72,6 +74,8 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
     var pageViewController: UIPageViewController!
     var pageLabels: NSArray!
     var pageImages: NSArray!
+    let termsAndConditionsURL = "http://www.juxer.club";
+    let privacyURL = "http://www.juxer.club";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +106,9 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+        
+        //Links for Terms of User
+        configureTerms()
         
         //Bring Login Button to front
         self.view.bringSubviewToFront(fbLoginButton)
@@ -292,17 +299,49 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         GIDSignIn.sharedInstance().signOut()
     }
     
+    // MARK: - Configure Links in for Terms of Use
+    
+    func configureTerms() {
+        self.terms.delegate = self
+        let str = "By using this app you agree to our Terms and Conditions and Privacy Policy".localized
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Center
+        let attributedString = NSMutableAttributedString(string: str,
+            attributes: [NSFontAttributeName:
+                UIFont.systemFontOfSize(10, weight: UIFontWeightLight), NSForegroundColorAttributeName: UIColor.whiteColor(), NSParagraphStyleAttributeName: paragraphStyle])
+        
+        //Add Attributes
+        var foundRange = attributedString.mutableString.rangeOfString("Terms and Conditions".localized)
+        attributedString.addAttribute(NSLinkAttributeName, value: termsAndConditionsURL, range: foundRange)
+        attributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(10, weight: UIFontWeightSemibold), range: foundRange)
+        foundRange = attributedString.mutableString.rangeOfString("Privacy Policy".localized)
+        attributedString.addAttribute(NSLinkAttributeName, value: privacyURL, range: foundRange)
+        attributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(10, weight: UIFontWeightSemibold), range: foundRange)
+        
+        terms.attributedText = attributedString
+        self.view.bringSubviewToFront(terms)
+    }
+    
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        let svc: SFSafariViewController = SFSafariViewController(URL: URL)
+        svc.delegate = self
+        if (URL.absoluteString == termsAndConditionsURL) {
+            presentViewController(svc, animated: true , completion: nil)
+        } else if (URL.absoluteString == privacyURL) {
+            presentViewController(svc, animated: true , completion: nil)
+        }
+        return false
+    }
+    
     // MARK: - Google Sign In Delegate
     
     func signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
-        self.dismissViewControllerAnimated(true) { () -> Void in
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
         viewController.modalTransitionStyle = .CoverVertical
-        self.presentViewController(viewController, animated: true) { () -> Void in
-        }
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
@@ -406,7 +445,6 @@ class LoginViewController: UIViewController, UIPageViewControllerDataSource, GID
         viewController.pageLabel = self.pageLabels[index] as! String
         viewController.pageIndex = index
         viewController.pageIcon = self.pageImages[index] as! String
-        
         return viewController
         
     }

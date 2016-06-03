@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Custom Navigation Bar
         let navigationBarAppear = UINavigationBar.appearance()
         navigationBarAppear.tintColor = UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)
-        navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1), NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 18)!]
+        navigationBarAppear.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.init(red: 255/255, green: 0/255, blue: 90/255, alpha: 1)]
         
         //Configure Page Controller
         let pageController = UIPageControl.appearance()

@@ -2,8 +2,11 @@
 /* Class = "UINavigationItem"; title = "Ajustes"; ObjectID = "66z-O0-w0i"; */
 "66z-O0-w0i.title" = "Ajustes";
 
-/* Class = "UILabel"; text = "Log Out"; ObjectID = "DN0-J5-ISN"; */
-"DN0-J5-ISN.text" = "Log Out";
+/* Class = "UILabel"; text = "Terms of use"; ObjectID = "DN0-J5-ISN"; */
+"DN0-J5-ISN.text" = "Termos de uso";
+
+/* Class = "UILabel"; text = "Privacy policy"; ObjectID = "Kce-sX-fDd"; */
+"Kce-sX-fDd.text" = "Política de privacidade";
 
 /* Class = "UIBarButtonItem"; title = "Voltar"; ObjectID = "Ffm-Sl-dmn"; */
 "Ffm-Sl-dmn.title" = "Voltar";
@@ -15,7 +18,7 @@
 "TZ3-Rh-xxf.text" = "Nenhuma Música na Fila";
 
 /* Class = "UILabel"; text = "Clique em Escanear Código QR e escaneie o código QR do evento"; ObjectID = "Vhw-kD-omX"; */
-"Vhw-kD-omX.text" = "Clique em Escanear Código e escaneie o código QR do evento";
+"Vhw-kD-omX.text" = "Clique em \"Escanear Código\" e escaneie o código QR do evento";
 
 /* Class = "UITableViewSection"; footerTitle = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário."; ObjectID = "WXy-Iy-tjG"; */
 "WXy-Iy-tjG.footerTitle" = "Ao pedir uma música como usuário anônimo, não mostraremos seu nome e foto de usuário.";
@@ -28,6 +31,7 @@
 
 /* Class = "UINavigationItem"; title = "Músicas"; ObjectID = "ZwG-Y5-ViG"; */
 "ZwG-Y5-ViG.title" = "Músicas";
+"Vu4-Au-MMF.title" = "Fila";
 
 /* Class = "UILabel"; text = "Nova Música"; ObjectID = "aok-IM-bcP"; */
 "aok-IM-bcP.text" = "Nova Música";
@@ -55,14 +59,11 @@
 "jru-It-nCs.title" = "Fila";
 "er7-2X-EnU.title" = "Ajustes";
 
-/* Class = "UILabel"; text = "Bem-Vindo ao Juxer"; ObjectID = "KgA-iy-NLz"; */
-"KgA-iy-NLz.text" = "Bem-Vindo ao Juxer";
-
 /* Class = "UILabel"; text = "To connect to your event, tap on "Event" tab and then on "Scan QR"!"; ObjectID = "hSs-aN-ONJ"; */
 "hSs-aN-ONJ.text" = "Para conectar-se ao seu evento, toque em \"Evento\" e depois em \"Escanear Código\"! ";
 
 /* Class = "UILabel"; text = "No Playlists Available"; ObjectID = "GPK-zx-89C"; */
 "GPK-zx-89C.text" = "Nenhuma Playlist Disponível";
 
-/* Class = "UILabel"; text = "By logging in you agree to our Terms of Use and Privacy Police"; ObjectID = "ecv-sb-9KQ"; */
-"ecv-sb-9KQ.text" = "Ao continuar, você concorda com nossos Termos de serviço e Política de privacidade";
+/* Class = "UILabel"; text = "No event connected"; ObjectID = "ecv-sb-9KQ"; */
+"MFZ-aL-ToE.text" = "Nenhum evento conectado!";

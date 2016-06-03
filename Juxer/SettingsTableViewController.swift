@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import Kingfisher
 import SCLAlertView
 import GoogleSignIn
+import SafariServices
 
 class SettingsTableViewController: UITableViewController {
 
@@ -78,7 +79,24 @@ class SettingsTableViewController: UITableViewController {
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if indexPath.section == 1 && indexPath.row == 0 {
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                let webViewController: UIViewController = UIViewController()
+                let webView: UIWebView = UIWebView(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
+                webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.juxer.club")!))
+                webView.scalesPageToFit = true
+                webViewController.view!.addSubview(webView)
+                self.navigationController!.pushViewController(webViewController, animated: true)
+
+            } else if indexPath.row == 1{
+                let webViewController: UIViewController = UIViewController()
+                let webView: UIWebView = UIWebView(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
+                webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.juxer.club")!))
+                webView.scalesPageToFit = true
+                webViewController.view!.addSubview(webView)
+                self.navigationController!.pushViewController(webViewController, animated: true)
+            }
+        } else if indexPath.section == 2 && indexPath.row == 0 {
             let alertView = SCLAlertView()
             alertView.addButton("Yes".localized){
                 

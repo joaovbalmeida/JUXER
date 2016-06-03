@@ -11,6 +11,9 @@
 "After logging in scan the event QR Code." = "Após fazer login, escaneie o código QR do evento.";
 "Order songs from the event availables playlists." = "Peça músicas das playlists disponíveis no evento.";
 "Enjoy the songs chosen by others while yours is in the queue!" = "Aproveite as músicas escolhidas por outras pessoas enquanto a sua está na fila!";
+"By using this app you agree to our Terms and Conditions and Privacy Policy" = "Ao continuar, você concorda com nossos Termos de serviço e Política de privacidade";
+"Terms and Conditions" = "Termos de serviço";
+"Privacy Policy" = "Política de privacidade";
 
 /* SongsViewController Search Placeholder */
 "Search" = "Pesquisar";
@@ -39,7 +42,7 @@
 "Unable to get Tracks!" = "Não foi possivel obter as Músicas!";
 "User has already reached song request limit" = "";
 "Unavailable track" = "";
-"Your request is now on queue!" = "Seu pedido já está na fila!";
+"Your request is now on queue!" = "Seu pedido está agora na fila!";
 "The requested track is already on queue!" = "A música pedida já está na fila!";
 "You have reached your request limit, wait your pending requests finish and try again!" = "Você atingiu o seu limite de pedidos, espere seus pedidos pendentes acabarem e tente novamente!";
 "This Playlist reached the deadline limit!" = "O tempo limite de músicas dessa playlist foi atingido!";
